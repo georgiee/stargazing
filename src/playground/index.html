@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>01 - Stargazing — Star Colors</title>
+  <style>
+  body {
+    background-color: black;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px;
+  }
+
+  .apply-offset {
+    stroke-dashoffset: var(--offset, 0);
+  }
+
+  .translate-with-offset {
+    transform: translate(calc(var(--offset, 0) * 1px), 0);
+  }
+
+
+  text {
+    fill: white;
+    font-size: 6px;
+  }
+
+  .path-with-dashes {
+    stroke-dasharray: var(--dasharray, 0);
+    stroke: hotpink;
+    stroke-width: 2;
+    fill: transparent;
+  }
+
+  </style>
+</head>
+
+<body>
+<h1>a 100px line</h1>
+<svg id='demosvg' viewbox="-2 -2 380 150" width ="100%">
+
+  <g transform="translate(0, 60)">
+    <text id='amountOffset' y="0" x="0">dashoffset</text>
+    <text id='amountArray' y="0" x="50">dasharray</text>
+
+    <g transform="translate(0, 10)">
+      <!-- line without offset animation -->
+
+      <g transform="translate(0, 0)">
+        <text>1. a nice line</text>
+
+       <g transform="translate(0, 5)">
+          <circle cx="0" cy = "0" r="2" fill=white></circle>
+          <circle cx="100" cy = "0" r="2" fill=white></circle>
+          <path class="path-with-dashes" d="M 0 0 L 100 0"></path>
+       </g>
+      </g>
+
+      <!-- line extended -->
+      <g transform="translate(0, 15)">
+        <text>2. a nice line just longer</text>
+
+        <g transform="translate(0, 5)">
+            <circle cx="0" cy = "0" r="2" fill=white></circle>
+            <circle cx="300" cy = "0" r="2" fill=white></circle>
+            <path class="path-with-dashes" d="M 0 0 L 300 0"></path>
+        </g>
+      </g>
+
+      <!-- line extended with sliding window -->
+      <g transform="translate(0, 30)">
+        <text>3. that line with a sliding window</text>
+        <g transform="translate(0, 5)">
+
+          <circle cx="0" cy = "0" r="2" fill=white></circle>
+          <circle cx="300" cy = "0" r="2" fill=white></circle>
+          <path class="path-with-dashes" d="M 0 0 L 300 0"></path>
+
+          <g class="translate-with-offset">
+            <circle cx="0" cy = "0" r="2" fill="yellow"></circle>
+            <circle cx="100" cy = "0" r="2" fill="yellow"></circle>
+            <rect width="100" height="6" y="-3" opacity="0.3" fill="yellow"></rect>
+          </g>
+        </g>
+      </g>
+
+      <!-- line with offset aligned with window-->
+      <g transform="translate(0, 45)">
+        <text>4. the sliding window alone</text>
+        <g transform="translate(0, 5)">
+          <g class="translate-with-offset">
+            <rect width="100" height="6" y="-3" opacity="0.3" fill="yellow"></rect>
+            <circle cx="0" cy = "0" r="2" fill=white></circle>
+            <circle cx="100" cy = "0" r="2" fill=white></circle>
+            <path class="apply-offset path-with-dashes" d="M 0 0 L 100 0"></path>
+          </g>
+        </g>
+      </g>
+
+      <!-- final line with offset animation -->
+      <g transform="translate(0, 60)">
+        <text>5. the final result</text>
+        <g transform="translate(0, 5)">
+          <circle cx="0" cy = "0" r="2" fill=white></circle>
+          <circle cx="100" cy = "0" r="2" fill=white></circle>
+          <path class="apply-offset path-with-dashes" d="M 0 0 L 100 0"></path>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <g transform="translate(0, 30)">
+    <text y="-20" x="0">dasharray</text>
+    amountArray
+    <!-- solid -->
+    <g>
+      <circle cx="0" cy = "0" r="2" fill=white></circle>
+      <circle cx="100" cy = "0" r="2" fill=white></circle>
+      <path
+        stroke="red" stroke-width="2"
+        stroke-dashoffset="50"
+        d="M 0 0 L 100 0" fill='transparent'>
+      </path>
+      <text y="-3" x="10">0</text>
+    </g>
+
+    <!-- dasharray = 1 -->
+    <g transform="translate(120 0)">
+      <circle cx="0" cy = "0" r="2" fill=white></circle>
+      <circle cx="100" cy = "0" r="2" fill=white></circle>
+      <path
+        stroke-dasharray="1"
+        stroke="red" stroke-width="2"
+        d="M 0 0 L 100 0" fill='transparent'>
+      </path>
+      <text fill="yellow" font-size="8" y="-3" x="10">1</text>
+    </g>
+
+    <!-- dasharray = 10 -->
+    <g transform="translate(240 0)">
+      <circle cx="0" cy = "0" r="2" fill=white></circle>
+      <circle cx="100" cy = "0" r="2" fill=white></circle>
+      <path
+        stroke-dasharray="10"
+        stroke="red" stroke-width="2"
+        d="M 0 0 L 100 0" fill='transparent'>
+      </path>
+      <text fill="yellow" font-size="8" y="-3" x="10">10</text>
+    </g>
+
+    <!-- dasharray = 50 -->
+    <g transform="translate(0 10)">
+      <circle cx="0" cy = "0" r="2" fill=white></circle>
+      <circle cx="100" cy = "0" r="2" fill=white></circle>
+      <path
+        stroke-dasharray="50"
+        stroke="red" stroke-width="2"
+        d="M 0 0 L 100 0" fill='transparent'>
+      </path>
+      <text fill="yellow" font-size="8" y="-3" x="10">50</text>
+    </g>
+
+    <!-- dasharray = 100 -->
+    <g transform="translate(120 10)">
+      <circle cx="0" cy = "0" r="2" fill=white></circle>
+      <circle cx="100" cy = "0" r="2" fill=white></circle>
+      <path
+        stroke-dasharray="100"
+        stroke="red" stroke-width="2"
+        d="M 0 0 L 100 0" fill='transparent'>
+      </path>
+      <text fill="yellow" font-size="8" y="-3" x="10">100</text>
+    </g>
+
+    <!-- dasharray = 200 -->
+    <g transform="translate(240 10)">
+      <circle cx="0" cy = "0" r="2" fill=white></circle>
+      <circle cx="100" cy = "0" r="2" fill=white></circle>
+      <path
+        stroke-dasharray="200"
+        stroke="red" stroke-width="2"
+        d="M 0 0 L 100 0" fill='transparent'>
+      </path>
+      <text fill="yellow" font-size="8" y="-3" x="10">200</text>
+    </g>
+  </g>
+</svg>
+
+<input type="range" id='dashSize' min="0" maxx="150" value="10">
+
+<script>
+
+  let offset = 0;
+  let speed = 10;
+
+  setDashArray(10);
+  function setDashArray(value) {
+    demosvg.style.setProperty('--dasharray', value);
+    amountArray.innerHTML = 'dasharray: '+ value;
+    dashSize.value = value;
+  }
+
+  dashSize.addEventListener('change', () => {
+    setDashArray(dashSize.value);
+  });
+
+  setInterval(() => {
+    offset+=speed/20;
+    demosvg.style.setProperty('--offset', (offset));
+    amountOffset.innerHTML = 'dashoffset: ' +  Math.round(offset);
+    if(offset >= 100 || offset <= 0) {
+      speed *= -1;
+    }
+  }, 50);
+
+</script>
+</body>
+
+</html>

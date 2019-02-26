@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="reveal/css/reveal.css">
+  <link rel="stylesheet" href="reveal/css/theme/night.css">
+
+  <link rel="stylesheet" href="prismjs/prism.css">
+  <script src="prismjs/prism.js"></script>
+
+  <title>Stargazing for developers - A twinkling night sky with shooting stars powered by SVG & CSS</title>
+  <style>
+
+    /* Make the prism highlight more visible */
+    .line-highlight {
+      outline: 5px solid yellow;
+      left: 5px;
+      right: 5px;
+      background-color: #ffc40005;
+      margin-top: -9px !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- Starter -->
+      <section data-background-image="static/images/satellytes.jpg">
+        <div class="satellytes-background">
+          <h2>Stargazing for developers</h2>
+          <span>A twinkling night sky with shooting stars powered by SVG & CSS</span>
+        </div>
+        <aside class="notes">
+          <p>Welcome to my talk Stargazing for developer</p>
+          <p>We are building a twinkling night sky with shooting stars today.</p>
+        </aside>
+        <style>
+          .satellytes-background  {
+            transform: translate(0, -45%);
+            padding: 20px 0;
+          }
+        </style>
+      </section>
+
+      <!-- About -->
+      <section>
+        <section>
+          <h3>About me</h3>
+          <ul>
+            <li class="fragment">Georgios Kaleadis</li>
+            <li class="fragment">Learned programming with Flash 4</li>
+            <li class="fragment">Frontend Developer</li>
+            <li class="fragment">I love experimenting with technology</li>
+          </ul>
+          <aside class="notes">
+              <p>My name is Georgios Kaleadis</p>
+              <p>I learned programming with Flash 4 in 1998</p>
+              <p>I'm a Frontend Developer using Angular in my daily job and React or Vue for my pet projects</p>
+              <p>and I love experimenting with technology like WebGL, my Arduino and algorithms.</p>
+          </aside>
+        </section>
+
+        <section>
+          <code class="language-css">
+            <pre>
+                p { color: red; }
+            </pre>
+          </code>
+        </section>
+      </section>
+
+      <!-- Prepare -->
+      <section>
+        <section>
+          <h3>Journey to the stars</h3>
+          <p>3 chapters</p>
+          <ul>
+            <li class="fragment">I) Anatomy of a Star</li>
+            <li class="fragment">II) Night Sky</li>
+            <li class="fragment">III) Shooting Stars</li>
+            <!-- <li class="fragment">IV) Parallax Sky</li> -->
+          </ul>
+          <aside class="notes">
+            <p>Over the course of 3 chapters I will take you on a journey to the stars.</p>
+            <p>We will explore how a single star is working to create them easily.</p>
+            <p>After that we will assemble a full and crowded sky night</p>
+            <p>Shooting Stars can't miss in any night sky that's what we will look at in the third chapter</p>
+          </aside>
+        </section>
+
+        <section>
+          <div class="fact-summary">
+            <h2 class="fragment">✨FACT✨</h2>
+            <span class="fragment">🎭 Idea: *How to build it* </span><br>
+          </div>
+
+          <aside class="notes">
+            <p>During a chapter we will discover new science ✨FACTS✨ marked with these emoji stars</p>
+            <p>..followed by an idea how to creatively code it </p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Coding</h2>
+          <ul>
+            <li class="fragment" data-fragment-index="1">SVG Markup </li>
+            <li class="fragment" data-fragment-index="2">CSS Animations</li>
+            <li class="fragment" data-fragment-index="2">CSS Variables</li>
+            <li class="fragment" data-fragment-index="3">
+              <span class="fragment" data-fragment-index="4">(</span>Vanilla Javascript<span class="fragment" data-fragment-index="4">) Optional 🙌</span></li>
+          </ul>
+          <aside class="notes">
+            <p>Speaking of Coding, you will see SVG Markup</p>
+            <p>together with CSS Animations & CSS Variables to create actual animations.</p>
+            <p>At some point we don't want to repeat ourselves.</p>
+            <p>
+                We will use Javascript to create many variations of our SVG Code and to modify CSS Variables.
+            </p>
+            <p>
+              JavaScript itself isn't a strict requirement
+            </p>
+          </aside>
+        </section>
+      </section>
+
+      <!-- Consellations -->
+      <section>
+        <section
+          data-background-opacity="0.5"
+          data-background-image="static/images/constellations/opener.gif">
+          <span>Chapter 04 </span>
+          <h2>Constellations</h2>
+        </section>
+
+        <section>
+          <h2>Pareidolia?</h2>
+          <span>random data = shapes</span>
+          <aside class="notes">
+            Do you know what's Pareidolia?
+            It's the psychological phenomenon to see or hear things in random data.
+          </aside>
+        </section>
+
+        <section data-background-image="static/images/constellations/pareidolia.jpg">
+          <aside class="notes">
+            And people spot really weird things in objects as you can see here.
+            But wait, why am I telling you all this?
+          </aside>
+        </section>
+
+        <section>
+          What is a Constellation?
+          <aside class="notes">
+            Shouldn't we ask for the question what is a constellation ?
+            Yes we should of course.
+          </aside>
+        </section>
+
+        <section>
+          Constellations are figures people see in the sky formed by a few stars.
+          <br>
+          <span class="fragment">Star Pareidolia!</span>
+        </section>
+
+        <section
+          data-background-image="static/images/constellations/figures-sky-03.jpg">
+          <aside class="notes">
+            It's like looking in the night sky
+          </aside>
+        </section>
+
+        <section
+          data-background-image="static/images/constellations/figures-sky-02.jpg">
+          <aside class="notes">
+            and then you start seeing figures
+          </aside>
+        </section>
+
+        <section
+          data-background-image="static/images/constellations/figures-sky-04.jpg">
+          <aside class="notes">
+            just by connecting the stars with lines in your head.
+          </aside>
+        </section>
+
+        <section data-background-image="static/images/constellations/88-constellations.png">
+          <aside class="notes">
+            Today there are exactly 88 star constellations. No more, mo less.
+            And we want to build some of them with SVG & CSS. Let's get started.
+          </aside>
+        </section>
+
+        <!--
+        <section>
+          <img width="500" src="static/images/unsorted/betelgeuse-orion.jpg"/>
+          <aside class="notes">
+            Remember our image from the beginning before we travelled to Betelegeuse ?
+            That's the constellationn Orion and we are going to build it now.
+          </aside>
+        </section>
+        -->
+
+        <section>
+          <div class="fact">
+            <span>Star Fact!</span>
+            <h2 class="fragment">✨Dots and Lines✨</h2>
+            <span class="fragment">🎭 Idea: SVG circles connected with lines</span>
+          </div>
+        </section>
+
+        <section>
+          <span>Plan</span><br>
+          <ul>
+            <li>Draw Circles</li>
+            <li>Connect with lines</li>
+          </ul>
+
+          <aside class="notes">
+            We want to draw some circles and connect them with a line.
+            This will be our base which we will extend then.
+          </aside>
+        </section>
+
+        <section>
+          <iframe width="600" height="300" data-src="examples/constellation-01/index.html"></iframe>
+          <pre data-src="examples/constellation-01/snippet.svg"></pre>
+          <aside class="notes">
+            We begin with three circles
+          </aside>
+        </section>
+
+        <section>
+          <iframe width="600" height="300" data-src="examples/constellation-02/index.html"></iframe>
+          <pre
+            data-line="6-9"
+            data-src="examples/constellation-02/snippet.svg"></pre>
+          <aside class="notes">
+            That looks promising already. But we want to build up some tension
+            so why not slowly reveal the image by animating the lines?
+          </aside>
+        </section>
+
+        <section>
+          <iframe width="600" height="300" data-src="examples/constellation-03/index.html"></iframe>
+          <pre data-src="examples/constellation-03/snippet.css"></pre>
+          <aside class="notes">
+            We will use a technique pioneered by Jake Archibald in 2013!
+            <!-- Show simple path (a line) and animate dasharray and dashoffset. -->
+            <!-- https://jakearchibald.com/2013/animated-line-drawing-svg/ -->
+          </aside>
+        </section>
+
+        <section data-background-iframe="examples/constellation-04-dasharray/index.html">
+          <aside class="notes">
+            We will use a technique pioneered by Jake Archibald in 2013!
+            <!-- Show simple path (a line) and animate dasharray and dashoffset. -->
+            <!-- https://jakearchibald.com/2013/animated-line-drawing-svg/ -->
+          </aside>
+        </section>
+      </section>
+    </div>
+  </div>
+
+  <script src="reveal/lib/js/head.min.js"></script>
+  <script src="reveal/js/reveal.js"></script>
+  <script src="reveal/plugin/markdown/marked.js"></script>
+  <script src="reveal/plugin/markdown/markdown.js"></script>
+
+  <script>
+      Reveal.initialize({
+        transition: 'none',
+        history: true,
+        progress: false,
+        controlsTutorial: false,
+        controls: false,
+        keyboard: {
+          39: 'next',
+          37: 'prev'
+        },
+        dependencies: [
+          { src: 'reveal/plugin/notes/notes.js'}
+	      ]
+      });
+  </script>
+
+  <footer class='slides-footer'>
+    Georgios Kaleadis - @deluxee (Twitter)
+  </footer>
+</body>
+
+</html>
