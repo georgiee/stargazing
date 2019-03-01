@@ -14,34 +14,40 @@
 
 <body>
 <svg viewbox="-10 -10 120 100">
-  <!-- <circle cx="0" cy="0" r="5" fill="white"></circle>
-  <circle cx="100" cy="0" r="5" fill="white"></circle> -->
 </svg>
 
 <script type="module">
-  import { createSVGElement } from '../shared.js';
+  import { createSVGElement, generateLinePath } from '../shared.js';
 
   const svg = document.querySelector('svg');
   const points = [ {x: 0, y: 0}, {x: 100, y: 0}];
 
   const path = createLine(points);
+  const dot1 = createDot(points[0]);
+  const dot2 = createDot(points[1]);
 
+  svg.appendChild(dot1);
+  svg.appendChild(dot2);
   svg.appendChild(path);
+
+  function createDot({x, y}) {
+    const group = createSVGElement('g');
+    const dot = createSVGElement('circle');
+    dot.setAttribute('r', 5);
+    dot.setAttribute('fill', 'white');
+
+    group.appendChild(dot);
+    group.setAttribute('transform', `translate(${x} ${y})`);
+
+    return group;
+  }
 
   function createLine(line) {
     const path = createSVGElement('path');
     path.setAttribute('d', generateLinePath(...line));
     path.setAttribute('stroke', 'red');
-    return path;
-  }
 
-  function generateLinePath(...points) {
-    const [startPoint, ...segmentPoints] = points;
-    const lineSegments = segmentPoints.map(({x, y}) => `L ${x} ${y}`);
-    const pathParts = [
-      `M ${startPoint.x} ${startPoint.y}`, ...lineSegments
-    ];
-    return pathParts.join(' ');
+    return path;
   }
 
 </script>

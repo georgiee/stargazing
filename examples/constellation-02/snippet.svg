@@ -1,8 +1,5 @@
 <svg>
   <circle cx="0" cy="0"></circle>
   <circle cx="100" cy="0"></circle>
-  <circle cx="100" cy="-40"></circle>
-  <circle cx="100" cy="40"></circle>
   <path d="M 0 0 L 100 0" stroke="red"></path>
-  <path d="M 100 -40 L 100 40" stroke="blue"></path>
 </svg>

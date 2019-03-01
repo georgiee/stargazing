@@ -214,30 +214,8 @@
         </section>
 
         <section>
-          <span>Plan</span><br>
-          <ul>
-            <li>Draw Circles</li>
-            <li>Connect with lines</li>
-          </ul>
-
-          <aside class="notes">
-            We want to draw some circles and connect them with a line.
-            This will be our base which we will extend then.
-          </aside>
-        </section>
-
-        <section>
-          <iframe width="600" height="300" data-src="examples/constellation-01/index.html"></iframe>
-          <pre data-src="examples/constellation-01/snippet.svg"></pre>
-          <aside class="notes">
-            We begin with three circles
-          </aside>
-        </section>
-
-        <section>
-          <iframe width="600" height="300" data-src="examples/constellation-02/index.html"></iframe>
+          <iframe width="600" height="100" data-src="examples/constellation-02/index.html"></iframe>
           <pre
-            data-line="7-8"
             data-src="examples/constellation-02/snippet.svg"></pre>
           <aside class="notes">
             That looks promising already. But we want to build up some tension
@@ -245,33 +223,56 @@
           </aside>
         </section>
 
-
+        <!-- createLine -->
         <section>
-            <iframe width="600" height="100" data-src="examples/constellation-02a/index.html"></iframe>
-            <pre
-              style='font-size: 14px'
-              data-line="2, 4, 9, 13"
-              data-src="examples/constellation-02a/snippet.js"></pre>
-            <aside class="notes">
-              functions!
-            </aside>
-          </section>
+          <iframe width="600" height="100" data-src="examples/constellation-02a/index.html"></iframe>
+          <pre
+            style='font-size: 14px'
+            data-line="2, 4, 9, 13"
+            data-src="examples/constellation-02a/snippet.js"></pre>
+          <aside class="notes">
+            functions!
+          </aside>
+        </section>
+
+        <!-- createDot -->
+        <section>
+          <iframe width="600" height="100" data-src="examples/constellation-02b/index.html"></iframe>
+          <pre
+            style='font-size: 14px'
+            data-src="examples/constellation-02b/snippet.js"></pre>
+          <aside class="notes">
+            functions!
+          </aside>
+        </section>
+
+        <!-- createConstellation basic-->
+        <section>
+          <iframe width="600" height=300" data-src="examples/constellation-02c/index.html"></iframe>
+          <pre
+            style='font-size: 14px'
+            data-src="examples/constellation-02c/snippet.js"></pre>
+          <aside class="notes">
+            functions!
+          </aside>
+        </section>
+
+        <!-- createConstellation full -->
+        <section>
+          <iframe width="800" height="500" data-src="examples/constellation-03/index.html"></iframe>
+          <pre
+            style='font-size: 14px'
+            data-src="examples/constellation-03/snippet.js"></pre>
+          <aside class="notes">
+            functions!
+          </aside>
+        </section>
 
         <section>
           Line Animations
         </section>
 
-        <section data-background-iframe="examples/constellation-04-dasharray/index.html">
-          <aside class="notes">
-            We will use a technique pioneered by Jake Archibald in 2013!
-            <!-- Show simple path (a line) and animate dasharray and dashoffset. -->
-            <!-- https://jakearchibald.com/2013/animated-line-drawing-svg/ -->
-          </aside>
-        </section>
-
-        <section>
-          <iframe width="600" height="300" data-src="examples/constellation-03/index.html"></iframe>
-          <pre data-src="examples/constellation-03/snippet.css"></pre>
+        <section id='dashdemo' data-background-iframe="examples/constellation-04-dasharray/index.html">
           <aside class="notes">
             We will use a technique pioneered by Jake Archibald in 2013!
             <!-- Show simple path (a line) and animate dasharray and dashoffset. -->
@@ -286,6 +287,7 @@
   <script src="reveal/js/reveal.js"></script>
   <script src="reveal/plugin/markdown/marked.js"></script>
   <script src="reveal/plugin/markdown/markdown.js"></script>
+  <script src="reveal/slide-builder.js"></script>
 
   <script>
       Reveal.initialize({
@@ -302,7 +304,38 @@
           { src: 'reveal/plugin/notes/notes.js'}
 	      ]
       });
+
+      const dashDemoFragments = new SlideBuilder(dashdemo);
+      dashDemoFragments.fragments([
+        () => {
+          console.log('fragment 1');
+          nextFrame();
+        },
+        () => {
+          console.log('fragment 2');
+          nextFrame();
+        },
+        () => {
+          console.log('fragment 3');
+          nextFrame();
+        },
+      ], () => {
+        console.log('hidden');
+        previousFrame();
+      });
+
+      function nextFrame() {
+        const iframe = document.querySelector('.slide-background-content iframe');
+        const content = iframe.contentWindow;;
+        content.postMessage("next", "*");
+      }
+      function previousFrame() {
+        const iframe = document.querySelector('.slide-background-content iframe');
+        const content = iframe.contentWindow;;
+        content.postMessage("previous", "*");
+      }
   </script>
+
 
   <footer class='slides-footer'>
     Georgios Kaleadis - @deluxee (Twitter)

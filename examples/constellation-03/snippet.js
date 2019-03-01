@@ -1,0 +1,1 @@
+createConstellation(orion.coordinates, orion.lines);

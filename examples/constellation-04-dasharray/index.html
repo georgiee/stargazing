@@ -20,7 +20,6 @@
     transform: translate(calc(var(--offset, 0) * 1px), 0);
   }
 
-
   text {
     fill: white;
     font-size: 6px;
@@ -33,6 +32,14 @@
     fill: transparent;
   }
 
+  [data-reveal] {
+    visibility: hidden;
+  }
+
+  [data-reveal].show {
+    visibility: visible;
+  }
+
   </style>
 </head>
 
@@ -40,7 +47,7 @@
 <h1>a 100px line</h1>
 <svg id='demosvg' viewbox="-2 -2 380 150" width ="100%">
 
-  <g transform="translate(0, 60)">
+  <g transform="translate(0, 60)" data-reveal="2">
     <text id='amountOffset' y="0" x="0">dashoffset</text>
     <text id='amountArray' y="0" x="50">dasharray</text>
 
@@ -110,7 +117,7 @@
     </g>
   </g>
 
-  <g transform="translate(0, 30)">
+  <g transform="translate(0, 30)" data-reveal="1">
     <text y="-20" x="0">dasharray</text>
     amountArray
     <!-- solid -->
@@ -214,6 +221,34 @@
     }
   }, 50);
 
+
+  const fragments = document.querySelectorAll('[data-reveal]');
+  const elements = new Array(...fragments);
+  elements.sort((a, b) => {
+    return parseInt(a.dataset.reveal) - parseInt(b.dataset.reveal);
+  });
+
+
+  elements.map(el => {
+    console.log(el, el.dataset.reveal);
+    el.classList.add('fragment');
+  })
+
+  let pointer = 0;
+  window.addEventListener("message", message => {
+    if(message.data === 'slide:start' || message.data === 'slide:stop') {
+      pointer = 0;
+    }
+
+    if(message.data === 'next') {
+      const element = elements[pointer];
+      pointer++;
+
+      element.classList.add('show');
+    }
+
+    console.log('new frame message', message);
+  });
 </script>
 </body>
 

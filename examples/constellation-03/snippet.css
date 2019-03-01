@@ -1,8 +1,0 @@
-.my-path {
-  animation: pathAnimation 2s infinite  linear;
-}
-
-@keyframes pathAnimation {
-  0% { stroke-dashoffset: 0; }
-  100% { stroke-dashoffset: 200; }
-}
