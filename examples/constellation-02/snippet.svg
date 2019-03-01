@@ -1,9 +1,8 @@
-<svg viewbox="0 0 400 400" width="100%">
-  <circle cx="100" cy="100" r="10" fill="white"></circle>
-  <circle cx="300" cy="100" r="10" fill="white"></circle>
-  <circle cx="200" cy="200" r="10" fill="white"></circle>
-  <path
-    d="M 100 100 L 100 100 L 300 100 L 200 200 z"
-    fill='transparent' stroke="red" stroke-width="2">
-  </path>
+<svg>
+  <circle cx="0" cy="0"></circle>
+  <circle cx="100" cy="0"></circle>
+  <circle cx="100" cy="-40"></circle>
+  <circle cx="100" cy="40"></circle>
+  <path d="M 0 0 L 100 0" stroke="red"></path>
+  <path d="M 100 -40 L 100 40" stroke="blue"></path>
 </svg>

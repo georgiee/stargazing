@@ -11,34 +11,34 @@
   }
 
   .my-path {
-    animation: pathAnimation 2s infinite  linear;
+    stroke-dasharray: var(--path-length);
+    animation: pathAnimation 1s infinite linear backwards;
+  }
+
+  .red-path {
+    --path-length: 100;
+  }
+
+  .blue-path {
+    --path-length: 80;
+    animation-delay: 2000ms;
   }
 
   @keyframes pathAnimation {
-    0% {
-      stroke-dashoffset: 0;
-    }
-
-    100% {
-      stroke-dashoffset: 200;
-    }
+    0% { stroke-dashoffset: var(--path-length);}
+    100% { stroke-dashoffset: 0; }
   }
   </style>
 </head>
 
 <body>
-constellation-01
-<svg id='nightsky' viewbox="50 80 300 400" width ="100%">
-  <circle cx="100" cy = "100" r="10" fill=white></circle>
-  <circle cx="300" cy = "100" r="10" fill=white></circle>
-  <circle cx="200" cy = "200" r="10" fill=white></circle>
-  <path
-    class='my-path'
-    stroke="red" stroke-width="2"
-    stroke-dasharray="100"
-    stroke-dashoffset="100"
-    d="M 100 100 L 100 100 L 300 100 L 200 200 z" fill='transparent'>
-  </path>
+<svg viewbox="-10 -50 220 100">
+  <circle cx="0" cy="0" r="5" fill="white"></circle>
+  <circle cx="100" cy="0" r="5" fill="white"></circle>
+  <circle cx="100" cy="-40" r="5" fill="white"></circle>
+  <circle cx="100" cy="40" r="5" fill="white"></circle>
+  <path class="my-path red-path" d="M 0 0 L 100 0" fill='transparent' stroke="red" stroke-width="2"></path>
+  <path class="my-path blue-path" d="M 100 -40 L 100 40" fill='transparent' stroke="blue" stroke-width="2"></path>
 </svg>
 
 </body>
