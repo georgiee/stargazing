@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      background-color: black;
+      color: #fff;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    svg {
+      height: 100vh;
+      width: 100vw;
+    }
+  </style>
+</head>
+
+<body>
+  <svg id='nightsky' viewbox="0 -100 540 200">
+  </svg>
+
+  <script type="module">
+    import { createSVGElement } from '../shared.js';
+    const svg = document.querySelector('svg');
+
+    let star;
+
+    star = createStar({color: '#B5CDFF', size: 20, x: 50, y: 0});
+    svg.appendChild(star);
+
+    star = createStar({color: '#FFE4CE', size: 50, x: 180, y: 0});
+    svg.appendChild(star);
+
+    star = createStar({color: '#FF6C00', size: 100, x: 400, y: 0});
+    svg.appendChild(star);
+
+
+    function createStar({size, color, x, y}) {
+      const starShape = createSVGElement('circle');
+      starShape.setAttribute('r', size + '');
+      starShape.setAttribute('fill', color);
+
+      const star = createSVGElement('g');
+      star.setAttribute('transform', `translate(${x} ${y})`);
+
+      star.appendChild(starShape);
+      return star;
+    }
+  </script>
+
+</body>
+
+</html>

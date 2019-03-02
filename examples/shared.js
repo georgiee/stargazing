@@ -33,3 +33,48 @@ export function createLine(line, index) {
 
   return path;
 }
+
+
+export function createStar({size, color, x, y, delay = 0}) {
+  const starShape = createSVGElement('circle');
+  starShape.setAttribute('r', size + '');
+  starShape.setAttribute('fill', color);
+  starShape.classList.add('twinkle-little-star');
+  starShape.style.setProperty('--animation-twinkle-delay', delay + 'ms');
+
+  const star = createSVGElement('g');
+  star.setAttribute('transform', `translate(${x} ${y})`);
+
+
+  star.appendChild(starShape);
+  return star;
+}
+
+export function getRandomCoordinate() {
+  return getRandomPosition({
+    width: 960,
+    height: 700,
+    padding: 10,
+    offsetX: -480,
+    offsetY: -350
+  });
+}
+
+export function getRandomPosition({width, height, offsetX = 0, offsetY = 0, padding = 0}){
+  const startX = offsetX + padding;
+  const startY = offsetY + padding;
+  const maxWidth = width - padding *2;
+  const maxHeight = height - padding *2;
+
+  return {
+    x: startX + maxWidth * Math.random(),
+    y: startY + maxHeight * Math.random()
+  }
+}
+
+export function getRandomColor() {
+  const availableColors = ['#B5CDFF', '#FFE4CE', '#FF6C00'];
+
+  const index = Math.round(Math.random() * (availableColors.length -1));
+  return availableColors[index];
+}

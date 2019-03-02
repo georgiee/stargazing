@@ -1,0 +1,8 @@
+@keyframes starGlowing {
+  0% {opacity: 1;}
+  100% {opacity: 0.1;}
+}
+
+.twinkle-little-star {
+  animation: starGlowing 1s infinite alternate;
+}

@@ -16,11 +16,10 @@
 
     /* Make the prism highlight more visible */
     .line-highlight {
-      outline: 5px solid yellow;
-      left: 5px;
-      right: 5px;
+      outline: 1px solid yellow;
+
       background-color: #ffc40005;
-      margin-top: -9px !important;
+      margin-top: -0.3em !important;
     }
 
     .twocol {
@@ -34,6 +33,33 @@
 
     .twocol iframe {
       max-height: auto;
+    }
+
+    .twocol img {
+      max-height: none;
+    }
+
+    img.svg-image.svg-image {
+      background: transparent;
+      border: none;
+    }
+
+
+
+    /* Chapter 01 */
+    .zoom-betelgeuse-trigger .zoom-betelgeuse {
+      animation: zoomOut 1s;
+    }
+
+    @keyframes zoomOut {
+      0% {
+        transform: scale(2);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
   </style>
 </head>
@@ -138,6 +164,545 @@
               JavaScript itself isn't a strict requirement
             </p>
           </aside>
+        </section>
+      </section>
+
+      <!-- Chapter 1 (Star) -->
+      <section>
+        <section
+          data-background-opacity="0.5"
+          data-background-image="static/images/chapter-01/anatomy-star.gif">
+          <span>Chapter 01 </span>
+          <h2>Anatomy of a star</h2>
+          <aside class="notes">
+            <p>Let's start with the first chapter.</p>
+            <p>We want to know how a star is working so we can build one ourselves.</p>
+          </aside>
+        </section>
+
+        <section>
+          <img data-src="static/images/chapter-01/orion-betelgeuse.jpg"/>
+          <aside class="notes">
+            <p>We want to observe a single star</p>
+            <p>I picked a little dot that we can see with our naked eye.</p>
+            <p>The star is called Betelgeuse and you can see it in the famous Orion constellation.</p>
+             <p>Betelgeuse is more than 600 light years away.s</p>
+          </aside>
+        </section>
+
+        <section data-background-image="static/images/chapter-01/warp.gif">
+          <aside class="notes">
+            We would travel for 600 years with light speed — with my developer superpower I can fast forward to save us some time 👊
+          </aside>
+        </section>
+
+        <section data-state="zoom-betelgeuse-trigger">
+          <img width="400" data-src="static/images/chapter-01/betelgeuse.jpg" class="zoom-betelgeuse">
+          <aside class="notes">
+            We arrived at Betelegeuse. Let's ask our first question.
+          </aside>
+        </section>
+
+        <section>
+          <h2>What is a star ?</h2>
+          <blockquote class="fragment">A bright ball of gas with a nuclear fusion producing a lot of heat.</blockquote>
+          <aside class="notes">
+            What is a star ?<br><br>
+            The scientific answer is "A bright ball of gas with a nuclear fusion producing a lot of heat."
+          </aside>
+        </section>
+
+        <section>
+          <img data-src="static/images/chapter-01/gravity-fusion.jpg"/>
+          <aside class="notes">
+            <p>if you cut open a star you can see it burning in the center.</p>
+            <p>Usually everything would fall apart because of the heat. </p>
+            <p>It's the gravity that keeps everyhting in balance and shapes the star as ball.</p>
+          </aside>
+        </section>
+
+        <!-- Fact -->
+        <section>
+          <div class="fact">
+            <span>First Star Fact!</span>
+            <h2 class="fragment">✨Hot Gas Ball✨</h2>
+            <span class="fragment">🎭 Idea: Create a SVG circle</span>
+          </div>
+
+          <aside class="notes">
+            <p>Did you notice?</p>
+            <p>We earned our first star fact "Hot Gas Ball".</p>
+            <p>The idea is to create a SVG circle that represents the gas ball.</p>
+          </aside>
+        </section>
+
+        <!-- Code: Star II -->
+        <section>
+          <p>How do we implement it?</p>
+          <pre class="fragment" data-src="examples/star-01/snippet.svg"></pre>
+          <img class="fragment svg-image" width="100" src='examples/star-01/file.svg'/>
+
+          <aside class="notes">
+              <p>
+                And how do we implement it?
+              </p>
+              <p>
+                We use a SVG circle. The circle is given a radius r and a color with the fill attribute.
+              </p>
+              <p>
+                Once created it will look like a star. Well, a very rough one and the color hotpink seems a little off
+              </p>
+              <p>This brings us directly to our next question.</p>
+          </aside>
+        </section>
+
+        <!-- Question -->
+        <section>
+          <h3>What's the color of a star ?</h3>
+          <aside class="notes">
+            "What's the color of a star ?"
+          </aside>
+        </section>
+
+        <section>
+          <div class="twocol">
+            <div>
+              <img height="300" data-src="static/images/chapter-01/sun-animation.gif"/>
+              <br>
+              <span>Sun 5500°C</span>
+            </div>
+
+            <div class="fragment">
+              <img height="300" data-src="static/images/chapter-01/betelgeuse.jpg"/>
+              <br>
+              <span>Betelgeuse 3200°C</span>
+            </div>
+          </div>
+          <span class="fragment" style="color: red; font-size: 50px;">Red = Hot ?</span>
+
+          <aside class="notes">
+              <p>
+                The sun has a surface temperatur of 5500 degree celsius.
+              </p>
+              <p>
+                Betelgeuse is much colder with a temperature of 3200 degree celsius.
+              </p>
+              <p>
+                Both stars are still very hot and they look reddish. You could now thinks red means hot but it's quite the opposite.
+              </p>
+          </aside>
+        </section>
+
+        <section
+            data-background-image="static/images/chapter-01/eta-carinae.jpg">
+          <h1 class="fragment invert" data-fragment-index="2">30.000°C</h1>
+          <h2 class="fragment" data-fragment-index="1" style="color: black;">Eta Carinae</h2>
+
+          <aside class="notes">
+            <p>Look at this blue star.</p>
+            <p>It's called Eta Carinae</p>
+            <p>and it's surface temperatur is more than 30.000 degree celsius.</p>
+            <p>In reality the really, really hot stars are blue and not red.</p>
+          </aside>
+        </section>
+
+        <!-- Fact -->
+        <section>
+          <div class="fact">
+            <span>New Star Fact!</span>
+            <h3 class="fragment">✨Temperature is color✨</h3>
+            <span class="fragment">🎭Idea: Different fill colors</span>
+          </div>
+
+          <aside class="notes">
+            <p>Have you noticed we have a new start fact. Temperature is color!</p>
+            <p>
+              The idea is easy: Let's create some circles with different colors.
+            </p>
+          </aside>
+        </section>
+
+        <!-- Code: Star II -->
+        <section>
+          <pre class="fragment" data-src="examples/star-02/snippet.svg"></pre>
+          <svg viewbox="-10 -10 80 20" width="600" preserveAspectRatio="xMidYMid meet" class="fragment">
+            <circle r="10" cx="0"  fill="#B5CDFF"></circle>
+            <circle r="10" cx="30" fill="#FFE4CE"></circle>
+            <circle r="10" cx="60" fill="#FF6C00"></circle>
+          </svg>
+
+          <aside class="notes">
+            <p>We create threee circles each with a different color from hot to cold.</p>
+            <p>Not too bad but all circles have the same size. Let's continue to our next question.</p>
+          </aside>
+        </section>
+
+        <!-- Question -->
+        <section>
+          <h2>How large is a star ?</h2>
+          <aside class="notes">
+            How large is a star? We all know that the sun is large. It's 1 million kiolemeters in diameter
+            but now watch this comparison video.
+          </aside>
+        </section>
+
+        <section
+          data-background-size="contain"
+          data-background-video="static/videos/comparison.mp4">
+          <aside class="notes">
+            Earth
+            Sun
+            Eta Carina
+            Betelgeuse
+            VY Canis Majoris
+          </aside>
+        </section>
+
+        <section>
+          <img data-src="static/images/chapter-01/sun-canis-betel.jpg"/>
+          <aside class="notes">
+              VY (wiwai) Canis Majoris is one of the largest stars ever discovered in the universe
+              and look how small the sun is compared to it. This brings us to the next fact!
+          </aside>
+        </section>
+
+        <!-- Fact -->
+        <section>
+          <div class="fact">
+            <span>New Star Fact!</span>
+            <h3 class="fragment">✨Stars have different sizes✨</h3>
+            <span class="fragment">🎭 Idea: Circles with different radii</span>
+          </div>
+
+          <aside class="notes">
+            <p>"Stars have different sizes" is our newest fact.</p>
+            <p>Let's plug in some different radii and look at the result.</p>
+          </aside>
+        </section>
+
+        <!-- Code: Star III -->
+        <section>
+          <pre class="fragment" data-src="examples/star-03/snippet.svg"></pre>
+
+          <svg viewbox="-480 -350 960 700" width ="500" class="fragment">
+            <circle r="1000" cx="-1250"  fill="#B5CDFF"></circle>
+            <circle r="200" cx="40" fill="#FFE4CE"></circle>
+            <circle r="20" cx="340" fill="#FF6C00"></circle>
+          </svg>
+
+          <aside class="notes">
+            <p>We see our known group of circles. Now with different radius values applied.</p>
+            <p>The result looks like this</p>
+            <p>That's okay, but we will never create a night sky if we have to create circles manually.</p>
+          </aside>
+        </section>
+
+        <section>
+          <pre
+            style="font-size: 18px;"
+            class="fragment"
+            data-src="examples/star-04/snippet.svg"></pre>
+          <pre
+            class="fragment"
+            style="font-size: 18px;"
+            data-src="examples/star-04/snippet-create-star1.js"></pre>
+          <pre
+            class="fragment"
+            data-line="5, 7,9-11"
+            style="font-size: 18px;"
+            data-src="examples/star-04/snippet-create-star2.js"></pre>
+
+          <aside class="notes">
+            <p>We want to create this markup with Javascript — I also added a transform so we can change the positions.</p>
+            <p>I want to use a function call like this where I provide all values</p>
+            <p>And the function itself looks like this</p>
+            <p>
+              1. Custom createSVGElement function
+              2. appendChild like in html
+              3. Set properties.
+            </p>
+            <p>That's it</p>
+          </aside>
+        </section>
+
+        <!-- Code: Star IV -->
+        <section>
+          <pre data-src="examples/star-05/snippet.js"></pre>
+
+          <iframe width="600" height="400" data-src="examples/star-05/"></iframe>
+
+          <aside class="notes">
+              <p>
+                With that function we can now easily create vast amounts of different stars
+              </p>
+
+              <p>We are ready to build our sky.</p>
+          </aside>
+        </section>
+
+        <section data-background-image="static/images/chapter-01/warp-speed-back.gif">
+          <h2>Back to earth</h2>
+          <aside class="notes">
+            But to observe our night sky, we need to travel back to the earth first.
+          </aside>
+        </section>
+      </section>
+
+      <section>
+        <section data-background-image="static/images/chapter-02/night-sky.jpg">
+          <span>Chapter 02 </span>
+          <h1>Starry Night</h1>
+          <aside class="notes">
+            Arriving at the earth we can see the beautiful night sky and one question of a romantic stargazer is inevitable.
+          </aside>
+        </section>
+
+        <section>
+          <h2>How many stars are in the universe?</h2>
+          <p class="fragment">More stars than the earth has sand grains!</p>
+          <p class="fragment">1,000,000,000,000,000,000,000,000 <br> (one quadrillion)</p>
+
+          <aside class="notes">
+            <p>How many stars are in the universe.</p>
+            <p>A romantic would say "more stars than the earth has sand grains.</p>
+            <p>A scientist would say one quadrillion.</p>
+            <p>But those numbers are not really helping. Maybe we should rephrase our question.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h3>How many stars can we <strong style="text-decoration: underline">see</strong> in the night sky?</h3>
+          <h2 class="fragment" data-fragment-index="1">
+            9096 <span class="fragment" data-fragment-index="4">(4548)</span>
+          </h2>
+          <p class="fragment" data-fragment-index="2">in a pitch black night</p>
+          <p class="fragment" data-fragment-index="5">Worse with light pollution</p>
+
+          <aside class="notes">
+            <p>How many stars can we **see** in the night sky with our eyes.</p>
+            <p>The answer is exactly 9096 in a ptich black night.</p>
+            <p>Actually it's half of it as we are living on a globe.</p>
+            <p>And it gets so much worse with light pollution</p>
+          </aside>
+        </section>
+
+        <section
+          data-background-size="contain"
+          data-background-image="static/images/chapter-02/night-sky-munich.jpg">
+          <aside class="notes">
+              <p>Look at that image. More and more stars disappear from right to left.
+                  You can see how you location affects the total count of stars.</p>
+              <p>At the Marientplatz you won't be able to see more than 35 stars in the whole night sky</p>
+              <p>Compare this with some dark spots in East Germany where you can see the the maximum that our eyes can handle</p>
+
+              <!-- Numbers are the Bortle scale (https://en.wikipedia.org/wiki/Bortle_scale) -->
+          </aside>
+        </section>
+
+        <!-- Fact -->
+        <section>
+          <div class="fact">
+            <span>New Star Fact!</span>
+            <h2 class="fragment">✨Star Count✨</h2>
+            <span class="fragment">🎭Idea: Create many stars.</span>
+          </div>
+
+          <aside class="notes">
+            <p>Anyway we got a new fact: Star Count</p>
+            <p>Let's create a lot of stars.</p>
+          </aside>
+        </section>
+
+        <!-- Code: Sky I -->
+        <section>
+          <pre><code class="language-js">createSky({count: 250});</code></pre>
+          <pre class="fragment" data-src="examples/sky-01/snippet.js"></pre>
+          <aside class="notes">
+            <p>We want to use a JavaScript function where we pass in the total count of stars.</p>
+            <p> The function itself is a for loop which will create stars with random color and position and a fixed size of 1</p>
+          </aside>
+        </section>
+
+        <section data-background-iframe="examples/sky-01/">
+          <aside class="notes">
+            <p>The result looks like this</p>
+            <p>That was surprisingly quick with the power of JavaScript.</p>
+            <p>But it looks boring so let's try to add another effect.</p>
+          </aside>
+        </section>
+
+        <section
+          data-background-opacity="1"
+          data-background-image="static/images/chapter-02/twinkle-sky.gif">
+          <h1 class="fragment">Twinkling</h1>
+          <h2 class="fragment">Astronomical Scintillation</h2>
+
+          <aside class="notes">
+            <p>That effect you can see here is called Twinkling</p>
+            <p>or as we are scientists today: Astronomical Scintillation</p>
+          </aside>
+        </section>
+
+        <section>
+          <cite>Scintillation is a generic term for...</cite>
+          <br><br>
+          <h3 class="fragment">a star that <span style="text-decoration: underline">looks like</span> it's blinking and moving</h3>
+          <aside class="notes">
+            <p>Scintillation is a generic term for ... no we don't need a definition today.</p>
+            <p>Scintillation is the effect that a Star looks like it's blinking and moving</p>
+          </aside>
+        </section>
+
+        <section data-background-image="static/images/chapter-02/pool.gif">
+          <aside class="notes">
+            It's more or less the same effect we all know from a swimming pool
+            where we can see light effects.
+          </aside>
+        </section>
+
+        <section>
+          <video width="600" data-autoplay loop>
+            <source data-src="static/videos/sirius-scintillation.mp4" type="video/mp4" />
+          </video>
+          <aside class="notes">
+            <p>That's a star zoomed in. You can clearly see changes in brightness and position even color and shape.</p>
+            <p>That brings us quickly to our next fact.</p>
+          </aside>
+        </section>
+
+        <section>
+          <!-- Fact -->
+          <div class="fact">
+            <span>New Star Fact!</span>
+            <h2 class="fragment">✨Stars can twinkle✨</h2>
+            <p class="fragment">🎭 Idea: CSS animations for scale & opacity</p>
+            <aside class="notes">
+              <p>Stars can twinkle and we are going to implement it with two CSS animations to change scale and opacity of our circles.</p>
+            </aside>
+          </div>
+        </section>
+
+        <!-- Code: Twinkle II (Pulse) via MZBxNz -->
+        <section>
+          <pre
+            style="font-size: 18px"
+            class="fragment" data-src="examples/sky-02/snippet.css"></pre>
+
+          <iframe
+            class="fragment"
+            width="600"
+            height="250"
+            data-src="examples/sky-02/">
+          </iframe>
+
+          <aside class="notes">
+            <p>The first CSS animation looks like this.</p>
+            <p>We create it with a keyframe animation and apply a rather random looking scaling</p>
+            <p>The rather rough animation is intended as we want to create the illusion of randomness
+              as you are suprised by the different changes.</p>
+            <p>The animation itself is running forever and it's alternating so we have a greater variation in the animation cycle</p>
+        </section>
+
+        <!-- Code: Twinkle III (Glow) via JwBVMK -->
+        <section>
+          <pre
+            style="font-size: 18px"
+            data-src="examples/sky-02/snippet-glow.css"></pre>
+
+          <iframe
+            class="fragment"
+            width="600"
+            height="250"
+            data-src="examples/sky-02/glow.html">
+          </iframe>
+
+          <aside class="notes">
+            The next CSS animation is more simple. Our star should fade in and out
+            and we use again a keyframe animation to do so.
+          </aside>
+        </section>
+
+        <!-- Code: Twinkle IV (Pulse & Glow) via bOjJKm -->
+        <section>
+          <pre
+            style="font-size: 18px"
+            data-src="examples/sky-02/snippet-both.css"></pre>
+
+          <iframe
+            class="fragment"
+            width="600"
+            height="250"
+            data-src="examples/sky-02/both.html">
+          </iframe>
+          <aside class="notes">
+            <p>When we combine both animations it will loook like this</p>
+            <p>We use different timings for the animations to create a more natural animation.</p>
+          </aside>
+        </section>
+
+        <!-- Code: Twinkle V-I (Multiple) via gZjyQz -->
+        <section>
+          <pre data-src="examples/sky-03/snippet.svg"></pre>
+          <iframe
+            class="fragment"
+            width="600"
+            height="250"
+            data-src="examples/sky-03/"></iframe>
+
+          <aside class="notes">
+            <p>Let's create three circles and apply our animation. </p>
+            <p>The result looks really artificial because everything is in sync</p>
+          </aside>
+        </section>
+
+        <!-- Code: Twinkle V-II (Multiple) via gZjyQz -->
+        <section>
+          <pre data-src="examples/sky-03/snippet-delay.css"></pre>
+
+          <iframe
+            class="fragment"
+            width="600"
+            height="250"
+            data-src="examples/sky-03/delay.html"></iframe>
+
+          <aside class="notes">
+            <p>We use the power of CSS Variables to fill the CSS property animation-delay
+              so we can offset the animations.
+            </p>
+            <p>You can see how the result looks like when it's not synced</p>
+            <p>The animation offsets are negativ otherwise the animation would wait in the beginning</p>
+            <p>The default is set to 0 but we can apply different values to our individual stars through CSS!</p>
+          </aside>
+        </section>
+
+        <!-- Code: Twinkle V (First Twinkle Sky) via wREvPg -->
+        <section>
+          <pre data-src="examples/sky-04/snippet.js"></pre>
+
+          <iframe
+            class="fxragment"
+            width="900"
+            height="300"
+            data-src="examples/sky-04/"></iframe>
+
+            <aside class="notes">
+              <p>We can know add the twinkling effect to all of our stars in the sky
+              just by modifying the createStar function we created earlier</p>
+              <p>The CSS Variables are assigned through the style object you can find on any DOM object.</p>
+              <p>We assign a random value between 0 and 4000ms</p>
+              <p>And the result looks already awesome. I kept the large circle here
+                so you can see the effect in large and small.
+              </p>
+          </aside>
+        </section>
+
+        <!-- (Large Preview) Code: Twinkle V (First Twinkle Sky) via roZNbo -->
+        <section data-background-iframe="examples/sky-04/">
+          <aside class="notes">
+            <p>Here another version with the sky only. That's pretty nice and we have come really far in a short time already.</p>
+            <p>Let's jump to our thrid chapter.</p>
+          </aside>
+
         </section>
       </section>
 
