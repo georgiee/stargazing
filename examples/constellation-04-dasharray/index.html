@@ -5,11 +5,12 @@
   <meta charset="UTF-8">
   <title>01 - Stargazing — Star Colors</title>
   <style>
+
   body {
     background-color: black;
     color: #fff;
     font-family: Arial, Helvetica, sans-serif;
-    padding: 20px;
+    margin: 0;
   }
 
   .apply-offset {
@@ -40,22 +41,38 @@
     visibility: visible;
   }
 
+  svg {
+    display: block;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  [data-step] {
+    visibility: hidden;
+  }
+
+  [data-step].show {
+    visibility: visible;
+  }
+
+
+
   </style>
 </head>
 
 <body>
-<h1>a 100px line</h1>
-<svg id='demosvg' viewbox="-2 -2 380 150" width ="100%">
+<svg
+  id='demosvg' preserveAspectRatio="xMidYMid meet" viewbox="-10 -10 240 120">
 
-  <g transform="translate(0, 60)" data-reveal="2">
+  <g transform="translate(0, 0)">
     <text id='amountOffset' y="0" x="0">dashoffset</text>
     <text id='amountArray' y="0" x="50">dasharray</text>
 
     <g transform="translate(0, 10)">
       <!-- line without offset animation -->
 
-      <g transform="translate(0, 0)">
-        <text>1. a nice line</text>
+      <g transform="translate(0, 0)" data-step="1" class="group-01">
+        <text>1. a nice line (100px)</text>
 
        <g transform="translate(0, 5)">
           <circle cx="0" cy = "0" r="2" fill=white></circle>
@@ -65,24 +82,24 @@
       </g>
 
       <!-- line extended -->
-      <g transform="translate(0, 15)">
-        <text>2. a nice line just longer</text>
+      <g transform="translate(0, 20)" data-step="2" class="group-02">
+        <text>2. a nice line imagined a little longer (220px)</text>
 
         <g transform="translate(0, 5)">
             <circle cx="0" cy = "0" r="2" fill=white></circle>
-            <circle cx="300" cy = "0" r="2" fill=white></circle>
-            <path class="path-with-dashes" d="M 0 0 L 300 0"></path>
+            <circle cx="220" cy = "0" r="2" fill=white></circle>
+            <path class="path-with-dashes" d="M 0 0 L 220 0"></path>
         </g>
       </g>
 
       <!-- line extended with sliding window -->
-      <g transform="translate(0, 30)">
+      <g transform="translate(0, 40)" data-step="3" class="group-03">
         <text>3. that line with a sliding window</text>
         <g transform="translate(0, 5)">
 
           <circle cx="0" cy = "0" r="2" fill=white></circle>
-          <circle cx="300" cy = "0" r="2" fill=white></circle>
-          <path class="path-with-dashes" d="M 0 0 L 300 0"></path>
+          <circle cx="220" cy = "0" r="2" fill=white></circle>
+          <path class="path-with-dashes" d="M 0 0 L 220 0"></path>
 
           <g class="translate-with-offset">
             <circle cx="0" cy = "0" r="2" fill="yellow"></circle>
@@ -93,7 +110,7 @@
       </g>
 
       <!-- line with offset aligned with window-->
-      <g transform="translate(0, 45)">
+      <g transform="translate(0, 60)" data-step="4" class="group-04">
         <text>4. the sliding window alone</text>
         <g transform="translate(0, 5)">
           <g class="translate-with-offset">
@@ -106,7 +123,7 @@
       </g>
 
       <!-- final line with offset animation -->
-      <g transform="translate(0, 60)">
+      <g transform="translate(0, 80)" data-step="5" class="group-05">
         <text>5. the final result</text>
         <g transform="translate(0, 5)">
           <circle cx="0" cy = "0" r="2" fill=white></circle>
@@ -116,138 +133,160 @@
       </g>
     </g>
   </g>
-
-  <g transform="translate(0, 30)" data-reveal="1">
-    <text y="-20" x="0">dasharray</text>
-    amountArray
-    <!-- solid -->
-    <g>
-      <circle cx="0" cy = "0" r="2" fill=white></circle>
-      <circle cx="100" cy = "0" r="2" fill=white></circle>
-      <path
-        stroke="red" stroke-width="2"
-        stroke-dashoffset="50"
-        d="M 0 0 L 100 0" fill='transparent'>
-      </path>
-      <text y="-3" x="10">0</text>
-    </g>
-
-    <!-- dasharray = 1 -->
-    <g transform="translate(120 0)">
-      <circle cx="0" cy = "0" r="2" fill=white></circle>
-      <circle cx="100" cy = "0" r="2" fill=white></circle>
-      <path
-        stroke-dasharray="1"
-        stroke="red" stroke-width="2"
-        d="M 0 0 L 100 0" fill='transparent'>
-      </path>
-      <text fill="yellow" font-size="8" y="-3" x="10">1</text>
-    </g>
-
-    <!-- dasharray = 10 -->
-    <g transform="translate(240 0)">
-      <circle cx="0" cy = "0" r="2" fill=white></circle>
-      <circle cx="100" cy = "0" r="2" fill=white></circle>
-      <path
-        stroke-dasharray="10"
-        stroke="red" stroke-width="2"
-        d="M 0 0 L 100 0" fill='transparent'>
-      </path>
-      <text fill="yellow" font-size="8" y="-3" x="10">10</text>
-    </g>
-
-    <!-- dasharray = 50 -->
-    <g transform="translate(0 10)">
-      <circle cx="0" cy = "0" r="2" fill=white></circle>
-      <circle cx="100" cy = "0" r="2" fill=white></circle>
-      <path
-        stroke-dasharray="50"
-        stroke="red" stroke-width="2"
-        d="M 0 0 L 100 0" fill='transparent'>
-      </path>
-      <text fill="yellow" font-size="8" y="-3" x="10">50</text>
-    </g>
-
-    <!-- dasharray = 100 -->
-    <g transform="translate(120 10)">
-      <circle cx="0" cy = "0" r="2" fill=white></circle>
-      <circle cx="100" cy = "0" r="2" fill=white></circle>
-      <path
-        stroke-dasharray="100"
-        stroke="red" stroke-width="2"
-        d="M 0 0 L 100 0" fill='transparent'>
-      </path>
-      <text fill="yellow" font-size="8" y="-3" x="10">100</text>
-    </g>
-
-    <!-- dasharray = 200 -->
-    <g transform="translate(240 10)">
-      <circle cx="0" cy = "0" r="2" fill=white></circle>
-      <circle cx="100" cy = "0" r="2" fill=white></circle>
-      <path
-        stroke-dasharray="200"
-        stroke="red" stroke-width="2"
-        d="M 0 0 L 100 0" fill='transparent'>
-      </path>
-      <text fill="yellow" font-size="8" y="-3" x="10">200</text>
-    </g>
-  </g>
 </svg>
 
-<input type="range" id='dashSize' min="0" maxx="150" value="10">
+<!-- <input type="range" id='dashSize' min="0" maxx="150" value="10"> -->
 
 <script>
 
   let offset = 0;
   let speed = 10;
+  let playing = false;
+  let intervalID = null;
 
-  setDashArray(10);
+  setDashOffset(0);
+
   function setDashArray(value) {
     demosvg.style.setProperty('--dasharray', value);
     amountArray.innerHTML = 'dasharray: '+ value;
-    dashSize.value = value;
+  }
+  function setDashOffset(value) {
+    demosvg.style.setProperty('--offset', (value));
+    amountOffset.innerHTML = 'dashoffset: ' +  Math.round(value);
   }
 
-  dashSize.addEventListener('change', () => {
-    setDashArray(dashSize.value);
-  });
+  const dashAnimation = {
+    play() {
+      setDashArray(100);
+    },
 
-  setInterval(() => {
-    offset+=speed/20;
-    demosvg.style.setProperty('--offset', (offset));
-    amountOffset.innerHTML = 'dashoffset: ' +  Math.round(offset);
-    if(offset >= 100 || offset <= 0) {
-      speed *= -1;
+    stop() {
+      setDashArray(10);
     }
-  }, 50);
+  }
 
+  const offsetAnimation = {
+    interval: null,
 
-  const fragments = document.querySelectorAll('[data-reveal]');
-  const elements = new Array(...fragments);
-  elements.sort((a, b) => {
-    return parseInt(a.dataset.reveal) - parseInt(b.dataset.reveal);
-  });
+    play() {
+      if(offsetAnimation.interval) {
+        return;
+      }
+      offsetAnimation.interval = setInterval(() => {
+        offset+=speed/20;
+        setDashOffset(offset);
+        if(offset >= 100 || offset <= 0) {
+          speed *= -1;
+        }
+      }, 50);
+    },
 
+    stop() {
+      clearInterval(offsetAnimation.interval);
+      offsetAnimation.interval = null;
 
-  elements.map(el => {
-    console.log(el, el.dataset.reveal);
-    el.classList.add('fragment');
-  })
-
-  let pointer = 0;
-  window.addEventListener("message", message => {
-    if(message.data === 'slide:start' || message.data === 'slide:stop') {
-      pointer = 0;
-    }
-
-    if(message.data === 'next') {
-      const element = elements[pointer];
-      pointer++;
-
-      element.classList.add('show');
+      setDashArray(10);
     }
 
-    console.log('new frame message', message);
+  }
+
+
+  const MAX_FRAGMENTS = 6;
+
+  let counter = 0;
+
+  let elements = [];
+  collect();
+
+  function start() {
+    counter = 0;
+    update(counter);
+
+    setDashArray(10);
+  }
+
+  function stop() {
+    counter = 0;
+    update(counter);
+  }
+
+  function previous() {
+    if(counter === 0) {
+      counter = MAX_FRAGMENTS;
+    }else {
+    }
+
+    counter--;
+    update(counter);
+  }
+
+  function next() {
+    counter++;
+    update(counter);
+  }
+
+  const actions = [
+    { index: 1, show: '.group-01' },
+    { index: 2, show: '.group-02' },
+    { index: 3, show: '.group-03' },
+    { index: 4, run: offsetAnimation.play, stop: offsetAnimation.stop },
+    { index: 4, show: '.group-04' },
+    { index: 5, show: '.group-05' },
+    { index: 6, run: dashAnimation.play, stop: dashAnimation.stop },
+  ];
+
+  function update(index) {
+    const elements = document.querySelectorAll('[data-step]');
+    const activeSet = actions.filter(action => action.index <= index);
+    const inactiveSet = actions.filter(action => action.index > index);
+
+    inactiveSet.forEach(action => {
+      if(action.show) {
+        const el = document.querySelector(action.show);
+        el.classList.remove('show');
+      }
+
+
+      if(action.run && action.stop) {
+        action.stop();
+      }
+    });
+
+    activeSet.forEach(action => {
+      if(action.show) {
+        const el = document.querySelector(action.show);
+        el.classList.add('show');
+      }
+
+      if(action.run) {
+        action.run();
+      }
+    });
+  }
+
+  function collect() {
+    const fragments = document.querySelectorAll('[data-step]');
+    elements = new Array(...fragments);
+
+    elements.sort((a, b) => {
+      return parseInt(a.dataset.reveal) - parseInt(b.dataset.reveal);
+    });
+
+
+    elements.forEach(el => {
+      el.classList.add('fragment');
+    });
+
+  }
+
+
+  window.addEventListener("message", ({data}) => {
+    switch(data) {
+      case 'slide:start': start(); break;
+      case 'slide:stop': stop(); break;
+      case 'next-topic': next(); break;
+      case 'previous-topic': previous(); break;
+    }
   });
 </script>
 </body>
