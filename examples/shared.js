@@ -23,11 +23,13 @@ export function createDot({x, y}) {
   return group;
 }
 
-export function createLine(line) {
+export function createLine(line, index) {
   const path = createSVGElement('path');
   path.setAttribute('d', generateLinePath(...line));
   path.setAttribute('stroke', 'red');
   path.setAttribute('fill', 'none');
+  path.style.setProperty('--path-length', path.getTotalLength());
+  path.style.setProperty('--path-index', index);
 
   return path;
 }

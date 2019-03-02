@@ -1,0 +1,5 @@
+.red-path,
+.yellow-path,
+.hotpink-path {
+  animation: dashAnimation linear 1s 1 backwards;
+}

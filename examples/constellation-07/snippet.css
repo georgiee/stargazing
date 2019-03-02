@@ -1,0 +1,5 @@
+.hotpink-path {
+  --path-length: 100;
+  stroke-dasharray: var(--path-length);
+  animation: dashAnimation 5s infinite backwards;
+}

@@ -25,7 +25,7 @@
 
     .twocol {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 40% 50%;
       grid-auto-rows: max-content;
       gap: 10px;
       grid-auto-rows: 100%;
@@ -315,8 +315,93 @@
             <!-- https://jakearchibald.com/2013/animated-line-drawing-svg/ -->
           </aside>
         </section>
+
         <section>
-          end
+          <iframe
+            width="900"
+            height="300"
+            data-src="examples/constellation-06/"></iframe>
+          <div class="twocol">
+            <div>
+              <pre
+              style='font-size: 14px'
+              data-src="examples/constellation-06/snippet.css"></pre>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <iframe
+            id='iframeConstellation07'
+            width="900"
+            height="300"
+            data-src="examples/constellation-07/"></iframe>
+          <div class="twocol">
+            <div>
+              <pre
+              style='font-size: 14px'
+              data-src="examples/constellation-07/snippet.css"></pre>
+            </div>
+            <div class="fragment" data-fragment-data='show-hotpink-correct-length'>
+              <pre
+                style='font-size: 14px'
+                data-src="examples/constellation-07/snippet.js"></pre>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <iframe
+            id='iframeConstellation08'
+            width="900"
+            height="300"
+            data-src="examples/constellation-08/"></iframe>
+          <div class="twocol">
+            <div>
+              <pre
+                style='font-size: 14px'
+                data-src="examples/constellation-08/snippet1.css"></pre>
+              <pre
+                style='font-size: 14px'
+                data-src="examples/constellation-08/snippet.js"></pre>
+            </div>
+            <div class="fragment" data-fragment-data='show-line-aniamtion-delays'>
+              <pre
+                style='font-size: 14px'
+                data-src="examples/constellation-08/snippet.css"></pre>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="twocol">
+            <iframe
+              width="500"
+              height="500"
+              data-src="examples/constellation-09/"></iframe>
+            <div>
+              <pre
+                style='font-size: 14px'
+                data-src="examples/constellation-09/snippet.js"></pre>
+              <pre
+                style='font-size: 14px'
+                data-src="examples/constellation-09/snippet.css"></pre>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="twocol">
+            <iframe
+              width="500"
+              height="500"
+              data-src="examples/constellation-10/"></iframe>
+            <div>
+              <pre
+                style='font-size: 14px'
+                data-src="examples/constellation-10/snippet.css"></pre>
+            </div>
+          </div>
         </section>
       </section>
     </div>
@@ -343,6 +428,9 @@
           { src: 'reveal/plugin/notes/notes.js'}
 	      ]
       });
+  </script>
+
+  <script>
       const dashDemoFragments = new SlideBuilder(dashdemo);
       dashDemoFragments.fragments(
         [
@@ -366,6 +454,45 @@
         const content = iframe.contentWindow;;
         content.postMessage("previous-topic", "*");
       }
+  </script>
+  <script>
+    Reveal.addEventListener('fragmenthidden', event => {
+      const SHOW_HOTPINK = 'show-hotpink-correct-length';
+      const data = event.fragment.dataset.fragmentData;
+      if(!data) {
+        return;
+      }
+
+      if(data === SHOW_HOTPINK) {
+        const content = iframeConstellation07.contentWindow;
+        content.postMessage("remove-length", "*");
+      }
+
+
+      if(data === SHOW_DELAYS) {
+        const content = iframeConstellation08.contentWindow;
+        content.postMessage("remove-delays", "*");
+      }
+    });
+
+    Reveal.addEventListener('fragmentshown', event => {
+      const SHOW_HOTPINK = 'show-hotpink-correct-length';
+      const SHOW_DELAYS = 'show-line-aniamtion-delays';
+
+      const data = event.fragment.dataset.fragmentData;
+      if(!data) {
+        return;
+      }
+
+      if(data === SHOW_HOTPINK) {
+        const content = iframeConstellation07.contentWindow;
+        content.postMessage("update-length", "*");
+      }
+      if(data === SHOW_DELAYS) {
+        const content = iframeConstellation08.contentWindow;
+        content.postMessage("use-delays", "*");
+      }
+    });
   </script>
 
 

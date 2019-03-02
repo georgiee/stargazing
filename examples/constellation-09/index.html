@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>01 - Stargazing — Star Colors</title>
+  <style>
+    body {
+      background-color: black;
+      color: #fff;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    svg {
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .animated-path {
+      --duration: 0.5s;
+
+      stroke-dasharray: var(--path-length);
+      animation: dashAnimation linear var(--duration) 1 backwards;
+      animation-delay: calc(var(--path-index) * var(--duration));
+    }
+
+    @keyframes dashAnimation {
+      0% {
+        stroke-dashoffset: var(--path-length);
+      }
+
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<svg viewbox="-10 -10 250 400" preserveAspectRatio="xMidYMid meet" height="100%" width="100%">
+</svg>
+
+<script type="module">
+  import { createSVGElement, generateLinePath, createDot, createLine } from '../shared.js';
+  import { orion } from '../constellations.js';
+
+  const svg = document.querySelector('svg');
+
+  createConstellation(orion.coordinates, orion.lines);
+
+  function createConstellation(points, lineIndices) {
+    points.forEach(point => {
+      svg.appendChild(createDot(point));
+    });
+
+    let totalLength = 0;
+    const group = createSVGElement('g');
+
+    let previousLength = 0;
+    let previousTotalLength = 0;
+
+    lineIndices.map((indices, index) => {
+      const linePoints = indices.map(index => points[index]);
+      const line = createLine(linePoints, index);
+
+      previousTotalLength = totalLength;
+      line.style.setProperty('--path-previous-length', previousTotalLength);
+      line.classList.add('animated-path');
+      totalLength += line.getTotalLength();
+
+      group.appendChild(line);
+    });
+
+    svg.appendChild(group);
+    group.style.setProperty('--constellation-total-length', Math.round(totalLength));
+  }
+
+</script>
+
+</body>
+
+</html>
