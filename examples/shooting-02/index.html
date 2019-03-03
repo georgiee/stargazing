@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Shooting Star (Part II, no orbit)</title>
+
+
+
+<style>
+body, html {
+  overflow: hidden;
+  margin: 0;
+}
+
+.shooting-star {
+  animation: shootingStarOrbit 2s linear infinite;
+}
+
+.shooting-star {
+  fill: white;
+}
+
+.shooting-star.debug {
+  fill: url(#debugCircle);
+}
+
+.btn-debug {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 5vw;
+}
+
+@keyframes shootingStarOrbit {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+/* only for this pen */
+body {
+  background: black;
+  margin: 0;
+}
+
+svg {
+  max-height: 100vh;
+}
+</style>
+
+</head>
+
+<body>
+
+  <svg id='nightsky' viewbox="-20 -20 140 140" width ="100%"  preserveAspectRatio="xMidYMid meet">
+
+
+  <g transform="translate(-20, -20)">
+    <rect width="100%" height="100%" fill="url(#grid)" />
+  </g>
+
+  <g class="shooting-star-wrapper" transform="translate(50 50)">
+    <circle class='shooting-star' fill="white" r="50"></circle>
+  </g>
+
+  <defs>
+    <pattern id="debugCircle" x="100" width="100" height="100" patternUnits="userSpaceOnUse">
+      <rect width="100" height="100" fill="white"></rect>
+      <rect x="40" width="10" height="10" fill="red"></rect>
+    </pattern>
+
+    <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+      <path d="M 10 0 L 0 0 0 10" fill="none" stroke="gray" stroke-width="0.5"/>
+    </pattern>
+
+    <pattern  x="20" y="20" id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
+      <rect width="100" height="100" fill="url(#smallGrid)"/>
+      <path d="M 100 0 L 0 0 0 100" fill="none" stroke="gray" stroke-width="1"/>
+    </pattern>
+  </defs>
+</svg>
+
+<button class='btn-debug' onclick="toggle()">🚧</button>
+
+
+<script>
+const shootingStar = document.querySelector('.shooting-star');
+
+function toggle() {
+shootingStar.classList.toggle('debug');
+}
+
+const urlParams = new URLSearchParams(window.location.search);
+const debug = urlParams.has('debug');
+
+if(debug) {
+  toggle();
+}
+</script>
+
+
+</body>
+
+</html>

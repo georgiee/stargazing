@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Shooting Star (Part I, Fading)</title>
+  <style>
+  body, html {
+  overflow: hidden;
+  margin: 0;
+}
+
+.shooting-star {
+  animation: shootingStarBurn 2s linear infinite;
+}
+
+@keyframes shootingStarBurn {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* only for this pen */
+body {
+  background: black;
+  margin: 0;
+}
+
+svg {
+  max-height: 100vh
+};
+</style>
+
+</head>
+
+<body>
+
+  <svg id='nightsky' viewbox="-20 -20 240 240" width ="100%"  preserveAspectRatio="xMidYMid meet">
+
+  <g class="shooting-star-wrapper" transform="translate(100 100)">
+    <circle class='shooting-star' fill="white" r="50"></circle>
+  </g>
+
+  <g transform="translate(-20, -20)">
+    <rect width="100%" height="100%" fill="url(#grid)" />
+  </g>
+
+</svg>
+
+
+
+</body>
+
+</html>

@@ -32,7 +32,7 @@
     }
 
     .twocol iframe {
-      max-height: auto;
+      max-height: none;
     }
 
     .twocol img {
@@ -167,7 +167,7 @@
         </section>
       </section>
 
-      <!-- Chapter 1 (Star) -->
+      <!-- Chapter 01 (Star) -->
       <section>
         <section
           data-background-opacity="0.5"
@@ -448,6 +448,7 @@
         </section>
       </section>
 
+      <!-- Chapter 02 (Night Sky) -->
       <section>
         <section data-background-image="static/images/chapter-02/night-sky.jpg">
           <span>Chapter 02 </span>
@@ -680,10 +681,10 @@
           <pre data-src="examples/sky-04/snippet.js"></pre>
 
           <iframe
-            class="fxragment"
+            class="fragment"
             width="900"
             height="300"
-            data-src="examples/sky-04/"></iframe>
+            data-src="examples/sky-04/index.html?debug"></iframe>
 
             <aside class="notes">
               <p>We can know add the twinkling effect to all of our stars in the sky
@@ -706,6 +707,7 @@
         </section>
       </section>
 
+      <!-- Chapter 03 (Shooting Stars) -->
       <section>
         <section data-background-image="static/images/chapter-03/shooting-background.gif">
           <span>Chapter 03 </span>
@@ -768,9 +770,355 @@
             <p>and the idea is to create a moving circle with fading.</p>
           </aside>
         </section>
+
+        <!-- Code: Shooting Fading -->
+        <section>
+          <pre data-src="examples/shooting-01/snippet.svg"></pre>
+          <pre class="fragment" data-src="examples/shooting-01/snippet.css"></pre>
+
+          <iframe
+            class="fragment"
+            width="600"
+            height="200"
+            data-src="examples/shooting-01/"></iframe>
+
+          <aside class="notes">
+            <p>We use a circle again — but this time it stands for a piece of rock and not a star!</p>
+            <p>To simulate the burning we use opacity. We are not visible in the beginning, start burning and disappear again.</p>
+            <p>Here the result. That looks good, now let's build some movement</p>
+          </aside>
+        </section>
+
+        <!-- Code: Shooting No Orbit -->
+        <section>
+          <img data-src="static/images/chapter-03/shooting-star-arc.gif">
+
+          <pre data-src="examples/shooting-02/snippet.css"></pre>
+
+          <aside class="notes">
+            <p>We want to move the circle in an arc</p>
+            <p>and we start by rotating it for 180 degree</p>
+            <p>But something is wrong with the result - you can't see it rotate.</p>
+          </aside>
+
+          <iframe
+            class="fragment"
+            width="600"
+            height="250"
+            data-src="examples/shooting-02/"></iframe>
+        </section>
+
+        <!-- Code: Shooting No Orbit (debug) -->
+        <section data-background-iframe="examples/shooting-02/index.html?debug">
+          <aside class="notes">
+            <p>If wee look at a larger version and attach some shape to the circle</p>
+            <p>we can see that it's rotating — but around itself only</p>
+            <p>We need to offset the center of the animation</p>
+          </aside>
+        </section>
+
+        <!-- Code: Orbit with rotation + translation -->
+        <section>
+          <pre data-src="examples/shooting-03/snippet.css"></pre>
+          <div class="twocol">
+           <div style="height:400px; position: relative;">
+            <iframe
+              data-fragment-index="1"
+              class="fragment"
+              width="400"
+              height="400"
+              data-src="examples/shooting-03/part1.html"></iframe>
+           </div>
+           <div style="height:400px; position: relative;">
+              <iframe
+                data-fragment-index="2"
+                class="fragment"
+                width="400"
+                height="400"
+                data-src="examples/shooting-03/part2.html"></iframe>
+                <div
+                  class="fragment"
+                  style="width:650px;position: absolute;bottom:0;left:-350px">
+                  <pre style="font-size: 14px">
+                    <code class="language-css">
+                      @keyframes shootingStarOrbit {
+                        0% { transform: translate(100px, 0) rotate(0); }
+                        100% { transform: translate(100px, 0) rotate(180deg); }
+                      }
+                    </code>
+                  </pre>
+                </div>
+            </div>
+          </div>
+
+          <aside class="notes">
+            <p>In addition to the rotation we also translate. We use this adjusted animation
+              and we can see the desired result.
+            </p>
+            <p>
+              The transformation has the effect, that the circle is rotating around its
+              original position with the given radius of 100px.
+            </p>
+            <p>
+              Order matters, don't translate and then rotate otherwise you will shift the circle and it will rotate at that new position around itself.
+            </p>
+          </aside>
+        </section>
+
+        <section>
+          <pre style="font-size: 14px">
+            <code class="language-css">
+              .shooting-star {
+                animation: shootingStarOrbit 2s linear infinite;
+              }
+              @keyframes shootingStarOrbit {
+                0% {
+                  transform: rotate(0) translate(100px, 0);
+                }
+                100% {
+                  transform: rotate(180deg) translate(100px, 0);
+                }
+              }
+            </code>
+          </pre>
+          <ul>
+            <li class="fragment">translate(100px, 0) ➡ radius</li>
+            <li class="fragment">rotate(0), rotate(180) ➡ start/end angle</li>
+            <li class="fragment">CSS Variables and keyframes are friends 👫</li>
+          </ul>
+
+          <aside class="notes">
+            <p>The animation is nice already but we want to use variations</p>
+            <p>We want to adjust translation of 100px which is our radius</p>
+            <p>and also the different rotation values which are our start and end angles</p>
+            <p>Amazingly CSS Variables work in keyframe animations too!</p>
+          </aside>
+        </section>
+
+        <!-- Code: CSS Variables for Radius -->
+        <section>
+          <pre style="font-size: 14px">
+            <code class="language-css">
+              @keyframes shootingStarOrbit {
+                100% {
+                  transform:
+                    rotate(180deg)
+                    translate(var(--shooting-orbit-radius, 100px), 0);
+                }
+              }
+            </code>
+          </pre>
+          <pre style="font-size: 14px">
+            <code class="language-js">
+              // Provide values through JS
+              shootingStar.style.setProperty(
+                '--shooting-orbit-radius', value + 'px');
+            </code>
+          </pre>
+
+          <aside class="notes">
+            <p>
+              We use a CSS variable called shooting-orbit-radius with a default value of 100px;
+            </p>
+            <p>
+              With the power of JavaScript we can assign different values.
+            </p>
+            <p>
+              You can see it my example where I change it by 10px in each step.
+              The circle right to it is using the same animation but with the fallback value of 100px
+            </p>
+          </aside>
+
+          <iframe
+            class="fragment"
+            width="600"
+            height="300"
+            data-src="examples/shooting-04/index.html"></iframe>
+        </section>
+
+        <!-- Code: CSS Variables for Angle plus: Start Angle -->
+        <section>
+          <pre style="font-size: 14px">
+            <code class="language-css">
+              @keyframes shootingStarOrbit {
+                0% { transform:
+                  rotate(var(--shooting-orbit-angle-start, 0deg)) /*translate..*/ }
+                100% { transform:
+                  rotate(var(--shooting-orbit-angle, 180deg)) /* translate.. */ }
+              }
+            </code>
+            <code class="language-js">
+              shootingStar.style
+                .setProperty('--shooting-orbit-angle-start', value + 'deg');
+              shootingStar.style
+                .setProperty('--shooting-orbit-angle', value + 'deg');
+            </code>
+          </pre>
+
+          <aside class="notes">
+            <p>We can do the same for the angle. </p>
+            <p>Her I prepared an example where the two angles are set to different values</p>
+          </aside>
+
+          <iframe
+            class="fragment"
+            width="600"
+            height="300"
+            data-src="examples/shooting-05/index.html"></iframe>
+        </section>
+
+        <!-- Part VI: createShootingStar via BvOJKw -->
+        <section>
+          <pre style="font-size: 18px;">
+            <code class="language-js">
+              createShootingStar({
+                x: 100, y: 100, radius: 100,
+                angleStart: -90, angle: -180
+              });
+            </code>
+          </pre>
+
+          <pre
+            data-line='3-5, 7-14'
+            style="font-size: 18px;"
+            data-src="examples/shooting-06/snippet.js"></pre>
+
+          <aside class="notes">
+            <p>We have build a shooting star where we can easily create variations with CSS Variables.</p>
+            <p>Let's create a function so we can easily create them with few parameters</p>
+            <p>The method itself will create the SVG structure and apply properties and values</p>
+          </aside>
+        </section>
+
+        <section data-background-iframe="examples/shooting-07/index.html?debug">
+          <aside class="notes">
+            The result looks like this.
+          </aside>
+        </section>
+
+        <section data-background-iframe="examples/shooting-07/">
+          <aside class="notes">
+            When we disable all the visual helpers the result already looks like a shooting star!
+          </aside>
+        </section>
+
+        <section>
+          <h3 class="fragment">How many shooting stars?</h3>
+          <p class="fragment">4-6 per hour</p>
+          <aside class="notes">
+            <p>There is one question missing yet.</p>
+            <p>How many shooting stars are actually happening in the sky?</p>
+            <p>During a usual night and outside of a city you can observe up to 6 shooting stars per hours</p>
+          </aside>
+        </section>
+
+        <section data-background-image="static/images/chapter-03/meteor-shower-tonight.jpg">
+          <h2>Meteor Shower</h2>
+          <p class="fragment">Up to 200 shooting stars per hour</p>
+          <aside class="notes">
+            <p>But during a meteor shower you an observe</p>
+            <p>up to 200 shooting stars per hour</p>
+          </aside>
+        </section>
+
+        <!-- Fact 07 -->
+        <section>
+          <span>New Star Fact!</span>
+          <h2 class="fragment">✨Meteor Shower✨</h2>
+          <p class="fragment">🎭Idea: Create multiple randomly shooting stars </p>
+          <aside class="notes">
+            <p>We gained a new star fact.</p>
+            <p>Meteor Shower</p>
+            <p>The idea is to create multiple random shooting stars</p>
+          </aside>
+        </section>
+
+        <!-- Code: Meteor Shower -->
+        <section>
+          <div class="twocol">
+            <div>
+              <pre style="font-size: 16px" data-src="examples/shooting-08/snippet.js"></pre>
+            </div>
+            <div>
+              <iframe
+                width="480"
+                height="480"
+                data-src="examples/shooting-08/"></iframe>
+            </div>
+          </div>
+
+          <aside class="notes">
+            <p>We use our 'createShootingStar' method to create three different shooting stars</p>
+            <p>The result are multiple shooting stars</p>
+            <p>But they all start at the same time and shooting forever. We need to change this.</p>
+          </aside>
+        </section>
+
+        <!-- Code: Meteor Shower II -->
+        <section>
+          <div class="l-col2">
+            <div>
+              <pre style="font-size: 16px">
+                <code class="language-css">
+                  .shooting-star {
+                    visibility: hidden;
+                  }
+                </code>
+                <code class="language-js">
+                  setInterval(() => shootNext(), 4000);
+
+                  function shootNext() {
+                    const shootingStar = nextStar();
+                    shootingStar.classList.add('is-shooting');
+
+                    lastStar.classList.remove('is-shooting');
+                    lastStar = shootingStar;
+                  }
+                </code>
+              </pre>
+            </div>
+
+            <iframe
+              class="fragment"
+              width="480"
+              height="480"
+              data-src="examples/shooting-09/"></iframe>
+          </div>
+
+          <aside class="notes">
+            <p>We hide the shooting star in the beginning</p>
+            <p>and only show it and apply the animation when the class is-shooting is present</p>
+            <p>We use a shootNext function to randomly assign the css class is-shooting to a shootingn star</p>
+            <p>the result looks like this where each shooting star is randomly activated</p>
+          </aside>
+        </section>
+
+        <section data-background-image="static/images/chapter-03/homer-burn.gif">
+          <aside class="notes">
+            Let's try to combine our sky with the shooting stars.
+          </aside>
+        </section>
+
+        <!-- Code Preview Shooting Stars & Night Sky via EGdyVo-->
+        <section data-background-iframe="examples/shooting-10/index.html?debug">
+
+          <aside class="notes">
+            <p>Oh, that looks not so good... maybe we should disable our helping visuals first.</p>
+          </aside>
+        </section>
+
+        <!-- Code Preview Shooting Stars & Night Sky via EGdyVo-->
+        <section
+          data-background-iframe="examples/shooting-10/">
+
+          <aside class="notes">
+            <P>There we go! This looks nice.</P>
+            <p>You can see our stars twinkle and the shooting stars appearing randomly.</p>
+          </aside>
+        </section>
       </section>
 
-      <!-- Consellations -->
+      <!-- Chapter 04 (Constellations) -->
       <section>
         <section
           data-background-opacity="0.5"
@@ -1031,6 +1379,81 @@
                 data-src="examples/constellation-10/snippet.css"></pre>
             </div>
           </div>
+        </section>
+      </section>
+
+      <!-- Chapter Conclusion -->
+      <section>
+        <section>
+          <h1>Conclusion</h1>
+          <aside class="notes">
+            Let's wrap up what we have learned.
+          </aside>
+        </section>
+
+        <!-- Stars -->
+        <section>
+          <pre>
+            <code class="language-js">
+            createStar({size: 10, color: 'red', x: 0, y: 0});
+            </code>
+          </pre>
+
+          <iframe
+            width="900"
+            height="400"
+            data-src="examples/star-colors/"></iframe>
+
+          <aside class="notes">
+            We explored Betelgeuse a star far away to discover how stars can be build
+          </aside>
+        </section>
+
+        <!-- Night Sky -->
+        <section>
+          <pre style="font-size: 18px;">
+            <code class="language-css">
+              .twinkle-little-star {
+                animation:
+                  starPulse 5s infinite alternate,
+                  starGlowing 2s infinite alternate;
+
+                animation-delay: var(--animation-twinkle-delay, 0);
+              }
+            </code>
+          </pre>
+          <iframe
+            width="900"
+            height="400"
+            data-src="examples/sky-04/"></iframe>
+
+          <aside class="notes">
+            Back on earth we looked in the sky and learned how we can build a twinkling effect from two simple animations.
+          </aside>
+        </section>
+
+        <section>
+          <pre>
+            <code class="language-js">
+                createShootingStar({
+                  x: 100, y: 100, radius: 100,
+                  angleStart: -90, angle: -180
+                });
+            </code>
+          </pre>
+
+          <iframe
+            width="600"
+            height="600"
+            data-src="examples/shooting-09/"></iframe>
+
+          <aside class="notes">
+            and we learned how we can create variations of shooting stars with the power of CSS Variables
+          </aside>
+        </section>
+
+        <section>
+          Thank you (written in the stars)
         </section>
       </section>
     </div>

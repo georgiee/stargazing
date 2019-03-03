@@ -73,11 +73,26 @@
     svg {
       max-height: 100vh
     };
+
+    #debugCircle {
+      visibility: hidden;
+    }
+
+    .twinkle-little-star.star02 {
+      visibility: hidden;
+    }
+
+    .show-circle .twinkle-little-star.star02 {
+      visibility: visible;
+    }
   </style>
 </head>
 
 <body>
   <svg id='nightsky' viewbox="-480 -350 960 700" preserveAspectRatio="xMidYMid slice">
+    <g transform="translate(0, 0)">
+      <circle class='twinkle-little-star star02' r="40" fill="white"></circle>
+    </g>
   </svg>
 
   <script type="module">
@@ -95,6 +110,13 @@
         const star = createStar({ color, size: 2, ...coordinates, delay  });
         svgElement.appendChild(star);
       }
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const debug = urlParams.has('debug');
+
+    if(debug) {
+      document.body.classList.toggle('show-circle');
     }
 </script>
 
