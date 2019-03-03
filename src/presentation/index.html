@@ -13,6 +13,9 @@
 
   <title>Stargazing for developers - A twinkling night sky with shooting stars powered by SVG & CSS</title>
   <style>
+    .prism-medium.prism-medium {
+      font-size: 14px;
+    }
 
     /* Make the prism highlight more visible */
     .line-highlight {
@@ -44,11 +47,19 @@
       border: none;
     }
 
-
+    .fact-summary.fact-summary {
+      outline: 1px dotted grey;
+      padding: 20px;
+    }
 
     /* Chapter 01 */
     .zoom-betelgeuse-trigger .zoom-betelgeuse {
       animation: zoomOut 1s;
+    }
+
+    .invert {
+      background-color: #000;
+      color: #fff;
     }
 
     @keyframes zoomOut {
@@ -103,27 +114,21 @@
               <p>and I love experimenting with technology like WebGL, my Arduino and algorithms.</p>
           </aside>
         </section>
-
-        <section>
-          <code class="language-css">
-            <pre>
-                p { color: red; }
-            </pre>
-          </code>
-        </section>
       </section>
 
       <!-- Prepare -->
       <section>
         <section>
           <h3>Journey to the stars</h3>
-          <p>3 chapters</p>
+          <p>4 chapters</p>
           <ul>
             <li class="fragment">I) Anatomy of a Star</li>
             <li class="fragment">II) Night Sky</li>
             <li class="fragment">III) Shooting Stars</li>
+            <li class="fragment">IV) Constellations</li>
             <!-- <li class="fragment">IV) Parallax Sky</li> -->
           </ul>
+
           <aside class="notes">
             <p>Over the course of 3 chapters I will take you on a journey to the stars.</p>
             <p>We will explore how a single star is working to create them easily.</p>
@@ -324,7 +329,7 @@
 
         <!-- Code: Star II -->
         <section>
-          <pre class="fragment" data-src="examples/star-02/snippet.svg"></pre>
+          <pre data-src="examples/star-02/snippet.svg"></pre>
           <svg viewbox="-10 -10 80 20" width="600" preserveAspectRatio="xMidYMid meet" class="fragment">
             <circle r="10" cx="0"  fill="#B5CDFF"></circle>
             <circle r="10" cx="30" fill="#FFE4CE"></circle>
@@ -400,7 +405,6 @@
         <section>
           <pre
             style="font-size: 18px;"
-            class="fragment"
             data-src="examples/star-04/snippet.svg"></pre>
           <pre
             class="fragment"
@@ -432,11 +436,11 @@
           <iframe width="600" height="400" data-src="examples/star-05/"></iframe>
 
           <aside class="notes">
-              <p>
-                With that function we can now easily create vast amounts of different stars
-              </p>
+            <p>
+              With that function we can now easily create vast amounts of different stars
+            </p>
 
-              <p>We are ready to build our sky.</p>
+            <p>We are ready to build our sky.</p>
           </aside>
         </section>
 
@@ -587,7 +591,7 @@
         <section>
           <pre
             style="font-size: 18px"
-            class="fragment" data-src="examples/sky-02/snippet.css"></pre>
+            data-src="examples/sky-02/snippet.css"></pre>
 
           <iframe
             class="fragment"
@@ -645,7 +649,7 @@
         <section>
           <pre data-src="examples/sky-03/snippet.svg"></pre>
           <iframe
-            class="fragment"
+            class="frxagment"
             width="600"
             height="250"
             data-src="examples/sky-03/"></iframe>
@@ -678,7 +682,10 @@
 
         <!-- Code: Twinkle V (First Twinkle Sky) via wREvPg -->
         <section>
-          <pre data-src="examples/sky-04/snippet.js"></pre>
+          <pre
+            data-line="6-7"
+            style="font-size: 18px"
+            data-src="examples/sky-04/snippet.js"></pre>
 
           <iframe
             class="fragment"
@@ -773,8 +780,8 @@
 
         <!-- Code: Shooting Fading -->
         <section>
-          <pre data-src="examples/shooting-01/snippet.svg"></pre>
-          <pre class="fragment" data-src="examples/shooting-01/snippet.css"></pre>
+          <pre style="font-size: 18px" data-src="examples/shooting-01/snippet.svg"></pre>
+          <pre style="font-size: 18px" class="fragment" data-src="examples/shooting-01/snippet.css"></pre>
 
           <iframe
             class="fragment"
@@ -793,7 +800,7 @@
         <section>
           <img data-src="static/images/chapter-03/shooting-star-arc.gif">
 
-          <pre data-src="examples/shooting-02/snippet.css"></pre>
+          <pre class="fragment prism-medium" data-src="examples/shooting-02/snippet.css"></pre>
 
           <aside class="notes">
             <p>We want to move the circle in an arc</p>
@@ -838,6 +845,7 @@
                 data-src="examples/shooting-03/part2.html"></iframe>
                 <div
                   class="fragment"
+                  data-fragment-index="2"
                   style="width:650px;position: absolute;bottom:0;left:-350px">
                   <pre style="font-size: 14px">
                     <code class="language-css">
@@ -908,7 +916,7 @@
               }
             </code>
           </pre>
-          <pre style="font-size: 14px">
+          <pre style="font-size: 14px" class="fragment">
             <code class="language-js">
               // Provide values through JS
               shootingStar.style.setProperty(
@@ -979,6 +987,7 @@
           </pre>
 
           <pre
+           class="fragment"
             data-line='3-5, 7-14'
             style="font-size: 18px;"
             data-src="examples/shooting-06/snippet.js"></pre>
@@ -1041,6 +1050,7 @@
             </div>
             <div>
               <iframe
+               class="fragment"
                 width="480"
                 height="480"
                 data-src="examples/shooting-08/"></iframe>
@@ -1056,12 +1066,19 @@
 
         <!-- Code: Meteor Shower II -->
         <section>
-          <div class="l-col2">
+          <div class="twocol">
             <div>
-              <pre style="font-size: 16px">
+              <pre style="font-size: 12px">
                 <code class="language-css">
                   .shooting-star {
                     visibility: hidden;
+                  }
+                </code>
+
+                <code class="language-css">
+                  .shooting-star.is-shooting {
+                    visibility: visible;
+                    animation: shootingStarOrbit ...
                   }
                 </code>
                 <code class="language-js">
