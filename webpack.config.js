@@ -1,8 +1,5 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
-
-const path = require('path');
 
 const devPlugins = [
   new HTMLWebpackPlugin({
@@ -21,7 +18,6 @@ const devPlugins = [
 ]
 
 const plugins = [
-  new VueLoaderPlugin(),
   ...devPlugins,
   new CopyWebpackPlugin([ { from: 'examples/**/*', to: '' }]),
   new CopyWebpackPlugin([ { from: 'static', to: 'static' }])
@@ -48,12 +44,8 @@ module.exports = {
       {
         test: /\.tsx?$/,
         loader: 'ts-loader',
-        exclude: /node_modules/,
-        options: {
-          appendTsSuffixTo: [/\.vue$/],
-        }
+        exclude: /node_modules/
       },
-      { test: /\.vue$/, loader: "vue-loader" },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
@@ -73,6 +65,6 @@ module.exports = {
   },
   plugins: plugins,
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".vue"]
+    extensions: [".ts", ".tsx", ".js"]
   }
 };

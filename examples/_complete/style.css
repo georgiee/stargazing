@@ -1,0 +1,49 @@
+body, html {
+  overflow: hidden;
+  margin: 0;
+}
+
+/* only for this pen */
+body {
+  background: black;
+  margin: 0;
+  height: 500vh;
+}
+
+svg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.btn-debug {
+  position: fixed;
+  top: 5px;
+  right: 5px;
+  font-size: 3vw;
+}
+
+.debug-grid,
+.shooting-star__debug {
+  display: none;
+}
+
+.debug .shooting-star__debug {
+  display: block;
+}
+
+.debug .shooting-star__shape {
+  r: 10;
+}
+
+.debug .twinkle-little-star {
+  r: 10;
+}
+
+.debug .debug-grid {
+  display: block;
+}
+
+

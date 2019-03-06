@@ -16,6 +16,9 @@
     .prism-medium.prism-medium {
       font-size: 14px;
     }
+    .reveal pre code {
+      overflow: visible;
+    }
 
     /* Make the prism highlight more visible */
     .line-highlight {
@@ -1257,8 +1260,11 @@
         <section>
           <iframe width="600" height=300" data-src="examples/constellation-02c/index.html"></iframe>
           <pre
+            class="line-numbers"
+            data-line="3, 8-10,12-14"
             style='font-size: 14px'
             data-src="examples/constellation-02c/snippet.js"></pre>
+
           <aside class="notes">
             functions!
           </aside>
@@ -1470,7 +1476,11 @@
         </section>
 
         <section>
-          Thank you (written in the stars)
+          constellations
+        </section>
+
+        <section data-background-iframe="examples/_complete/">
+          Thank you
         </section>
       </section>
     </div>

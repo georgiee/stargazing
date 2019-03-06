@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Stargazers Final Result</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet" href="star.css">
+  <link rel="stylesheet" href="shooting.css">
+  <link rel="stylesheet" href="constellation.css">
+</head>
+
+<body>
+
+  <svg id='nightsky' viewbox="0 0 960 700" width ="100%" preserveAspectRatio="xMidYMid slice">
+  <g transform="translate(-20, -20)" class="debug-grid">
+    <rect width="100%" height="100%" fill="url(#grid)" />
+  </g>
+</svg>
+
+<button class='btn-debug' onclick="toggle()">🚧</button>
+<script src="src/main.js" type="module"></script>
+</body>
+
+</html>
