@@ -1147,73 +1147,65 @@
           <h2>Constellations</h2>
         </section>
 
-        <section>
-          <h2>Pareidolia?</h2>
-          <span>random data = shapes</span>
-          <aside class="notes">
-            Do you know what's Pareidolia?
-            It's the psychological phenomenon to see or hear things in random data.
-          </aside>
-        </section>
-
-        <section data-background-image="static/images/constellations/pareidolia.jpg">
-          <aside class="notes">
-            And people spot really weird things in objects as you can see here.
-            But wait, why am I telling you all this?
-          </aside>
-        </section>
-
-        <section>
-          What is a Constellation?
-          <aside class="notes">
-            Shouldn't we ask for the question what is a constellation ?
-            Yes we should of course.
-          </aside>
-        </section>
-
-        <section>
-          Constellations are figures people see in the sky formed by a few stars.
-          <br>
-          <span class="fragment">Star Pareidolia!</span>
-        </section>
-
         <section
-          data-background-image="static/images/constellations/figures-sky-03.jpg">
+          data-background-image="static/images/constellations/pareidolia.jpg">
           <aside class="notes">
-            It's like looking in the night sky
+            Let's start with a picture of random every day objects. We all know that those pictures show no living things
+            but our brain still recognize those characters and faces together with  an emotion.
+
+            My favourite ist the grumpy broom and the happy brush family.
           </aside>
         </section>
 
         <section
-          data-background-image="static/images/constellations/figures-sky-02.jpg">
+          data-background-opacity="0.5"
+          data-background-image="static/images/constellations/pareidolia.jpg">
+          <h1>Pareidolia</h1>
+          <span>
+            Human tendency to see faces and characters in random data.
+          </span>
           <aside class="notes">
-            and then you start seeing figures
+            That tendency to see faces in random data is called Pareidolia.
           </aside>
         </section>
 
         <section
-          data-background-image="static/images/constellations/figures-sky-04.jpg">
+          data-background-image="static/images/chapter-04/constellation-forming.gif">
           <aside class="notes">
-            just by connecting the stars with lines in your head.
+            And what are stars in the sky? Random data and our brain tries hard to find anythign meaningful in it!
           </aside>
         </section>
 
-        <section data-background-image="static/images/constellations/88-constellations.png">
-          <aside class="notes">
-            Today there are exactly 88 star constellations. No more, mo less.
-            And we want to build some of them with SVG & CSS. Let's get started.
-          </aside>
-        </section>
-
-        <!--
         <section>
-          <img width="500" src="static/images/unsorted/betelgeuse-orion.jpg"/>
+          <img height="600" src="static/images/chapter-04/orion-hevelius-stars.png"/>
           <aside class="notes">
-            Remember our image from the beginning before we travelled to Betelegeuse ?
-            That's the constellationn Orion and we are going to build it now.
+            Just look at this random star pattern.
           </aside>
         </section>
-        -->
+
+        <section>
+          <img height="600" src="static/images/chapter-04/orion-hevelius-lines.png"/>
+          <aside class="notes">
+            You can make some connection between stars to create a line drawing.
+          </aside>
+        </section>
+
+        <section>
+          <img height="600" src="static/images/chapter-04/orion-hevelius-image.jpg"/>
+          <aside class="notes">
+            Which can transform to full blown image in your brain - thanks to pareidolia.
+            In this case it's Orion, a famous hunter from the greek mythology
+          </aside>
+        </section>
+
+        <section data-background-image="static/images/chapter-04/celestrial-animation.gif">
+          <aside class="notes">
+              There are exactly 88 official constellations in our night sky covering an imaginary sphere around the earth.
+
+            Constellations are usually visualized with dots and lines, which brings us to our next fact!
+
+          </aside>
+        </section>
 
         <section>
           <div class="fact">
@@ -1224,60 +1216,84 @@
         </section>
 
         <section>
-          <iframe width="600" height="100" data-src="examples/constellation-02/index.html"></iframe>
-          <pre
-            data-src="examples/constellation-02/snippet.svg"></pre>
+          <h1>Line Drawing</h1>
           <aside class="notes">
-            That looks promising already. But we want to build up some tension
-            so why not slowly reveal the image by animating the lines?
+            We want to create and animate a line drawing like this and place it in our night sky.
+          </aside>
+        </section>
+
+        <section>
+          <iframe width="600" height="100" data-src="examples/constellations/constellation-02/index.html"></iframe>
+          <pre
+            data-src="examples/constellations/constellation-02/snippet.svg"></pre>
+          <aside class="notes">
+            That's our basic building block. Dots connected with lines.
+            To make our lives easier let's think about creating this with JavaScript.
           </aside>
         </section>
 
         <!-- createLine -->
         <section>
-          <iframe width="600" height="100" data-src="examples/constellation-02a/index.html"></iframe>
-          <pre
+          <div class="twocol">
+            <iframe width="600" height="100" data-src="examples/constellations/constellation-02a/index.html"></iframe>
+            <pre
             style='font-size: 14px'
-            data-line="2, 4, 9, 13"
-            data-src="examples/constellation-02a/snippet.js"></pre>
-          <aside class="notes">
-            functions!
-          </aside>
-        </section>
+            data-src="examples/constellations/constellation-02a/snippet.svg"></pre>
+          </div>
 
-        <!-- createDot -->
-        <section>
-          <iframe width="600" height="100" data-src="examples/constellation-02b/index.html"></iframe>
           <pre
             style='font-size: 14px'
-            data-src="examples/constellation-02b/snippet.js"></pre>
+            data-src="examples/constellations/constellation-02a/snippet-path.js"></pre>
+
           <aside class="notes">
-            functions!
+            First we need to collect our end points as a list of coordinate.
+            We can pass that list to a function createDots to create the white dots. Nothing new here, we already did this for our stars.
+
+            The interesting part is the createLine method. There we create a path element
+            and we need to fill the attribute 'd' (short for definition) to create that
+            sequence of characters and numbers.
           </aside>
         </section>
 
         <!-- createConstellation basic-->
         <section>
-          <iframe width="600" height=300" data-src="examples/constellation-02c/index.html"></iframe>
+          <iframe width="600" height="200" data-src="examples/constellations/constellation-02c/index.html"></iframe>
           <pre
             class="line-numbers"
-            data-line="3, 8-10,12-14"
             style='font-size: 14px'
-            data-src="examples/constellation-02c/snippet.js"></pre>
+            data-src="examples/constellations/constellation-02c/snippet.js"></pre>
 
           <aside class="notes">
-            functions!
+            Once we can create lines and dots we can use them to compose our `createConstellation` function to create more complex shapes.
+
+            Our lines are composed of points, that's why we can build an array
+            of numbers where the numbers just point to the real point. That makes it easy
+            to create many different lines while keeping a fixed set of points.
           </aside>
         </section>
 
         <!-- createConstellation full -->
         <section>
-          <iframe width="800" height="500" data-src="examples/constellation-03/index.html"></iframe>
-          <pre
-            style='font-size: 14px'
-            data-src="examples/constellation-03/snippet.js"></pre>
+          <div class="twocol">
+            <pre
+              style='font-size: 14px'
+              data-src="examples/constellations/constellation-03/snippet.js"></pre>
+            <iframe
+              class="fragment" data-fragment-index="3"
+              width="400"
+              height="400"
+              data-src="examples/constellations/constellation-03/index.html"></iframe>
+          </div>
+
+          <pre style='font-size: 14px' class="fragment" data-fragment-index="2">
+            <code class="language-js">
+              createConstellation(COORDINATES, LINES);
+            </code>
+          </pre>
+
           <aside class="notes">
-            functions!
+            And what can we do with that new createConstellation function?
+            By collecting more points and lines we can create more complex shapes.
           </aside>
         </section>
 
@@ -1390,7 +1406,8 @@
           </div>
         </section>
 
-        <section>
+        <!-- normalized -->
+        <!-- <section>
           <div class="twocol">
             <iframe
               width="500"
@@ -1402,7 +1419,7 @@
                 data-src="examples/constellation-10/snippet.css"></pre>
             </div>
           </div>
-        </section>
+        </section> -->
       </section>
 
       <!-- Chapter Conclusion -->

@@ -20,18 +20,16 @@
 </head>
 
 <body>
-<svg viewbox="-10 -10 120 70" preserveAspectRatio="xMidYMid meet" height="100%" width="100%">
+<svg viewbox="-10 -10 200 400" preserveAspectRatio="xMidYMid meet" height="100%" width="100%">
 </svg>
 
 <script type="module">
-  import { createSVGElement, generateLinePath, createDot } from '../shared.js';
+  import { createSVGElement, generateLinePath, createDot, createLine } from '../../shared.js';
+  import { orion } from '../../constellations.js';
 
   const svg = document.querySelector('svg');
 
-  const points = [ {x: 0, y: 0}, {x: 100, y: 0}, {x: 50, y: 50}];
-  const lineIndices = [ [0, 1], [1,2], [2,0] ];
-
-  createConstellation(points, lineIndices);
+  createConstellation(orion.coordinates, orion.lines);
 
   function createConstellation(points, lineIndices) {
     points.forEach(point => {
@@ -42,14 +40,6 @@
       const linePoints = indices.map(index => points[index]);
       svg.appendChild(createLine(linePoints));
     })
-  }
-
-  function createLine(line) {
-    const path = createSVGElement('path');
-    path.setAttribute('d', generateLinePath(...line));
-    path.setAttribute('stroke', 'red');
-
-    return path;
   }
 
 </script>

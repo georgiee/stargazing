@@ -1,6 +1,0 @@
-<svg viewbox="-10 -50 220 100">
-  <circle cx="0" cy="0" r="5" fill="white"></circle>
-  <circle cx="100" cy="0" r="5" fill="white"></circle>
-  <circle cx="100" cy="-40" r="5" fill="white"></circle>
-  <circle cx="100" cy="40" r="5" fill="white"></circle>
-</svg>

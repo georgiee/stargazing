@@ -78,3 +78,9 @@ export function getRandomColor() {
   const index = Math.round(Math.random() * (availableColors.length -1));
   return availableColors[index];
 }
+
+export function indicesToPoints(indices, source) {
+  return indices.map(indexList => (
+    indexList.map(index => source[index])
+  ))
+}
