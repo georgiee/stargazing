@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>01 - Stargazing — Star Colors</title>
+
+  <link rel="stylesheet" href="../../_complete/star.css">
+  <link rel="stylesheet" href="../../_complete/shooting.css">
+  <link rel="stylesheet" href="../../_complete/constellation.css">
+  <style>
+    body {
+      background-color: black;
+      color: #fff;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    svg {
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .constellation-path {
+      stroke: white;
+    }
+
+  </style>
+</head>
+
+<body>
+<svg id='nightsky' viewbox="0 0 960 700" width ="100%" preserveAspectRatio="xMidYMid slice">
+</svg>
+
+<script type="module">
+  import { createSVGElement, generateLinePath, createDot, createLine } from '../../shared.js';
+  import { orion } from '../../constellations.js';
+
+  import { createSky, createStar } from './../../_complete/src/sky.js';
+  import { createShootingStars } from './../../_complete/src/shooting.js';
+
+  const svg = document.querySelector('svg');
+
+  const sky = createSky({ count: 350 });
+  svg.appendChild(sky);
+
+  const shootingStars = createShootingStars();
+  svg.appendChild(shootingStars);
+
+  const constellation = createConstellation(orion.coordinates, orion.lines);
+  svg.appendChild(constellation);
+  constellation.setAttribute('transform', `translate(350, 150)`);
+
+  function createConstellation(points, lineIndices) {
+    const group = createSVGElement('g');
+
+    points.forEach(point => {
+      const dot = createStar({size: 5, ...point, color: 'white'});
+      group.appendChild(dot);
+    });
+
+    lineIndices.forEach(indices => {
+      const linePoints = indices.map(index => points[index]);
+      const line = createLine(linePoints);
+
+      group.appendChild(line);
+    })
+
+    return group;
+  }
+
+</script>
+
+</body>
+
+</html>

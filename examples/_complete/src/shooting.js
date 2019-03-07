@@ -1,24 +1,23 @@
 import { polarToCartesian, createSVGElement } from './shared.js';
 
-export function createShootingStars() {
+export function createShootingStars({debug = false} = {}) {
   const SHOOT_DELAY = 2000;
   const SIZE_STAR = 1;
-  const CREATE_DEBUG_SHAPES = true;
   const shootingGroup = createSVGElement('g');
 
   const allShootingStars = [];
 
   let shootingStar
 
-  shootingStar = createShootingStar({ x: 100, y: 100, radius: 100, angle: 45, debug: CREATE_DEBUG_SHAPES, size: SIZE_STAR});
+  shootingStar = createShootingStar({ x: 100, y: 100, radius: 100, angle: 45, debug, size: SIZE_STAR});
   shootingGroup.appendChild(shootingStar);
   allShootingStars.push(shootingStar);
 
-  shootingStar = createShootingStar({ x: 350, y: 100, radius: 50, angleStart: 270, angle: 90, debug: CREATE_DEBUG_SHAPES, size: SIZE_STAR});
+  shootingStar = createShootingStar({ x: 350, y: 100, radius: 50, angleStart: 270, angle: 90, debug, size: SIZE_STAR});
   shootingGroup.appendChild(shootingStar);
   allShootingStars.push(shootingStar);
 
-  shootingStar = createShootingStar({ x: 550, y: 750, radius: 600, angleStart: -90, angle: -150, debug: CREATE_DEBUG_SHAPES, size: SIZE_STAR});
+  shootingStar = createShootingStar({ x: 550, y: 750, radius: 600, angleStart: -90, angle: -150, debug, size: SIZE_STAR});
   shootingGroup.appendChild(shootingStar);
   allShootingStars.push(shootingStar);
 

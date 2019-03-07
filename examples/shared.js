@@ -16,7 +16,7 @@ export function createDot({x, y}) {
   const dot = createSVGElement('circle');
   dot.setAttribute('r', 5);
   dot.setAttribute('fill', 'white');
-
+  dot.classList.add('twinkle-little-star');
   group.appendChild(dot);
   group.setAttribute('transform', `translate(${x} ${y})`);
 
@@ -30,6 +30,7 @@ export function createLine(line, index) {
   path.setAttribute('fill', 'none');
   path.style.setProperty('--path-length', path.getTotalLength());
   path.style.setProperty('--path-index', index);
+  path.classList.add('constellation-path');
 
   return path;
 }
