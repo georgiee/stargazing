@@ -1,4 +1,4 @@
-import { createSVGElement } from '../shared.js';
+import { createSVGElement } from '../../shared.js';
 
 export function createStar({size, color, x, y}) {
   const starShape = createSVGElement('circle');

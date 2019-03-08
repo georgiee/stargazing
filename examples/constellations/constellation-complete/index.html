@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="../../_complete/star.css">
   <link rel="stylesheet" href="../../_complete/shooting.css">
   <link rel="stylesheet" href="../../_complete/constellation.css">
-
   <style>
     body {
       background-color: black;
@@ -22,34 +21,20 @@
       width: 100vw;
     }
 
-    .animated-path {
-      --duration: 0.5s;
-
-      stroke-dasharray: var(--path-length);
-      animation: dashAnimation linear var(--duration) 1 backwards;
-      animation-delay: calc(var(--path-index) * var(--duration));
+    .constellation-path {
+      stroke: white;
     }
 
-    @keyframes dashAnimation {
-      0% {
-        stroke-dashoffset: var(--path-length);
-      }
-
-      100% {
-        stroke-dashoffset: 0;
-      }
-    }
   </style>
 </head>
 
 <body>
-<svg viewbox="-10 -10 250 400" preserveAspectRatio="xMidYMid meet" height="100%" width="100%">
+<svg id='nightsky' viewbox="0 0 960 700" width ="100%" preserveAspectRatio="xMidYMid slice">
 </svg>
 
 <script type="module">
   import { createSVGElement, generateLinePath, createDot, createLine } from '../../shared.js';
-  import { orion } from '../constellations.js';
-
+  import { orion } from '../../constellations.js';
 
   import { createSky, createStar } from './../../_complete/src/sky.js';
   import { createShootingStars } from './../../_complete/src/shooting.js';
@@ -62,35 +47,26 @@
   const shootingStars = createShootingStars();
   svg.appendChild(shootingStars);
 
-
-  createConstellation(orion.coordinates, orion.lines);
-
+  const constellation = createConstellation(orion.coordinates, orion.lines);
+  svg.appendChild(constellation);
+  constellation.setAttribute('transform', `translate(350, 150)`);
 
   function createConstellation(points, lineIndices) {
-    points.forEach(point => {
-      svg.appendChild(createDot(point));
-    });
-
-    let totalLength = 0;
     const group = createSVGElement('g');
 
-    let previousLength = 0;
-    let previousTotalLength = 0;
-
-    lineIndices.map((indices, index) => {
-      const linePoints = indices.map(index => points[index]);
-      const line = createLine(linePoints, index);
-
-      previousTotalLength = totalLength;
-      line.style.setProperty('--path-previous-length', previousTotalLength);
-      line.classList.add('animated-path');
-      totalLength += line.getTotalLength();
-
-      group.appendChild(line);
+    points.forEach(point => {
+      const dot = createStar({size: 5, ...point, color: 'white'});
+      group.appendChild(dot);
     });
 
-    svg.appendChild(group);
-    group.style.setProperty('--constellation-total-length', Math.round(totalLength));
+    lineIndices.forEach(indices => {
+      const linePoints = indices.map(index => points[index]);
+      const line = createLine(linePoints);
+
+      group.appendChild(line);
+    })
+
+    return group;
   }
 
 </script>
