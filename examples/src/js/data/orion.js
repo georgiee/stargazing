@@ -33,5 +33,15 @@ const LINES = [
 ]
 
 export const orion = {
-  coordinates: COORDINATES, lines: LINES
+  name: 'orion',
+  coordinates: COORDINATES,
+  lines: LINES,
+  scale: 0.5,
+  position: {
+    x: 50, y: 100
+  },
+  rotate: 0,
+  debug: false,
+  duration: 2500,
+  delay: 0
 }

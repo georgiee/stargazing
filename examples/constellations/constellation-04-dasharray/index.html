@@ -280,7 +280,17 @@
   }
 
 
-  window.addEventListener("message", ({data}) => {
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const fullView = urlParams.has('full');
+
+  // let us toggle the fully view by passing ?full to the iframe url
+  if(fullView) {
+    setDashArray(10);
+    update(6);
+  } else {
+
+    window.addEventListener("message", ({data}) => {
     switch(data) {
       case 'slide:start': start(); break;
       case 'slide:stop': stop(); break;
@@ -288,6 +298,7 @@
       case 'previous-topic': previous(); break;
     }
   });
+  }
 </script>
 </body>
 

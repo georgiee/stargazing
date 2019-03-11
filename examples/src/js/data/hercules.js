@@ -44,5 +44,7 @@ const LINES = [
       x: 200, y: 100
     },
     rotate: -25,
-    debug: false
+    debug: false,
+    duration: 2500,
+    delay: 2000
   }

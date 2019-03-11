@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <title>01 - Stargazing — Star Colors</title>
 
-  <link rel="stylesheet" href="../../_complete/star.css">
-  <link rel="stylesheet" href="../../_complete/shooting.css">
-  <link rel="stylesheet" href="../../_complete/constellation.css">
+  <link rel="stylesheet" href="../../src/css/star.css">
+  <link rel="stylesheet" href="../../src/css/shooting.css">
+  <link rel="stylesheet" href="../../src/css/constellation.css">
 
   <style>
     body {
@@ -22,12 +22,13 @@
       width: 100vw;
     }
 
-    .animated-path {
+    .constellation-path {
       --duration: 0.5s;
 
       stroke-dasharray: var(--path-length);
       animation: dashAnimation linear var(--duration) 1 backwards;
       animation-delay: calc(var(--path-index) * var(--duration));
+      stroke: white;
     }
 
     @keyframes dashAnimation {
@@ -43,16 +44,16 @@
 </head>
 
 <body>
-<svg viewbox="-10 -10 250 400" preserveAspectRatio="xMidYMid meet" height="100%" width="100%">
+<svg  viewbox="0 0 960 700" preserveAspectRatio="xMidYMid slice" height="100%" width="100%">
 </svg>
 
 <script type="module">
   import { createSVGElement, generateLinePath, createDot, createLine } from '../../shared.js';
-  import { orion } from '../constellations.js';
+  import { orion } from '../../src/js/data/orion.js';
 
 
-  import { createSky, createStar } from './../../_complete/src/sky.js';
-  import { createShootingStars } from './../../_complete/src/shooting.js';
+  import { createSky, createStar } from '../../src/js/sky.js';
+  import { createShootingStars } from '../../src/js/shooting.js';
 
   const svg = document.querySelector('svg');
 
@@ -63,34 +64,31 @@
   svg.appendChild(shootingStars);
 
 
-  createConstellation(orion.coordinates, orion.lines);
-
+  const constellation = createConstellation(orion.coordinates, orion.lines);
+  constellation.setAttribute('transform', 'translate(310,80) scale(1.5)');
+  svg.appendChild(constellation);
 
   function createConstellation(points, lineIndices) {
+    const group = createSVGElement('g');
+
+    const dotGroup = createSVGElement('g');
     points.forEach(point => {
-      svg.appendChild(createDot(point));
+      dotGroup.appendChild(createStar({...point, size: 2, color: 'white'}));
     });
 
     let totalLength = 0;
-    const group = createSVGElement('g');
-
-    let previousLength = 0;
-    let previousTotalLength = 0;
+    const linesGroup = createSVGElement('g');
 
     lineIndices.map((indices, index) => {
       const linePoints = indices.map(index => points[index]);
       const line = createLine(linePoints, index);
-
-      previousTotalLength = totalLength;
-      line.style.setProperty('--path-previous-length', previousTotalLength);
-      line.classList.add('animated-path');
-      totalLength += line.getTotalLength();
-
-      group.appendChild(line);
+      linesGroup.appendChild(line);
     });
 
-    svg.appendChild(group);
-    group.style.setProperty('--constellation-total-length', Math.round(totalLength));
+    group.appendChild(linesGroup);
+    group.appendChild(dotGroup);
+
+    return group;
   }
 
 </script>

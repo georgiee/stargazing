@@ -35,5 +35,7 @@ export const gemini = {
     x: 650, y: 150
   },
   rotate: 0,
-  debug: false
+  debug: false,
+  duration: 2500,
+  delay: 4500
 }

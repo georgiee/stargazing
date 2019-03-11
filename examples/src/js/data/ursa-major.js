@@ -40,5 +40,7 @@ export const ursaMajor = {
     x: 450, y: 50
   },
   rotate: 45,
-  debug: false
+  debug: false,
+  duration: 2500,
+  delay: 3500
 }

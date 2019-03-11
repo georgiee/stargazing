@@ -1318,7 +1318,10 @@
         </section>
 
         <section>
-          Line Animations
+          <h3>Animate a Line?</h3>
+          <h3>Path Dashes + Offset</h3>
+          <span>Technique by Jake Archibald 2013</span>
+
           <aside class="notes">
             We will use a technique pineered by Jake Archibald in 2013.
             This involves using dashes and dash offsets in a path that we  will animte.
@@ -1408,15 +1411,10 @@
               style='font-size: 14px'
               data-src="examples/constellations/constellation-07/snippet.css"></pre>
             </div>
-            <div class='twocol'>
-              <div>
-                pythagoras. a = b2 + c2
-              </div>
-              <div class="fragment" data-fragment-data='show-hotpink-correct-length'>
-                <pre
-                  style='font-size: 14px'
-                  data-src="examples/constellations/constellation-07/snippet.js"></pre>
-              </div>
+            <div class="fragment" data-fragment-data='show-hotpink-correct-length'>
+              <pre
+                style='font-size: 14px'
+                data-src="examples/constellations/constellation-07/snippet.js"></pre>
             </div>
           </div>
           <iframe
@@ -1490,7 +1488,6 @@
         </section>
 
         <section data-background-iframe="examples/constellations/constellation-complete/">
-          fina lresult
           <aside class="notes">
            (Show the final sky, and reveal constellation after constellation)
 
@@ -1501,21 +1498,6 @@
            and so on.
           </aside>
         </section>
-
-        <!-- normalized -->
-        <!-- <section>
-          <div class="twocol">
-            <iframe
-              width="500"
-              height="500"
-              data-src="examples/constellation-10/"></iframe>
-            <div>
-              <pre
-                style='font-size: 14px'
-                data-src="examples/constellation-10/snippet.css"></pre>
-            </div>
-          </div>
-        </section> -->
       </section>
 
       <!-- Chapter Conclusion -->
@@ -1589,7 +1571,22 @@
         </section>
 
         <section>
-          constellations
+          <div class="twocol">
+            <iframe
+              width="400"
+              height="200"
+              data-src="examples/constellations/constellation-04-dasharray/index.html?full"></iframe>
+            <pre style="font-size: 16px;">
+              <code class="language-js">
+                createConstellation(points, linePoints);
+              </code>
+            </pre>
+          </div>
+
+          <iframe
+            width="600"
+            height="400"
+            data-src="examples/constellations/constellation-09/"></iframe>
         </section>
 
         <section data-background-iframe="examples/_complete/">

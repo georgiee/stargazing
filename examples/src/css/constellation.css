@@ -9,7 +9,7 @@
   stroke-dasharray: var(--constellation-segment-length);
   stroke-dashoffset: var(--constellation-segment-length);
   animation: constellationPathAnimate var(--constellation-segment-duration, 2s) linear forwards;
-  animation-delay: calc(var(--constellation-segment-delay, 0) + 2s)
+  animation-delay: var(--constellation-segment-delay, 0);
 }
 
 @keyframes constellationPathAnimate {

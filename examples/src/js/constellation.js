@@ -27,7 +27,7 @@ export function createConstellations() {
   return group;
 }
 
-function createConstellation({coordinates, lines, scale, position, rotate, debug, name} = null) {
+function createConstellation({coordinates, lines, scale, position, rotate, debug, name, duration, delay} = null) {
   const group = createSVGElement('g');
   group.setAttribute('transform', `translate(${position.x}, ${position.y})  scale(${scale}) rotate(${rotate}) `);
   group.classList.add('star-constellations');
@@ -36,7 +36,7 @@ function createConstellation({coordinates, lines, scale, position, rotate, debug
     group.classList.add(name);
   }
 
-  const paths = createPaths(lines, coordinates);
+  const paths = createPaths({lines, coordinates, duration, playDelay: delay});
   group.appendChild(paths);
 
   const stars = createStars(coordinates, debug);
@@ -60,7 +60,7 @@ function createStars(coordinates, debug) {
 
   return group;
 }
-function createPaths(lines, coordinates) {
+function createPaths({lines, coordinates, playDuration = 2500, playDelay = 0}) {
   const group = createSVGElement('g');
   group.classList.add('constellation-pathgroup');
 
@@ -77,13 +77,12 @@ function createPaths(lines, coordinates) {
     return {path, length};
   });
 
-  const totalDuration = 2500;
   let lengthAccu = 0;
   generatedPaths.forEach( ({path, length}) => {
     const ratio = length/totalLength;
 
-    const duration = Math.round(ratio * totalDuration);
-    const delay = Math.round(lengthAccu/totalLength * totalDuration);
+    const duration = Math.round(ratio * playDuration);
+    const delay = playDelay + Math.round(lengthAccu/totalLength * playDuration);
 
     path.style.setProperty('--constellation-segment-delay', delay + 'ms');
     path.style.setProperty('--constellation-segment-duration', duration + 'ms');
