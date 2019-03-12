@@ -2,6 +2,11 @@ export function createSVGElement(tag){
   return document.createElementNS("http://www.w3.org/2000/svg", tag)
 }
 
+
+export function indicesToPoint(indices, sourceList) {
+  return indices.map(index => sourceList[index]);
+}
+
 export function generateLinePath(...points) {
   const [startPoint, ...segmentPoints] = points;
   const lineSegments = segmentPoints.map(({x, y}) => `L ${x} ${y}`);
@@ -11,6 +16,17 @@ export function generateLinePath(...points) {
   return pathParts.join(' ');
 }
 
+export function createText({point, text, size = 10, offset = {x: 0, y:0}}){
+
+  const textElement = createSVGElement('text');
+  textElement.appendChild(document.createTextNode(text));
+  textElement.setAttribute('fill', 'yellow');
+  textElement.setAttribute('dx', point.x + offset.x);
+  textElement.setAttribute('dy', point.y + offset.y);
+  textElement.setAttribute('font-size', size);
+
+  return textElement;
+}
 export function createDot({x, y}) {
   const group = createSVGElement('g');
   const dot = createSVGElement('circle');

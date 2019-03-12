@@ -1265,6 +1265,11 @@
               <pre style='font-size: 14px'  class="fragment">
                 <code class="language-js">
                   createDots(points);
+                </code>
+              </pre>
+
+              <pre style='font-size: 14px'  class="fragment">
+                <code class="language-js">
                   createLine(points);
                 </code>
               </pre>
@@ -1282,49 +1287,46 @@
           </div>
 
           <aside class="notes">
-            First we need to collect our end points as a list of coordinate.
-            We can pass that list to a function createDots to create the white dots. Nothing new here, we already did this for our stars.
+            <p>First we need to collect our end points as a list of coordinate.</p>
 
-            The interesting part is the createLine method. There we create a path element
-            and we need to fill the attribute 'd' (short for definition) to create that
-            sequence of characters and numbers.
+            <p>We can pass that list to a function createDots to create the white dots. Nothing new here, we already did this for our stars.</p>
+
+            <p>The interesting part will be the createLine method. </p>
+
+            <p>We create a path element and we need to provide the required pathData through the property 'd'.</p>
+            <p>I created a function called 'generateLinePath' to do so. </p>
           </aside>
         </section>
 
         <!-- createConstellation triangle-->
         <section>
-
-          <!-- <pre style='font-size: 14px'>
-            <code class="language-js">
-                createConstellation(points, linePoints);
-            </code>
-          </pre>
-
-
-          <pre style='font-size: 14px'>
-            <code class="language-js">
-              function createConstellation(points, lineIndices) {
-                createDots(points);
-
-                linePoints.forEach(line => {
-                  createLine(line)
-                })
-              }
-            </code>
-          </pre> -->
-
           <iframe width="600" height="200" data-src="examples/constellations/constellation-02c/index.html"></iframe>
-          <pre
-            class="line-numbers"
-            style='font-size: 14px'
-            data-src="examples/constellations/constellation-02c/snippet.js"></pre>
+
+          <div class="twocol">
+            <pre
+              class="line-numbers"
+              style='font-size: 12px'
+              data-src="examples/constellations/constellation-02c/snippet.js"></pre>
+
+            <pre
+              class="line-numbers"
+              style='font-size: 12px'
+              data-src="examples/constellations/constellation-02c/snippet2.js"></pre>
+          </div>
 
           <aside class="notes">
-            Once we can create lines and dots we can use them to compose our `createConstellation` function to create more complex shapes.
-
-            Our lines are composed of points, that's why we can build an array
-            of numbers where the numbers just point to the real point. That makes it easy
-            to create many different lines while keeping a fixed set of points.
+            <p>
+              When passing the given set of four points to our createLine function we would create the
+              dashed grey line in the background. But we want to create different lines bewteen our points.
+            </p>
+            <p>
+              To do so we need a system to reuse our points.  We are using an index based approach.
+            </p>
+            <p>
+              We only tell which points we want to connect by their position in the list.
+              The numbers 0, 1, 2 & 3
+            </p>
+            <p>The blue line than is described as [0, 2] and the hotpink line as [3, 1, 2]</p>
           </aside>
         </section>
 
@@ -1635,7 +1637,7 @@
             data-src="examples/constellations/constellation-09/"></iframe>
         </section>
 
-        <section data-background-iframe="examples/_complete/">
+        <section >
           Thank you
         </section>
       </section>

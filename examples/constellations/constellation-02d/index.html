@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>01 - Stargazing — Star Colors</title>
+  <style>
+    body {
+      background-color: black;
+      color: #fff;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    svg {
+      height: 100vh;
+      width: 100vw;
+    }
+  </style>
+</head>
+
+<body>
+<svg viewbox="-10 -10 120 70" preserveAspectRatio="xMidYMid meet" height="100%" width="100%">
+</svg>
+
+<script type="module">
+  import { createSVGElement, generateLinePath, createDot } from '../../shared.js';
+
+  const svg = document.querySelector('svg');
+
+  const points = [ {x: 0, y: 0}, {x: 100, y: 0}, {x: 50, y: 50}];
+  const lineIndices = [ [0, 1], [1, 2, 0] ];
+
+  const linePoints = indicesToPoints(lineIndices, points);
+
+  createConstellation(points, linePoints);
+
+  function createConstellation(points, linePoints) {
+    createDots(points);
+
+    linePoints.forEach(line => {
+      svg.appendChild(createLine(line));
+    })
+  }
+
+  function indicesToPoints(indices, source) {
+    return indices.map(indexList => {
+      return indexList.map(index => source[index]);
+    })
+  }
+
+  function createDots(points) {
+    points.forEach(point => {
+      svg.appendChild(createDot(point));
+    });
+  }
+
+  function createLine(line) {
+    const path = createSVGElement('path');
+    path.setAttribute('d', generateLinePath(...line));
+    path.setAttribute('stroke', 'red');
+    path.setAttribute('fill', 'none');
+
+    return path;
+  }
+
+</script>
+
+</body>
+
+</html>

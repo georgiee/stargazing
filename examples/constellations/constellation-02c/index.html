@@ -24,16 +24,38 @@
 </svg>
 
 <script type="module">
-  import { createSVGElement, generateLinePath, createDot } from '../../shared.js';
+  import { createSVGElement, generateLinePath, createDot, indicesToPoint, createText } from '../../shared.js';
 
   const svg = document.querySelector('svg');
 
-  const points = [ {x: 0, y: 0}, {x: 100, y: 0}, {x: 50, y: 50}];
-  const lineIndices = [ [0, 1], [1, 2, 0] ];
+  const points = [
+    {x: 0, y: 0}, {x: 100, y: 0},
+    {x: 100, y: 50}, {x: 0, y: 50}
+  ];
 
-  const linePoints = indicesToPoints(lineIndices, points);
+  const lineBlueIndices = [0, 2];
+  const lineHotpinkIndices = [3, 1, 2];
 
-  createConstellation(points, linePoints);
+  createDots(points);
+  const allConnected = createLine(points);
+  allConnected.setAttribute('stroke', 'white');
+  allConnected.setAttribute('stroke-dasharray', '1');
+  allConnected.setAttribute('stroke-width', '10');
+  allConnected.style.opacity = 0.2;
+  svg.appendChild(allConnected);
+
+  const pointsBlue = indicesToPoint(lineBlueIndices, points);
+  const lineBlue = createLine(pointsBlue);
+  lineBlue.setAttribute('stroke', 'skyblue');
+  svg.appendChild(lineBlue);
+
+
+  const pointsHotpink = indicesToPoint(lineHotpinkIndices, points);
+  const lineHotpink = createLine(pointsHotpink);
+  lineHotpink.setAttribute('stroke', 'hotpink');
+  svg.appendChild(lineHotpink);
+
+
 
   function createConstellation(points, linePoints) {
     createDots(points);
@@ -43,15 +65,20 @@
     })
   }
 
-  function indicesToPoints(indices, source) {
+
+  function allIndicesToPoints(indices, source) {
     return indices.map(indexList => {
       return indexList.map(index => source[index]);
     })
   }
 
   function createDots(points) {
-    points.forEach(point => {
+    const offsets = [-15, 10, 10, -15];
+    points.forEach((point, index) => {
+      const offset = {x: offsets[index], y: 4};
+
       svg.appendChild(createDot(point));
+      svg.appendChild(createText({point, text: index, size: 10, offset }));
     });
   }
 
