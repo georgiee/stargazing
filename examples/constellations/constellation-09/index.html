@@ -21,14 +21,16 @@
       height: 100vh;
       width: 100vw;
     }
-
     .constellation-path {
       --duration: 0.5s;
-
       stroke-dasharray: var(--path-length);
-      animation: dashAnimation linear var(--duration) 1 backwards;
-      animation-delay: calc(var(--path-index) * var(--duration));
+      stroke-dashoffset: var(--path-length);
       stroke: white;
+    }
+
+    body.playing .constellation-path {
+      animation: dashAnimation linear var(--duration) 1 forwards;
+      animation-delay: calc(var(--path-index) * var(--duration));
     }
 
     @keyframes dashAnimation {
@@ -63,6 +65,7 @@
   const shootingStars = createShootingStars();
   svg.appendChild(shootingStars);
 
+  let created = false;
 
   const constellation = createConstellation(orion.coordinates, orion.lines);
   constellation.setAttribute('transform', 'translate(310,80) scale(1.5)');
@@ -89,6 +92,20 @@
     group.appendChild(dotGroup);
 
     return group;
+  }
+
+  window.addEventListener("message", ({data}) => {
+    if(data === 'play') {
+      document.body.classList.add('playing');
+    }
+  });
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const fullView = urlParams.has('full');
+
+  // let us toggle the fully view by passing ?full to the iframe url
+  if(fullView) {
+    document.body.classList.add('playing');
   }
 
 </script>

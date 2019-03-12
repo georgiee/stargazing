@@ -37,12 +37,12 @@
   const lineHotpinkIndices = [3, 1, 2];
 
   createDots(points);
-  const allConnected = createLine(points);
-  allConnected.setAttribute('stroke', 'white');
-  allConnected.setAttribute('stroke-dasharray', '1');
-  allConnected.setAttribute('stroke-width', '10');
-  allConnected.style.opacity = 0.2;
-  svg.appendChild(allConnected);
+  // const allConnected = createLine(points);
+  // allConnected.setAttribute('stroke', 'white');
+  // allConnected.setAttribute('stroke-dasharray', '1');
+  // allConnected.setAttribute('stroke-width', '10');
+  // allConnected.style.opacity = 0.2;
+  // svg.appendChild(allConnected);
 
   const pointsBlue = indicesToPoint(lineBlueIndices, points);
   const lineBlue = createLine(pointsBlue);

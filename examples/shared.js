@@ -27,10 +27,10 @@ export function createText({point, text, size = 10, offset = {x: 0, y:0}}){
 
   return textElement;
 }
-export function createDot({x, y}) {
+export function createDot({x, y, size = 5}) {
   const group = createSVGElement('g');
   const dot = createSVGElement('circle');
-  dot.setAttribute('r', 5);
+  dot.setAttribute('r', size);
   dot.setAttribute('fill', 'white');
   dot.classList.add('twinkle-little-star');
   group.appendChild(dot);

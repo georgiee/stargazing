@@ -38,7 +38,9 @@
 
     lineIndices.forEach(indices => {
       const linePoints = indices.map(index => points[index]);
-      svg.appendChild(createLine(linePoints));
+      const line = createLine(linePoints)
+      line.setAttribute('stroke', 'white');
+      svg.appendChild(line);
     })
   }
 

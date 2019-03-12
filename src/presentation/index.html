@@ -1298,7 +1298,7 @@
           </aside>
         </section>
 
-        <!-- createConstellation triangle-->
+        <!-- more complex line-->
         <section>
           <iframe width="600" height="200" data-src="examples/constellations/constellation-02c/index.html"></iframe>
 
@@ -1316,19 +1316,60 @@
 
           <aside class="notes">
             <p>
-              When passing the given set of four points to our createLine function we would create the
-              dashed grey line in the background. But we want to create different lines bewteen our points.
+              To create more complex lines we need a system to reuse our points.
             </p>
-            <p>
-              To do so we need a system to reuse our points.  We are using an index based approach.
-            </p>
+
             <p>
               We only tell which points we want to connect by their position in the list.
               The numbers 0, 1, 2 & 3
             </p>
+
             <p>The blue line than is described as [0, 2] and the hotpink line as [3, 1, 2]</p>
+
+            <p>This makes it easy to describe a line and to describe many lines among a set of given points</p>
           </aside>
         </section>
+
+        <!-- more complex line-->
+        <section>
+            <iframe width="600" height="200" data-src="examples/constellations/constellation-02d/index.html"></iframe>
+
+            <div class="twocol">
+              <pre
+                class="line-numbers"
+                style='font-size: 12px'
+                data-src="examples/constellations/constellation-02d/snippet.js"></pre>
+
+              <pre style='font-size: 12px' class="fragment">
+                <code class="language-js">
+                  function createConstellation(points, indicesList) {
+                    createDots(points);
+
+                    indicesList.forEach(indices => {
+                      const linePoints = indicesToPoint(indices, points);
+                      createLine(linePoints);
+                    })
+                  }
+                </code>
+              </pre>
+            </div>
+
+            <aside class="notes">
+              <p>
+                We can create dots and easily define lines. This means
+                we have everything at hands to make a constellation function.
+              </p>
+
+              <p>
+                We pass in a set of points and a list of lines to draw the triangle shape here.
+              </p>
+
+              <p>
+                The createConstellation function looks amazingly simple
+                with the set of function we created already.
+              </p>
+            </aside>
+          </section>
 
         <!-- createConstellation orion examples  -->
         <section>
@@ -1343,41 +1384,56 @@
               data-src="examples/constellations/constellation-03/index.html"></iframe>
           </div>
 
-          <pre style='font-size: 14px' class="fragment" data-fragment-index="2">
+          <pre style='font-size: 14px'>
             <code class="language-js">
               createConstellation(COORDINATES, LINES);
             </code>
           </pre>
 
           <aside class="notes">
-            And what can we do with that new createConstellation function?
-            By collecting more points and lines we can create more complex shapes.
+            By collecting more points and lines we can create more complex shapes
+            with the very same function. Here you can finally see Orion living.
           </aside>
         </section>
 
         <section data-background-iframe="examples/constellations/constellation-half/index.html">
           <aside class="notes">
-            We can place that constellation already in our night sky.
-            The only things I changed I swapped the simple dot with a star
-            and colored the paths in white color.
-
-            But this still looks boring. Let's add some dynamic with line animations.
+            <p>
+              We can place that constellation already in our night sky.
+            </p>
+            <p>
+              This still looks boring, there is some action missing.
+            </p>
           </aside>
         </section>
 
+
+
         <section>
-          <h3>Animate a Line?</h3>
-          <h3>Path Dashes + Offset</h3>
-          <span>Technique by Jake Archibald 2013</span>
+            <div class="fact">
+              <span>Bonus Fact!</span>
+              <h3 class="fragment">✨Appearing Constellation✨</h3>
+              <span class="fragment">🎭 Idea: Animate Paths</span>
+            </div>
+            <aside class="notes">
+              Constellations exist only in our imagination
+              and that makes them hard to find sometimes as we have to connect the lines first.
+
+            </aside>
+          </section>
+
+
+        <section>
+          <span>Technique by Jake Archibald (2013)</span><br>
+          <span>Dash Array</span><br>
+          <span>Dash Offset</span><br>
 
           <aside class="notes">
-            We will use a technique pineered by Jake Archibald in 2013.
-            This involves using dashes and dash offsets in a path that we  will animte.
+            We will use a technique pioneered by Jake Archibald in 2013.
+            This involves using dashes and dash offsets in a path that we  will animate.
 
             Let's try to understand the two invovle properties first and then create
             a handy CSS class to use it in a flexible way.
-            <!-- Show simple path (a line) and animate dasharray and dashoffset. -->
-            <!-- https://jakearchibald.com/2013/animated-line-drawing-svg/ -->
           </aside>
         </section>
 
@@ -1387,20 +1443,29 @@
             <iframe width="400" height="320" data-src="examples/constellations/constellation-05-dashes/"></iframe>
             <div>
               <pre
-                style='font-size: 18px'
+                style='font-size: 16px'
                 data-src="examples/constellations/constellation-05-dashes/snippet.svg"></pre>
             </div>
           </div>
 
           <aside class="notes">
-            The first thing we need are dashes. Dashes are set through the
-            `stroke-dasharray` property on a path. The value means how long
-            a single segment should be followed by a gap with the same size.
+            <p>The first thing we need are dashes.</p>
+
+            <p>Dashes are set through the `stroke-dasharray` property on a path.</p>
+
+            <p>The value means how long a single segment should be followed by a gap with the same size.</p>
+
+            <p>
+              A value of 0 is by definition the disabled state.
+              If the value matches the length of the path it looks like nothing
+              changed. If you imagine the line longer it would continue with a gap,
+              and that gets visible when we assign an offset.
+            </p>
           </aside>
         </section>
 
         <section>
-          <h4>Dash Offset Animated</h4>
+          <h3>Dash Offset</h3>
           <pre
             style='font-size: 18px'
             data-src="examples/constellations/constellation-04-dasharray/snippet.svg"></pre>
@@ -1412,18 +1477,28 @@
             data-src="examples/constellations/constellation-04-dasharray/"></iframe>
 
           <aside class="notes">
-            Wit Dash Offset you are able to move the starting point of the offsets.
-            I create a small visualization to show you how that value affects the rendering
-            and why even large offset values are accepted.
-
-            We have set a dash array of 10px currently
-            let's change it to the length of the whole line. In this case 100px.
-
-            You can see in the imagined longer line, that it's indeed still a dashed line
-            but it's not visible in the 100px segment of our path. Once you apply an offset
-            you see the magic happens.
-
-            It looks like the path is being drawn.
+            <p>Look at this little demo</p>
+            <p>1) We start with a dashed line, 100px wide dashes and gaps have a size of 10px</p>
+            <p>2) Like told earlier we can imagine this line longer — it just continues as expected</p>
+            <p>3) Imagine a yellow area that we now drag over our line</p>
+            <p>4) I start to animate the the dash offset and let's hide everything but the yellow area</p>
+            <p>5) When we stop moving the yellow window while keeping the dash offset
+              you can see the final result. a line with a changing dash offset
+            </p>
+            <p>
+              Now comes the magic.
+            </p>
+            <p>
+              Let's assign 100px, the length of the line, as the dasharray while keeping the
+              dash offset animated.
+            </p>
+            <p>
+              We just build an animated line! You can see how it works.
+            </p>
+            <p>
+              To grow a line we need to apply a dash offset of the same value as the dash Arrayand then animate it
+              back to 0 to reveal the line.
+            </p>
 
           </aside>
         </section>
@@ -1437,9 +1512,9 @@
             </div>
             <div>
               <ul>
-                <li>save length (100)</li>
-                <li>apply dash array of full length</li>
-                <li>animate from full to zero offset</li>
+                <li class="fragment">save length (100)</li>
+                <li class="fragment">apply dash array of full length</li>
+                <li class="fragment">animate from full to zero offset</li>
               </ul>
             </div>
           </div>
@@ -1448,7 +1523,11 @@
             height="300"
             data-src="examples/constellations/constellation-06/"></iframe>
           <aside class="notes">
-
+            <p>With all those information collected we know everything
+                to make it work with CSS animation.</p>
+            <p>We provide the path length and assign it to the dash-array.</p>
+            <p>The animation itself will then animate the dashoffset from the full path length
+                down to 0 to reveal the line.</p>
           </aside>
         </section>
 
@@ -1471,12 +1550,12 @@
             height="300"
             data-src="examples/constellations/constellation-07/"></iframe>
           <aside class="notes">
-            We can apply the same animatin to the hotpink path. But something is wrong.
-            The line is not reaching the end and when it starts you can see some visible line at the end.
-            What's missing is the correct length of this path. It's clearly longer than the red one,
-            but how can we calculate the length of a diagonal?
-            Pythagoras. a + b =.. just kidding.
-            We can use the power of JavaScript and read the length from the path itself and save it in the css variable --path--length.
+            <p>Let's do the same for another path.</p>
+            <p>This time something is wrong.</p>
+            <p>When the red line is 100px long then this line can't be 100px — so how long is it?</p>
+            <p>We can't always tell the length of a line and that's where JavaScript can help us</p>
+            <p>We can read the length of a path with `getTotalLength` and assign it to a CSS variable</p>
+            <p>Here it will override the given wrong value of 100 with the real value (125) </p>
           </aside>
         </section>
 
@@ -1502,10 +1581,12 @@
             </div>
           </div>
           <aside class="notes">
-            Applying that animation to all lines together with the correct length
-            will produce this result which is not so pleasing.
-            What we can do is to apply an animation offset and the result
-            looks like we are drawing the rectangle.
+            <p>Now we can animate all lines</p>
+            <p>But this looks bad, as everything starts at the same time</p>
+            <p>We can do the same as with the stars: provide some delays</p>
+            <p>Each animation has a duration of 1s so if we offset each line by 1s we can create the illusion
+              that it's being drawn!
+            </p>
           </aside>
         </section>
 
@@ -1514,24 +1595,32 @@
             <iframe
               width="500"
               height="500"
+              id='iframeConstellation09'
               data-src="examples/constellations/constellation-09/"></iframe>
             <div>
               <pre
-                style='font-size: 14px'
+                style='font-size: 12px'
                 data-src="examples/constellations/constellation-09/snippet.js"></pre>
               <pre
-                style='font-size: 14px'
+                style='font-size: 12px'
                 data-src="examples/constellations/constellation-09/snippet.css"></pre>
             </div>
           </div>
           <aside class="notes">
-            By extending the createLine function of our star constellation
-            we can now easily apply the CSS animation.
-            We only have to provide the path length as a CSS variable during
-            the path generation and I also save the index, the number of the created line
-            to calculate a distinct animation delay.
-
-            THe result looks very pleasing already.
+            <p>
+              To animate all lines in a constellation we have
+              to save the number of the created line (index)
+              together with the path lengt in a CSS variable.
+            </p>
+            <p>
+              We also assign a CSS class animated-path
+              which allows us to create a distinct CSS class
+              that will apply the previously created CSS animationwith the correct parameters
+              with the index and the path length provided.
+            </p>
+            <p>
+              The result looks like this.
+            </p>
           </aside>
         </section>
 
@@ -1577,7 +1666,7 @@
 
         <!-- Night Sky -->
         <section>
-          <pre style="font-size: 18px;">
+          <pre style="font-size: 16px;">
             <code class="language-css">
               .twinkle-little-star {
                 animation:
@@ -1591,7 +1680,7 @@
           <iframe
             width="900"
             height="400"
-            data-src="examples/sky/sky-04/"></iframe>
+            data-src="examples/sky/sky-04/index.html?debug"></iframe>
 
           <aside class="notes">
             Back on earth we looked in the sky and learned how we can build a twinkling effect from two simple animations.
@@ -1599,7 +1688,7 @@
         </section>
 
         <section>
-          <pre>
+          <pre style="font-size: 16px;">
             <code class="language-js">
                 createShootingStar({
                   x: 100, y: 100, radius: 100,
@@ -1634,7 +1723,7 @@
           <iframe
             width="600"
             height="400"
-            data-src="examples/constellations/constellation-09/"></iframe>
+            data-src="examples/constellations/constellation-09/index.html?full"></iframe>
         </section>
 
         <section >
@@ -1668,6 +1757,16 @@
   </script>
 
   <script>
+      const virtualFragments09 = new SlideBuilder(iframeConstellation09);
+      virtualFragments09.fragments(
+        [
+          () => {
+            const content = iframeConstellation09.contentWindow;
+            content.postMessage("play");
+          }
+        ]
+      );
+
       const dashDemoFragments = new SlideBuilder(dashdemo);
       dashDemoFragments.fragments(
         [
@@ -1715,6 +1814,7 @@
     Reveal.addEventListener('fragmentshown', event => {
       const SHOW_HOTPINK = 'show-hotpink-correct-length';
       const SHOW_DELAYS = 'show-line-aniamtion-delays';
+      const PLAY_09 = 'play-constellation-09';
 
       const data = event.fragment.dataset.fragmentData;
       if(!data) {
@@ -1725,10 +1825,15 @@
         const content = iframeConstellation07.contentWindow;
         content.postMessage("update-length", "*");
       }
+
       if(data === SHOW_DELAYS) {
         const content = iframeConstellation08.contentWindow;
         content.postMessage("use-delays", "*");
       }
+
+      // if(data === PLAY_09) {
+
+      // }
     });
   </script>
 

@@ -2,6 +2,6 @@
   --duration: 0.5s;
 
   stroke-dasharray: var(--path-length);
-  animation: dashAnimation linear var(--duration) 1 backwards;
+  animation: dashAnimation linear var(--duration) 1 forwards;
   animation-delay: calc(var(--path-index) * var(--duration));
 }
