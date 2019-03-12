@@ -4,6 +4,4 @@ const points = [
 ];
 
 createDots(points);
-
-// that's would yield the dashed white line
 // createLine(points);
