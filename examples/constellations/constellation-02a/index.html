@@ -26,9 +26,9 @@
   const path = createLine(points);
   svg.appendChild(path);
 
-  createStars(points);
+  createDots(points);
 
-  function createStars(list) {
+  function createDots(list) {
     list.forEach(data => {
       const dot1 = createDot(data);
       svg.appendChild(dot1);
@@ -49,9 +49,9 @@
 
   function createLine(line) {
     const path = createSVGElement('path');
-    path.setAttribute('d', generateLinePath(...line));
-    path.setAttribute('stroke', 'red');
-
+    const pathData = generateLinePath(...line);
+    path.setAttribute('d', pathData);
+    path.setAttribute('stroke', 'hotpink');
     return path;
   }
 

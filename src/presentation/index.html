@@ -1222,10 +1222,6 @@
             <h2 class="fragment">✨Dots and Lines✨</h2>
             <span class="fragment">🎭 Idea: SVG circles connected with lines</span>
           </div>
-        </section>
-
-        <section>
-          <h1>Line Drawing</h1>
           <aside class="notes">
             We want to create and animate a line drawing like this and place it in our night sky.
           </aside>
@@ -1233,11 +1229,18 @@
 
         <!-- building block -->
         <section>
-          <iframe width="600" height="100" data-src="examples/constellations/constellation-02/index.html"></iframe>
+          <h3>Our building block</h3>
+          <iframe
+            width="600" height="100"
+            data-src="examples/constellations/constellation-02/index.html">
+          </iframe>
+
           <pre
             data-src="examples/constellations/constellation-02/snippet.svg"></pre>
+
           <aside class="notes">
-            That's our basic building block. Dots connected with lines.
+            That's our basic building block. Two dots and a line.
+            If we can create such a element we can create any outline.
             To make our lives easier let's think about creating this with JavaScript.
           </aside>
         </section>
@@ -1245,15 +1248,38 @@
         <!-- createLine & createDots -->
         <section>
           <div class="twocol">
-            <iframe width="600" height="100" data-src="examples/constellations/constellation-02a/index.html"></iframe>
-            <pre
-            style='font-size: 14px'
-            data-src="examples/constellations/constellation-02a/snippet.svg"></pre>
-          </div>
+            <div>
+              <iframe width="600" height="100" data-src="examples/constellations/constellation-02a/index.html"></iframe>
+              <pre
+                style='font-size: 14px'
+                data-src="examples/constellations/constellation-02a/snippet.svg">
+              </pre>
+            </div>
+            <div>
+              <pre style='font-size: 14px'  class="fragment">
+                <code class="language-js">
+                  const points = [ {x: 0, y: 0}, {x: 100, y: 0}];
+                </code>
+              </pre>
 
-          <pre
-            style='font-size: 14px'
-            data-src="examples/constellations/constellation-02a/snippet-path.js"></pre>
+              <pre style='font-size: 14px'  class="fragment">
+                <code class="language-js">
+                  createDots(points);
+                  createLine(points);
+                </code>
+              </pre>
+
+              <pre
+                class="fragment"
+                style='font-size: 14px'
+                data-src="examples/constellations/constellation-02a/snippet-path.js"></pre>
+
+              <!-- <pre
+                class="fragment"
+                style='font-size: 14px'
+                data-src="examples/constellations/constellation-02a/snippet-generate.js"></pre> -->
+            </div>
+          </div>
 
           <aside class="notes">
             First we need to collect our end points as a list of coordinate.
@@ -1267,6 +1293,26 @@
 
         <!-- createConstellation triangle-->
         <section>
+
+          <!-- <pre style='font-size: 14px'>
+            <code class="language-js">
+                createConstellation(points, linePoints);
+            </code>
+          </pre>
+
+
+          <pre style='font-size: 14px'>
+            <code class="language-js">
+              function createConstellation(points, lineIndices) {
+                createDots(points);
+
+                linePoints.forEach(line => {
+                  createLine(line)
+                })
+              }
+            </code>
+          </pre> -->
+
           <iframe width="600" height="200" data-src="examples/constellations/constellation-02c/index.html"></iframe>
           <pre
             class="line-numbers"
