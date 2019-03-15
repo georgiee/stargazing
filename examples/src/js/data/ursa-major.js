@@ -37,7 +37,7 @@ export const ursaMajor = {
   lines: LINES,
   scale: 0.3,
   position: {
-    x: 450, y: 50
+    x: 270, y: 150
   },
   rotate: 45,
   debug: false,

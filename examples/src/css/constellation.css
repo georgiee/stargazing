@@ -8,8 +8,20 @@
 .constellation__path {
   stroke-dasharray: var(--constellation-segment-length);
   stroke-dashoffset: var(--constellation-segment-length);
+
+}
+
+.constellation-pathgroup.is-playing .constellation__path {
   animation: constellationPathAnimate var(--constellation-segment-duration, 2s) linear forwards;
   animation-delay: var(--constellation-segment-delay, 0);
+}
+
+/* autoplay includes an overall play delay which is used to show constellation after constellation */
+.constellation-pathgroup.is-autoplay .constellation__path {
+  animation: constellationPathAnimate var(--constellation-segment-duration, 2s) linear forwards;
+  animation-delay: calc(
+    var(--constellation-segment-play-delay,0) + var(--constellation-segment-delay, 0)
+  );
 }
 
 @keyframes constellationPathAnimate {

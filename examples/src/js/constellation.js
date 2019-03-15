@@ -13,18 +13,26 @@ export function createConstellations() {
   const group = createSVGElement('g');
 
   const constellationOrion = createConstellation(orion);
-  group.appendChild(constellationOrion);
+  group.appendChild(constellationOrion.group);
 
   const constellationHercules = createConstellation(hercules);
-  group.appendChild(constellationHercules);
+  group.appendChild(constellationHercules.group);
 
   const constellationUrsaMajor = createConstellation(ursaMajor);
-  group.appendChild(constellationUrsaMajor);
+  group.appendChild(constellationUrsaMajor.group);
 
   const constellationGemini = createConstellation(gemini);
-  group.appendChild(constellationGemini);
+  group.appendChild(constellationGemini.group);
 
-  return group;
+  return {
+    group,
+    controls: {
+      orion: constellationOrion.controls,
+      hercules: constellationHercules.controls,
+      ursaMajor: constellationUrsaMajor.controls,
+      gemini: constellationGemini.controls
+    }
+  };
 }
 
 function createConstellation({coordinates, lines, scale, position, rotate, debug, name, duration, delay} = null) {
@@ -36,12 +44,15 @@ function createConstellation({coordinates, lines, scale, position, rotate, debug
     group.classList.add(name);
   }
 
-  const paths = createPaths({lines, coordinates, duration, playDelay: delay});
+  const {group: paths, controls} = createPaths({lines, coordinates, duration, playDelay: delay});
   group.appendChild(paths);
 
   const stars = createStars(coordinates, debug);
   group.appendChild(stars);
-  return group;
+
+  return {
+    group, controls
+  };
 }
 
 function createStars(coordinates, debug) {
@@ -82,8 +93,9 @@ function createPaths({lines, coordinates, playDuration = 2500, playDelay = 0}) {
     const ratio = length/totalLength;
 
     const duration = Math.round(ratio * playDuration);
-    const delay = playDelay + Math.round(lengthAccu/totalLength * playDuration);
+    const delay = Math.round(lengthAccu/totalLength * playDuration);
 
+    path.style.setProperty('--constellation-segment-play-delay', playDelay + 'ms');
     path.style.setProperty('--constellation-segment-delay', delay + 'ms');
     path.style.setProperty('--constellation-segment-duration', duration + 'ms');
     group.appendChild(path);
@@ -91,7 +103,33 @@ function createPaths({lines, coordinates, playDuration = 2500, playDelay = 0}) {
     lengthAccu+=length;
   });
 
-  return group;
+
+  function playFn() {
+    console.log('playFn')
+    group.classList.toggle('is-playing', true);
+  }
+  function stopFn() {
+    group.classList.toggle('is-playing', false);
+    group.classList.toggle('is-autoplay', false);
+  }
+
+  function toggleFn() {
+    group.classList.toggle('is-playing');
+  }
+
+  function autoplayFn() {
+    group.classList.toggle('is-autoplay', true);
+  }
+
+  return {
+    group,
+    controls: {
+      play: playFn,
+      stop: stopFn,
+      toggle: toggleFn,
+      autoplay : autoplayFn
+    }
+  };
 }
 
 function createConstellationStar({size, color, x, y, index}) {

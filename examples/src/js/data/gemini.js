@@ -32,10 +32,12 @@ export const gemini = {
   lines: LINES,
   scale: 0.3,
   position: {
-    x: 650, y: 150
+    x: 630, y: 250
   },
   rotate: 0,
   debug: false,
+  // duration: 0,
+  // delay: 0
   duration: 2500,
   delay: 4500
 }

@@ -1624,7 +1624,7 @@
           </aside>
         </section>
 
-        <section data-background-iframe="examples/constellations/constellation-complete/">
+        <section data-background-iframe="examples/constellations/constellation-complete/?autoplay" id="constellationComplete">
           <aside class="notes">
            (Show the final sky, and reveal constellation after constellation)
 
@@ -1756,87 +1756,7 @@
       });
   </script>
 
-  <script>
-      const virtualFragments09 = new SlideBuilder(iframeConstellation09);
-      virtualFragments09.fragments(
-        [
-          () => {
-            const content = iframeConstellation09.contentWindow;
-            content.postMessage("play");
-          }
-        ]
-      );
-
-      const dashDemoFragments = new SlideBuilder(dashdemo);
-      dashDemoFragments.fragments(
-        [
-          () => nextFrame(),
-          () => nextFrame(),
-          () => nextFrame(),
-          () => nextFrame(),
-          () => nextFrame(),
-          () => nextFrame(),
-        ], () => previousFrame()
-      );
-
-      function nextFrame() {
-        const iframe = dashdemo;
-        const content = iframe.contentWindow;;
-        content.postMessage("next-topic", "*");
-      }
-
-      function previousFrame() {
-        const iframe = dashdemo;
-        const content = iframe.contentWindow;;
-        content.postMessage("previous-topic", "*");
-      }
-  </script>
-  <script>
-    Reveal.addEventListener('fragmenthidden', event => {
-      const SHOW_HOTPINK = 'show-hotpink-correct-length';
-      const data = event.fragment.dataset.fragmentData;
-      if(!data) {
-        return;
-      }
-
-      if(data === SHOW_HOTPINK) {
-        const content = iframeConstellation07.contentWindow;
-        content.postMessage("remove-length", "*");
-      }
-
-
-      if(data === SHOW_DELAYS) {
-        const content = iframeConstellation08.contentWindow;
-        content.postMessage("remove-delays", "*");
-      }
-    });
-
-    Reveal.addEventListener('fragmentshown', event => {
-      const SHOW_HOTPINK = 'show-hotpink-correct-length';
-      const SHOW_DELAYS = 'show-line-aniamtion-delays';
-      const PLAY_09 = 'play-constellation-09';
-
-      const data = event.fragment.dataset.fragmentData;
-      if(!data) {
-        return;
-      }
-
-      if(data === SHOW_HOTPINK) {
-        const content = iframeConstellation07.contentWindow;
-        content.postMessage("update-length", "*");
-      }
-
-      if(data === SHOW_DELAYS) {
-        const content = iframeConstellation08.contentWindow;
-        content.postMessage("use-delays", "*");
-      }
-
-      // if(data === PLAY_09) {
-
-      // }
-    });
-  </script>
-
+  <!-- see main.ts for the iteractive slide actions -->
 
   <footer class='slides-footer'>
     Georgios Kaleadis - @deluxee (Twitter)

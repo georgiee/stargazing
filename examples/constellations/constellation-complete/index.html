@@ -31,6 +31,7 @@
 
 <body>
 <svg id='nightsky' viewbox="0 0 960 700" width ="100%" preserveAspectRatio="xMidYMid slice">
+  <!-- <circle fill='red' r="100" cx="480" cy="350"></circle> -->
 </svg>
 
 <script type="module">
@@ -46,9 +47,56 @@
   const shootingStars = createShootingStars();
   svg.appendChild(shootingStars);
 
-  const constellations = createConstellations();
+  const {group:constellations, controls} = createConstellations();
   constellations.setAttribute('transform', 'translate(0, 100)')
   svg.appendChild(constellations);
+
+
+  const stackPending = [
+    controls.orion,
+    controls.hercules,
+    controls.ursaMajor,
+    controls.gemini
+  ];
+
+  const stackActive = []
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const autoplay = urlParams.has('autoplay');
+
+  if(autoplay) {
+    autoplayAll();
+  }else {
+    window.addEventListener('message', remoteControlConstellations)
+  }
+
+  function playAll() {
+    stackPending.forEach(control => control.play());
+  }
+
+  function autoplayAll() {
+    stackPending.forEach(control => control.autoplay());
+  }
+
+  function remoteControlConstellations({data}){
+    if(data === 'next-constellation') {
+      if(stackPending.length === 0) {
+        return ;
+      }
+      const current = stackPending.shift();
+      stackActive.push(current);
+      current.play();
+    }
+
+    if(data === 'previous-constellation') {
+      if(stackActive.length === 0) {
+        return ;
+      }
+      const current = stackActive.pop();
+      stackPending.unshift(current);
+      current.stop();
+    }
+  }
 
 </script>
 
