@@ -1,3 +1,23 @@
+const DIRECTION_FORWARDS = 1;
+const DIRECTION_BACKWARDS = -1;
+const DIRECTION_INITIAL = 0;
+
+function getDirection(currentSlide, previousSlide) {
+  if(!currentSlide) {
+    return null; // undefined state
+  }
+
+  if(previousSlide) {
+    if(previousSlide.nextElementSibling === currentSlide) {
+      return DIRECTION_FORWARDS;
+    }else if(previousSlide.previousElementSibling === currentSlide) {
+      return DIRECTION_BACKWARDS;
+    }
+  } else {
+    return DIRECTION_INITIAL;
+  }
+}
+
 ;(function(global, Reveal){
 
   // pass shown/hidden events down to the fragments and slides
@@ -16,7 +36,11 @@
 
   Reveal.addEventListener( 'slidechanged', function( event ) {
     if(event.previousSlide) event.previousSlide.dispatchEvent(hidden);
-    if(event.currentSlide)  event.currentSlide.dispatchEvent(shown);
+    if(event.currentSlide) {
+      const direction = getDirection(event.currentSlide, event.previousSlide);
+      event.currentSlide.dispatchEvent(new CustomEvent("shown", {detail: {direction}}));
+    }
+
     currentSlide = event.currentSlide;
   });
 
@@ -75,7 +99,9 @@
 
 
   SlideBuilder.prototype.shown = function(fn) {
-    this.addEventListener('shown', fn)
+    this.addEventListener('shown', ({detail}) => {
+      fn(detail)
+    })
     return this
   }
 
