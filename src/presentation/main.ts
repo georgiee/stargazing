@@ -1,60 +1,14 @@
+import { PrismLineHighlighter, PRISM_LINE_HIGHLIGHTER_MODE_ABSOLUTE } from './prism-highlighter';
 
 document.addEventListener('DOMContentLoaded', run);
 
 
+
+
 function lineFragments() {
-  const prismElement = document.querySelector('[data-line-fragments]') as HTMLElement;
-  const steps = prismElement.dataset.lineFragments;
-  const stepsArray = JSON.parse(steps) as Array<string>
-  const TOTAL_FRAGMENTS = stepsArray.length;
-
-  const slide = prismElement.closest('section');
-  const dashDemoFragments = new SlideBuilder(slide);
-
-  let cursor = 0;
-
-  function update() {
-    let currentLines = getLinesAtCursor();
-    prismElement.dataset.line = currentLines;
-    console.log('prismElement', prismElement)
-
-    // use highlightAllUnder, highlightElement is dysfunctional at the moment
-    Prism.highlightAllUnder(slide)
-  }
-
-  function getLinesAtCursor() {
-    const stepList = stepsArray.slice(0, cursor)
-    return stepList.join(', ');
-  }
-
-  function next() {
-    cursor++;
-    update();
-  }
-
-  function previous() {
-    cursor--;
-    update();
-  }
-
-  const fragmentList = createFragments({
-    repeat: stepsArray.length,
-    callback: next
-  });
-
-  function setup({direction}) {
-    if(direction >=0){
-      cursor = 0;
-    } else {
-      cursor = TOTAL_FRAGMENTS;
-    }
-
-    update();
-  }
-
-  dashDemoFragments
-  .shown(setup)
-  .fragments(fragmentList, previous)
+  const prismElement = document.querySelector('[data-line-fragments]') as HTMLPreElement;
+  const highlighter = new PrismLineHighlighter(prismElement);
+  highlighter.setMode(PRISM_LINE_HIGHLIGHTER_MODE_ABSOLUTE);
 }
 
 lineFragments();
