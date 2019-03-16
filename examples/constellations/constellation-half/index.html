@@ -22,7 +22,7 @@
     }
 
     .constellation-path {
-      stroke: white;
+      stroke: #ffffffaa;
     }
 
   </style>
@@ -33,7 +33,7 @@
 </svg>
 
 <script type="module">
-  import { createSVGElement, generateLinePath, createDot, createLine } from '../../shared.js';
+  import { createSVGElement, generateLinePath, createDot, createLine, getRandomColor } from '../../shared.js';
   import { orion } from '../../src/js/data/orion.js';
 
   import { createSky, createStar } from '../../src/js/sky.js';
@@ -55,7 +55,7 @@
     const group = createSVGElement('g');
 
     points.forEach(point => {
-      const dot = createStar({size: 5, ...point, color: 'white'});
+      const dot = createStar({size: 2, ...point, color: getRandomColor()});
       group.appendChild(dot);
     });
 

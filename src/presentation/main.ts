@@ -22,10 +22,8 @@ function setpVirtualIframes() {
 function run() {
   setpVirtualIframes();
   lineFragments();
-  generalFragmentListening();
-  showConstellationResult();
   dashDemo();
-  // completeConstellation();
+  completeConstellation();
 }
 
 function lineFragments() {
@@ -36,19 +34,6 @@ function lineFragments() {
     // highlighter.setMode(PRISM_LINE_HIGHLIGHTER_MODE_ABSOLUTE);
   })
 
-}
-
-function showConstellationResult() {
-  const slideSection = document.querySelector('#iframeConstellation09');
-  const dashDemoFragments = new SlideBuilder(slideSection);
-
-  function play() {
-    const iframe = slideSection as HTMLIFrameElement;
-    const content = iframe.contentWindow;;
-    content.postMessage("play", "*");
-  }
-
-  dashDemoFragments.fragments([play]);
 }
 
 function dashDemo() {
@@ -81,73 +66,39 @@ function dashDemo() {
 
 function completeConstellation() {
   const slideSection = document.querySelector('#constellationComplete');
+
+  // Reveal.addEventListener( 'slidechanged', function( event ) {
+
+  //   if(event.currentSlide === slideSection) {
+  //     play();
+  //   }
+  // });
+
   const slideBuilder = new SlideBuilder(slideSection);
 
-  const fragmentList = createFragments({
-    repeat: 4,
-    callback: function() {
-      const iframeWindow = getBackgroundIframe().contentWindow;
-      iframeWindow.postMessage("next-constellation", "*");
-    }}
-  );
+  // const fragmentList = createFragments({
+  //   repeat: 4,
+  //   callback: function() {
+  //     const iframeWindow = getBackgroundIframe().contentWindow;
+  //     iframeWindow.postMessage("next-constellation", "*");
+  //   }}
+  // );
 
-  function previousCallback() {
+  // function previousCallback() {
+  //   const iframeWindow = getBackgroundIframe().contentWindow;
+  //   iframeWindow.postMessage("previous-constellation", "*");
+  // }
+
+  function play() {
     const iframeWindow = getBackgroundIframe().contentWindow;
-    iframeWindow.postMessage("previous-constellation", "*");
+      iframeWindow.postMessage("play", "*");
   }
 
+  const fragmentList = [ play ]
   slideBuilder
-  .fragments(fragmentList, previousCallback);
+  .fragments(fragmentList);
 
 }
-
-function generalFragmentListening() {
-  const SHOW_HOTPINK = 'show-hotpink-correct-length';
-  const SHOW_DELAYS = 'show-line-aniamtion-delays';
-
-  function getIframeWindow(selector) {
-    const iframe = document.querySelector(selector) as HTMLIFrameElement;
-    return iframe.contentWindow;
-  }
-
-  Reveal.addEventListener('fragmenthidden', event => {
-    const iframe07Window = getIframeWindow('#iframeConstellation07');
-    const iframe08Window = getIframeWindow('#iframeConstellation08');
-
-    const SHOW_HOTPINK = 'show-hotpink-correct-length';
-    const data = event.fragment.dataset.fragmentData;
-    if(!data) {
-      return;
-    }
-
-    if(data === SHOW_HOTPINK) {
-      iframe07Window.postMessage("remove-length", "*");
-    }
-
-    if(data === SHOW_DELAYS) {
-      iframe08Window.postMessage("remove-delays", "*");
-    }
-  });
-
-  Reveal.addEventListener('fragmentshown', event => {
-    const iframe07Window = getIframeWindow('#iframeConstellation07');
-    const iframe08Window = getIframeWindow('#iframeConstellation08');
-
-    const data = event.fragment.dataset.fragmentData;
-    if(!data) {
-      return;
-    }
-
-    if(data === SHOW_HOTPINK) {
-      iframe07Window.postMessage("update-length", "*");
-    }
-
-    if(data === SHOW_DELAYS) {
-      iframe08Window.postMessage("use-delays", "*");
-    }
-  });
-}
-
 
 
 // reveals own full size background iframe

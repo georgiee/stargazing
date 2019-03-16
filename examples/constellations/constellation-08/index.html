@@ -68,7 +68,8 @@
     <path d="M 100 0 L 100 75" stroke="yellow" class="yellow-path animated-path"></path>
   </svg>
 
-  <script>
+  <script type="module">
+    import { VirtualIframeStack }  from '../../src/virtual-stack-control.js';
 
     updatePathLength('.red-path');
     updatePathLength('.hotpink-path');
@@ -112,12 +113,26 @@
       document.body.classList.remove('show-delays');
     }
 
-    window.addEventListener("message", ({data}) => {
-      switch(data) {
-        case 'use-delays': showDelays(); break;
-        case 'remove-delays': clearDelays(); break;
+    function play() {
+      function start() {
+        showDelays();
       }
-    });
+
+      function stop() {
+        clearDelays();
+      }
+
+      return {start, stop}
+    }
+
+
+    const steps = [
+      play()
+    ];
+
+
+    const stack = new VirtualIframeStack(steps);
+    window.addEventListener('message', stack.handleMessage);
   </script>
 </body>
 

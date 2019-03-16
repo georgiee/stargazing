@@ -4,6 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <title>01 - Stargazing — Star Colors</title>
+  <link rel="stylesheet" href="../../src/css/star.css">
+
   <style>
     body {
       background-color: black;
@@ -24,18 +26,15 @@
 </svg>
 
 <script type="module">
-  import { createSVGElement, generateLinePath, createDot, createLine } from '../../shared.js';
+  import { createSVGElement, generateLinePath, createDot, createLine, getRandomColor } from '../../shared.js';
   import { orion } from '../../src/js/data/orion.js';
-
+  import { VirtualIframeStack }  from '../../src/virtual-stack-control.js';
+  import { createStar } from '../../src/js/sky.js';
   const svg = document.querySelector('svg');
 
   createConstellation(orion.coordinates, orion.lines);
 
   function createConstellation(points, lineIndices) {
-    points.forEach(point => {
-      svg.appendChild(createDot(point));
-    });
-
     lineIndices.forEach(indices => {
       const linePoints = indices.map(index => points[index]);
       const line = createLine(linePoints)
@@ -44,6 +43,53 @@
     })
   }
 
+  function createDots(points) {
+    const g = createSVGElement('g');
+
+    points.forEach(point => {
+      g.appendChild(createDot(point));
+    });
+    return g;
+  }
+
+  function createStars(points) {
+    const g = createSVGElement('g');
+
+    points.forEach(point => {
+      const color = getRandomColor();
+        const dot = createStar({size: 5, ...point, color});
+        g.appendChild(dot);
+      });
+    return g;
+  }
+
+  const dots = createDots(orion.coordinates);
+  svg.appendChild(dots);
+
+  function makeStars() {
+    const stars = createStars(orion.coordinates);
+
+    function start() {
+      svg.appendChild(stars);
+      svg.removeChild(dots);
+      console.log('show stars');
+    }
+
+    function stop() {
+      svg.removeChild(stars);
+      svg.appendChild(dots);
+    }
+
+    return { start, stop};
+  }
+
+  const steps = [
+    makeStars()
+  ];
+
+
+  const stack = new VirtualIframeStack(steps);
+  window.addEventListener('message', stack.handleMessage);
 </script>
 
 </body>

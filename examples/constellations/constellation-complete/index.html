@@ -79,6 +79,12 @@
   }
 
   function remoteControlConstellations({data}){
+
+
+    if(data === 'play') {
+      autoplayAll()
+    }
+
     if(data === 'next-constellation') {
       if(stackPending.length === 0) {
         return ;

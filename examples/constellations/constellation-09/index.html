@@ -52,6 +52,7 @@
 <script type="module">
   import { createSVGElement, generateLinePath, createDot, createLine } from '../../shared.js';
   import { orion } from '../../src/js/data/orion.js';
+  import { VirtualIframeStack }  from '../../src/virtual-stack-control.js';
 
 
   import { createSky, createStar } from '../../src/js/sky.js';
@@ -107,6 +108,28 @@
   if(fullView) {
     document.body.classList.add('playing');
   }
+
+
+
+  function play() {
+    function start() {
+      document.body.classList.add('playing');
+    }
+
+    function stop() {
+      document.body.classList.remove('playing');
+    }
+
+    return {start, stop}
+  }
+
+
+  const steps = [
+    play()
+  ];
+
+  const stack = new VirtualIframeStack(steps);
+  window.addEventListener('message', stack.handleMessage);
 
 </script>
 

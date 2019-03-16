@@ -32,7 +32,7 @@ export function createDot({x, y, size = 5}) {
   const dot = createSVGElement('circle');
   dot.setAttribute('r', size);
   dot.setAttribute('fill', 'white');
-  dot.classList.add('twinkle-little-star');
+  // dot.classList.add('twinkle-little-star');
   group.appendChild(dot);
   group.setAttribute('transform', `translate(${x} ${y})`);
 

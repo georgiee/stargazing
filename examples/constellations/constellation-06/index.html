@@ -20,7 +20,16 @@
 
   .animated-path {
     stroke-dasharray: var(--path-length);
-    animation: dashAnimation 5s infinite backwards;
+    stroke-dashoffset: var(--path-length);
+    /* animation: dashAnimation 5s infinite backwards; */
+  }
+
+  .debug {
+    visibility: hidden;
+  }
+
+  .show-debug .debug {
+    visibility: visible;
   }
 
   .debug .debug__longpath {
@@ -28,7 +37,8 @@
   }
 
   .animated-offset {
-    animation: offsetDebug 5s infinite backwards;
+    transform: translate(calc(var(--path-length) * 1px));
+    /* animation: offsetDebug 5s infinite backwards; */
   }
 
   .red-path-group {
@@ -37,21 +47,17 @@
 
   .red-path {
     stroke-dasharray: var(--path-length);
-    animation: dashAnimation 5s infinite backwards;
+    stroke-dashoffset: var(--path-length);
+    /* animation: dashAnimation 5s infinite backwards; */
   }
 
-
-  /* .yellow-path {
-    --path-length: 100;
-    stroke-dasharray: var(--path-length);
+  .playing .red-path,
+  .playing .animated-path {
     animation: dashAnimation 5s infinite backwards;
   }
-
-  .hotpink-path {
-    --path-length: 100;
-    stroke-dasharray: var(--path-length);
-    animation: dashAnimation 5s infinite backwards;
-  } */
+  .playing .animated-offset {
+    animation: offsetDebug 5s infinite backwards;
+  }
 
   path {
     fill: transparent;
@@ -109,7 +115,9 @@
     <path d="M 100 75 L 0 0" stroke="hotpink" class="hotpink-path"></path>
   </svg>
 
-  <script>
+  <script type="module">
+
+    import { VirtualIframeStack }  from '../../src/virtual-stack-control.js';
     // updatePathLength(document.querySelector('.hotpink-path'));
     // updatePathLength(document.querySelector('.yellow-path'));
 
@@ -120,6 +128,38 @@
       const pathLength = path.getTotalLength();
       path.style.setProperty('--path-length', pathLength)
     }
+
+    function showDebug() {
+      function start() {
+        document.body.classList.toggle('show-debug', true);
+      }
+
+      function stop() {
+        document.body.classList.toggle('show-debug', false);
+      }
+
+      return {start, stop}
+    }
+
+    function play() {
+      function start() {
+        document.body.classList.toggle('playing', true);
+      }
+
+      function stop() {
+        document.body.classList.toggle('playing', false);
+      }
+      return {start, stop}
+    }
+
+    const steps = [
+      showDebug(),
+      play()
+    ];
+
+
+    const stack = new VirtualIframeStack(steps);
+    window.addEventListener('message', stack.handleMessage);
   </script>
 </body>
 

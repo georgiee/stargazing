@@ -1374,13 +1374,11 @@
               With a custom function indicesToPoints we can create a list of real points
               we can pass again to the createLine function.
             </p>
-
-            <p>This makes it easy to describe a line and to describe many lines among a set of given points</p>
           </aside>
         </section>
 
         <!-- more complex line-->
-        <section>
+        <!-- <section>
             <iframe width="600" height="200" data-src="examples/constellations/constellation-02d/index.html"></iframe>
 
             <div class="twocol">
@@ -1418,30 +1416,78 @@
                 with the set of function we created already.
               </p>
             </aside>
-          </section>
+          </section> -->
 
         <!-- createConstellation orion examples  -->
         <section>
-          <div class="twocol">
-            <pre
-              style='font-size: 14px'
-              data-src="examples/constellations/constellation-03/snippet.js"></pre>
-            <iframe
-              class="fragment" data-fragment-index="3"
-              width="400"
-              height="400"
-              data-src="examples/constellations/constellation-03/index.html"></iframe>
+          <div class="twocol" style="grid-template-columns: 60% 40%;">
+            <div>
+              <pre
+                data-fragment-index="2"
+                style='font-size: 12px' class="fragment">
+                  <code class="language-js">
+                    const COORDINATES = [
+                      { x: 161, y: 352 },
+                      { x: 57, y: 365 },
+                      { x: 80, y: 273 },
+                      // ...
+                    ];
+
+                    const LINES = [
+                      [7, 6, 5, 4, 3, 2, 7],
+                      [5, 12],
+                      [12, 14, 13],
+                      [12, 15, 16, 17],
+                      // ...
+                    ]
+                  </code>
+                </pre>
+
+                <pre
+                  style='font-size: 12px'>
+                  <code class="language-js">
+                    createConstellation(COORDINATES, LINES);
+                  </code>
+                </pre>
+
+                <pre
+                  data-fragment-index="1"
+                  data-line-fragments-mode="absolute"
+                  data-line-fragments='[null,null,"3"]'
+                  style='font-size: 12px' class="fragment">
+                  <code class="language-js">
+                    function createConstellation(points, indicesList) {
+                      createDots(points); // createStars(points)
+
+                      indicesList.forEach(indices => {
+                        const linePoints = indicesToPoint(indices, points);
+                        createLine(linePoints);
+                      })
+                    }
+                  </code>
+                </pre>
+            </div>
+            <div>
+              <iframe
+                data-virtual-iframe="[0,0,0,0,0,1]"
+                data-virtual-iframe-offset="0"
+                data-fragment-index="3"
+                class="fragment"
+                width="100%"
+                height="400"
+                data-src="examples/constellations/constellation-03/index.html">
+              </iframe>
+            </div>
           </div>
-
-          <pre style='font-size: 14px'>
-            <code class="language-js">
-              createConstellation(COORDINATES, LINES);
-            </code>
-          </pre>
-
           <aside class="notes">
-            By collecting more points and lines we can create more complex shapes
-            with the very same function. Here you can finally see Orion living.
+            <p>Can we already build a function to create a constellation?</p>
+            <p>Yes we can! createDots & createLine is actually everything we need to build any constellation.</p>
+            <p>
+              It's now only a matter of the data we pass in. The data you can see here is an extract of the data required to build the Orion constellation</p>
+
+              <p>You can see it here. If we replace the createDots function with the createStar function
+                we created earlier it will fit into our sky perfectly.
+              </p>
           </aside>
         </section>
 
@@ -1556,61 +1602,102 @@
           <div class="twocol-73">
             <div>
               <pre
-              style='font-size: 14px'
-              data-src="examples/constellations/constellation-06/snippet.css"></pre>
+
+                data-line-fragments-mode="absolute"
+                data-line-fragments='["3", "4", "5, 8-11", null]'
+                style='font-size: 14px'
+                data-src="examples/constellations/constellation-06/snippet.css">
+              </pre>
             </div>
             <div>
               <ul>
-                <li class="fragment">save length (100)</li>
-                <li class="fragment">apply dash array of full length</li>
-                <li class="fragment">animate from full to zero offset</li>
+                <li class="fragment" data-fragment-index="1">save length (100)</li>
+                <li class="fragment" data-fragment-index="2">apply dash array of full length</li>
+                <li class="fragment" data-fragment-index="3">animate from full to zero offset</li>
               </ul>
             </div>
           </div>
+
           <iframe
+            data-virtual-iframe="[1, 1]"
+            data-virtual-iframe-offset="5"
+            class="fragment"
+            data-fragment-index="4"
             width="900"
             height="300"
-            data-src="examples/constellations/constellation-06/"></iframe>
+            data-src="examples/constellations/constellation-06/index.html">
+          </iframe>
+
           <aside class="notes">
-            <p>With all those information collected we know everything
-                to make it work with CSS animation.</p>
-            <p>We provide the path length and assign it to the dash-array.</p>
-            <p>The animation itself will then animate the dashoffset from the full path length
-                down to 0 to reveal the line.</p>
+            <p>With all those information collected we know everything to make it work with CSS animation.</p>
+            <p>Provide the length of the given path</p>
+            <p>Setup the dasharray configuration</p>
+            <p>and apply the animation which will animate from the full dashoffset to 0</p>
+            <p>
+              I prepared a small demo that show the start position at 0% of the animation.
+              You can see that there is no red line visible.
+            </p>
+            <p>
+              Now I show you how the red path is currently constructed
+              and the offset lands the yellow window exactly on the empty part
+              so you can't see any red line in the triangle.
+            </p>
+            <p>
+              Let's play the animaton so you can see how it reveals itself.
+            </p>
           </aside>
         </section>
 
         <section>
+          <iframe
+            data-virtual-iframe="[1, 1, 0, 1]"
+            data-virtual-iframe-offset="0"
+            width="900"
+            height="300"
+            data-src="examples/constellations/constellation-07/index.html"></iframe>
+
           <div class="twocolx">
             <div>
               <pre
+              class="fragment"
+              data-fragment-index="0"
               style='font-size: 14px'
               data-src="examples/constellations/constellation-07/snippet.css"></pre>
             </div>
-            <div class="fragment" data-fragment-data='show-hotpink-correct-length'>
+            <div
+              data-fragment-index="2"
+              class="fragment">
               <pre
                 style='font-size: 14px'
                 data-src="examples/constellations/constellation-07/snippet.js"></pre>
             </div>
           </div>
-          <iframe
-            id='iframeConstellation07'
-            width="900"
-            height="300"
-            data-src="examples/constellations/constellation-07/"></iframe>
+
           <aside class="notes">
-            <p>Let's do the same for another path.</p>
-            <p>This time something is wrong.</p>
-            <p>When the red line is 100px long then this line can't be 100px — so how long is it?</p>
-            <p>We can't always tell the length of a line and that's where JavaScript can help us</p>
-            <p>We can read the length of a path with `getTotalLength` and assign it to a CSS variable</p>
-            <p>Here it will override the given wrong value of 100 with the real value (125) </p>
+            <p>That felt good, let's try it again with the hotpink path</p>
+            <p>We apply the same animation but something is wrong. We see a glitch at the beginning and it stops too early.</p>
+            <p>
+              Once again I enable the the debug view of the line and we see what's happening.
+              You can see that the dash array is wrong, it's repeating too early.
+            </p>
+            <p>
+              We need to update the path length. It's not 100 anymore. The hotpink line is linger.
+              We can't always tell the length of a line and that's where JavaScript can help us.
+            </p>
+            <p>
+              We can read the length of a path with `getTotalLength` and assign it to a CSS variable.
+            </p>
+
+            <p>
+              Watch what happens when I update the path length to the correct value.
+            </p>
           </aside>
         </section>
 
         <section>
           <iframe
-            id='iframeConstellation08'
+            data-virtual-iframe="[1]"
+            data-virtual-iframe-offset="1"
             width="900"
             height="300"
             data-src="examples/constellations/constellation-08/"></iframe>
@@ -1618,22 +1705,27 @@
             <div>
               <pre
                 style='font-size: 14px'
+                data-line-fragments-mode="absolute"
+                data-line-fragments='[null,  "5"]'
                 data-src="examples/constellations/constellation-08/snippet1.css"></pre>
               <pre
                 style='font-size: 14px'
                 data-src="examples/constellations/constellation-08/snippet.js"></pre>
             </div>
-            <div class="fragment" data-fragment-data='show-line-aniamtion-delays'>
+
+            <div class="fragment" data-fragment-index="1">
               <pre
+                data-line-fragments-mode="absolute"
+                data-line-fragments='[null,  null, "2-4"]'
                 style='font-size: 14px'
                 data-src="examples/constellations/constellation-08/snippet.css"></pre>
             </div>
           </div>
           <aside class="notes">
-            <p>Now we can animate all lines</p>
-            <p>But this looks bad, as everything starts at the same time</p>
-            <p>We can do the same as with the stars: provide some delays</p>
-            <p>Each animation has a duration of 1s so if we offset each line by 1s we can create the illusion
+            <p>Now we can animate all lines, but this looks bad, as everything starts at the same time</p>
+            <p>Let's introduce some delays as we did with the shooting stars</p>
+            <p>
+              Each animation has a duration of 1s so if we offset each line by 1s we can create the illusion
               that it's being drawn!
             </p>
           </aside>
@@ -1644,7 +1736,7 @@
             <iframe
               width="500"
               height="500"
-              id='iframeConstellation09'
+              data-virtual-iframe="[1]"
               data-src="examples/constellations/constellation-09/"></iframe>
             <div>
               <pre
@@ -1673,7 +1765,7 @@
           </aside>
         </section>
 
-        <section data-background-iframe="examples/constellations/constellation-complete/?autoplay" id="constellationComplete">
+        <section data-background-iframe="examples/constellations/constellation-complete/" id="constellationComplete">
           <aside class="notes">
            (Show the final sky, and reveal constellation after constellation)
 
