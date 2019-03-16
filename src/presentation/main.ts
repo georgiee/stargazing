@@ -1,17 +1,42 @@
 import { PrismLineHighlighter, PRISM_LINE_HIGHLIGHTER_MODE_ABSOLUTE } from './prism-highlighter';
+import { virtualIframeFragments } from './virtual-fragments';
 
 document.addEventListener('DOMContentLoaded', run);
 
 
 
-
-function lineFragments() {
-  const prismElement = document.querySelector('[data-line-fragments]') as HTMLPreElement;
-  const highlighter = new PrismLineHighlighter(prismElement);
-  highlighter.setMode(PRISM_LINE_HIGHLIGHTER_MODE_ABSOLUTE);
+function createFragments({repeat, callback}) {
+  return Array(repeat).fill(0).map(_ => callback);
 }
 
-lineFragments();
+
+function setpVirtualIframes() {
+  const iframes = document.querySelectorAll('[data-virtual-iframe]');
+  const elements = Array.from(iframes);
+
+  elements.forEach(iframe => {
+    virtualIframeFragments(iframe);
+  })
+}
+
+function run() {
+  setpVirtualIframes();
+  lineFragments();
+  generalFragmentListening();
+  showConstellationResult();
+  dashDemo();
+  // completeConstellation();
+}
+
+function lineFragments() {
+  const prismElements = document.querySelectorAll('[data-line-fragments]');
+  const elements = Array.from(prismElements);
+  elements.forEach(element => {
+    const highlighter = new PrismLineHighlighter(element as HTMLPreElement);
+    // highlighter.setMode(PRISM_LINE_HIGHLIGHTER_MODE_ABSOLUTE);
+  })
+
+}
 
 function showConstellationResult() {
   const slideSection = document.querySelector('#iframeConstellation09');
@@ -123,20 +148,9 @@ function generalFragmentListening() {
   });
 }
 
-function run() {
-  generalFragmentListening();
-  showConstellationResult();
-  dashDemo();
-  // completeConstellation();
-}
 
 
 // reveals own full size background iframe
 function getBackgroundIframe() {
   return document.querySelector('.slide-background-content iframe') as HTMLIFrameElement;
-}
-
-
-function createFragments({repeat, callback}) {
-  return Array(repeat).fill(0).map(_ => callback);
 }

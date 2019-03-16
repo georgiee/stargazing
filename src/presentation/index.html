@@ -424,7 +424,7 @@
             data-src="examples/star/star-04/snippet-create-star1.js"></pre>
           <pre
             class="fragment"
-            data-line-fragments='["5", "7", "9-11", "9-13, 1, 2, 3"]'
+            data-line-fragments='["5", "7","9-11"]'
             style="font-size: 18px;"
             data-src="examples/star/star-04/snippet-create-star2.js"></pre>
 
@@ -433,8 +433,8 @@
             <p>I want to use a function call like this where I provide all values</p>
             <p>And the function itself looks like this</p>
             <p>
-              1. Custom createSVGElement function
-              2. appendChild like in html
+              1. Custom createSVGElement function<br>
+              2. appendChild like in html<br>
               3. Set properties.
             </p>
             <p>That's it</p>
@@ -533,10 +533,16 @@
         <!-- Code: Sky I -->
         <section>
           <pre><code class="language-js">createSky({count: 250});</code></pre>
-          <pre class="fragment" data-src="examples/sky/sky-01/snippet.js"></pre>
+          <pre
+            class="fragment line-numbers"
+            data-src="examples/sky/sky-01/snippet.js">
+          </pre>
+
           <aside class="notes">
             <p>We want to use a JavaScript function where we pass in the total count of stars.</p>
-            <p> The function itself is a for loop which will create stars with random color and position and a fixed size of 1</p>
+            <p>
+              The function itself is a for loop which will create stars
+              with random color and position and a fixed size of 1</p>
           </aside>
         </section>
 
@@ -674,7 +680,9 @@
 
         <!-- Code: Twinkle V-II (Multiple) via gZjyQz -->
         <section>
-          <pre data-src="examples/sky/sky-03/snippet-delay.css"></pre>
+          <pre
+            data-line-fragments='["7","9-11"]'
+            data-src="examples/sky/sky-03/snippet-delay.css"></pre>
 
           <iframe
             class="fragment"
@@ -683,24 +691,27 @@
             data-src="examples/sky/sky-03/delay.html"></iframe>
 
           <aside class="notes">
-            <p>We use the power of CSS Variables to fill the CSS property animation-delay
-              so we can offset the animations.
+            <p>You can clearly see how the result looks more natural when it's asynchronious</p>
+
+            <p>We use the power of CSS Variables to fill the CSS property <strong>animation-delay</strong>
+                so we can offset the animation.
             </p>
-            <p>You can see how the result looks like when it's not synced</p>
-            <p>The animation offsets are negativ otherwise the animation would wait in the beginning</p>
             <p>The default is set to 0 but we can apply different values to our individual stars through CSS!</p>
+            <p>The applied <strong>animation offsets</strong> are negative otherwise the animation would wait in the beginning</p>
           </aside>
         </section>
 
         <!-- Code: Twinkle V (First Twinkle Sky) via wREvPg -->
         <section>
           <pre
-            data-line="6-7"
+            data-line-fragments='["6","7,4"]'
+            data-line-fragments-mode='absolute'
             style="font-size: 18px"
             data-src="examples/sky/sky-04/snippet.js"></pre>
 
           <iframe
             class="fragment"
+            data-fragment-index="10"
             width="900"
             height="300"
             data-src="examples/sky/sky-04/index.html?debug"></iframe>
@@ -709,7 +720,7 @@
               <p>We can know add the twinkling effect to all of our stars in the sky
               just by modifying the createStar function we created earlier</p>
               <p>The CSS Variables are assigned through the style object you can find on any DOM object.</p>
-              <p>We assign a random value between 0 and 4000ms</p>
+              <p>We assign a negative random value between 0 and 4000ms</p>
               <p>And the result looks already awesome. I kept the large circle here
                 so you can see the effect in large and small.
               </p>
@@ -999,8 +1010,9 @@
           </pre>
 
           <pre
-           class="fragment"
-            data-line='3-5, 7-14'
+            class="fragment"
+            data-fragment-index="0"
+            data-line-fragments='["3-5", "10-12", "13-14" ]'
             style="font-size: 18px;"
             data-src="examples/shooting/shooting-06/snippet.js"></pre>
 
@@ -1154,15 +1166,19 @@
           data-background-image="static/images/constellations/opener.gif">
           <span>Chapter 04 </span>
           <h2>Constellations</h2>
+          <aside class="notes">
+            Our final chapter is about constellations.
+          </aside>
         </section>
 
         <section
           data-background-image="static/images/constellations/pareidolia.jpg">
           <aside class="notes">
-            Let's start with a picture of random every day objects. We all know that those pictures show no living things
-            but our brain still recognize those characters and faces together with  an emotion.
+            <p>We start with a picture of random every day objects. </p>
 
-            My favourite ist the grumpy broom and the happy brush family.
+            <p>Although we all know that those pictures show no living things our brain still recognizes them as characters and faces together with  an emotion.</p>
+
+            <p>My favourite ist the grumpy broom and the happy brush family.</p>
           </aside>
         </section>
 
@@ -1200,7 +1216,8 @@
         </section>
 
         <section>
-          <img height="600" src="static/images/chapter-04/orion-hevelius-image.jpg"/>
+          <img height="500" src="static/images/chapter-04/orion-hevelius-image.jpg"/>
+          <h3>Orion</h3>
           <aside class="notes">
             Which can transform to full blown image in your brain - thanks to pareidolia.
             In this case it's Orion, a famous hunter from the greek mythology
@@ -1209,10 +1226,15 @@
 
         <section data-background-image="static/images/chapter-04/celestrial-animation.gif">
           <aside class="notes">
-              There are exactly 88 official constellations in our night sky covering an imaginary sphere around the earth.
+            <p>There are many more things people see in the sky</p>
+            <p>But today there are only 88 official constellations in our night sky covering an imaginary sphere around the earth.</p>
+          </aside>
+        </section>
 
+        <section>
+          More constellations
+          <aside class="notes">
             Constellations are usually visualized with dots and lines, which brings us to our next fact!
-
           </aside>
         </section>
 
@@ -1250,25 +1272,28 @@
           <div class="twocol">
             <div>
               <iframe width="600" height="100" data-src="examples/constellations/constellation-02a/index.html"></iframe>
+
               <pre
-                style='font-size: 14px'
+                style='font-size: 12px'
+                data-line-fragments='["6-7", "3-4"]'
+                data-line-fragments-mode='absolute'
                 data-src="examples/constellations/constellation-02a/snippet.svg">
               </pre>
             </div>
             <div>
-              <pre style='font-size: 14px'  class="fragment">
+              <pre style='font-size: 14px'  class="fragment" data-fragment-index="0">
                 <code class="language-js">
                   const points = [ {x: 0, y: 0}, {x: 100, y: 0}];
                 </code>
               </pre>
 
-              <pre style='font-size: 14px'  class="fragment">
+              <pre style='font-size: 14px'  class="fragment" data-fragment-index="1">
                 <code class="language-js">
                   createDots(points);
                 </code>
               </pre>
 
-              <pre style='font-size: 14px'  class="fragment">
+              <pre style='font-size: 14px'  class="fragment" data-fragment-index="2">
                 <code class="language-js">
                   createLine(points);
                 </code>
@@ -1276,55 +1301,79 @@
 
               <pre
                 class="fragment"
+                data-fragment-index="3"
                 style='font-size: 14px'
+                data-line-fragments='["3", "5-7"]'
+                data-line-fragments-mode='absolute'
                 data-src="examples/constellations/constellation-02a/snippet-path.js"></pre>
-
-              <!-- <pre
-                class="fragment"
-                style='font-size: 14px'
-                data-src="examples/constellations/constellation-02a/snippet-generate.js"></pre> -->
             </div>
           </div>
 
           <aside class="notes">
             <p>First we need to collect our end points as a list of coordinate.</p>
 
-            <p>We can pass that list to a function createDots to create the white dots. Nothing new here, we already did this for our stars.</p>
+            <p>We can pass that list to a function createDots to create the white dots.</p>
 
-            <p>The interesting part will be the createLine method. </p>
+            <p>Next we call a function createLine that will generate the SVG path</p>
 
-            <p>We create a path element and we need to provide the required pathData through the property 'd'.</p>
-            <p>I created a function called 'generateLinePath' to do so. </p>
+            <p>We create a path element and provide the required pathData through the property 'd'.</p>
+
+            <p>The function 'generateLinePath' is a helper build by me that generates the required data string.</p>
           </aside>
         </section>
 
         <!-- more complex line-->
         <section>
-          <iframe width="600" height="200" data-src="examples/constellations/constellation-02c/index.html"></iframe>
+          <iframe
+            data-virtual-iframe="[1,1,1,1, 1]"
+            data-virtual-iframe-offset="0"
+            width="600" height="200" data-src="examples/constellations/constellation-02c/index.html"></iframe>
 
           <div class="twocol">
             <pre
+              class="fragment"
+              data-fragment-index="0"
               class="line-numbers"
               style='font-size: 12px'
+              data-line-fragments-mode="absolute"
+              data-line-fragments='[null, "10", null]'
               data-src="examples/constellations/constellation-02c/snippet.js"></pre>
 
-            <pre
-              class="line-numbers"
-              style='font-size: 12px'
-              data-src="examples/constellations/constellation-02c/snippet2.js"></pre>
+              <pre
+                style='font-size: 12px' class="fragment"
+                data-line-fragments-mode="absolute"
+                data-line-fragments='["2", "4-5"]'
+                data-fragment-index="3">
+                <code class="language-js">
+                    const lineHotpink = [0, 3, 1, 2];
+
+                    const hotpinkPoints = indicesToPoints(lineHotpink, points);
+                    createLine(hotpinkPoints);
+
+                    function indicesToPoints(indices, sourceList) {
+                      return indices.map(index => sourceList[index]);
+                    }
+                </code>
+            </pre>
           </div>
 
           <aside class="notes">
             <p>
-              To create more complex lines we need a system to reuse our points.
+              How to create more complex shapes?
+              Imagine this list of four points which will create those four points.
+              How would we create this hotpink line? We can't just pass all points
+              to the createLine as this would connect all points.
             </p>
 
             <p>
-              We only tell which points we want to connect by their position in the list.
-              The numbers 0, 1, 2 & 3
+              Instead we define the line as a list of numbers referring to the
+              points we want to connect with a line.
             </p>
 
-            <p>The blue line than is described as [0, 2] and the hotpink line as [3, 1, 2]</p>
+            <p>
+              With a custom function indicesToPoints we can create a list of real points
+              we can pass again to the createLine function.
+            </p>
 
             <p>This makes it easy to describe a line and to describe many lines among a set of given points</p>
           </aside>

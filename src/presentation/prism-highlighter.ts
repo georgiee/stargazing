@@ -7,6 +7,9 @@
  * <pre data-line-fragments='["5", "7", "9-11", "9-13, 1, 2, 3"]'>
  *   ///
  * ```
+ *
+ * Important: It's being parsed as json so use an array and double quotes
+ *
  * 3. In normal mode (BUILD) the lines will be accumulated, the fina result: show all lines
  * 4. You can enable absolute mode (ABSOLUTE) which will show each entry individually.
  * e.g. first "5", then "7", then "9-11", then lines "9-13, 1, 2, 3". This gives you full control over
@@ -26,13 +29,29 @@ export class PrismLineHighlighter {
     private _prismElement: HTMLPreElement
   ) {
     const stepsDataInput = this._prismElement.dataset.lineFragments;
+    const mode = this._prismElement.dataset.lineFragmentsMode;
+
+    // is a fragment index applied to the pre?
+    const fragmentIndex = parseInt(this._prismElement.dataset.fragmentIndex) || 0;
+    // we need to let the virtual fragments appear after the block itself apperas
+    const ownFragmentIndex = fragmentIndex + 1;
+
+    if(mode) {
+      if(mode === 'absolute') {
+        this.setMode(PRISM_LINE_HIGHLIGHTER_MODE_ABSOLUTE);
+      }else if(mode === 'build') {
+        this.setMode(PRISM_LINE_HIGHLIGHTER_MODE_BUILD);
+      }
+    }
+
     this._steps = JSON.parse(stepsDataInput) as Array<string>
-    this._slideBuilder = new SlideBuilder(this.slide);
+    this._slideBuilder = new SlideBuilder(this.slide, ownFragmentIndex);
 
     this.init();
   }
   // choose how to reveal your lines. defaults to PRISM_LINE_HIGHLIGHTER_MODE_BUILD
   setMode(value) {
+    console.log('set mode', value);
     this._mode = value;
   }
 
@@ -52,7 +71,7 @@ export class PrismLineHighlighter {
 
     if(this._mode === PRISM_LINE_HIGHLIGHTER_MODE_BUILD) {
       // just extract the window marked with 0 -> cursor
-      stepList = this._steps.slice(0, this._cursor);
+      stepList = this._steps.slice(0, this._cursor + 1);
 
     } else if(this._mode === PRISM_LINE_HIGHLIGHTER_MODE_ABSOLUTE) {
       // in absolute build mode we only want to use the given
@@ -80,6 +99,8 @@ export class PrismLineHighlighter {
     } else {
       this._cursor = this.totalStepCount;
     }
+
+    Reveal.syncFragments(this._prismElement.closest('section'));
     this.update();
   }
 

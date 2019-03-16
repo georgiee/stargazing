@@ -27,11 +27,17 @@ function getDirection(currentSlide, previousSlide) {
       currentSlide;
 
   Reveal.addEventListener( 'fragmentshown', function( event ) {
-    event.fragment.dispatchEvent(shown);
+    // there can be multiple fragments being shown at the same time
+    event.fragments.forEach(
+      fragment => fragment.dispatchEvent(shown)
+    );
   })
 
   Reveal.addEventListener( 'fragmenthidden', function( event ) {
-    event.fragment.dispatchEvent(hidden);
+    // there can be multiple fragments being shown at the same time
+    event.fragments.forEach(
+      fragment => fragment.dispatchEvent(hidden)
+    );
   });
 
   Reveal.addEventListener( 'slidechanged', function( event ) {
@@ -49,8 +55,9 @@ function getDirection(currentSlide, previousSlide) {
   });
 
 
-  function SlideBuilder(element){
+  function SlideBuilder(element, offset = 0){
     this.slide_el = element;
+    this.offset = offset;
 
     // if this is loaded dynamically, reveal might have loaded
     // check to see if we're displayed
@@ -70,11 +77,10 @@ function getDirection(currentSlide, previousSlide) {
     return this;
   }
 
-  SlideBuilder.prototype.addFragment = function(text){
-
+  SlideBuilder.prototype.addFragment = function(index){
     var el = document.createElement('div');
     el.className = 'fragment';
-    el.innerText = text || '';
+    el.dataset.fragmentIndex = index;
 
     this.slide_el.appendChild(el);
 
@@ -84,16 +90,24 @@ function getDirection(currentSlide, previousSlide) {
   // shorthand
   SlideBuilder.prototype.fragments = function(callbacks, hiddenFn){
     var self = this;
-    callbacks.forEach(function(fn){
-      const fragment = self.addFragment();
-      fragment.addEventListener('shown', fn);
+    callbacks.forEach((fn, index) => {
+      const fragment = self.addFragment(this.offset + index);
+
+      // we can pass non-function values
+      // to create noop fragments (to align with other fragments, requried by the firame virtual fragments format)
+      // data-virtual-iframe="[1,1,0,1]" -> the 0 would generate a "NOOP" stirng instead of a real callback
+      // in the virtual iframe builder
+      if(typeof fn === 'function') {
+        fragment.addEventListener('shown', fn);
+      }
 
       if(hiddenFn) {
+        if(typeof fn === 'function') {
         fragment.addEventListener('hidden', hiddenFn);
+        }
       }
 
     })
-
     return this
   }
 

@@ -25,6 +25,7 @@
 
 <script type="module">
   import { createSVGElement, generateLinePath, createDot, indicesToPoint, createText } from '../../shared.js';
+  import { VirtualIframeStack }  from '../../src/virtual-stack-control.js';
 
   const svg = document.querySelector('svg');
 
@@ -34,37 +35,7 @@
   ];
 
   const lineBlueIndices = [0, 2];
-  const lineHotpinkIndices = [3, 1, 2];
-
-  createDots(points);
-  // const allConnected = createLine(points);
-  // allConnected.setAttribute('stroke', 'white');
-  // allConnected.setAttribute('stroke-dasharray', '1');
-  // allConnected.setAttribute('stroke-width', '10');
-  // allConnected.style.opacity = 0.2;
-  // svg.appendChild(allConnected);
-
-  const pointsBlue = indicesToPoint(lineBlueIndices, points);
-  const lineBlue = createLine(pointsBlue);
-  lineBlue.setAttribute('stroke', 'skyblue');
-  svg.appendChild(lineBlue);
-
-
-  const pointsHotpink = indicesToPoint(lineHotpinkIndices, points);
-  const lineHotpink = createLine(pointsHotpink);
-  lineHotpink.setAttribute('stroke', 'hotpink');
-  svg.appendChild(lineHotpink);
-
-
-
-  function createConstellation(points, linePoints) {
-    createDots(points);
-
-    linePoints.forEach(line => {
-      svg.appendChild(createLine(line));
-    })
-  }
-
+  const lineHotpinkIndices = [0, 3, 1, 2];
 
   function allIndicesToPoints(indices, source) {
     return indices.map(indexList => {
@@ -74,12 +45,16 @@
 
   function createDots(points) {
     const offsets = [-15, 10, 10, -15];
+    const group = createSVGElement('g');
+
     points.forEach((point, index) => {
       const offset = {x: offsets[index], y: 4};
 
-      svg.appendChild(createDot(point));
-      svg.appendChild(createText({point, text: index, size: 10, offset }));
+      group.appendChild(createDot(point));
+      group.appendChild(createText({point, text: index, size: 10, offset }));
     });
+
+    return group;
   }
 
   function createLine(line) {
@@ -90,6 +65,82 @@
 
     return path;
   }
+
+
+  function step01() {
+    const dots = createDots(points);
+
+    function start() {
+      svg.appendChild(dots);
+    }
+
+    function stop() {
+      svg.removeChild(dots);
+    }
+
+    return {start, stop}
+  }
+
+  function step02() {
+    const pointsBlue = indicesToPoint(lineBlueIndices, points);
+    let lineBlue = createLine(pointsBlue);
+    lineBlue.setAttribute('stroke', 'skyblue');
+
+    function start() {
+      svg.appendChild(lineBlue);
+    }
+
+    function stop() {
+      svg.removeChild(lineBlue);
+    }
+
+    return { start, stop }
+  }
+
+  function step03() {
+    const pointsHotpink = indicesToPoint(lineHotpinkIndices, points);
+    const lineHotpink = createLine(pointsHotpink);
+    lineHotpink.setAttribute('stroke', 'hotpink');
+
+    function start() {
+      svg.appendChild(lineHotpink);
+    }
+
+    function stop() {
+      svg.removeChild(lineHotpink);
+    }
+
+    return {start, stop}
+  };
+
+  function step03pre() {
+    const lineFull = createLine(points);
+    lineFull.setAttribute('stroke-dasharray', '10');
+    lineFull.setAttribute('stroke-width', '4');
+
+    function start() {
+      svg.appendChild(lineFull);
+    }
+
+    function stop() {
+      if(svg.contains(lineFull)) {
+        svg.removeChild(lineFull);
+      }
+    }
+
+    return {start, stop}
+  }
+
+  const stepWrong = step03pre();
+
+  const steps = [
+    step01(), step03(), stepWrong, stepWrong.stop
+  ];
+
+
+  const stack = new VirtualIframeStack(steps);
+  window.addEventListener('message', stack.handleMessage);
+
 
 </script>
 
