@@ -1167,18 +1167,20 @@
           <span>Chapter 04 </span>
           <h2>Constellations</h2>
           <aside class="notes">
-            Our final chapter is about constellations.
+            Our final chapter is about constellations and we start with a little bit of science.
           </aside>
         </section>
 
         <section
           data-background-image="static/images/constellations/pareidolia.jpg">
           <aside class="notes">
-            <p>We start with a picture of random every day objects. </p>
+            <p>Here you can see a picture of random every day objects. </p>
 
             <p>Although we all know that those pictures show no living things our brain still recognizes them as characters and faces together with  an emotion.</p>
 
             <p>My favourite ist the grumpy broom and the happy brush family.</p>
+
+            <p>This behaviour of our brain has a specific name...</p>
           </aside>
         </section>
 
@@ -1187,31 +1189,32 @@
           data-background-image="static/images/constellations/pareidolia.jpg">
           <h1>Pareidolia</h1>
           <span>
-            Human tendency to see faces and characters in random data.
+            Human tendency to see patterns & faces in random data.
           </span>
           <aside class="notes">
-            That tendency to see faces in random data is called Pareidolia.
+            It's called Pareidolia. That's the tendency to see patterns or faces in random data is called Pareidolia.
           </aside>
         </section>
 
         <section
           data-background-image="static/images/chapter-04/constellation-forming.gif">
           <aside class="notes">
-            And what are stars in the sky? Random data and our brain tries hard to find anythign meaningful in it!
+            And what are stars in the sky? They are random data so that our brain
+            tries very hard to find anythign meaningful in it!
           </aside>
         </section>
 
         <section>
           <img height="600" src="static/images/chapter-04/orion-hevelius-stars.png"/>
           <aside class="notes">
-            Just look at this random star pattern.
+            Just look at this random star pattern. You can make some connection between the stars
           </aside>
         </section>
 
         <section>
           <img height="600" src="static/images/chapter-04/orion-hevelius-lines.png"/>
           <aside class="notes">
-            You can make some connection between stars to create a line drawing.
+            which will create a line drawing that can be imagined as an image.
           </aside>
         </section>
 
@@ -1219,8 +1222,7 @@
           <img height="500" src="static/images/chapter-04/orion-hevelius-image.jpg"/>
           <h3>Orion</h3>
           <aside class="notes">
-            Which can transform to full blown image in your brain - thanks to pareidolia.
-            In this case it's Orion, a famous hunter from the greek mythology
+            Centuries ago and thanks to paradolei this patch of stars transformed into Orion, a famous hunter from the greek mythology.
           </aside>
         </section>
 
@@ -1231,10 +1233,28 @@
           </aside>
         </section>
 
-        <section>
-          More constellations
+        <section data-background-image="static/images/chapter-04/ursa-major.jpg" data-background-size="contain">
           <aside class="notes">
-            Constellations are usually visualized with dots and lines, which brings us to our next fact!
+            <p>
+              Besides Orion there are three other must-known constellations in the sky you should know.
+            </p>
+            <p>
+              Another well know constellation is ursa major. Many people will recognize the upper left part
+              as the big dipper or in german the "Große Wagen". This is not a constellation. It's called an asterism
+              and is just a prominent pattern within a constellation.
+            </p>
+          </aside>
+        </section>
+
+        <section data-background-image="static/images/chapter-04/hercules-hevelius.jpg" data-background-size="contain">
+          <aside class="notes">
+            Hercules one of the most famous figures of greek mythology can also be seen in the sky.
+          </aside>
+        </section>
+
+        <section data-background-image="static/images/chapter-04/monocerots-unicorn-hevelius.jpg" data-background-size="contain">
+          <aside class="notes">
+            There is even a unicorn in the sky. It's called a monocerots as it's the greek word.
           </aside>
         </section>
 
@@ -1245,7 +1265,13 @@
             <span class="fragment">🎭 Idea: SVG circles connected with lines</span>
           </div>
           <aside class="notes">
-            We want to create and animate a line drawing like this and place it in our night sky.
+            <p>
+              We arrived at our next star fact. All those constellations are visualized the same way,
+              with ... Dot & Lines.
+            </p>
+            <p>
+                We want to create and animate a line drawing like this and place it in our night sky.
+            </p>
           </aside>
         </section>
 
@@ -1310,7 +1336,7 @@
           </div>
 
           <aside class="notes">
-            <p>First we need to collect our end points as a list of coordinate.</p>
+            <p>First we need to collect our end points as a list of coordinates.</p>
 
             <p>We can pass that list to a function createDots to create the white dots.</p>
 
@@ -1325,7 +1351,7 @@
         <!-- more complex line-->
         <section>
           <iframe
-            data-virtual-iframe="[1,1,1,1, 1]"
+            data-virtual-iframe="[1,1,1,0,1,1]"
             data-virtual-iframe-offset="0"
             width="600" height="200" data-src="examples/constellations/constellation-02c/index.html"></iframe>
 
@@ -1377,53 +1403,13 @@
           </aside>
         </section>
 
-        <!-- more complex line-->
-        <!-- <section>
-            <iframe width="600" height="200" data-src="examples/constellations/constellation-02d/index.html"></iframe>
-
-            <div class="twocol">
-              <pre
-                class="line-numbers"
-                style='font-size: 12px'
-                data-src="examples/constellations/constellation-02d/snippet.js"></pre>
-
-              <pre style='font-size: 12px' class="fragment">
-                <code class="language-js">
-                  function createConstellation(points, indicesList) {
-                    createDots(points);
-
-                    indicesList.forEach(indices => {
-                      const linePoints = indicesToPoint(indices, points);
-                      createLine(linePoints);
-                    })
-                  }
-                </code>
-              </pre>
-            </div>
-
-            <aside class="notes">
-              <p>
-                We can create dots and easily define lines. This means
-                we have everything at hands to make a constellation function.
-              </p>
-
-              <p>
-                We pass in a set of points and a list of lines to draw the triangle shape here.
-              </p>
-
-              <p>
-                The createConstellation function looks amazingly simple
-                with the set of function we created already.
-              </p>
-            </aside>
-          </section> -->
 
         <!-- createConstellation orion examples  -->
         <section>
           <div class="twocol" style="grid-template-columns: 60% 40%;">
             <div>
               <pre
-                data-fragment-index="2"
+                data-fragment-index="1"
                 style='font-size: 12px' class="fragment">
                   <code class="language-js">
                     const COORDINATES = [
@@ -1451,9 +1437,9 @@
                 </pre>
 
                 <pre
-                  data-fragment-index="1"
+                  data-fragment-index="0"
                   data-line-fragments-mode="absolute"
-                  data-line-fragments='[null,null,"3"]'
+                  data-line-fragments='[null,null,null, "3"]'
                   style='font-size: 12px' class="fragment">
                   <code class="language-js">
                     function createConstellation(points, indicesList) {
@@ -1471,7 +1457,7 @@
               <iframe
                 data-virtual-iframe="[0,0,0,0,0,1]"
                 data-virtual-iframe-offset="0"
-                data-fragment-index="3"
+                data-fragment-index="2"
                 class="fragment"
                 width="100%"
                 height="400"
@@ -1508,11 +1494,14 @@
             <div class="fact">
               <span>Bonus Fact!</span>
               <h3 class="fragment">✨Appearing Constellation✨</h3>
-              <span class="fragment">🎭 Idea: Animate Paths</span>
+              <span class="fragment">🎭 Idea: Animated SVG Paths</span>
             </div>
             <aside class="notes">
-              Constellations exist only in our imagination
-              and that makes them hard to find sometimes as we have to connect the lines first.
+              <p>We have one fact left. Constellations do not just appear imemdiately in our mind.</p>
+              <p>They appear over time and that's exactly what we want to do.</p>
+              <p>
+                The idea is to create animated SVG paths.
+              </p>
 
             </aside>
           </section>
@@ -1520,20 +1509,24 @@
 
         <section>
           <span>Technique by Jake Archibald (2013)</span><br>
-          <span>Dash Array</span><br>
-          <span>Dash Offset</span><br>
+          <span class="fragment">Dash Array & Animated Dash Offset</span><br>
 
           <aside class="notes">
-            We will use a technique pioneered by Jake Archibald in 2013.
-            This involves using dashes and dash offsets in a path that we  will animate.
-
-            Let's try to understand the two invovle properties first and then create
-            a handy CSS class to use it in a flexible way.
+            <p>
+                We will use a technique pioneered by Jake Archibald in 2013.
+            </p>
+            <p>
+                This involves using dashes and dash offsets in a path that we will animate.
+            </p>
+            <p>
+                Let's try to understand the two invovle properties first and then create
+                a handy CSS class to use it in a flexible way.
+            </p>
           </aside>
         </section>
 
         <section>
-          <h3>Dash Array</h3>
+          <h3>Dash Array & Offset</h3>
           <div class="twocol">
             <iframe width="400" height="320" data-src="examples/constellations/constellation-05-dashes/"></iframe>
             <div>
@@ -1546,21 +1539,20 @@
           <aside class="notes">
             <p>The first thing we need are dashes.</p>
 
-            <p>Dashes are set through the `stroke-dasharray` property on a path.</p>
+            <p>Dashes are created through the `stroke-dasharray` property on a path.</p>
 
             <p>The value means how long a single segment should be followed by a gap with the same size.</p>
-
             <p>
-              A value of 0 is by definition the disabled state.
-              If the value matches the length of the path it looks like nothing
-              changed. If you imagine the line longer it would continue with a gap,
-              and that gets visible when we assign an offset.
+                A value of 0 is by definition the disabled state.
+            </p>
+            <p>
+                If you introduce an offset it's like the line is shiften by that value to the left
             </p>
           </aside>
         </section>
 
         <section>
-          <h3>Dash Offset</h3>
+          <h3>Animate Dash Offset</h3>
           <pre
             style='font-size: 18px'
             data-src="examples/constellations/constellation-04-dasharray/snippet.svg"></pre>
@@ -1572,7 +1564,7 @@
             data-src="examples/constellations/constellation-04-dasharray/"></iframe>
 
           <aside class="notes">
-            <p>Look at this little demo</p>
+            <p>Now we want to the animate the dash offset</p>
             <p>1) We start with a dashed line, 100px wide dashes and gaps have a size of 10px</p>
             <p>2) Like told earlier we can imagine this line longer — it just continues as expected</p>
             <p>3) Imagine a yellow area that we now drag over our line</p>
@@ -1669,6 +1661,7 @@
               class="fragment">
               <pre
                 style='font-size: 14px'
+                data-line="6"
                 data-src="examples/constellations/constellation-07/snippet.js"></pre>
             </div>
           </div>
@@ -1678,10 +1671,10 @@
             <p>We apply the same animation but something is wrong. We see a glitch at the beginning and it stops too early.</p>
             <p>
               Once again I enable the the debug view of the line and we see what's happening.
-              You can see that the dash array is wrong, it's repeating too early.
+              You can see that the dash array is wrong, it's repeating too early and the offset don't match the window size.
             </p>
             <p>
-              We need to update the path length. It's not 100 anymore. The hotpink line is linger.
+              We need to update the path length. It's not 100 anymore. The hotpink line is longer.
               We can't always tell the length of a line and that's where JavaScript can help us.
             </p>
             <p>
@@ -1690,6 +1683,7 @@
 
             <p>
               Watch what happens when I update the path length to the correct value.
+              It works!
             </p>
           </aside>
         </section>
@@ -1706,7 +1700,6 @@
               <pre
                 style='font-size: 14px'
                 data-line-fragments-mode="absolute"
-                data-line-fragments='[null,  "5"]'
                 data-src="examples/constellations/constellation-08/snippet1.css"></pre>
               <pre
                 style='font-size: 14px'
@@ -1716,13 +1709,12 @@
             <div class="fragment" data-fragment-index="1">
               <pre
                 data-line-fragments-mode="absolute"
-                data-line-fragments='[null,  null, "2-4"]'
                 style='font-size: 14px'
                 data-src="examples/constellations/constellation-08/snippet.css"></pre>
             </div>
           </div>
           <aside class="notes">
-            <p>Now we can animate all lines, but this looks bad, as everything starts at the same time</p>
+            <p>We can now animate all lines, but this looks bad, as everything starts at the same time</p>
             <p>Let's introduce some delays as we did with the shooting stars</p>
             <p>
               Each animation has a duration of 1s so if we offset each line by 1s we can create the illusion
@@ -1736,44 +1728,41 @@
             <iframe
               width="500"
               height="500"
-              data-virtual-iframe="[1]"
+              data-virtual-iframe="[0,0,1]"
               data-src="examples/constellations/constellation-09/"></iframe>
             <div>
               <pre
+                data-line-fragments='["4-6"]'
                 style='font-size: 12px'
                 data-src="examples/constellations/constellation-09/snippet.js"></pre>
               <pre
+                data-line-fragments='[null, "7"]'
                 style='font-size: 12px'
                 data-src="examples/constellations/constellation-09/snippet.css"></pre>
             </div>
           </div>
           <aside class="notes">
             <p>
-              To animate all lines in a constellation we have
-              to save the number of the created line (index)
-              together with the path lengt in a CSS variable.
+              To animate all lines in a constellation we have to apply our CSS animation.
+              and we need to save the number of the created line (index) together with the path length in a CSS variable.
             </p>
             <p>
-              We also assign a CSS class animated-path
-              which allows us to create a distinct CSS class
-              that will apply the previously created CSS animationwith the correct parameters
-              with the index and the path length provided.
+              We can use the path number to calculate a specific delay for each line.
             </p>
             <p>
-              The result looks like this.
+              And the result looks like this
             </p>
           </aside>
         </section>
 
         <section data-background-iframe="examples/constellations/constellation-complete/" id="constellationComplete">
           <aside class="notes">
-           (Show the final sky, and reveal constellation after constellation)
-
-           With the ability to create animated constellations we can now
-           look into the sky. And if we look long enough Paradolei will kick in
-           and we start seeing different constellations.
-           Here is Orion again. But besides him you can find Hercules, the twins Gemini
-           and so on.
+            <p>
+              We can use our function to easily create multiple constellations in the sky
+            </p>
+            <p>
+              Here the top 4 constellations I mentioned earlier ready in our night sky.
+            </p>
           </aside>
         </section>
       </section>

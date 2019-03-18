@@ -66,7 +66,7 @@ function dashDemo() {
 
 function completeConstellation() {
   const slideSection = document.querySelector('#constellationComplete');
-
+  console.log('slideSection', slideSection)
   // Reveal.addEventListener( 'slidechanged', function( event ) {
 
   //   if(event.currentSlide === slideSection) {
@@ -90,6 +90,7 @@ function completeConstellation() {
   // }
 
   function play() {
+    console.log('play')
     const iframeWindow = getBackgroundIframe().contentWindow;
       iframeWindow.postMessage("play", "*");
   }

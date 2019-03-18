@@ -49,7 +49,7 @@ preserveAspectRatio="xMidYMid meet">
       <circle cx="0" cy = "0" r="2" fill=white></circle>
       <circle cx="100" cy = "0" r="2" fill=white></circle>
       <path
-        stroke="red" stroke-width="2"
+        stroke="hotpink" stroke-width="2"
         d="M 0 0 L 100 0" fill='transparent'>
       </path>
       <text y="-3" x="10">dasharray=0</text>
@@ -61,7 +61,7 @@ preserveAspectRatio="xMidYMid meet">
       <circle cx="100" cy = "0" r="2" fill=white></circle>
       <path
         stroke-dasharray="1"
-        stroke="red" stroke-width="2"
+        stroke="hotpink" stroke-width="2"
         d="M 0 0 L 100 0" fill='transparent'>
       </path>
       <text font-size="8" y="-3" x="10">dasharray=1</text>
@@ -73,7 +73,7 @@ preserveAspectRatio="xMidYMid meet">
       <circle cx="100" cy = "0" r="2" fill=white></circle>
       <path
         stroke-dasharray="10"
-        stroke="red" stroke-width="2"
+        stroke="hotpink" stroke-width="2"
         d="M 0 0 L 100 0" fill='transparent'>
       </path>
       <text font-size="8" y="-3" x="10">dasharray=10</text>
@@ -85,7 +85,7 @@ preserveAspectRatio="xMidYMid meet">
       <circle cx="100" cy = "0" r="2" fill=white></circle>
       <path
         stroke-dasharray="50"
-        stroke="red" stroke-width="2"
+        stroke="hotpink" stroke-width="2"
         d="M 0 0 L 100 0" fill='transparent'>
       </path>
       <text font-size="8" y="-3" x="10">dasharray=50</text>
@@ -96,24 +96,26 @@ preserveAspectRatio="xMidYMid meet">
       <circle cx="0" cy = "0" r="2" fill=white></circle>
       <circle cx="100" cy = "0" r="2" fill=white></circle>
       <path
-        stroke-dasharray="75"
-        stroke="red" stroke-width="2"
+        stroke-dasharray="50"
+        stroke-dashoffset="10"
+        stroke="hotpink" stroke-width="2"
         d="M 0 0 L 100 0" fill='transparent'>
       </path>
-      <text font-size="8" y="-3" x="10">dasharray=75</text>
+      <text font-size="8" y="-3" x="10">dasharray=50, offset 10</text>
     </g>
 
     <!-- dasharray = 100 -->
     <g transform="translate(0 75)">
-      <circle cx="0" cy = "0" r="2" fill=white></circle>
-      <circle cx="100" cy = "0" r="2" fill=white></circle>
-      <path
-        stroke-dasharray="100"
-        stroke="hotpink" stroke-width="2"
-        d="M 0 0 L 100 0" fill='transparent'>
-      </path>
-      <text font-size="8" y="-3" x="10">dasharray=100</text>
-    </g>
+        <circle cx="0" cy = "0" r="2" fill=white></circle>
+        <circle cx="100" cy = "0" r="2" fill=white></circle>
+        <path
+          stroke-dasharray="50"
+          stroke-dashoffset="50"
+          stroke="hotpink" stroke-width="2"
+          d="M 0 0 L 100 0" fill='transparent'>
+        </path>
+        <text font-size="8" y="-3" x="10">dasharray=50, offset 50</text>
+      </g>
   </g>
 </svg>
 
