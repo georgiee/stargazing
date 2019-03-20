@@ -1192,7 +1192,7 @@
             Human tendency to see patterns & faces in random data.
           </span>
           <aside class="notes">
-            It's called Pareidolia. That's the tendency to see patterns or faces in random data is called Pareidolia.
+            It's called Pareidolia. It's the tendency to see patterns or faces in random data.
           </aside>
         </section>
 
@@ -1222,7 +1222,39 @@
           <img height="500" src="static/images/chapter-04/orion-hevelius-image.jpg"/>
           <h3>Orion</h3>
           <aside class="notes">
-            Centuries ago and thanks to paradolei this patch of stars transformed into Orion, a famous hunter from the greek mythology.
+            <p>
+              Centuries ago and thanks to pareidolia this patch of stars transformed into Orion, a famous hunter from the greek mythology.
+            </p>
+            <p>
+              Besides Orion there are three other must-known constellations in the sky you should know.
+            </p>
+          </aside>
+        </section>
+
+        <section data-background-image="static/images/chapter-04/ursa-major.jpg" data-background-size="contain">
+          <aside class="notes">
+            <p>
+              Here you can see Ursa Major which is lating and translates to big bear.
+            </p>
+            <p>
+              Many people will recognize the upper left part as the big dipper or in german the "Große Wagen".
+            </p>
+            <p>
+              Big dipper is not a constellation by itself — just a famous pattern inside Ursa Major.
+            </p>
+          </aside>
+        </section>
+
+
+        <section data-background-image="static/images/chapter-04/hercules-hevelius.jpg" data-background-size="contain">
+          <aside class="notes">
+            That's Hercules, son of Zeus. A great hero in the Greek mythology.
+          </aside>
+        </section>
+
+        <section data-background-image="static/images/chapter-04/monocerots-unicorn-hevelius.jpg" data-background-size="contain">
+          <aside class="notes">
+            And there is even a unicorn in the sky. It's called a monocerots which is the greek word for unicorn.
           </aside>
         </section>
 
@@ -1230,31 +1262,6 @@
           <aside class="notes">
             <p>There are many more things people see in the sky</p>
             <p>But today there are only 88 official constellations in our night sky covering an imaginary sphere around the earth.</p>
-          </aside>
-        </section>
-
-        <section data-background-image="static/images/chapter-04/ursa-major.jpg" data-background-size="contain">
-          <aside class="notes">
-            <p>
-              Besides Orion there are three other must-known constellations in the sky you should know.
-            </p>
-            <p>
-              Another well know constellation is ursa major. Many people will recognize the upper left part
-              as the big dipper or in german the "Große Wagen". This is not a constellation. It's called an asterism
-              and is just a prominent pattern within a constellation.
-            </p>
-          </aside>
-        </section>
-
-        <section data-background-image="static/images/chapter-04/hercules-hevelius.jpg" data-background-size="contain">
-          <aside class="notes">
-            Hercules one of the most famous figures of greek mythology can also be seen in the sky.
-          </aside>
-        </section>
-
-        <section data-background-image="static/images/chapter-04/monocerots-unicorn-hevelius.jpg" data-background-size="contain">
-          <aside class="notes">
-            There is even a unicorn in the sky. It's called a monocerots as it's the greek word.
           </aside>
         </section>
 
@@ -1266,11 +1273,10 @@
           </div>
           <aside class="notes">
             <p>
-              We arrived at our next star fact. All those constellations are visualized the same way,
-              with ... Dot & Lines.
+              We arrived at our next star fact. Constellations are usually shown with dots and lines.
             </p>
             <p>
-                We want to create and animate a line drawing like this and place it in our night sky.
+              By connecting SVG circle with lines we want to build our own constellation in the night sky.
             </p>
           </aside>
         </section>
@@ -1287,9 +1293,9 @@
             data-src="examples/constellations/constellation-02/snippet.svg"></pre>
 
           <aside class="notes">
-            That's our basic building block. Two dots and a line.
-            If we can create such a element we can create any outline.
-            To make our lives easier let's think about creating this with JavaScript.
+            <p>This will be our basic building block. Two dots and a line.</p>
+            <p>If we can create such an element we can create any outline.</p>
+            <p>To make our lives easier let's think about creating this with JavaScript.</p>
           </aside>
         </section>
 
@@ -1327,9 +1333,9 @@
 
               <pre
                 class="fragment"
-                data-fragment-index="3"
+                data-fragment-index="2"
                 style='font-size: 14px'
-                data-line-fragments='["3", "5-7"]'
+                data-line-fragments='["5-7"]'
                 data-line-fragments-mode='absolute'
                 data-src="examples/constellations/constellation-02a/snippet-path.js"></pre>
             </div>
@@ -1340,11 +1346,9 @@
 
             <p>We can pass that list to a function createDots to create the white dots.</p>
 
-            <p>Next we call a function createLine that will generate the SVG path</p>
+            <p>Next we call a function createLine that will use path to create our line.</p>
 
-            <p>We create a path element and provide the required pathData through the property 'd'.</p>
-
-            <p>The function 'generateLinePath' is a helper build by me that generates the required data string.</p>
+            <p>After creating a path element we provide the required pathData through the property 'd'.</p>
           </aside>
         </section>
 
@@ -1384,11 +1388,15 @@
           </div>
 
           <aside class="notes">
+            <p>How to create more complex shapes?</p>
             <p>
-              How to create more complex shapes?
-              Imagine this list of four points which will create those four points.
-              How would we create this hotpink line? We can't just pass all points
-              to the createLine as this would connect all points.
+              We start with four points and create the four dots as usually
+            </p>
+            <p>
+              But how would we create this hotpink line?
+            </p>
+            <p>
+              We can't just pass all points to the createLine as this would connect all points.
             </p>
 
             <p>
@@ -1397,8 +1405,7 @@
             </p>
 
             <p>
-              With a custom function indicesToPoints we can create a list of real points
-              we can pass again to the createLine function.
+              A custom function indicesToPoints helps us to transform the numbers to points again.
             </p>
           </aside>
         </section>
@@ -1439,7 +1446,7 @@
                 <pre
                   data-fragment-index="0"
                   data-line-fragments-mode="absolute"
-                  data-line-fragments='[null,null,null, "3"]'
+                  data-line-fragments='[null,null, "3"]'
                   style='font-size: 12px' class="fragment">
                   <code class="language-js">
                     function createConstellation(points, indicesList) {
@@ -1455,8 +1462,7 @@
             </div>
             <div>
               <iframe
-                data-virtual-iframe="[0,0,0,0,0,1]"
-                data-virtual-iframe-offset="0"
+                data-virtual-iframe="[0, 1]"
                 data-fragment-index="2"
                 class="fragment"
                 width="100%"
@@ -1466,24 +1472,34 @@
             </div>
           </div>
           <aside class="notes">
-            <p>Can we already build a function to create a constellation?</p>
-            <p>Yes we can! createDots & createLine is actually everything we need to build any constellation.</p>
             <p>
-              It's now only a matter of the data we pass in. The data you can see here is an extract of the data required to build the Orion constellation</p>
+              To create a constellation we want to call a function and pass in
+              the star coordiates and the connection between them.
+            </p>
+            <p>
+              Inside we can use createDots & createLine to build the cosntellation.
+            </p>
+            <p>
+              It's now only a matter of the data we pass in.
+            </p>
 
-              <p>You can see it here. If we replace the createDots function with the createStar function
-                we created earlier it will fit into our sky perfectly.
-              </p>
+            <p>
+              Here you can see our hero Orion is born.
+            </p>
+
+            <p>
+              By switching the createDots function with our existing createStars functionwe can make the dots appear as twinkling stars.
+            </p>
           </aside>
         </section>
 
         <section data-background-iframe="examples/constellations/constellation-half/index.html">
           <aside class="notes">
             <p>
-              We can place that constellation already in our night sky.
+              When place in the night sky it looks kind of ok.
             </p>
             <p>
-              This still looks boring, there is some action missing.
+              Something is missing
             </p>
           </aside>
         </section>
@@ -1497,10 +1513,17 @@
               <span class="fragment">🎭 Idea: Animated SVG Paths</span>
             </div>
             <aside class="notes">
-              <p>We have one fact left. Constellations do not just appear imemdiately in our mind.</p>
-              <p>They appear over time and that's exactly what we want to do.</p>
               <p>
-                The idea is to create animated SVG paths.
+                We have one bonus fact left.
+              </p>
+              <p>
+                  Appearing Constellation
+
+                  Constellations do not just appear imemdiately in our mind. They appear over time and that's exactly what we want to do.
+              </p>
+
+              <p>
+                The idea is to create animated SVG paths so that the constellation can appear slowly.
               </p>
 
             </aside>
@@ -1508,7 +1531,7 @@
 
 
         <section>
-          <span>Technique by Jake Archibald (2013)</span><br>
+          <h2>Technique by Jake Archibald (2013)</h2><br>
           <span class="fragment">Dash Array & Animated Dash Offset</span><br>
 
           <aside class="notes">
@@ -1517,9 +1540,7 @@
             </p>
             <p>
                 This involves using dashes and dash offsets in a path that we will animate.
-            </p>
-            <p>
-                Let's try to understand the two invovle properties first and then create
+                Let's try to understand the two involved properties first and then create
                 a handy CSS class to use it in a flexible way.
             </p>
           </aside>
@@ -1532,21 +1553,20 @@
             <div>
               <pre
                 style='font-size: 16px'
+                data-line-fragments-mode="absolute"
+                data-line-fragments='["3-9", "11-17"]'
                 data-src="examples/constellations/constellation-05-dashes/snippet.svg"></pre>
             </div>
           </div>
 
           <aside class="notes">
-            <p>The first thing we need are dashes.</p>
+            <p>First a quick summary what dashes and offsets do in a path</p>
 
-            <p>Dashes are created through the `stroke-dasharray` property on a path.</p>
-
-            <p>The value means how long a single segment should be followed by a gap with the same size.</p>
             <p>
-                A value of 0 is by definition the disabled state.
+              Dashes are created through the `stroke-dasharray` property on a path. The value means how long a single segment should be followed by a gap with the same size.
             </p>
             <p>
-                If you introduce an offset it's like the line is shiften by that value to the left
+              When you add an offset you can see that the line is shifted by the given offset.
             </p>
           </aside>
         </section>
@@ -1564,14 +1584,24 @@
             data-src="examples/constellations/constellation-04-dasharray/"></iframe>
 
           <aside class="notes">
-            <p>Now we want to the animate the dash offset</p>
-            <p>1) We start with a dashed line, 100px wide dashes and gaps have a size of 10px</p>
-            <p>2) Like told earlier we can imagine this line longer — it just continues as expected</p>
-            <p>3) Imagine a yellow area that we now drag over our line</p>
-            <p>4) I start to animate the the dash offset and let's hide everything but the yellow area</p>
-            <p>5) When we stop moving the yellow window while keeping the dash offset
-              you can see the final result. a line with a changing dash offset
+            <p>Now we want to the animate the dash offset and I prepared a little demo</p>
+
+            <p>1) We start with a dashed line. It's 100px in width and has set a dasharray of 10px</p>
+            <p>2) We can now imagine the line being drawn longer</p>
+
+            <p>3) Now imagine a yellow looking window above it. The window has the same width as the line</p>
+
+            <p>4) We start animating the dash offset. The window will move by the current value of the offset.</p>
+
+            <p>5) Let's remove everything beneath the yellow window and show only what we would see through it. </p>
+
+            <p>5) When we stop moving the window we can see how the animated offset looks like on the line.
             </p>
+
+          </aside>
+        </section>
+
+        <section>
             <p>
               Now comes the magic.
             </p>
@@ -1586,8 +1616,6 @@
               To grow a line we need to apply a dash offset of the same value as the dash Arrayand then animate it
               back to 0 to reveal the line.
             </p>
-
-          </aside>
         </section>
 
         <section>

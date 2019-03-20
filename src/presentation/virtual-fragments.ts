@@ -14,10 +14,12 @@ export function virtualIframeFragments(iframe) {
     fragmentList = createFragments({repeat: fragmentListSetup, callback: next});
   }
 
-  const fragmentOffset = parseInt(iframe.dataset.virtualIframeOffset) || 0;
+  // always offset by it's own fragment offset + 1 so the revealing
+  // won't start before the iframe itself is visible
+  const fragmentIndex = 1 + (parseInt(iframe.dataset.fragmentIndex) || 0);
+  const fragmentOffset = fragmentIndex + (parseInt(iframe.dataset.virtualIframeOffset) || 0);
 
   const slide = iframe.closest('section');
-
 
   function next() {
     const contentWindow = iframe.contentWindow;
