@@ -32,6 +32,14 @@ export class VirtualIframeStack {
     }
   }
 
+  goto(index) {
+    let counter = index;
+    while(counter > 0) {
+      this.next();
+      counter--;
+    }
+  }
+
   reset() {
     this.pending = [...this.steps];
   }

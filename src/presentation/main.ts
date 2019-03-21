@@ -22,7 +22,7 @@ function setpVirtualIframes() {
 function run() {
   setpVirtualIframes();
   lineFragments();
-  dashDemo();
+  // dashDemo();
   completeConstellation();
 }
 
@@ -36,58 +36,9 @@ function lineFragments() {
 
 }
 
-function dashDemo() {
-  const slideSection = document.querySelector('#dashdemo');
-  const dashDemoFragments = new SlideBuilder(slideSection);
-
-  const fragmentList = createFragments({
-    repeat: 6,
-    callback: () => nextFrame()
-  });
-
-  dashDemoFragments.fragments(fragmentList, previousCallback);
-
-  function previousCallback() {
-    previousFrame();
-  }
-
-  function nextFrame() {
-    const iframe = slideSection as HTMLIFrameElement;
-    const content = iframe.contentWindow;;
-    content.postMessage("next-topic", "*");
-  }
-
-  function previousFrame() {
-    const iframe = slideSection as HTMLIFrameElement;
-    const content = iframe.contentWindow;;
-    content.postMessage("previous-topic", "*");
-  }
-}
-
 function completeConstellation() {
   const slideSection = document.querySelector('#constellationComplete');
-  console.log('slideSection', slideSection)
-  // Reveal.addEventListener( 'slidechanged', function( event ) {
-
-  //   if(event.currentSlide === slideSection) {
-  //     play();
-  //   }
-  // });
-
   const slideBuilder = new SlideBuilder(slideSection);
-
-  // const fragmentList = createFragments({
-  //   repeat: 4,
-  //   callback: function() {
-  //     const iframeWindow = getBackgroundIframe().contentWindow;
-  //     iframeWindow.postMessage("next-constellation", "*");
-  //   }}
-  // );
-
-  // function previousCallback() {
-  //   const iframeWindow = getBackgroundIframe().contentWindow;
-  //   iframeWindow.postMessage("previous-constellation", "*");
-  // }
 
   function play() {
     console.log('play')

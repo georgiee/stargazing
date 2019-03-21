@@ -56,6 +56,22 @@
   }
 
 
+  .full-dash01 .group-01 {
+    --dasharray: 100;
+  }
+
+  .full-dash02 .group-02 {
+    --dasharray: 100;
+  }
+  .full-dash03 .group-03 {
+    --dasharray: 100;
+  }
+  .full-dash04 .group-04 {
+    --dasharray: 100;
+  }
+  .full-dash05 .group-05 {
+    --dasharray: 100;
+  }
 
   </style>
 </head>
@@ -137,7 +153,7 @@
 
 <!-- <input type="range" id='dashSize' min="0" maxx="150" value="10"> -->
 
-<script>
+<script type="module">
 
   let offset = 0;
   let speed = 10;
@@ -279,26 +295,99 @@
 
   }
 
+  import { VirtualIframeStack }  from '../../src/virtual-stack-control.js';
 
+  function singleStep(index) {
+    function start() {
+      update(index);
+    }
+
+    function stop() {
+      update(index - 1);
+    }
+
+    return { start, stop};
+  }
 
   const urlParams = new URLSearchParams(window.location.search);
   const fullView = urlParams.has('full');
+  const part2 = urlParams.has('part2');
 
-  // let us toggle the fully view by passing ?full to the iframe url
+  const stepsPart1 = [
+    singleStep(0),
+    singleStep(1),
+    singleStep(2),
+    singleStep(3),
+    singleStep(4),
+    singleStep(5),
+    singleStep(6)
+  ];
+
+  const stepsPart2 = [
+    singleStep(6),
+    combineSteps([
+      cssStep('full-dash01'),
+      function() {
+        console.log('set')
+        amountArray.innerHTML = 'dasharray: '+ 100;
+      },
+      cssStep('full-dash02'),
+      cssStep('full-dash03'),
+      cssStep('full-dash04'),
+    ]),
+    cssStep('full-dash05')
+  ]
+
+  function combineSteps(steps) {
+    function start() {
+      steps.forEach(step => {
+        if(typeof step === 'function') {
+          step()
+        } else {
+          step.start()
+        }
+      })
+    }
+
+    function stop() {
+      steps.forEach(step => {
+        if(typeof step === 'function') {
+          step()
+        } else {
+          step.stop()
+        }
+      })
+    }
+
+    return { start, stop};
+  }
+
+  function cssStep(cssClass) {
+
+    function start() {
+      document.body.classList.add(cssClass);
+    }
+
+    function stop() {
+      document.body.classList.remove(cssClass);
+    }
+
+    return { start, stop};
+  }
+
   if(fullView) {
     setDashArray(10);
     update(6);
+  } else if(part2) {
+    const stack = new VirtualIframeStack(stepsPart2);
+    stack.goto(1);
+    window.addEventListener('message', stack.handleMessage);
   } else {
-
-    window.addEventListener("message", ({data}) => {
-    switch(data) {
-      case 'slide:start': start(); break;
-      case 'slide:stop': stop(); break;
-      case 'next-topic': next(); break;
-      case 'previous-topic': previous(); break;
-    }
-  });
+    const stack = new VirtualIframeStack(stepsPart1);
+    stack.goto(1);
+    window.addEventListener('message', stack.handleMessage);
   }
+
 </script>
 </body>
 

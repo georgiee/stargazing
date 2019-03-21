@@ -1355,7 +1355,7 @@
         <!-- more complex line-->
         <section>
           <iframe
-            data-virtual-iframe="[1,1,1,0,1,1]"
+            data-virtual-iframe="[1,1,1,1,1]"
             data-virtual-iframe-offset="0"
             width="600" height="200" data-src="examples/constellations/constellation-02c/index.html"></iframe>
 
@@ -1366,14 +1366,14 @@
               class="line-numbers"
               style='font-size: 12px'
               data-line-fragments-mode="absolute"
-              data-line-fragments='[null, "10", null]'
+              data-line-fragments='[null, "10","10", null]'
               data-src="examples/constellations/constellation-02c/snippet.js"></pre>
 
               <pre
                 style='font-size: 12px' class="fragment"
                 data-line-fragments-mode="absolute"
                 data-line-fragments='["2", "4-5"]'
-                data-fragment-index="3">
+                data-fragment-index="4">
                 <code class="language-js">
                     const lineHotpink = [0, 3, 1, 2];
 
@@ -1578,7 +1578,8 @@
             data-src="examples/constellations/constellation-04-dasharray/snippet.svg"></pre>
 
           <iframe
-            id='dashdemo'
+            data-virtual-iframe="[1,1,1,1,1,1]"
+            data-virtual-iframe-offset="0"
             width="100%"
             height="430"
             data-src="examples/constellations/constellation-04-dasharray/"></iframe>
@@ -1602,20 +1603,33 @@
         </section>
 
         <section>
+          <h3>Magic</h3>
+          <iframe
+            data-virtual-iframe="[1,1]"
+            data-virtual-iframe-offset="0"
+            width="100%"
+            height="430"
+            data-src="examples/constellations/constellation-04-dasharray/?part2"></iframe>
+
+          <aside class="notes">
             <p>
               Now comes the magic.
             </p>
             <p>
               Let's assign 100px, the length of the line, as the dasharray while keeping the
-              dash offset animated.
+              dash offset animated. You can see how this affects the drawing. It's a valid dashed line.
             </p>
             <p>
-              We just build an animated line! You can see how it works.
+              The final result will look like this. We just build an animated line!
+              And you can still see how the revealing works.
             </p>
             <p>
-              To grow a line we need to apply a dash offset of the same value as the dash Arrayand then animate it
-              back to 0 to reveal the line.
+              The simple rule to draw a line:
+
+              Apply a dash array & offset with the length of the line
+              then slowly animate the offset back to 0.
             </p>
+          </aside>
         </section>
 
         <section>
@@ -1640,9 +1654,7 @@
 
           <iframe
             data-virtual-iframe="[1, 1]"
-            data-virtual-iframe-offset="5"
-            class="fragment"
-            data-fragment-index="4"
+            data-virtual-iframe-offset="3"
             width="900"
             height="300"
             data-src="examples/constellations/constellation-06/index.html">
@@ -1756,7 +1768,7 @@
             <iframe
               width="500"
               height="500"
-              data-virtual-iframe="[0,0,1]"
+              data-virtual-iframe="[0,1]"
               data-src="examples/constellations/constellation-09/"></iframe>
             <div>
               <pre
