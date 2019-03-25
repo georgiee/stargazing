@@ -33,14 +33,27 @@
 
 <button class='btn-debug' onclick="toggle()">🚧</button>
 
-<script>
-
+<script type="module">
+import { createIframeRunner } from '../../shared.js';
 const svg = document.getElementById('nightsky');
 const sizeShootingStar = 1;
 const sizeSkyStar = 1;
 
-createSky({ count: 350 })
-createMeteorShower();
+
+function startDemo() {
+  createSky({ count: 350 })
+  createMeteorShower();
+}
+
+function stopDemo() {
+
+}
+
+createIframeRunner({
+  play: startDemo,
+  stop: stopDemo,
+})
+
 
 
 /**
@@ -233,10 +246,6 @@ function createStar({size, color, x, y}) {
 
   star.appendChild(starShape);
   return star;
-}
-
-function createSVGElement(tag){
-  return document.createElementNS("http://www.w3.org/2000/svg", tag)
 }
 
 function getRandomCoordinate() {

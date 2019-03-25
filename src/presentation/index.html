@@ -142,10 +142,11 @@
           </ul>
 
           <aside class="notes">
-            <p>Over the course of 3 chapters I will take you on a journey to the stars.</p>
+            <p>Over the course of 4 chapters I will take you on a journey to the stars.</p>
             <p>We will explore how a single star is working to create them easily.</p>
             <p>After that we will assemble a full and crowded sky night</p>
             <p>Shooting Stars can't miss in any night sky that's what we will look at in the third chapter</p>
+            <p>and the final chapter will show what constellations are and how we can build them</p>
           </aside>
         </section>
 
@@ -203,7 +204,7 @@
             <p>We want to observe a single star</p>
             <p>I picked a little dot that we can see with our naked eye.</p>
             <p>The star is called Betelgeuse and you can see it in the famous Orion constellation.</p>
-             <p>Betelgeuse is more than 600 light years away.s</p>
+             <p>Betelgeuse is more than 600 light years away.</p>
           </aside>
         </section>
 
@@ -277,7 +278,7 @@
         <section>
           <h3>What's the color of a star ?</h3>
           <aside class="notes">
-            "What's the color of a star ?"
+            What's the color of a star ?
           </aside>
         </section>
 
@@ -302,10 +303,10 @@
                 The sun has a surface temperatur of 5500 degree celsius.
               </p>
               <p>
-                Betelgeuse is much colder with a temperature of 3200 degree celsius.
+                Betelgeuse is much colder with a temperature of 3200 degree celsius. Both stars are still very hot and they look reddish.
               </p>
               <p>
-                Both stars are still very hot and they look reddish. You could now thinks red means hot but it's quite the opposite.
+                You could now think red means hot but it's quite the opposite.
               </p>
           </aside>
         </section>
@@ -332,7 +333,8 @@
           </div>
 
           <aside class="notes">
-            <p>Have you noticed we have a new start fact. Temperature is color!</p>
+            <p>Have you noticed we have a new star fact.</p>
+            <p>Temperature is color!</p>
             <p>
               The idea is easy: Let's create some circles with different colors.
             </p>
@@ -367,11 +369,11 @@
           data-background-size="contain"
           data-background-video="static/videos/comparison.mp4">
           <aside class="notes">
-            Earth
-            Sun
-            Eta Carina
-            Betelgeuse
-            VY Canis Majoris
+            <p>Earth</p>
+            <p>Sun</p>
+            <p>Eta Carina</p>
+            <p>Betelgeuse</p>
+            <p>VY Canis Majoris</p>
           </aside>
         </section>
 
@@ -420,10 +422,12 @@
             data-src="examples/star/star-04/snippet.svg"></pre>
           <pre
             class="fragment"
+            data-fragment-index="0"
             style="font-size: 18px;"
             data-src="examples/star/star-04/snippet-create-star1.js"></pre>
           <pre
             class="fragment"
+            data-fragment-index="1"
             data-line-fragments='["5", "7","9-11"]'
             style="font-size: 18px;"
             data-src="examples/star/star-04/snippet-create-star2.js"></pre>
@@ -509,7 +513,7 @@
           <aside class="notes">
               <p>Look at that image. More and more stars disappear from right to left.
                   You can see how you location affects the total count of stars.</p>
-              <p>At the Marientplatz you won't be able to see more than 35 stars in the whole night sky</p>
+              <p>At the Marienplatz you won't be able to see more than 35 stars in the whole night sky</p>
               <p>Compare this with some dark spots in East Germany where you can see the the maximum that our eyes can handle</p>
 
               <!-- Numbers are the Bortle scale (https://en.wikipedia.org/wiki/Bortle_scale) -->
@@ -521,11 +525,11 @@
           <div class="fact">
             <span>New Star Fact!</span>
             <h2 class="fragment">✨Star Count✨</h2>
-            <span class="fragment">🎭Idea: Create many stars.</span>
+            <span class="fragment">🎭Idea: Create a lot of stars.</span>
           </div>
 
           <aside class="notes">
-            <p>Anyway we got a new fact: Star Count</p>
+            <p>We got a new fact: Star Count</p>
             <p>Let's create a lot of stars.</p>
           </aside>
         </section>
@@ -579,7 +583,7 @@
         <section data-background-image="static/images/chapter-02/pool.gif">
           <aside class="notes">
             It's more or less the same effect we all know from a swimming pool
-            where we can see light effects.
+            where we can see light effects on the ground
           </aside>
         </section>
 
@@ -600,7 +604,8 @@
             <h2 class="fragment">✨Stars can twinkle✨</h2>
             <p class="fragment">🎭 Idea: CSS animations for scale & opacity</p>
             <aside class="notes">
-              <p>Stars can twinkle and we are going to implement it with two CSS animations to change scale and opacity of our circles.</p>
+              <p>Stars can twinkle </p>
+              <p>and we are going to implement it with two CSS animations to change scale and opacity of our circles.</p>
             </aside>
           </div>
         </section>
@@ -620,7 +625,7 @@
 
           <aside class="notes">
             <p>The first CSS animation looks like this.</p>
-            <p>We create it with a keyframe animation and apply a rather random looking scaling</p>
+            <p>We use a keyframe animation and apply a rather random looking scaling to get this result</p>
             <p>The rather rough animation is intended as we want to create the illusion of randomness
               as you are suprised by the different changes.</p>
             <p>The animation itself is running forever and it's alternating so we have a greater variation in the animation cycle</p>
@@ -685,7 +690,6 @@
             data-src="examples/sky/sky-03/snippet-delay.css"></pre>
 
           <iframe
-            class="fragment"
             width="600"
             height="250"
             data-src="examples/sky/sky-03/delay.html"></iframe>
@@ -717,8 +721,7 @@
             data-src="examples/sky/sky-04/index.html?debug"></iframe>
 
             <aside class="notes">
-              <p>We can know add the twinkling effect to all of our stars in the sky
-              just by modifying the createStar function we created earlier</p>
+              <p>We can know add the twinkling effect animation to all of our stars in the sky just by modifying the createStar function we created earlier</p>
               <p>The CSS Variables are assigned through the style object you can find on any DOM object.</p>
               <p>We assign a negative random value between 0 and 4000ms</p>
               <p>And the result looks already awesome. I kept the large circle here
@@ -1246,7 +1249,7 @@
         </section>
 
 
-        <section data-background-image="static/images/chapter-04/hercules-hevelius.jpg" data-background-size="contain">
+        <section data-background-image="static/images/chapter-04/hercules-hevelius-lines.jpg" data-background-size="contain">
           <aside class="notes">
             That's Hercules, son of Zeus. A great hero in the Greek mythology.
           </aside>

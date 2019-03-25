@@ -51,7 +51,6 @@ export class PrismLineHighlighter {
   }
   // choose how to reveal your lines. defaults to PRISM_LINE_HIGHLIGHTER_MODE_BUILD
   setMode(value) {
-    console.log('set mode', value);
     this._mode = value;
   }
 
@@ -71,7 +70,8 @@ export class PrismLineHighlighter {
 
     if(this._mode === PRISM_LINE_HIGHLIGHTER_MODE_BUILD) {
       // just extract the window marked with 0 -> cursor
-      stepList = this._steps.slice(0, this._cursor + 1);
+      const steps = [null, ...this._steps];
+      stepList = steps.slice(0, this._cursor + 1);
 
     } else if(this._mode === PRISM_LINE_HIGHLIGHTER_MODE_ABSOLUTE) {
       // in absolute build mode we only want to use the given

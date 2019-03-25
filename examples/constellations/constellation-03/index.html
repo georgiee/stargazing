@@ -89,7 +89,10 @@
 
 
   const stack = new VirtualIframeStack(steps);
-  window.addEventListener('message', stack.handleMessage);
+  window.addEventListener('message', data => {
+    console.log('new message', data);
+    stack.handleMessage(data);
+  });
 </script>
 
 </body>

@@ -33,7 +33,7 @@
 </svg>
 
 <script type="module">
-  import { createSVGElement, generateLinePath, createDot, createLine, getRandomColor } from '../../shared.js';
+  import { createIframeRunner, createSVGElement, generateLinePath, createDot, createLine, getRandomColor } from '../../shared.js';
   import { orion } from '../../src/js/data/orion.js';
 
   import { createSky, createStar } from '../../src/js/sky.js';
@@ -42,13 +42,10 @@
   const svg = document.querySelector('svg');
 
   const sky = createSky({ count: 350 });
-  svg.appendChild(sky);
 
   const shootingStars = createShootingStars();
-  svg.appendChild(shootingStars);
 
   const constellation = createConstellation(orion.coordinates, orion.lines);
-  svg.appendChild(constellation);
   constellation.setAttribute('transform', `translate(350, 150)`);
 
   function createConstellation(points, lineIndices) {
@@ -68,6 +65,24 @@
 
     return group;
   }
+
+  function startDemo() {
+    svg.appendChild(sky);
+    svg.appendChild(shootingStars);
+    svg.appendChild(constellation);
+  }
+
+  function stopDemo() {
+    while (svg.firstChild) {
+      console.log('remove ', svg.firstChild);
+      svg.removeChild(svg.firstChild);
+    }
+  }
+
+  createIframeRunner({
+    play: startDemo,
+    stop: stopDemo,
+  })
 
 </script>
 

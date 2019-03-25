@@ -101,3 +101,21 @@ export function indicesToPoints(indices, source) {
     indexList.map(index => source[index])
   ))
 }
+
+// we need to start and stop iframes emnbed as a background manually
+// otherwise we risk to run three instance (2xpreview, 1x live)
+// with pull downs fps dramatically dependent of the content.
+
+export function createIframeRunner({play, stop}) {
+  const noop = () => {};
+
+  const playFn = play || noop;
+  const stopFn = stop || noop;
+
+  window.addEventListener('message', ({data}) => {
+    switch(data) {
+      case 'slide:stop': stopFn(); break;
+      case 'slide:start': playFn();break;
+    }
+  });
+}

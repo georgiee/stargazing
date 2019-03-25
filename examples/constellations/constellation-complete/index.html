@@ -38,18 +38,16 @@
   import { createSky, createStar } from './../../src/js/sky.js';
   import { createShootingStars } from './../../src/js/shooting.js';
   import { createConstellations } from '../../src/js/constellation.js';
+  import { createIframeRunner } from '../../shared.js';
 
   const svg = document.querySelector('svg');
 
   const sky = createSky({ count: 350 });
-  svg.appendChild(sky);
 
   const shootingStars = createShootingStars();
-  svg.appendChild(shootingStars);
 
   const {group:constellations, controls} = createConstellations();
   constellations.setAttribute('transform', 'translate(0, 100)')
-  svg.appendChild(constellations);
 
 
   const stackPending = [
@@ -103,6 +101,23 @@
       current.stop();
     }
   }
+
+  function startDemo() {
+    svg.appendChild(sky);
+    svg.appendChild(shootingStars);
+    svg.appendChild(constellations);
+  }
+
+  function stopDemo() {
+    while (svg.firstChild) {
+      svg.removeChild(svg.firstChild);
+    }
+  }
+
+  createIframeRunner({
+    play: startDemo,
+    stop: stopDemo,
+  })
 
 </script>
 
