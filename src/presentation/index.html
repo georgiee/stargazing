@@ -401,7 +401,7 @@
 
         <!-- Code: Star III -->
         <section>
-          <pre class="fragment" data-src="examples/star/star-03/snippet.svg"></pre>
+          <pre data-src="examples/star/star-03/snippet.svg"></pre>
 
           <svg viewbox="-480 -350 960 700" width ="500" class="fragment">
             <circle r="1000" cx="-1250"  fill="#B5CDFF"></circle>
@@ -434,7 +434,7 @@
 
           <aside class="notes">
             <p>We want to create this markup with Javascript — I also added a transform so we can change the positions.</p>
-            <p>I want to use a function call like this where I provide all values</p>
+            <p>I want to use a function call `createStar` like this where I provide all values</p>
             <p>And the function itself looks like this</p>
             <p>
               1. Custom createSVGElement function<br>
@@ -513,7 +513,7 @@
           <aside class="notes">
               <p>Look at that image. More and more stars disappear from right to left.
                   You can see how you location affects the total count of stars.</p>
-              <p>At the Marienplatz you won't be able to see more than 35 stars in the whole night sky</p>
+              <p>Standing at the Marienplatz you won't be able to see more than 35 stars in the whole night sky</p>
               <p>Compare this with some dark spots in East Germany where you can see the the maximum that our eyes can handle</p>
 
               <!-- Numbers are the Bortle scale (https://en.wikipedia.org/wiki/Bortle_scale) -->
@@ -638,7 +638,6 @@
             data-src="examples/sky/sky-02/snippet-glow.css"></pre>
 
           <iframe
-            class="fragment"
             width="600"
             height="250"
             data-src="examples/sky/sky-02/glow.html">
@@ -663,7 +662,7 @@
             data-src="examples/sky/sky-02/both.html">
           </iframe>
           <aside class="notes">
-            <p>When we combine both animations it will loook like this</p>
+            <p>When we combine both animations it will animate scale and fade in parallel</p>
             <p>We use different timings for the animations to create a more natural animation.</p>
           </aside>
         </section>
@@ -722,10 +721,9 @@
 
             <aside class="notes">
               <p>We can know add the twinkling effect animation to all of our stars in the sky just by modifying the createStar function we created earlier</p>
-              <p>The CSS Variables are assigned through the style object you can find on any DOM object.</p>
-              <p>We assign a negative random value between 0 and 4000ms</p>
-              <p>And the result looks already awesome. I kept the large circle here
-                so you can see the effect in large and small.
+              <p>First we add the CSS class `twinkle-little-star` to provide the animations</p>
+              <p>Next we assign a random and negative delay with our CSS Variables to offset the animations</p>
+              <p>The result looks already awesome. I kept the large circle here so you can see the effect in large and small.
               </p>
           </aside>
         </section>
@@ -807,7 +805,12 @@
         <!-- Code: Shooting Fading -->
         <section>
           <pre style="font-size: 18px" data-src="examples/shooting/shooting-01/snippet.svg"></pre>
-          <pre style="font-size: 18px" class="fragment" data-src="examples/shooting/shooting-01/snippet.css"></pre>
+          <pre
+            class="fragment"
+            data-line-fragments='["6-8"]'
+            data-line-fragments-mode='absolute'
+            data-fragment-index="1"
+            style="font-size: 18px"  data-src="examples/shooting/shooting-01/snippet.css"></pre>
 
           <iframe
             class="fragment"
@@ -991,7 +994,7 @@
 
           <aside class="notes">
             <p>We can do the same for the angle. </p>
-            <p>Her I prepared an example where the two angles are set to different values</p>
+            <p>Here I prepared an example where the two angles are set to different values</p>
           </aside>
 
           <iframe
@@ -1015,14 +1018,16 @@
           <pre
             class="fragment"
             data-fragment-index="0"
-            data-line-fragments='["3-5", "10-12", "13-14" ]'
+            data-line-fragments='["3-5", "10-14" ]'
             style="font-size: 18px;"
             data-src="examples/shooting/shooting-06/snippet.js"></pre>
 
           <aside class="notes">
             <p>We have build a shooting star where we can easily create variations with CSS Variables.</p>
             <p>Let's create a function so we can easily create them with few parameters</p>
-            <p>The method itself will create the SVG structure and apply properties and values</p>
+            <p>The method itself will</p>
+            <p> create the SVG structure</p>
+            <p>and apply all CSS Variables and attributes</p>
           </aside>
         </section>
 
@@ -1052,7 +1057,7 @@
           <h2>Meteor Shower</h2>
           <p class="fragment">Up to 200 shooting stars per hour</p>
           <aside class="notes">
-            <p>But during a meteor shower you an observe</p>
+            <p>But during a meteor shower you can observe</p>
             <p>up to 200 shooting stars per hour</p>
           </aside>
         </section>
@@ -1095,7 +1100,12 @@
         <section>
           <div class="twocol">
             <div>
-              <pre style="font-size: 12px">
+              <pre style="font-size: 12px"
+
+                data-fragment-index="0"
+                data-line-fragments-mode="absolute"
+                data-line-fragments='["2-4", "6-9", "12-18"]'
+                  >
                 <code class="language-css">
                   .shooting-star {
                     visibility: hidden;

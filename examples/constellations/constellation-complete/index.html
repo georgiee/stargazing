@@ -62,11 +62,11 @@
   const urlParams = new URLSearchParams(window.location.search);
   const autoplay = urlParams.has('autoplay');
 
-  if(autoplay) {
-    autoplayAll();
-  }else {
-    window.addEventListener('message', remoteControlConstellations)
-  }
+  // if(autoplay) {
+  //   autoplayAll();
+  // }else {
+  //   window.addEventListener('message', remoteControlConstellations)
+  // }
 
   function playAll() {
     stackPending.forEach(control => control.play());
@@ -103,12 +103,16 @@
   }
 
   function startDemo() {
+    console.log('startDemo')
     svg.appendChild(sky);
     svg.appendChild(shootingStars);
     svg.appendChild(constellations);
+
+    autoplayAll();
   }
 
   function stopDemo() {
+    console.log('stop demo')
     while (svg.firstChild) {
       svg.removeChild(svg.firstChild);
     }
