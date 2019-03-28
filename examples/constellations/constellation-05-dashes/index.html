@@ -41,7 +41,7 @@
 </head>
 
 <body>
-<svg id='demosvg' viewbox="-10 -10 120 90"
+<svg id='demosvg' viewbox="-10 -10 120 60"
 preserveAspectRatio="xMidYMid meet">
   <g transform="translate(0, 0)">
     <!-- solid -->
@@ -90,32 +90,6 @@ preserveAspectRatio="xMidYMid meet">
       </path>
       <text font-size="8" y="-3" x="10">dasharray=50</text>
     </g>
-
-    <!-- dasharray = 75 -->
-    <g transform="translate(0 60)">
-      <circle cx="0" cy = "0" r="2" fill=white></circle>
-      <circle cx="100" cy = "0" r="2" fill=white></circle>
-      <path
-        stroke-dasharray="50"
-        stroke-dashoffset="10"
-        stroke="hotpink" stroke-width="2"
-        d="M 0 0 L 100 0" fill='transparent'>
-      </path>
-      <text font-size="8" y="-3" x="10">dasharray=50, offset 10</text>
-    </g>
-
-    <!-- dasharray = 100 -->
-    <g transform="translate(0 75)">
-        <circle cx="0" cy = "0" r="2" fill=white></circle>
-        <circle cx="100" cy = "0" r="2" fill=white></circle>
-        <path
-          stroke-dasharray="50"
-          stroke-dashoffset="50"
-          stroke="hotpink" stroke-width="2"
-          d="M 0 0 L 100 0" fill='transparent'>
-        </path>
-        <text font-size="8" y="-3" x="10">dasharray=50, offset 50</text>
-      </g>
   </g>
 </svg>
 

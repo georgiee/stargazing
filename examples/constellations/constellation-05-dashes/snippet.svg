@@ -6,11 +6,3 @@
 <path stroke-dasharray="10"></path>
 
 <path stroke-dasharray="50"></path>
-
-<path stroke-dasharray="50"
-  stroke-dashoffset="10">
-</path>
-
-<path stroke-dasharray="50"
-  stroke-dashoffset="50">
-</path>

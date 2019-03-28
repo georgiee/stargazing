@@ -1,0 +1,10 @@
+<!-- Multiple 100px lines, dasharray 20 -->
+<path stroke-dashoffset="0"></path>
+
+<path stroke-dashoffset="5"></path>
+
+<path stroke-dashoffset="30"></path>
+
+<path stroke-dashoffset="50"></path>
+
+<path stroke-dashoffset="100"></path>

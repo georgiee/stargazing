@@ -1374,7 +1374,7 @@
               class="line-numbers"
               style='font-size: 12px'
               data-line-fragments-mode="absolute"
-              data-line-fragments='[null, "10","10", null]'
+              data-line-fragments='[null, null, "10", null]'
               data-src="examples/constellations/constellation-02c/snippet.js"></pre>
 
               <pre
@@ -1555,14 +1555,12 @@
         </section>
 
         <section>
-          <h3>Dash Array & Offset</h3>
+          <h3>Dash Array</h3>
           <div class="twocol">
-            <iframe width="400" height="320" data-src="examples/constellations/constellation-05-dashes/"></iframe>
+            <iframe width="400" height="320" data-src="examples/constellations/constellation-05-dashes/index.html"></iframe>
             <div>
               <pre
                 style='font-size: 16px'
-                data-line-fragments-mode="absolute"
-                data-line-fragments='["3-9", "11-17"]'
                 data-src="examples/constellations/constellation-05-dashes/snippet.svg"></pre>
             </div>
           </div>
@@ -1571,10 +1569,30 @@
             <p>First a quick summary what dashes and offsets do in a path</p>
 
             <p>
-              Dashes are created through the `stroke-dasharray` property on a path. The value means how long a single segment should be followed by a gap with the same size.
+              Dashes are created through the `stroke-dasharray` property on a path.
             </p>
             <p>
-              When you add an offset you can see that the line is shifted by the given offset.
+              The value means how long a single segment should be followed by a gap with the same size.
+            </p>
+          </aside>
+        </section>
+
+        <section>
+          <h3>Dash Offset</h3>
+          <div class="twocol">
+            <iframe width="400" height="320" data-src="examples/constellations/constellation-05-dashes/index2.html"></iframe>
+            <div>
+              <pre
+                style='font-size: 16px'
+                data-src="examples/constellations/constellation-05-dashes/snippet2.svg"></pre>
+            </div>
+          </div>
+          <aside class="notes">
+            <p>Dash Offset is like pushing the original line to the left.</p>
+            <p>By doing this it seems like the line with the offset stars later.</p>
+            <p>
+              In the example I inserted a yellow line with the width of the offset
+              at the end so you can see how far the original line was pushed.
             </p>
           </aside>
         </section>
