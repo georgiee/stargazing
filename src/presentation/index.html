@@ -1580,7 +1580,7 @@
         <section>
           <h3>Dash Offset</h3>
           <div class="twocolx">
-            <iframe width="700" height="400" data-src="examples/constellations/constellation-05-dashes/index2.html"></iframe>
+            <iframe width="800" height="350" data-src="examples/constellations/constellation-05-dashes/index2.html"></iframe>
             <!-- <div>
               <pre
                 style='font-size: 16px'
@@ -1598,12 +1598,8 @@
 
         <section>
           <h3>Animate Dash Offset</h3>
-          <pre
-            style='font-size: 18px'
-            data-src="examples/constellations/constellation-04-dasharray/snippet.svg"></pre>
-
           <iframe
-            data-virtual-iframe="[1,1,1,1,1,1]"
+            data-virtual-iframe="[1,1,1]"
             data-virtual-iframe-offset="0"
             width="100%"
             height="430"
@@ -1611,6 +1607,7 @@
 
           <aside class="notes">
             <p>Now we want to the animate the dash offset and I prepared a little demo</p>
+            <p>We start with the infinite line togeter with the yellow window</p>
 
             <p>1) We start with a dashed line. It's 100px in width and has set a dasharray of 10px</p>
             <p>2) We can now imagine the line being drawn longer</p>
@@ -1628,40 +1625,39 @@
         </section>
 
         <section>
-          <h3>Magic</h3>
+          <h3>Magic 🧙‍♂️</h3>
           <iframe
             data-virtual-iframe="[1,1]"
             data-virtual-iframe-offset="0"
             width="100%"
             height="430"
-            data-src="examples/constellations/constellation-04-dasharray/?part2"></iframe>
-
+            data-src="examples/constellations/constellation-04-dasharray/index-magic.html"></iframe>
           <aside class="notes">
             <p>
-              Now comes the magic.
+              Now comes the magic. We start at an offset of 100 which equals the length of the line.
             </p>
             <p>
-              Let's assign 100px, the length of the line, as the dasharray while keeping the
-              dash offset animated. You can see how this affects the drawing. It's a valid dashed line.
+              We set our dasharray to the same value of 100. You can see that this hides the result,
+              as the yellow now lays entirely on the first gap.
             </p>
             <p>
-              The final result will look like this. We just build an animated line!
-              And you can still see how the revealing works.
-            </p>
-            <p>
-              The simple rule to draw a line:
-
-              Apply a dash array & offset with the length of the line
-              then slowly animate the offset back to 0.
+              We start the animation again and go from full offset to 0. Look how the result looks like. We just build a revealing path animation!
             </p>
           </aside>
         </section>
 
         <section>
+            <pre
+            data-line-fragments-mode="absolute"
+            data-line-fragments='["3", "4", "5, 8-11", null]'
+            style='font-size: 14px'
+            data-src="examples/constellations/constellation-06/snippet.css">
+          </pre>
+        </section>
+        <section>
           <div class="twocol-73">
             <div>
               <pre
-
                 data-line-fragments-mode="absolute"
                 data-line-fragments='["3", "4", "5, 8-11", null]'
                 style='font-size: 14px'

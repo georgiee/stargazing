@@ -74,9 +74,30 @@
     --dasharray: 100;
   }
 
-  .current-state text{
-
+  .hide-last .group-05 .content {
+    display: none;
   }
+
+  .show-last .group-05 .content {
+    display: block;
+  }
+
+  .group-03-show .group-03 {
+    visibility: visible;
+  }
+
+  .group-04-show .group-04 {
+    visibility: visible;
+  }
+
+  .group-05-show .group-05 {
+    visibility: visible;
+  }
+
+  /* .group-05-show .group-05 .content {
+    display: none;
+  } */
+
 
   </style>
 </head>
@@ -94,7 +115,7 @@
     <g class="current-state">
       <text id='amountOffset' y="0" x="0">dashoffset</text>
       <text id='amountArray' y="0" x="80">dasharray</text>
-      <text id='amountArray' y="0" x="120">line length: 100px</text>
+      <text y="0" x="160">line length: 100px</text>
     </g>
 
     <g transform="translate(0, 20)">
@@ -131,7 +152,7 @@
       <!-- final line with offset animation -->
       <g transform="translate(0, 60)" data-step="5" class="group-05">
         <text>3. the final result</text>
-        <g transform="translate(0, 5)">
+        <g transform="translate(0, 5)" class="content">
           <circle cx="0" cy = "0" r="2" fill=white></circle>
           <circle cx="100" cy = "0" r="2" fill=white></circle>
           <path class="apply-offset path-with-dashes" d="M 0 0 L 100 0"></path>
@@ -144,13 +165,15 @@
 <!-- <input type="range" id='dashSize' min="0" maxx="150" value="10"> -->
 
 <script type="module">
-
-  let offset = 0;
-  let speed = 10;
+  const MAX_SPEED = 10;
+  const MAX_OFFSET = 100;
+  let offset = MAX_OFFSET;
+  let speed = -MAX_SPEED;
   let playing = false;
   let intervalID = null;
 
-  setDashOffset(0);
+  setDashOffset(offset);
+  setDashArray(10);
 
   function setDashArray(value) {
     demosvg.style.setProperty('--dasharray', value);
@@ -161,16 +184,6 @@
     amountOffset.innerHTML = 'dashoffset: ' +  Math.round(value);
   }
 
-  const dashAnimation = {
-    play() {
-      setDashArray(100);
-    },
-
-    stop() {
-      setDashArray(10);
-    }
-  }
-
   const offsetAnimation = {
     interval: null,
 
@@ -178,12 +191,15 @@
       if(offsetAnimation.interval) {
         return;
       }
+
       offsetAnimation.interval = setInterval(() => {
         offset+=speed/20;
         setDashOffset(offset);
-        if(offset >= 100 || offset <= 0) {
-          speed *= -1;
+
+        if(offset <= 0) {
+          offset = 100;
         }
+
       }, 50);
     },
 
@@ -197,91 +213,6 @@
   }
 
 
-  const MAX_FRAGMENTS = 6;
-
-  let counter = 0;
-
-  let elements = [];
-  collect();
-
-  function start() {
-    counter = 0;
-    update(counter);
-
-    setDashArray(10);
-  }
-
-  function stop() {
-    counter = 0;
-    update(counter);
-  }
-
-  function previous() {
-    if(counter === 0) {
-      counter = MAX_FRAGMENTS;
-    }else {
-    }
-
-    counter--;
-    update(counter);
-  }
-
-  function next() {
-    counter++;
-    update(counter);
-  }
-
-  const actions = [
-    { index: 3, show: '.group-03' },
-    { index: 4, run: offsetAnimation.play, stop: offsetAnimation.stop },
-    { index: 5, show: '.group-04' },
-    { index: 6, show: '.group-05' },
-    { index: 7, run: dashAnimation.play, stop: dashAnimation.stop },
-  ];
-
-  function update(index) {
-    const elements = document.querySelectorAll('[data-step]');
-    const activeSet = actions.filter(action => action.index <= index);
-    const inactiveSet = actions.filter(action => action.index > index);
-
-    inactiveSet.forEach(action => {
-      if(action.show) {
-        const el = document.querySelector(action.show);
-        el.classList.remove('show');
-      }
-
-
-      if(action.run && action.stop) {
-        action.stop();
-      }
-    });
-
-    activeSet.forEach(action => {
-      if(action.show) {
-        const el = document.querySelector(action.show);
-        el.classList.add('show');
-      }
-
-      if(action.run) {
-        action.run();
-      }
-    });
-  }
-
-  function collect() {
-    const fragments = document.querySelectorAll('[data-step]');
-    elements = new Array(...fragments);
-
-    elements.sort((a, b) => {
-      return parseInt(a.dataset.reveal) - parseInt(b.dataset.reveal);
-    });
-
-
-    elements.forEach(el => {
-      el.classList.add('fragment');
-    });
-
-  }
 
   import { VirtualIframeStack }  from '../../src/virtual-stack-control.js';
 
@@ -296,32 +227,6 @@
 
     return { start, stop};
   }
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const fullView = urlParams.has('full');
-  const part2 = urlParams.has('part2');
-
-  const stepsPart1 = [
-    singleStep(3),
-    singleStep(4),
-    singleStep(5),
-    singleStep(6)
-  ];
-
-  const stepsPart2 = [
-    singleStep(6),
-    combineSteps([
-      cssStep('full-dash01'),
-      function() {
-        console.log('set')
-        amountArray.innerHTML = 'dasharray: '+ 100;
-      },
-      cssStep('full-dash02'),
-      cssStep('full-dash03'),
-      cssStep('full-dash04'),
-    ]),
-    cssStep('full-dash05')
-  ]
 
   function combineSteps(steps) {
     function start() {
@@ -360,18 +265,29 @@
     return { start, stop};
   }
 
-  if(fullView) {
-    setDashArray(10);
-    update(6);
-  } else if(part2) {
-    const stack = new VirtualIframeStack(stepsPart2);
-    stack.goto(1);
-    window.addEventListener('message', stack.handleMessage);
-  } else {
-    const stack = new VirtualIframeStack(stepsPart1);
-    stack.goto(1);
-    window.addEventListener('message', stack.handleMessage);
-  }
+  const steps = [
+    combineSteps([
+      cssStep('group-03-show'),
+      cssStep('group-04-show'),
+      cssStep('group-05-show')
+    ]),
+    {
+      start: () => {
+        setDashArray(100);
+      },
+      stop: () => {
+        setDashArray(10);
+      }
+    },
+    {
+      start: offsetAnimation.play,
+      stop: offsetAnimation.stop
+    },
+  ];
+
+  const stack = new VirtualIframeStack(steps);
+  stack.goto(1);
+  window.addEventListener('message', stack.handleMessage);
 
 </script>
 </body>

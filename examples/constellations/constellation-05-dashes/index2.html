@@ -73,11 +73,15 @@
   #example-100 {
     --offset: 100;
   }
+
+  .text {
+    font-size: 10px;
+  }
   </style>
 </head>
 
 <body>
-<svg id='demosvg' viewbox="-10 -20 320 230"
+<svg id='demosvg' viewbox="-10 -20 320 100"
 preserveAspectRatio="xMidYMin meet">
 <defs>
   <marker id="arrow" markerWidth="10" markerHeight="10" refX="2.5" refY="2" orient="auto" markerUnits="strokeWidth">
@@ -113,31 +117,19 @@ preserveAspectRatio="xMidYMin meet">
 </defs>
 
 <g>
-  <text y='-10'>offset 0</text>
+  <text class='text' y='-10'>offset 0</text>
   <use x="0" y="0" xlink:href="#xxo" id="example-00" />
 </g>
 
 <g transform="translate(0 45)">
-  <use xlink:href="#xxo" id="example-10" />
-  <text y='-10'>offset 10</text>
-  <line x1="0" y1="-5" x2="10" y2="-5" stroke="#fff" stroke-width="1" marker-end="url(#arrow)" class="visualization__line" />
-</g>
-
-<g transform="translate(0 90)">
   <use xlink:href="#xxo" id="example-30" />
-  <text y='-10'>offset 30</text>
+  <text class='text' y='-10'>offset 30</text>
   <line x1="0" y1="-5" x2="30" y2="-5" stroke="#fff" stroke-width="1" marker-end="url(#arrow)" class="visualization__line" />
 </g>
 
-<g transform="translate(0 135)">
-  <use xlink:href="#xxo" id="example-50" />
-  <text y='-10'>offset 50</text>
-  <line x1="0" y1="-5" x2="50" y2="-5" stroke="#fff" stroke-width="1" marker-end="url(#arrow)" class="visualization__line" />
-</g>
-
-<g transform="translate(0 180)">
+<g transform="translate(0 90)">
   <use xlink:href="#xxo" id="example-100" />
-  <text y='-10'>offset 100</text>
+  <text class='text' y='-10'>offset 100</text>
   <line x1="0" y1="-5" x2="100" y2="-5" stroke="#fff" stroke-width="1" marker-end="url(#arrow)" class="visualization__line" />
 </g>
 
