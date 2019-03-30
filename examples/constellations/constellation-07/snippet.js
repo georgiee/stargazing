@@ -1,4 +1,4 @@
-// will set 125px
+// set --path-length to 125px
 updatePathLength(document.querySelector('.hotpink-path'));
 
 function updatePathLength(path) {

@@ -9,7 +9,6 @@ import { ursaMajor } from './data/ursa-major.js';
 const DEBUG = false;
 
 export function createConstellations() {
-  console.log('run starConstellations');
   const group = createSVGElement('g');
 
   const constellationOrion = createConstellation(orion);

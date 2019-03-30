@@ -1,4 +1,4 @@
-import { PrismLineHighlighter, PRISM_LINE_HIGHLIGHTER_MODE_ABSOLUTE } from './prism-highlighter';
+import { PrismLineHighlighter } from './prism-highlighter';
 import { virtualIframeFragments } from './virtual-fragments';
 
 document.addEventListener('DOMContentLoaded', run);
@@ -40,11 +40,26 @@ function completeConstellation() {
   const slideSection = document.querySelector('#constellationComplete');
   const slideBuilder = new SlideBuilder(slideSection);
 
+
   function play() {
-    console.log('play')
     const iframeWindow = getBackgroundIframe().contentWindow;
-      iframeWindow.postMessage("play", "*");
+    iframeWindow.postMessage("play", "*");
   }
+
+  Reveal.addEventListener('ready', m => {
+    // ensure that the slide starts when directly loaded
+    if(m.currentSlide === slideSection) {
+
+      const iframe = getBackgroundIframe();
+      iframe.addEventListener('load', loaded);
+
+      //make sure iframe is loaded before sending message
+      function loaded() {
+        iframe.removeEventListener('load', loaded);
+        iframe.contentWindow.postMessage('slide:start', "*");
+      }
+    }
+  })
 
   const fragmentList = [ play ]
   slideBuilder

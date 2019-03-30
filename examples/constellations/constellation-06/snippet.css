@@ -1,10 +1,19 @@
-.red-path {
-  --path-length: 100;
-  stroke-dasharray: var(--path-length);
-  animation: dashAnimation 5s infinite backwards;
+@keyframes revealPathAnimation {
+  0%, 100% {
+    stroke-dasharray: var(--path-length);
+  }
+
+  0% {
+    stroke-dashoffset: var(--path-length);
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
 }
 
-@keyframes dashAnimation {
-  0% { stroke-dashoffset: var(--path-length); }
-  100% { stroke-dashoffset: 0; }
+.your-path {
+  --path-length: 100;
+  animation: revealPathAnimation 5s infinite backwards;
 }
+

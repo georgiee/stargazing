@@ -38,7 +38,7 @@ export const orion = {
   lines: LINES,
   scale: 0.5,
   position: {
-    x: 420, y: 140
+    x: 420, y: 120
   },
   rotate: 0,
   debug: false,

@@ -41,7 +41,7 @@ const LINES = [
     lines: LINES,
     scale: 0.3,
     position: {
-      x: 400, y: 50
+      x: 630, y: 250
     },
     rotate: -25,
     debug: false,

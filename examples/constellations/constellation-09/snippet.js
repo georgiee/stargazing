@@ -1,7 +1,10 @@
 function createLine(line, index) {
   const path = createSVGElement('path');
   path.classList.add('animated-path');
-  path.style.setProperty('--path-length', path.getTotalLength());
-  path.style.setProperty('--path-index', index);
+
+  const pathLength = path.getTotalLength();
+  const delay = 0.5 * index;
+  path.style.setProperty('--path-length', pathLength);
+  path.style.setProperty('--path-delay', delay);
   //...
 }

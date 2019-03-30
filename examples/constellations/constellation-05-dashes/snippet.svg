@@ -1,5 +1,5 @@
 <!-- Multiple 100px lines -->
-<path stroke-dasharray="0"></path>
+<path></path>
 
 <path stroke-dasharray="1"></path>
 

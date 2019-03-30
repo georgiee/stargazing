@@ -74,6 +74,10 @@
   }
 
   @keyframes dashAnimation {
+    0%, 100% {
+      stroke-dasharray: var(--path-length);
+    }
+
     0% {
       stroke-dashoffset: var(--path-length);
     }
@@ -100,13 +104,6 @@
 
         <g class="animated-offset">
           <rect width="100" height="4" y="-2" opacity="0.3" fill="yellow"></rect>
-        </g>
-
-        <g transform="translate(0, 6)">
-          <g>
-            <rect width="100" height="4" y="-2" opacity="0.3" fill="yellow"></rect>
-            <path d="M 0 0 L 100 0" stroke="red" class="animated-path"></path>
-          </g>
         </g>
       </g>
     </g>
@@ -160,6 +157,8 @@
 
     const stack = new VirtualIframeStack(steps);
     window.addEventListener('message', stack.handleMessage);
+    stack.goto(2);
+
   </script>
 </body>
 

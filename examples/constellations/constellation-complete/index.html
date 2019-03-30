@@ -53,8 +53,7 @@
   const stackPending = [
     controls.orion,
     controls.hercules,
-    controls.ursaMajor,
-    controls.gemini
+    controls.ursaMajor
   ];
 
   const stackActive = []
@@ -62,57 +61,29 @@
   const urlParams = new URLSearchParams(window.location.search);
   const autoplay = urlParams.has('autoplay');
 
-  // if(autoplay) {
-  //   autoplayAll();
-  // }else {
-  //   window.addEventListener('message', remoteControlConstellations)
-  // }
+  if(autoplay) {
+    autoplayAll();
+  }else {
 
+  }
   function playAll() {
     stackPending.forEach(control => control.play());
   }
 
   function autoplayAll() {
+    console.log('autoplayAll')
     stackPending.forEach(control => control.autoplay());
   }
 
-  function remoteControlConstellations({data}){
-
-
-    if(data === 'play') {
-      autoplayAll()
-    }
-
-    if(data === 'next-constellation') {
-      if(stackPending.length === 0) {
-        return ;
-      }
-      const current = stackPending.shift();
-      stackActive.push(current);
-      current.play();
-    }
-
-    if(data === 'previous-constellation') {
-      if(stackActive.length === 0) {
-        return ;
-      }
-      const current = stackActive.pop();
-      stackPending.unshift(current);
-      current.stop();
-    }
-  }
-
   function startDemo() {
-    console.log('startDemo')
     svg.appendChild(sky);
     svg.appendChild(shootingStars);
     svg.appendChild(constellations);
 
-    autoplayAll();
+    // autoplayAll();
   }
 
   function stopDemo() {
-    console.log('stop demo')
     while (svg.firstChild) {
       svg.removeChild(svg.firstChild);
     }
@@ -121,6 +92,12 @@
   createIframeRunner({
     play: startDemo,
     stop: stopDemo,
+  })
+
+  window.addEventListener('message', ({data}) => {
+    if(data === 'play') {
+      autoplayAll();
+    }
   })
 
 </script>

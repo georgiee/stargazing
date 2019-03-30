@@ -89,18 +89,20 @@ preserveAspectRatio="xMidYMin meet">
   </marker>
 
   <g id="xxo" class="visualization">
-    <path
-      stroke-dasharray="20"
-      stroke-dashoffset="0"
-      stroke="hotpink" stroke-width="2"
-      d="M 0 0 L 300 0" fill='transparent'>
-    </path>
+    <g transform="translate(0 10)">
+      <path
+        stroke-dasharray="20"
+        stroke-dashoffset="0"
+        stroke="hotpink" stroke-width="2"
+        d="M 0 0 L 300 0" fill='transparent'>
+      </path>
 
-    <g class="visualization__window">
-      <rect width="100" height="6" y="-3" opacity="0.3" fill="yellow"></rect>
+      <g class="visualization__window">
+        <rect width="100" height="6" y="-3" opacity="0.3" fill="yellow"></rect>
+      </g>
     </g>
 
-    <g transform="translate(0 10)">
+    <g transform="translate(0 0)">
       <circle cx="0" cy = "0" r="2" fill=white></circle>
       <circle cx="100" cy = "0" r="2" fill=white></circle>
       <path
@@ -111,8 +113,6 @@ preserveAspectRatio="xMidYMin meet">
         d="M 0 0 L 100 0" fill='transparent'>
       </path>
     </g>
-
-
   </g>
 </defs>
 
@@ -124,13 +124,15 @@ preserveAspectRatio="xMidYMin meet">
 <g transform="translate(0 45)">
   <use xlink:href="#xxo" id="example-30" />
   <text class='text' y='-10'>offset 30</text>
-  <line x1="0" y1="-5" x2="30" y2="-5" stroke="#fff" stroke-width="1" marker-end="url(#arrow)" class="visualization__line" />
+  <line x1="0" y1="7" x2="30" y2="7" stroke="#fff" stroke-width="1" opacity="0.75" marker-end="url(#arrow)" class="visualization__line" />
+  <line x1="0" y1="13" x2="30" y2="13" stroke="#fff" stroke-width="1" opacity="0.75" marker-end="url(#arrow)" class="visualization__line" />
 </g>
 
 <g transform="translate(0 90)">
   <use xlink:href="#xxo" id="example-100" />
   <text class='text' y='-10'>offset 100</text>
-  <line x1="0" y1="-5" x2="100" y2="-5" stroke="#fff" stroke-width="1" marker-end="url(#arrow)" class="visualization__line" />
+  <line x1="0" y1="7" x2="100" y2="7" stroke="#fff" stroke-width="1" opacity="0.75" marker-end="url(#arrow)" class="visualization__line" />
+  <line x1="0" y1="13" x2="100" y2="13" stroke="#fff" stroke-width="1" opacity="0.75" marker-end="url(#arrow)" class="visualization__line" />
 </g>
 
 </svg>

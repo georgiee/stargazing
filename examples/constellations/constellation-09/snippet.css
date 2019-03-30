@@ -1,7 +1,4 @@
 .animated-path {
-  --duration: 0.5s;
-
-  stroke-dasharray: var(--path-length);
-  animation: dashAnimation linear var(--duration) 1 forwards;
-  animation-delay: calc(var(--path-index) * var(--duration));
+  animation-delay: var(--path-delay, 0);
+  animation: revealPathAnimation linear 0.5s 1 forwards;
 }

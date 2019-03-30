@@ -1,10 +1,2 @@
-<!-- Multiple 100px lines, dasharray 20 -->
-<path stroke-dashoffset="0"></path>
-
-<path stroke-dashoffset="5"></path>
-
-<path stroke-dashoffset="30"></path>
-
-<path stroke-dashoffset="50"></path>
-
-<path stroke-dashoffset="100"></path>
+<!-- length of 100px  -->
+<path stroke-dasharray="20" stroke-dashoffset="0"></path>

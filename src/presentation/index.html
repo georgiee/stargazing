@@ -1579,20 +1579,17 @@
 
         <section>
           <h3>Dash Offset</h3>
-          <div class="twocolx">
-            <iframe width="800" height="350" data-src="examples/constellations/constellation-05-dashes/index2.html"></iframe>
-            <!-- <div>
-              <pre
-                style='font-size: 16px'
-                data-src="examples/constellations/constellation-05-dashes/snippet2.svg"></pre>
-            </div> -->
+          <div style="width:650px; margin: auto">
+            <pre
+              style='font-size: 16px'
+              data-src="examples/constellations/constellation-05-dashes/snippet2.svg"></pre>
           </div>
+          <iframe width="800" height="350" data-src="examples/constellations/constellation-05-dashes/index2.html"></iframe>
           <aside class="notes">
-            <p>With a dash offset you can control where your dashes should start</p>
-            <p>Imagine an infinite line with a yellow window attached</p>
-            <p>The window has the same width as your line is long</p>
-            <p>When you apply an offset this window moves along the infinite line</p>
-            <p>Whatever is inside that window is your line drawn with an offset</p>
+            <p>A dashoffset controls where the dashes should start on a line.</p>
+            <p>Imagine a line. Now extend it to infinity with a yellow window floating over it. The window has the same width as your original line.</p>
+            <p>When you apply an offset that window moves along the infinite line by that amount and whatever is inside is what is being drawn as your original line.
+            </p>
           </aside>
         </section>
 
@@ -1603,23 +1600,13 @@
             data-virtual-iframe-offset="0"
             width="100%"
             height="430"
-            data-src="examples/constellations/constellation-04-dasharray/"></iframe>
+            data-src="examples/constellations/constellation-04-dasharray/index.html"></iframe>
 
           <aside class="notes">
-            <p>Now we want to the animate the dash offset and I prepared a little demo</p>
-            <p>We start with the infinite line togeter with the yellow window</p>
-
-            <p>1) We start with a dashed line. It's 100px in width and has set a dasharray of 10px</p>
-            <p>2) We can now imagine the line being drawn longer</p>
-
-            <p>3) Now imagine a yellow looking window above it. The window has the same width as the line</p>
-
-            <p>4) We start animating the dash offset. The window will move by the current value of the offset.</p>
-
-            <p>5) Let's remove everything beneath the yellow window and show only what we would see through it. </p>
-
-            <p>5) When we stop moving the window we can see how the animated offset looks like on the line.
-            </p>
+            <p>Here is a little demo to visualize what I just explained. You see the original line and the infinite line with the floating window</p>
+            <p>The offset is now going up and down while the window moves accordingly</p>
+            <p>You can see here what's inside that window only</p>
+            <p>Ignore that the window is moving and only show the content — we have a line with an animated offset!</p>
 
           </aside>
         </section>
@@ -1634,76 +1621,55 @@
             data-src="examples/constellations/constellation-04-dasharray/index-magic.html"></iframe>
           <aside class="notes">
             <p>
-              Now comes the magic. We start at an offset of 100 which equals the length of the line.
+              Here comes the magic. Our offset is set to 100 which moves the window to the end of our original line.
             </p>
             <p>
-              We set our dasharray to the same value of 100. You can see that this hides the result,
-              as the yellow now lays entirely on the first gap.
+              Now we set dasharray to the same value of 100. Each dash and gap will equal 100px, the entire window lays on the first gap.
             </p>
             <p>
-              We start the animation again and go from full offset to 0. Look how the result looks like. We just build a revealing path animation!
+              When we start the animation the offsets goes from 100 to 0. The result is a revealing line.
             </p>
           </aside>
         </section>
 
         <section>
+          <h3>CSS Animate Path</h3>
             <pre
             data-line-fragments-mode="absolute"
-            data-line-fragments='["3", "4", "5, 8-11", null]'
+            data-line-fragments='["4", "8, 12", "16-19"]'
             style='font-size: 14px'
             data-src="examples/constellations/constellation-06/snippet.css">
           </pre>
+          <aside class="notes">
+            <p>You can create a CSS Animation with our findings to easily reveal any path.</p>
+            <p>We assign the length of our path to the dash-array</p>
+            <p>Start with an offset that matches the end of our path and animate it back to 0 which will reveal the path</p>
+            <p>To use the CSS animation assign it to your path and provide its length.</p>
+          </aside>
         </section>
-        <section>
-          <div class="twocol-73">
-            <div>
-              <pre
-                data-line-fragments-mode="absolute"
-                data-line-fragments='["3", "4", "5, 8-11", null]'
-                style='font-size: 14px'
-                data-src="examples/constellations/constellation-06/snippet.css">
-              </pre>
-            </div>
-            <div>
-              <ul>
-                <li class="fragment" data-fragment-index="1">save length (100)</li>
-                <li class="fragment" data-fragment-index="2">apply dash array of full length</li>
-                <li class="fragment" data-fragment-index="3">animate from full to zero offset</li>
-              </ul>
-            </div>
-          </div>
 
+        <section>
           <iframe
-            data-virtual-iframe="[1, 1]"
-            data-virtual-iframe-offset="3"
             width="900"
             height="300"
             data-src="examples/constellations/constellation-06/index.html">
           </iframe>
-
+          <pre>
+            <code class="language-css">
+                .red-path {
+                  --path-length: 100;
+                  animation: revealPathAnimation 5s infinite backwards;
+                }
+            </code>
+          </pre>
           <aside class="notes">
-            <p>With all those information collected we know everything to make it work with CSS animation.</p>
-            <p>Provide the length of the given path</p>
-            <p>Setup the dasharray configuration</p>
-            <p>and apply the animation which will animate from the full dashoffset to 0</p>
-            <p>
-              I prepared a small demo that show the start position at 0% of the animation.
-              You can see that there is no red line visible.
-            </p>
-            <p>
-              Now I show you how the red path is currently constructed
-              and the offset lands the yellow window exactly on the empty part
-              so you can't see any red line in the triangle.
-            </p>
-            <p>
-              Let's play the animaton so you can see how it reveals itself.
-            </p>
+            <p>The result looks like this.</p>
           </aside>
         </section>
 
         <section>
           <iframe
-            data-virtual-iframe="[1, 1, 0, 1]"
+            data-virtual-iframe="[1]"
             data-virtual-iframe-offset="0"
             width="900"
             height="300"
@@ -1712,48 +1678,36 @@
           <div class="twocolx">
             <div>
               <pre
-              class="fragment"
-              data-fragment-index="0"
               style='font-size: 14px'
               data-src="examples/constellations/constellation-07/snippet.css"></pre>
             </div>
             <div
-              data-fragment-index="2"
+              data-fragment-index="1"
               class="fragment">
               <pre
                 style='font-size: 14px'
-                data-line="6"
+                data-line="6-7"
                 data-src="examples/constellations/constellation-07/snippet.js"></pre>
             </div>
           </div>
 
           <aside class="notes">
-            <p>That felt good, let's try it again with the hotpink path</p>
-            <p>We apply the same animation but something is wrong. We see a glitch at the beginning and it stops too early.</p>
-            <p>
-              Once again I enable the the debug view of the line and we see what's happening.
-              You can see that the dash array is wrong, it's repeating too early and the offset don't match the window size.
-            </p>
-            <p>
-              We need to update the path length. It's not 100 anymore. The hotpink line is longer.
-              We can't always tell the length of a line and that's where JavaScript can help us.
-            </p>
-            <p>
-              We can read the length of a path with `getTotalLength` and assign it to a CSS variable.
-            </p>
-
-            <p>
-              Watch what happens when I update the path length to the correct value.
-              It works!
-            </p>
+           <p>
+             You are in trouble if you use a wrong path length like here. The hotpink path is longer than 100px.
+             Paths can have many shapes so it's not always easy to get the correct length.
+           </p>
+           <p>
+             With JavaScript you can use the method getTotalLength on your path to get the exact value
+             and assign it to your CSS Variable.
+           </p>
           </aside>
         </section>
 
         <section>
           <iframe
             data-virtual-iframe="[1]"
-            data-virtual-iframe-offset="1"
-            width="900"
+            data-virtual-iframe-offset="0"
+            width="400"
             height="300"
             data-src="examples/constellations/constellation-08/"></iframe>
           <div class="twocol-73">
@@ -1775,12 +1729,13 @@
             </div>
           </div>
           <aside class="notes">
-            <p>We can now animate all lines, but this looks bad, as everything starts at the same time</p>
-            <p>Let's introduce some delays as we did with the shooting stars</p>
-            <p>
-              Each animation has a duration of 1s so if we offset each line by 1s we can create the illusion
-              that it's being drawn!
-            </p>
+           <p>
+             Let's animate all the lines. This looks bad because they all start at the same time.
+             So let's assign delays like we did with the shooting stars.
+           </p>
+           <p>
+             This time we assign positiv delay values, as we really want them to wait.
+           </p>
           </aside>
         </section>
 
@@ -1789,29 +1744,35 @@
             <iframe
               width="500"
               height="500"
-              data-virtual-iframe="[0,1]"
+              data-virtual-iframe="[0,0,1]"
               data-src="examples/constellations/constellation-09/"></iframe>
             <div>
               <pre
-                data-line-fragments='["4-6"]'
-                style='font-size: 12px'
-                data-src="examples/constellations/constellation-09/snippet.js"></pre>
-              <pre
-                data-line-fragments='[null, "7"]'
+                data-line-fragments='["3-4", null]'
+                data-line-fragments-mode="absolute"
                 style='font-size: 12px'
                 data-src="examples/constellations/constellation-09/snippet.css"></pre>
+              <pre
+                data-line-fragments-mode="absolute"
+                data-line-fragments='[null, "4,6-9", null]'
+                style='font-size: 12px'
+                data-src="examples/constellations/constellation-09/snippet.js"></pre>
+
             </div>
           </div>
           <aside class="notes">
             <p>
-              To animate all lines in a constellation we have to apply our CSS animation.
-              and we need to save the number of the created line (index) together with the path length in a CSS variable.
+              It's surprinsingly easy to apply our knowledge to the existing constellation.
             </p>
             <p>
-              We can use the path number to calculate a specific delay for each line.
+              Provide a CSS class to apply the CSS animation together with an delay.
             </p>
             <p>
-              And the result looks like this
+              Inside our existing "createLine" function we assign that CSS class and provide the path length and
+              a specific delay.
+            </p>
+            <p>
+              The result is a revealing constellation!
             </p>
           </aside>
         </section>
@@ -1822,7 +1783,7 @@
               We can use our function to easily create multiple constellations in the sky
             </p>
             <p>
-              Here the top 4 constellations I mentioned earlier ready in our night sky.
+              Here the top 3 constellations I told you about.
             </p>
           </aside>
         </section>
@@ -1894,7 +1855,7 @@
             data-src="examples/shooting/shooting-09/"></iframe>
 
           <aside class="notes">
-            and we learned how we can create variations of shooting stars with the power of CSS Variables
+            and we discovered how variations of shooting stars can be created with the power of CSS Variables
           </aside>
         </section>
 
@@ -1915,10 +1876,13 @@
             width="600"
             height="400"
             data-src="examples/constellations/constellation-09/index.html?full"></iframe>
+            <aside class="notes">
+              And in the last chapter we explored path animation techniques to create a revealing constellation.
+            </aside>
         </section>
 
         <section >
-          Thank you
+          Thank you!
         </section>
       </section>
     </div>

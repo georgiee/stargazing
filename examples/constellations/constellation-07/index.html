@@ -189,6 +189,8 @@
 
     const stack = new VirtualIframeStack(steps);
     window.addEventListener('message', stack.handleMessage);
+    stack.goto(2);
+
   </script>
 </body>
 
