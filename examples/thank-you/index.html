@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>01 - Stargazing — Star Colors</title>
+
+  <style>
+    body {
+      background-color: black;
+      color: #fff;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    svg {
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .constellation-path {
+      stroke: white;
+    }
+
+    .animate-path {
+      animation: revealPathAnimation var(--path-duration, 1s) 1 backwards;
+      animation-delay: var(--path-delay, 0);
+    }
+
+    @keyframes revealPathAnimation {
+      0%, 100% {
+        stroke-dasharray: var(--path-length);
+      }
+
+      0% {
+        stroke-dashoffset: var(--path-length);
+      }
+
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <svg width="960" height="700" viewBox="0 0 960 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g class="thank-you" stroke="red">
+      <path d="M42 31C71.2527 38.6981 100.017 37.6596 130.055 37.6596C152.553 37.6596 173.512 38.5203 195.171 32.3319" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M116.588 44.3192C120.105 64.9849 116.775 87.8136 116.588 108.843C116.454 123.757 115.256 138.605 115.256 153.537" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M183.184 65.63C163.727 54.2155 167.201 92.8546 167.201 104.552C167.201 117.636 165.287 132.459 168.533 145.249C169.288 148.225 170.985 156.491 172.232 153.685C174.295 149.043 172.528 139.884 172.528 134.89" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M168.533 125.566C166.715 101.931 202.761 88.3935 217 107.586C224.337 117.475 221.81 156.527 221.81 144.213" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M276.418 105.588C264.994 107.086 254.308 107.081 247.412 117.871C240.554 128.601 240.577 145.017 254.072 149.837C269.269 155.265 282.352 147.402 286.186 131.93C287.093 128.27 286.902 112.629 283.818 123.643C281.389 132.317 288.371 128.597 292.401 124.679C295.723 121.449 298.741 117.895 302.021 114.615C305.438 111.198 300.755 118.095 300.393 118.907C297.732 124.874 293.964 144.115 299.949 149.245C308.835 156.862 324.669 142.095 331.027 137.554" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M339.019 110.915C339.019 116.351 336.702 127.867 339.759 132.67C342.438 136.88 355.165 128.777 357.666 127.712C365.859 124.222 374.694 122.376 381.344 129.562C384.459 132.929 386.968 142.06 386.968 133.558" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M405.615 57.6384C403.749 80.7305 404.283 103.897 404.283 127.046C404.283 133.49 403.938 132.746 406.799 126.75C410.973 118.002 417.218 103.967 427.962 101.888C434.64 100.595 436.101 104.673 436.101 110.841C436.101 117.967 432.858 119.014 429.071 123.643C420.41 134.229 451.713 143.951 457.56 145.545" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M496.186 105.588C504.148 131.243 518.909 152.436 549.166 145.693C563.702 142.454 576.683 132.538 589.124 124.827C591.133 123.581 601.628 117.164 601.259 117.723C584.132 143.71 549.16 153.175 531.703 179.435C530.394 181.405 519.866 198.301 525.34 200.894C532.381 204.229 542.038 194.163 546.799 190.831" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M644.029 130.894C646.06 127.284 654.402 115.923 644.473 118.463C637.516 120.243 631.49 124.515 627.602 130.598C614.331 151.36 645.684 155.689 659.42 154.573C668.842 153.807 676.793 149.785 678.807 139.848C680.62 130.903 678.789 119.802 670.667 114.467C663.105 109.5 652.138 108.763 650.689 118.907" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M710.625 116.243C707.361 127.303 701.085 139.233 705.519 150.873C709.407 161.077 724.04 166.654 733.564 160.344C739.599 156.346 764.421 116.243 749.251 116.243" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </svg>
+
+
+<script type="module">
+  function updatePathLength(path) {
+    if(!path) {
+      return;
+    }
+    const pathLength = path.getTotalLength();
+    path.style.setProperty('--path-length', pathLength);
+  }
+
+
+  function getTotalLength(paths) {
+    return [...paths].reduce((accu, path) => {
+      return accu + path.getTotalLength();
+    }, 0)
+  }
+
+  function processPathGroup(group) {
+    const paths = group.querySelectorAll('path');
+    const totalLength = getTotalLength(paths);
+    const duration = 5000;
+    let pastRatio = 0;
+    let drawRatio = 0;
+    paths.forEach((path, index) => {
+      updatePathLength(path);
+      path.classList.add('animate-path');
+
+      const pathLength = path.getTotalLength();;
+
+      const ratio = pathLength/totalLength;
+      path.style.setProperty('--path-index', index);
+      path.style.setProperty('--path-delay', (drawRatio * duration) + 'ms');
+      path.style.setProperty('--path-duration', (ratio * duration) + 'ms');
+
+      // path.style.setProperty('--path-speed', ratio * duration);
+      pastRatio = ratio;
+      drawRatio+=ratio;
+    })
+  }
+  function updatePaths() {
+
+  }
+
+  processPathGroup(document.querySelector('.thank-you'));
+</script>
+
+</body>
+
+</html>
