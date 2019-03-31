@@ -22,8 +22,8 @@ function setpVirtualIframes() {
 function run() {
   setpVirtualIframes();
   lineFragments();
-  // dashDemo();
   completeConstellation();
+  thankYou();
 }
 
 function lineFragments() {
@@ -36,6 +36,24 @@ function lineFragments() {
 
 }
 
+function thankYou() {
+  const slideSection = document.querySelector('#thankYou');
+  Reveal.addEventListener('ready', m => {
+    // ensure that the slide starts when directly loaded
+    if(m.currentSlide === slideSection) {
+
+      const iframe = getBackgroundIframe();
+      iframe.addEventListener('load', loaded);
+
+      //make sure iframe is loaded before sending message
+      function loaded() {
+        iframe.removeEventListener('load', loaded);
+        iframe.contentWindow.postMessage('slide:start', "*");
+      }
+    }
+  })
+}
+
 function completeConstellation() {
   const slideSection = document.querySelector('#constellationComplete');
   const slideBuilder = new SlideBuilder(slideSection);
@@ -43,6 +61,7 @@ function completeConstellation() {
 
   function play() {
     const iframeWindow = getBackgroundIframe().contentWindow;
+    console.log('play', iframeWindow.frameElement)
     iframeWindow.postMessage("play", "*");
   }
 
@@ -70,5 +89,5 @@ function completeConstellation() {
 
 // reveals own full size background iframe
 function getBackgroundIframe() {
-  return document.querySelector('.slide-background-content iframe') as HTMLIFrameElement;
+  return document.querySelector('.slide-background:not(.stack).present iframe') as HTMLIFrameElement;
 }
