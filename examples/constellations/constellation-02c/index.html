@@ -134,13 +134,14 @@
   const stepWrong = step03pre();
 
   const steps = [
-    step01(), step03(), stepWrong, stepWrong.stop
+    step03(), stepWrong, stepWrong.stop
   ];
 
 
   const stack = new VirtualIframeStack(steps);
   window.addEventListener('message', stack.handleMessage);
 
+  step01().start();
 
 </script>
 

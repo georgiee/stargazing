@@ -23,11 +23,16 @@ export class PrismLineHighlighter {
   private _steps: string[] = [];
   private _cursor = 0;
   private _mode = PRISM_LINE_HIGHLIGHTER_MODE_BUILD;
+  private _showFirst = true;
+
   _slideBuilder: any;
 
   constructor(
-    private _prismElement: HTMLPreElement
+    private _prismElement: HTMLPreElement,
+    showFirst = false
   ) {
+    this._showFirst = showFirst;
+
     const stepsDataInput = this._prismElement.dataset.lineFragments;
     const mode = this._prismElement.dataset.lineFragmentsMode;
 
@@ -69,6 +74,8 @@ export class PrismLineHighlighter {
     let stepList = [];
 
     if(this._mode === PRISM_LINE_HIGHLIGHTER_MODE_BUILD) {
+
+
       // just extract the window marked with 0 -> cursor
       const steps = [null, ...this._steps];
       stepList = steps.slice(0, this._cursor + 1);
@@ -78,13 +85,19 @@ export class PrismLineHighlighter {
       // lines at the specified cursor position
 
       // ensure that the first step is empty so we can start with no highlight
-      const steps = [null, ...this._steps];
+      const prefix = this._showFirst ? [] : [null];
+      const steps = [...prefix, ...this._steps];
       const item = steps[this._cursor];
       stepList = [item];
     }
 
     // get all lines, remove null values (our sentinel for no highlight)
     let currentLines = stepList.filter(value => !!value).join(',');
+    // make sure that an empty array get represetend as an space otheriwse
+    // prism won't remove our highlight
+    if(currentLines.length ===0) {
+      currentLines = " "
+    }
     return currentLines;
   }
 

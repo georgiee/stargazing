@@ -1184,6 +1184,7 @@
         </section>
 
         <section
+         data-background-size="contain"
           data-background-image="static/images/constellations/pareidolia.jpg">
           <aside class="notes">
             <p>Here you can see a picture of random every day objects. </p>
@@ -1219,7 +1220,7 @@
         <section>
           <img height="600" src="static/images/chapter-04/orion-hevelius-stars.png"/>
           <aside class="notes">
-            Just look at this random star pattern. You can make some connection between the stars
+            Just look at this random star pattern. You can make some connections between the stars
           </aside>
         </section>
 
@@ -1278,15 +1279,15 @@
         <section>
           <div class="fact">
             <span>Star Fact!</span>
-            <h2 class="fragment">✨Dots and Lines✨</h2>
+            <h2 class="fragment">✨Imaginary Images✨</h2>
             <span class="fragment">🎭 Idea: SVG circles connected with lines</span>
           </div>
           <aside class="notes">
             <p>
-              We arrived at our next star fact. Constellations are usually shown with dots and lines.
+              Imaginary Images is our next star fact!
             </p>
             <p>
-              By connecting SVG circle with lines we want to build our own constellation in the night sky.
+              And we will build them by connecting SVG circles with lines.
             </p>
           </aside>
         </section>
@@ -1305,7 +1306,7 @@
           <aside class="notes">
             <p>This will be our basic building block. Two dots and a line.</p>
             <p>If we can create such an element we can create any outline.</p>
-            <p>To make our lives easier let's think about creating this with JavaScript.</p>
+            <p>To make our lives easier let's think about creating it with JavaScript.</p>
           </aside>
         </section>
 
@@ -1356,37 +1357,39 @@
 
             <p>We can pass that list to a function createDots to create the white dots.</p>
 
-            <p>Next we call a function createLine that will use path to create our line.</p>
+            <p>Next we call a function createLine where we build the path element.</p>
 
-            <p>After creating a path element we provide the required pathData through the property 'd'.</p>
+            <p>which we fill with the required pathData through the property 'd'.</p>
           </aside>
         </section>
 
         <!-- more complex line-->
         <section>
+          <h3>Complex Lines</h3>
           <iframe
-            data-virtual-iframe="[1,1,1,1,1]"
+            data-virtual-iframe="[1,1,1,1]"
             data-virtual-iframe-offset="0"
             width="600" height="200" data-src="examples/constellations/constellation-02c/index.html"></iframe>
 
           <div class="twocol">
             <pre
-              class="fragment"
-              data-fragment-index="0"
               class="line-numbers"
               style='font-size: 12px'
               data-line-fragments-mode="absolute"
-              data-line-fragments='[null, null, "10", null]'
+              data-line-fragments-start="first"
+              data-line-fragments='["9", null, "10", null]'
+              data-fragment-index="0"
               data-src="examples/constellations/constellation-02c/snippet.js"></pre>
 
               <pre
-                style='font-size: 12px' class="fragment"
+                style='font-size: 12px'
                 data-line-fragments-mode="absolute"
-                data-line-fragments='["2", "4-5"]'
-                data-fragment-index="4">
+                data-line-fragments='["2", "5, 8-10"]'
+                data-fragment-index="2">
                 <code class="language-js">
                     const lineHotpink = [0, 3, 1, 2];
 
+                    // returns [{x:0. y:0}, {x:0. y:50}, ...]
                     const hotpinkPoints = indicesToPoints(lineHotpink, points);
                     createLine(hotpinkPoints);
 
@@ -1398,9 +1401,8 @@
           </div>
 
           <aside class="notes">
-            <p>How to create more complex shapes?</p>
-            <p>
-              We start with four points and create the four dots as usually
+            <p>Let's try to build more complex shapes.
+              <br>We start with four points and create the four dots as usually
             </p>
             <p>
               But how would we create this hotpink line?
@@ -1411,7 +1413,7 @@
 
             <p>
               Instead we define the line as a list of numbers referring to the
-              points we want to connect with a line.
+              points we want to connect with.
             </p>
 
             <p>
@@ -1426,8 +1428,7 @@
           <div class="twocol" style="grid-template-columns: 60% 40%;">
             <div>
               <pre
-                data-fragment-index="1"
-                style='font-size: 12px' class="fragment">
+                style='font-size: 12px'>
                   <code class="language-js">
                     const COORDINATES = [
                       { x: 161, y: 352 },
@@ -1454,14 +1455,16 @@
                 </pre>
 
                 <pre
-                  data-fragment-index="0"
+                  data-fragment-index="1"
                   data-line-fragments-mode="absolute"
-                  data-line-fragments='[null,null, "3"]'
+                  data-line-fragments='["3-4"]'
                   style='font-size: 12px' class="fragment">
                   <code class="language-js">
                     function createConstellation(points, indicesList) {
-                      createDots(points); // createStars(points)
+                      createDots(points);
+                      // createStars(points)
 
+                      // [[0,1],[4, 5]]
                       indicesList.forEach(indices => {
                         const linePoints = indicesToPoint(indices, points);
                         createLine(linePoints);
@@ -1473,8 +1476,7 @@
             <div>
               <iframe
                 data-virtual-iframe="[0, 1]"
-                data-fragment-index="2"
-                class="fragment"
+                data-fragment-index="0"
                 width="100%"
                 height="400"
                 data-src="examples/constellations/constellation-03/index.html">
@@ -1484,21 +1486,13 @@
           <aside class="notes">
             <p>
               To create a constellation we want to call a function and pass in
-              the star coordiates and the connection between them.
+              the star coordinates and a list of lines. It's then only a matter of the data we pass in to create our hero Orion.
             </p>
             <p>
-              Inside we can use createDots & createLine to build the cosntellation.
+              Inside the function we use createDots & createLine to build the constellation.
             </p>
             <p>
-              It's now only a matter of the data we pass in.
-            </p>
-
-            <p>
-              Here you can see our hero Orion is born.
-            </p>
-
-            <p>
-              By switching the createDots function with our existing createStars functionwe can make the dots appear as twinkling stars.
+              By switching the createDots function with our existing createStars function we can make the dots appear as twinkling stars.
             </p>
           </aside>
         </section>
@@ -1506,15 +1500,13 @@
         <section data-background-iframe="examples/constellations/constellation-half/index.html">
           <aside class="notes">
             <p>
-              When Orion is placed in the night sky it looks kind of ok.
+              When Orion is placed in the night sky it looks already very good
             </p>
             <p>
-              Something is missing
+              But something is missing.
             </p>
           </aside>
         </section>
-
-
 
         <section>
             <div class="fact">
@@ -1527,13 +1519,14 @@
                 We have one bonus fact left.
               </p>
               <p>
-                  Appearing Constellation
-
-                  Constellations do not just appear imemdiately in our mind. They appear over time and that's exactly what we want to do.
+                Appearing Constellation
+              </p>
+              <p>
+                Constellations are hard to find and even harder to imagine — that's exactly what we want to do. They should appear slowly in the night sky.
               </p>
 
               <p>
-                The idea is to create animated SVG paths so that the constellation can appear slowly.
+                The idea is to create animated SVG paths so that the constellation can appear over time.
               </p>
 
             </aside>
@@ -1542,16 +1535,14 @@
 
         <section>
           <h2>Technique by Jake Archibald (2013)</h2><br>
-          <span class="fragment">Dash Array & Animated Dash Offset</span><br>
+          <span class="fragment">Dash Array with an animated Dash Offset</span><br>
 
           <aside class="notes">
             <p>
-                We will use a technique pioneered by Jake Archibald in 2013.
+              We will use a technique pioneered by Jake Archibald in 2013.
             </p>
             <p>
-                This involves using dashes and dash offsets in a path that we will animate.
-                Let's try to understand the two involved properties first and then create
-                a handy CSS class to use it in a flexible way.
+              It's a smart combination of dashes and dash offsets to create the illusion of a revealing path.
             </p>
           </aside>
         </section>
@@ -1588,7 +1579,7 @@
           </div>
           <iframe width="800" height="350" data-src="examples/constellations/constellation-05-dashes/index2.html"></iframe>
           <aside class="notes">
-            <p>A dashoffset controls where the dashes should start on a line.</p>
+            <p>The dash offset controls where the dashes should start on a line.</p>
             <p>Imagine a line. Now extend it to infinity with a yellow window floating over it. The window has the same width as your original line.</p>
             <p>When you apply an offset that window moves along the infinite line by that amount and whatever is inside is what is being drawn as your original line.
             </p>
@@ -1614,7 +1605,7 @@
         </section>
 
         <section>
-          <h3>Magic 🧙‍♂️</h3>
+          <h3>Jake Archibald Magic 🧙‍♂️</h3>
           <iframe
             data-virtual-iframe="[1,1]"
             data-virtual-iframe-offset="0"
@@ -1623,10 +1614,10 @@
             data-src="examples/constellations/constellation-04-dasharray/index-magic.html"></iframe>
           <aside class="notes">
             <p>
-              Here comes the magic. Our offset is set to 100 which moves the window to the end of our original line.
+              Here comes the Jake Archibald magic. Our offset is set to 100 which moves the window to the end of our original line.
             </p>
             <p>
-              Now we set dasharray to the same value of 100. Each dash and gap will equal 100px, the entire window lays on the first gap.
+              Now we set dasharray to the same value of 100. Each dash and gap will equal 100px so that the entire window lays on the first gap.
             </p>
             <p>
               When we start the animation the offsets goes from 100 to 0. The result is a revealing line.
@@ -1884,6 +1875,9 @@
         </section>
 
         <section data-background-iframe="examples/thank-you/index.html" id="thankYou">
+          <<aside class="notes">
+            Thank you for listening!
+          </aside>
         </section>
       </section>
     </div>

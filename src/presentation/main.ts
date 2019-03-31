@@ -27,10 +27,12 @@ function run() {
 }
 
 function lineFragments() {
-  const prismElements = document.querySelectorAll('[data-line-fragments]');
+  const prismElements: HTMLElement[] = document.querySelectorAll('[data-line-fragments]') as any;
   const elements = Array.from(prismElements);
+
   elements.forEach(element => {
-    const highlighter = new PrismLineHighlighter(element as HTMLPreElement);
+    const showFirst = element.dataset.lineFragmentsStart === 'first';
+    const highlighter = new PrismLineHighlighter(element as HTMLPreElement, showFirst);
     // highlighter.setMode(PRISM_LINE_HIGHLIGHTER_MODE_ABSOLUTE);
   })
 
@@ -61,7 +63,6 @@ function completeConstellation() {
 
   function play() {
     const iframeWindow = getBackgroundIframe().contentWindow;
-    console.log('play', iframeWindow.frameElement)
     iframeWindow.postMessage("play", "*");
   }
 

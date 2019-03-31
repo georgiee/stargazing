@@ -7,3 +7,4 @@ const points = [
 
 createDots(points);
 // createLine(points);
+// ...
