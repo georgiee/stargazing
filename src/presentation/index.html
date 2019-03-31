@@ -1460,12 +1460,11 @@
                   data-line-fragments='["3-4"]'
                   style='font-size: 12px' class="fragment">
                   <code class="language-js">
-                    function createConstellation(points, indicesList) {
+                    function createConstellation(points, multipleIndicesList) {
                       createDots(points);
                       // createStars(points)
 
-                      // [[0,1],[4, 5]]
-                      indicesList.forEach(indices => {
+                      multipleIndicesList.forEach(indices => {
                         const linePoints = indicesToPoint(indices, points);
                         createLine(linePoints);
                       })
@@ -1875,7 +1874,7 @@
         </section>
 
         <section data-background-iframe="examples/thank-you/index.html" id="thankYou">
-          <<aside class="notes">
+          <aside class="notes">
             Thank you for listening!
           </aside>
         </section>
