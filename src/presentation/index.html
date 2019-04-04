@@ -617,7 +617,6 @@
             data-src="examples/sky/sky-02/snippet.css"></pre>
 
           <iframe
-            class="fragment"
             width="600"
             height="250"
             data-src="examples/sky/sky-02/">
@@ -656,7 +655,6 @@
             data-src="examples/sky/sky-02/snippet-both.css"></pre>
 
           <iframe
-            class="fragment"
             width="600"
             height="250"
             data-src="examples/sky/sky-02/both.html">
@@ -1570,7 +1568,7 @@
           </aside>
         </section>
 
-        <section>
+        <!-- <section>
           <h3>Dash Offset</h3>
           <div style="width:650px; margin: auto">
             <pre
@@ -1584,10 +1582,10 @@
             <p>When you apply an offset that window moves along the infinite line by that amount and whatever is inside is what is being drawn as your original line.
             </p>
           </aside>
-        </section>
+        </section> -->
 
         <section>
-          <h3>Animate Dash Offset</h3>
+          <h3>Dash Offset</h3>
           <iframe
             data-virtual-iframe="[1,1,1]"
             data-virtual-iframe-offset="0"
@@ -1596,10 +1594,13 @@
             data-src="examples/constellations/constellation-04-dasharray/index.html"></iframe>
 
           <aside class="notes">
-            <p>Here is a little demo to visualize what I just explained. You see the original line and the infinite line with the floating window</p>
-            <p>The offset is now going up and down while the window moves accordingly</p>
-            <p>You can see here what's inside that window only</p>
-            <p>Ignore that the window is moving and only show the content — we have a line with an animated offset!</p>
+            <p>Here a little demo to visualize dash offset. You see the original line
+              and an imagined infinite line together with a yellow window floating over it.
+            </p>
+
+            <p>The offset is now changing. The window moves by the value of the offset.</p>
+            <p>You can see here what's inside that window only.</p>
+            <p>Ignore that the window is moving and only show the content — that's how the offset affects a line.</p>
 
           </aside>
         </section>
