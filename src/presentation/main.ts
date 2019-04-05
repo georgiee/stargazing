@@ -63,6 +63,7 @@ function completeConstellation() {
 
   function play() {
     const iframeWindow = getBackgroundIframe().contentWindow;
+    console.log('play all cosntellations')
     iframeWindow.postMessage("play", "*");
   }
 
@@ -90,5 +91,12 @@ function completeConstellation() {
 
 // reveals own full size background iframe
 function getBackgroundIframe() {
-  return document.querySelector('.slide-background:not(.stack).present iframe') as HTMLIFrameElement;
+  // many bugs in the past finding the correct one.
+  // so I query this stack with a long selector and I return ALL findings
+  const candidates = document.querySelectorAll('.backgrounds > .slide-background.present > .slide-background.present iframe');
+  console.log('bg iframe candidates', candidates);
+  const iframe = candidates[candidates.length - 1];
+  // const iframe = document.querySelector('.slide-background:not(.stack).present iframe') as HTMLIFrameElement;;
+  console.log('getBackgroundIframe', iframe);
+  return iframe as HTMLIFrameElement;
 }
