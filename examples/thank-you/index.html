@@ -262,6 +262,7 @@
 
 
 <script type="module">
+  const DURATION = 20000;
   function updatePathLength(path) {
     if(!path) {
       return;
@@ -280,7 +281,7 @@
   function processPathGroup(group) {
     const paths = group.querySelectorAll('path');
     const totalLength = getTotalLength(paths);
-    const duration = 30000;
+    const duration = DURATION;
 
     let pastRatio = 0;
     let drawRatio = 0;
