@@ -20,7 +20,7 @@ const devPlugins = [
 const plugins = [
   ...devPlugins,
   new CopyWebpackPlugin([ { from: 'examples/**/*', to: '' }]),
-  new CopyWebpackPlugin([ { from: 'static', to: '' }])
+  new CopyWebpackPlugin([ { from: 'static', to: 'static' }])
 ];
 
 module.exports = {
@@ -33,7 +33,7 @@ module.exports = {
     minimize: true
   },
   devServer: {
-    contentBase: './static'
+    contentBase: './'
   },
   output: {
     filename: "[name]/bundle.js",
