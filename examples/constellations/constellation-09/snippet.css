@@ -1,0 +1,4 @@
+.animated-path {
+  animation-delay: var(--path-delay, 0);
+  animation: revealPathAnimation linear 0.5s 1 forwards;
+}

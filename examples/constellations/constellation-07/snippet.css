@@ -1,0 +1,4 @@
+.hotpink-path {
+  --path-length: 100;
+  animation: revealPathAnimation 5s infinite backwards;
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>01 - Stargazing — Star Colors</title>
+  <style>
+  body {
+    background-color: black;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+  }
+
+  svg {
+    display: block;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .animated-path {
+    stroke-dasharray: var(--path-length);
+    stroke-dashoffset: var(--path-length);
+    /* animation: dashAnimation 5s infinite backwards; */
+  }
+
+  .debug {
+    visibility: hidden;
+  }
+
+  .show-debug .debug {
+    visibility: visible;
+  }
+
+  .debug .debug__longpath {
+    stroke-dasharray: var(--path-length);
+  }
+
+  .animated-offset {
+    transform: translate(calc(var(--path-length) * 1px));
+    /* animation: offsetDebug 5s infinite backwards; */
+  }
+
+  .red-path-group {
+    --path-length: 100;
+  }
+
+  .red-path {
+    stroke-dasharray: var(--path-length);
+    stroke-dashoffset: var(--path-length);
+    /* animation: dashAnimation 5s infinite backwards; */
+  }
+
+  .playing .red-path,
+  .playing .animated-path {
+    animation: dashAnimation 5s infinite backwards;
+  }
+  .playing .animated-offset {
+    animation: offsetDebug 5s infinite backwards;
+  }
+
+  path {
+    fill: transparent;
+  }
+
+  @keyframes offsetDebug {
+    0% {
+      transform: translate(calc(var(--path-length) * 1px));
+    }
+
+    100% {
+      transform: translate(0);
+    }
+  }
+
+  @keyframes dashAnimation {
+    0%, 100% {
+      stroke-dasharray: var(--path-length);
+    }
+
+    0% {
+      stroke-dashoffset: var(--path-length);
+    }
+
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  </style>
+</head>
+
+<body>
+  <svg viewBox="60 -10 120 110" preserveAspectRatio="xMidYMid meet" height="100%" width="100%">
+    <g transform="translate(0 0)"><circle r="5" fill="white"></circle></g>
+    <g transform="translate(100 0)"><circle r="5" fill="white"></circle></g>
+    <g transform="translate(100 75)"><circle r="5" fill="white"></circle></g>
+
+    <g class="red-path-group">
+      <path class="red-path" d="M 0 0 L 100 0" stroke="red" class="animated-path"></path>
+
+      <g transform="translate(0, 85)" class="debug">
+        <path class="debug__longpath" stroke="red" d="M 0 0 L 220 0"></path>
+
+        <g class="animated-offset">
+          <rect width="100" height="4" y="-2" opacity="0.3" fill="yellow"></rect>
+        </g>
+      </g>
+    </g>
+
+    <path d="M 100 0 L 100 75" stroke="yellow" class="yellow-path"></path>
+    <path d="M 100 75 L 0 0" stroke="hotpink" class="hotpink-path"></path>
+  </svg>
+
+  <script type="module">
+
+    import { VirtualIframeStack }  from '../../src/virtual-stack-control.js';
+    // updatePathLength(document.querySelector('.hotpink-path'));
+    // updatePathLength(document.querySelector('.yellow-path'));
+
+    function updatePathLength(path) {
+      if(!path) {
+        return;
+      }
+      const pathLength = path.getTotalLength();
+      path.style.setProperty('--path-length', pathLength)
+    }
+
+    function showDebug() {
+      function start() {
+        document.body.classList.toggle('show-debug', true);
+      }
+
+      function stop() {
+        document.body.classList.toggle('show-debug', false);
+      }
+
+      return {start, stop}
+    }
+
+    function play() {
+      function start() {
+        document.body.classList.toggle('playing', true);
+      }
+
+      function stop() {
+        document.body.classList.toggle('playing', false);
+      }
+      return {start, stop}
+    }
+
+    const steps = [
+      showDebug(),
+      play()
+    ];
+
+
+    const stack = new VirtualIframeStack(steps);
+    window.addEventListener('message', stack.handleMessage);
+    stack.goto(2);
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <style>
+
+    body, html {
+      overflow: hidden;
+    }
+
+    .twinkle-little-star {
+      animation:
+        starPulse 5s infinite alternate,
+        starGlowing 2s infinite alternate;
+
+      animation-delay: var(--animation-twinkle-delay, 0);
+    }
+
+    .star-01 {
+      --animation-twinkle-delay: -100ms;
+    }
+
+    .star-02 {
+      --animation-twinkle-delay: -550ms;
+    }
+
+    .star-03 {
+      --animation-twinkle-delay: -320ms;
+    }
+
+    @keyframes starPulse {
+      0% {
+        transform: scale3d(1, 1, 1);
+      }
+
+      30% {
+        transform: scale3d(1.2, 1.6, 1.2);
+      }
+
+      40% {
+        transform: scale3d(1.5, 1.2, 1.4);
+      }
+
+      70% {
+        transform: scale3d(0.6, 0.2, 0.1);
+      }
+
+      90% {
+        transform: scale3d(0.9, 0.5, 0.1);
+      }
+
+      100% {
+        transform: scale3d(1.2, 0.6, 1.3);
+      }
+    }
+
+    @keyframes starGlowing {
+      0% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0.5;
+      }
+    }
+
+    body {
+      background: black;
+    }
+
+
+    svg {
+      max-height: 100vh
+    };
+
+    #debugCircle {
+      visibility: hidden;
+    }
+
+    .twinkle-little-star.star02 {
+      visibility: hidden;
+    }
+
+    .show-circle .twinkle-little-star.star02 {
+      visibility: visible;
+    }
+  </style>
+</head>
+
+<body>
+  <svg id='nightsky' viewbox="-480 -350 960 700" preserveAspectRatio="xMidYMid slice">
+    <g transform="translate(0, 0)">
+      <circle class='twinkle-little-star star02' r="40" fill="white"></circle>
+    </g>
+  </svg>
+
+  <script type="module">
+    import { createIframeRunner, createSVGElement, createStar, getRandomCoordinate, getRandomColor } from '../../shared.js';
+    const svg = document.querySelector('svg');
+    const svgElement = document.getElementById('nightsky');
+
+
+    function createSky({count}) {
+      for(let i = 0; i < count; i++) {
+        const coordinates = getRandomCoordinate() /*{x,y}*/;
+        const color = getRandomColor();
+        const delay = Math.round(-1 * Math.random() * 4000);
+        const star = createStar({ color, size: 2, ...coordinates, delay  });
+        svgElement.appendChild(star);
+      }
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const debug = urlParams.has('debug');
+
+    if(debug) {
+      document.body.classList.toggle('show-circle');
+    }
+
+    function startDemo() {
+      createSky({ count: 350 })
+    }
+
+    function stopDemo() {
+      while (svg.firstChild) {
+        svg.removeChild(svg.firstChild);
+      }
+    }
+
+    createIframeRunner({
+      play: startDemo,
+      stop: stopDemo,
+    })
+
+</script>
+
+</body>
+
+</html>

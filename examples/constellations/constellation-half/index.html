@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>01 - Stargazing — Star Colors</title>
+
+  <link rel="stylesheet" href="../../src/css/star.css">
+  <link rel="stylesheet" href="../../src/css/shooting.css">
+  <link rel="stylesheet" href="../../src/css/constellation.css">
+  <style>
+    body {
+      background-color: black;
+      color: #fff;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    svg {
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .constellation-path {
+      stroke: #ffffffaa;
+    }
+
+  </style>
+</head>
+
+<body>
+<svg id='nightsky' viewbox="0 0 960 700" width ="100%" preserveAspectRatio="xMidYMid slice">
+</svg>
+
+<script type="module">
+  import { createIframeRunner, createSVGElement, generateLinePath, createDot, createLine, getRandomColor } from '../../shared.js';
+  import { orion } from '../../src/js/data/orion.js';
+
+  import { createSky, createStar } from '../../src/js/sky.js';
+  import { createShootingStars } from '../../src/js/shooting.js';
+
+  const svg = document.querySelector('svg');
+
+  const sky = createSky({ count: 350 });
+
+  const shootingStars = createShootingStars();
+
+  const constellation = createConstellation(orion.coordinates, orion.lines);
+  constellation.setAttribute('transform', `translate(350, 150)`);
+
+  function createConstellation(points, lineIndices) {
+    const group = createSVGElement('g');
+
+    points.forEach(point => {
+      const dot = createStar({size: 2, ...point, color: getRandomColor()});
+      group.appendChild(dot);
+    });
+
+    lineIndices.forEach(indices => {
+      const linePoints = indices.map(index => points[index]);
+      const line = createLine(linePoints);
+
+      group.appendChild(line);
+    })
+
+    return group;
+  }
+
+  function startDemo() {
+    svg.appendChild(sky);
+    svg.appendChild(shootingStars);
+    svg.appendChild(constellation);
+  }
+
+  function stopDemo() {
+    while (svg.firstChild) {
+      console.log('remove ', svg.firstChild);
+      svg.removeChild(svg.firstChild);
+    }
+  }
+
+  createIframeRunner({
+    play: startDemo,
+    stop: stopDemo,
+  })
+
+</script>
+
+</body>
+
+</html>
