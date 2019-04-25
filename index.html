@@ -375,9 +375,7 @@
           <aside class="notes">
             <p>Speaking of Coding, you will see SVG Markup</p>
             <p>together with CSS Animations & CSS Variables to create actual animations.</p>
-            <p>At some point we don't want to repeat ourselves.</p>
-            <p>
-                We will use plain Javascript to create many variations of our SVG Code and to modify CSS Variables.
+            <p>At some point we don't want to repeat ourselves. We will use plain Javascript to create many variations of our SVG Code and to modify CSS Variables.
             </p>
           </aside>
         </section>
@@ -626,7 +624,7 @@
           <pre
             class="fragment"
             data-fragment-index="1"
-            data-line-fragments='["5", "7","9-11"]'
+            data-line-fragments='["3-5", "7,13","9-11"]'
             style="font-size: 18px;"
             data-src="examples/star/star-04/snippet-create-star2.js"></pre>
 
@@ -635,7 +633,7 @@
             <p>I want to use a function call `createStar` like this where I provide all values</p>
             <p>And the function itself looks like this</p>
             <p>
-              1. Custom createSVGElement function<br>
+              1. Custom createSVGElement function to shorten the native call with the namespace<br>
               2. appendChild like in html<br>
               3. Set properties.
             </p>
@@ -651,7 +649,7 @@
 
           <aside class="notes">
             <p>
-              With that function we can now easily create vast amounts of different stars
+              With that function we can now create vast amounts of different stars
             </p>
 
             <p>We are ready to build our sky.</p>
@@ -707,12 +705,12 @@
 
         <section
           data-background-size="contain"
-          data-background-image="static/images/chapter-02/night-sky-munich.jpg">
+          data-background-image="static/images/chapter-02/bortle-scale.jpg">
           <aside class="notes">
               <p>Look at that image. More and more stars disappear from right to left.
                   You can see how you location affects the total count of stars.</p>
-              <p>Standing at the Marienplatz you won't be able to see more than 35 stars in the whole night sky</p>
-              <p>Compare this with some dark spots in East Germany where you can see the the maximum that our eyes can handle</p>
+              <p>Standing at the city center here in Munich you won't be able to see more than 35 stars in the whole night sky</p>
+              <p>Compare this with some dark spots in deep rural areas where you can see almost the maximum your eyes can handle</p>
 
               <!-- Numbers are the Bortle scale (https://en.wikipedia.org/wiki/Bortle_scale) -->
           </aside>
@@ -763,7 +761,7 @@
           <h2 class="fragment">Astronomical Scintillation</h2>
 
           <aside class="notes">
-            <p>That effect you can see here is called Twinkling</p>
+            <p>That subtle effect you can see here is called Twinkling</p>
             <p>or as we are scientists today: Astronomical Scintillation</p>
           </aside>
         </section>
@@ -781,7 +779,7 @@
           </video>
           <aside class="notes">
             <p>That's a star zoomed in. You can clearly see changes in brightness and position even color and shape.</p>
-            <p>That brings us quickly to our next fact.</p>
+            <p>That leads us to our newest fact.</p>
           </aside>
         </section>
 
@@ -883,10 +881,10 @@
             <p>You can clearly see how the result looks more natural when it's asynchronious</p>
 
             <p>We use the power of CSS Variables to fill the CSS property <strong>animation-delay</strong>
-                so we can offset the animation.
+                so we can offset the animation. The default value is set to 0.
             </p>
-            <p>The default is set to 0 but we can apply different values to our individual stars through CSS!</p>
-            <p>The applied <strong>animation offsets</strong> are negative otherwise the animation would wait in the beginning</p>
+            <p>We can apply different values to our individual stars through CSS!<br>
+            The applied <strong>animation offsets</strong> are negative otherwise the animation would wait in the beginning</p>
           </aside>
         </section>
 
@@ -907,7 +905,7 @@
 
             <aside class="notes">
               <p>We can know add the twinkling effect animation to all of our stars in the sky just by modifying the createStar function we created earlier</p>
-              <p>First we add the CSS class `twinkle-little-star` to provide the animations</p>
+              <p>First we add the CSS class <strong>`twinkle-little-star`</strong> to provide the animations</p>
               <p>Next we assign a random and negative delay with our CSS Variables to offset the animations</p>
               <p>The result looks already awesome. I kept the large circle here so you can see the effect in large and small.
               </p>
@@ -930,7 +928,7 @@
           <span>Chapter 03 </span>
           <h2>Shooting Stars</h2>
           <aside class="notes">
-            <p>The twinklign sky we have jsut build is beautiful already
+            <p>The twinklign sky we have just build is beautiful already
                 but it's missing some action.</p>
 
             <p>That's why I want to see some shooting stars. Let's explore
@@ -1006,7 +1004,7 @@
 
           <aside class="notes">
             <p>We use a circle again — but this time it stands for a piece of rock and not a star!</p>
-            <p>To simulate the burning we use opacity. We are not visible in the beginning, start burning and disappear again.</p>
+            <p>To simulate the burning we use <strong>opacity</strong>. We are not visible in the beginning, start burning and disappear again.</p>
             <p>Here the result. That looks good, now let's build some movement</p>
           </aside>
         </section>
@@ -1111,8 +1109,8 @@
           </ul>
 
           <aside class="notes">
-            <p>The animation is nice already but we want to use variations</p>
-            <p>We want to adjust translation of 100px which is our radius</p>
+            <p>The animation is good but we want to use variations</p>
+            <p>We want to adjust translation of 100px which represents our radius</p>
             <p>and also the different rotation values which are our start and end angles</p>
             <p>Amazingly CSS Variables work in keyframe animations too!</p>
           </aside>
@@ -1180,7 +1178,9 @@
 
           <aside class="notes">
             <p>We can do the same for the angle. </p>
-            <p>Here I prepared an example where the two angles are set to different values</p>
+            <p>Here I prepared an example where the two angles are set to different values.
+              You can see how the start end the end angles are changing while we use the very same css animation.
+            </p>
           </aside>
 
           <iframe
@@ -1204,15 +1204,15 @@
           <pre
             class="fragment"
             data-fragment-index="0"
-            data-line-fragments='["3-5", "10-14" ]'
+            data-line-fragments='["3-5,16", "7-14" ]'
             style="font-size: 18px;"
             data-src="examples/shooting/shooting-06/snippet.js"></pre>
 
           <aside class="notes">
-            <p>We have a shooting star where we can provide variations with CSS Variables.</p>
-            <p>Let's build a function so we can create them with few parameters</p>
-            <p>The method itself will</p>
-            <p>build the SVG structure</p>
+            <p>We have a shooting star where we can provide variations with CSS Variables. Let's build a function `createShootingStar` so we can create them with few parameters
+            </p>
+            <p>The method itself</p>
+            <p>will build the SVG structure</p>
             <p>and apply all CSS Variables and attributes</p>
           </aside>
         </section>
@@ -1325,6 +1325,7 @@
           </div>
 
           <aside class="notes">
+            <p>So</p>
             <p>We hide the shooting star in the beginning</p>
             <p>and only show it and apply the animation when the class is-shooting is present</p>
             <p>We use a shootNext function to randomly assign the css class is-shooting to a shootingn star</p>
@@ -2063,11 +2064,19 @@
             </aside>
         </section>
 
-        <section data-background-image="static/images/chapter-keynote/curious-cat.gif" data-background-size="contain" data-background-opacity="0.5">
-          <h1>be good, stay curious</h1>
+        <section>
+          <h4>one thing is left 💛</h4>
           <aside class="notes">
-            And in the beginning we talked about being super talents
-            who need to be good and stay curious.
+            <p>There is one thing left to be said</p>
+          </aside>
+        </section>
+
+        <section data-background-image="static/images/chapter-keynote/curious-cat.gif" data-background-size="contain" data-background-opacity="0.5">
+          <h1>be human, be good, stay curious</h1>
+          <aside class="notes">
+            <p>We should never forget that we are all frontend developers,
+              sharing the same passion and we are humans.</p>
+            <p>so be good to each other and stay curious — then everything possible.</p>
           </aside>
         </section>
 

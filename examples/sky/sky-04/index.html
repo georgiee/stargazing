@@ -106,7 +106,7 @@
         const coordinates = getRandomCoordinate() /*{x,y}*/;
         const color = getRandomColor();
         const delay = Math.round(-1 * Math.random() * 4000);
-        const star = createStar({ color, size: 2, ...coordinates, delay  });
+        const star = createStar({ color, size: 1, ...coordinates, delay  });
         svgElement.appendChild(star);
       }
     }
