@@ -530,7 +530,7 @@
           </div>
 
           <aside class="notes">
-            <p>Have you noticed we have a new star fact.</p>
+            <p>We have a new star fact.</p>
             <p>Temperature is color!</p>
             <p>
               The idea is to create some circles with different colors.
@@ -1220,6 +1220,15 @@
         </section>
 
         <section data-background-iframe="examples/shooting/shooting-07/index.html?debug">
+          <pre style="position: fixed; bottom: 0; left:0; font-size: 18px;" >
+            <code class="language-js">
+              createShootingStar({
+                x: 100, y: 100, radius: 100,
+                angleStart: -90, angle: -180
+              });
+            </code>
+          </pre>
+
           <aside class="notes">
             The result looks like this.
           </aside>
@@ -1674,7 +1683,7 @@
           </div>
           <aside class="notes">
             <p>
-              To create a constellation we want to call a function and pass in
+              To create a constellation we want to call a function `createConstellation` and pass in
               the star coordinates and a list of lines. It's then only a matter of the data we pass in to create our hero Orion.
             </p>
             <p>
