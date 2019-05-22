@@ -88,6 +88,18 @@
         opacity: 1;
       }
     }
+
+    .slides-footer {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      font-family: "Montserrat", Impact, sans-serif;
+    }
+
+    .slides-footer a {
+      color: #ffffff;
+      text-decoration: none;
+    }
   </style>
 </head>
 
@@ -809,7 +821,6 @@
         <section>
           <pre style="font-size: 18px" data-src="examples/shooting/shooting-01/snippet.svg"></pre>
           <pre
-            class="fragment"
             data-line-fragments='["6-8"]'
             data-line-fragments-mode='absolute'
             data-fragment-index="1"
@@ -823,7 +834,7 @@
           <aside class="notes">
             <p>We use a circle again — but this time it stands for a piece of rock and not a star!</p>
             <p>To simulate the burning we use <strong>opacity</strong>. We are not visible in the beginning, start burning and disappear again.</p>
-            <p>Here the result. That looks good, now let's build some movement</p>
+            <p>The result looks good, now let's build some movement</p>
           </aside>
         </section>
 
@@ -835,7 +846,7 @@
 
           <aside class="notes">
             <p>We want to move the circle in an arc</p>
-            <p>and we start by rotating it for 180 degree</p>
+            <p>and we start by rotating it from 0 to 180 degree</p>
             <p>But something is wrong with the result - you can't see it rotate.</p>
           </aside>
 
@@ -861,22 +872,20 @@
           <div class="twocol">
            <div style="height:400px; position: relative;">
             <iframe
-              data-fragment-index="1"
-              class="fragment"
               width="400"
               height="400"
               data-src="examples/shooting/shooting-03/part1.html"></iframe>
            </div>
            <div style="height:400px; position: relative;">
               <iframe
-                data-fragment-index="2"
+                data-fragment-index="1"
                 class="fragment"
                 width="400"
                 height="400"
                 data-src="examples/shooting/shooting-03/part2.html"></iframe>
                 <div
                   class="fragment"
-                  data-fragment-index="2"
+                  data-fragment-index="1"
                   style="width:650px;position: absolute;bottom:0;left:-350px">
                   <pre style="font-size: 14px">
                     <code class="language-css">
@@ -895,7 +904,7 @@
               and we can see the desired result.
             </p>
             <p>
-              The transformation has the effect, that the circle is rotating around its
+              The translation has the effect, that the circle is rotating around its
               original position with the given radius of 100px.
             </p>
             <p>
@@ -1265,7 +1274,7 @@
               That's Ursa Major which is latin and translates to big bear.
             </p>
             <p>
-              Many people will recognize the upper left part as the big dipper or in german the "Große Wagen".
+              Many people will recognize the upper left part as the big dipper or in Rumanian "Carul-Mare".
             </p>
             <p>
               Big dipper is not a constellation by itself — just a famous pattern inside Ursa Major which helps you to spot it.
@@ -1299,7 +1308,7 @@
           </div>
           <aside class="notes">
             <p>
-              Imaginary Images is our next star fact!
+              Constellations are Imaginary Images is our next star fact!
             </p>
             <p>
               And we will build them by connecting SVG circles with lines.
@@ -1601,6 +1610,15 @@
 
         <section>
           <h3>Dash Offset</h3>
+
+
+          <div>
+
+          <pre
+            style='font-size: 16px'
+            data-src="examples/constellations/constellation-05-dashes/snippet3.svg"></pre>
+          </div>
+
           <iframe
             data-virtual-iframe="[1,1,1]"
             data-virtual-iframe-offset="0"
@@ -1652,7 +1670,7 @@
           <aside class="notes">
             <p>You can create a CSS Animation with our findings to easily reveal any path.</p>
             <p>We assign the length of our path to the dash-array</p>
-            <p>Start with an offset that matches the end of our path and animate it back to 0 which will reveal the path</p>
+            <p>Start with an offset that matches the end of our line and animate it back to 0 which will reveal the path</p>
             <p>To use the CSS animation assign it to your path and provide its length.</p>
           </aside>
         </section>
@@ -1925,7 +1943,7 @@
   <!-- see main.ts for the iteractive slide actions -->
 
   <footer class='slides-footer'>
-    Georgios Kaleadis - @deluxee (Twitter)
+    <a href='https://twitter.com/deluxee'>@deluxee</a>
   </footer>
 </body>
 
