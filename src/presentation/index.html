@@ -816,7 +816,6 @@
             style="font-size: 18px"  data-src="examples/shooting/shooting-01/snippet.css"></pre>
 
           <iframe
-            class="fragment"
             width="600"
             height="200"
             data-src="examples/shooting/shooting-01/"></iframe>
@@ -1375,7 +1374,7 @@
 
             <p>Next we call a function createLine where we build the path element.</p>
 
-            <p>which we fill with the required pathData through the property 'd'.</p>
+            <p>We fill the required pathData with a custom function generateLinePath to build the magic string with M, L and numbers</p>
           </aside>
         </section>
 
@@ -1575,7 +1574,6 @@
 
           <aside class="notes">
             <p>First a quick summary what dashes and offsets do in a path</p>
-
             <p>
               Dashes are created through the `stroke-dasharray` property on a path.
             </p>
