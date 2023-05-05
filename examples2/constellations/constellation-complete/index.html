@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>01 - Stargazing — Star Colors</title>
+
+  <link rel="stylesheet" href="/src/shooting/css/star.css">
+  <link rel="stylesheet" href="/src/shooting/css/shooting.css">
+  <link rel="stylesheet" href="/src/shooting/css/constellation.css">
+
+  <style>
+    body {
+      background-color: black;
+      color: #fff;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    svg {
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .constellation-path {
+      stroke: white;
+    }
+
+  </style>
+</head>
+
+<body>
+<svg id='nightsky' viewbox="0 0 960 700" width="100%" preserveAspectRatio="xMidYMid slice">
+  <!-- <circle fill='red' r="100" cx="480" cy="350"></circle> -->
+</svg>
+
+<script type="module">
+  import {VirtualIframeStack} from '/src/support/virtual-stack-control';
+
+  import {
+    createShootingStars,
+    createSky,
+    createStar,
+    createSVGElement,
+    generateLinePath,
+    createDot,
+    createLine,
+    createConstellations
+  } from '/src/shooting/shared';
+  import {orion} from '/src/shooting/data/orion.js';
+  import {createIframeRunner} from '/src/shooting/shared';
+
+  const svg = document.querySelector('svg');
+
+  const sky = createSky({count: 350});
+
+  const shootingStars = createShootingStars();
+
+  const {group: constellations, controls} = createConstellations();
+  constellations.setAttribute('transform', 'translate(0, 100)')
+
+
+  const stackPending = [
+    controls.orion,
+    controls.hercules,
+    controls.ursaMajor
+  ];
+
+  const stackActive = []
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const autoplay = urlParams.has('autoplay');
+
+  if (autoplay) {
+    // autoplayAll();
+  }
+
+  function playAll() {
+    stackPending.forEach(control => control.play());
+  }
+
+  function autoplayAll() {
+    console.log('autoplayAll')
+    stackPending.forEach(control => control.autoplay());
+  }
+
+  function startDemo() {
+    console.log('startDemo')
+    svg.appendChild(sky);
+    svg.appendChild(shootingStars);
+    svg.appendChild(constellations);
+
+    autoplayAll();
+  }
+
+  function stopDemo() {
+    while (svg.firstChild) {
+      svg.removeChild(svg.firstChild);
+    }
+  }
+
+  createIframeRunner({
+    play: startDemo,
+    stop: stopDemo,
+  })
+
+  window.addEventListener('message', ({data}) => {
+    if (data === 'play') {
+      // autoplayAll();
+    }
+  })
+
+</script>
+<script type="module" src="/src/examples/runtime.ts"></script>
+</body>
+
+</html>

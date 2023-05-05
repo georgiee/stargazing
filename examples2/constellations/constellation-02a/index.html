@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>01 - Stargazing — Star Colors</title>
+</head>
+
+<body>
+<svg viewbox="-10 -10 120 20">
+</svg>
+
+<script type="module">
+  import {createSVGElement, generateLinePath} from '/src/shooting/shared';
+
+  const svg = document.querySelector('svg');
+  const points = [{x: 0, y: 0}, {x: 100, y: 0}];
+  const line = [0, 1];
+
+  const path = createLine(points);
+  svg.appendChild(path);
+
+  createDots(points);
+
+  function createDots(list) {
+    list.forEach(data => {
+      const dot1 = createDot(data);
+      svg.appendChild(dot1);
+    })
+  }
+
+  function createDot({x, y}) {
+    const group = createSVGElement('g');
+    const dot = createSVGElement('circle');
+    dot.setAttribute('r', 5);
+    dot.setAttribute('fill', 'white');
+
+    group.appendChild(dot);
+    group.setAttribute('transform', `translate(${x} ${y})`);
+
+    return group;
+  }
+
+  function createLine(line) {
+    const path = createSVGElement('path');
+    const pathData = generateLinePath(...line);
+    path.setAttribute('d', pathData);
+    path.setAttribute('stroke', 'hotpink');
+    return path;
+  }
+
+</script>
+
+<script type="module" src="/src/examples/runtime.ts"></script>
+</body>
+
+</html>

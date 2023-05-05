@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      background-color: black;
+      color: #fff;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    svg {
+      width: 100vw;
+    }
+  </style>
+</head>
+
+<body>
+<svg id='nightsky' viewbox="-480 -350 960 700">
+</svg>
+
+<script type="module">
+  import {
+    createStar,
+    getRandomCoordinate,
+    getRandomColor
+  } from '/src/shooting/shared';
+
+  const svg = document.querySelector('svg');
+
+  const svgElement = document.getElementById('nightsky');
+  createSky({count: 350})
+
+  function createSky({count}) {
+    for (let i = 0; i < count; i++) {
+      const coordinates = getRandomCoordinate() /*{x,y}*/;
+      const color = getRandomColor();
+      const star = createStar({color, size: 1, ...coordinates});
+      svgElement.appendChild(star);
+    }
+  }
+</script>
+
+<script type="module" src="/src/examples/runtime.ts"></script>
+</body>
+
+</html>

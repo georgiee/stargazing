@@ -1,0 +1,1944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Stargazing for developers - A twinkling night sky with shooting stars powered by SVG & CSS & JS</title>
+</head>
+
+<body>
+<div id="app"></div>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- Chapter 0 -->
+    <section>
+      <section>
+        <h4>hello 👋</h4>
+        <aside class="notes">
+          <p>Hello everybody.</p>
+          <p>Amazing to see to many people at one place loving the same thing: Frontend Developing.
+          </p>
+          <p>Before I start with my talk, I would like to introduce myself.</p>
+        </aside>
+      </section>
+
+      <section>
+        <h3>About me</h3>
+        <ul>
+          <li class="fragment">Georgios Kaleadis</li>
+          <li class="fragment">Learned programming with Flash 4 (1998)</li>
+          <li class="fragment">CTO at Satellytes</li>
+          <li class="fragment">Teaching Coding to Kids</li>
+          <li class="fragment">I love experimenting with technology</li>
+        </ul>
+        <aside class="notes">
+          <p>My name is Georgios Kaleadis</p>
+          <p>I learned programming with Flash 4 in 1998</p>
+          <p>I'm a Frontend Developer using Angular in my daily job at Satellytes and React or Vue for my pet
+            projects</p>
+          <p>In my spare time I used to teach coding to kids. These days I wait for my two kids to get old enough to
+            tinker around with code.</p>
+          <p>and I love experimenting with technology like WebGL, my Arduino and algorithms.</p>
+        </aside>
+      </section>
+
+    </section>
+
+    <!-- About -->
+    <section>
+      <!-- Starter -->
+      <section data-background-image="static/images/satellytes.jpg">
+        <div class="satellytes-background">
+          <h2>Stargazing for developers</h2>
+          <span>A twinkling night sky with shooting stars powered by SVG, CSS & JS</span>
+        </div>
+        <aside class="notes">
+          <p>My talk has the title "Stargazing for developers"</p>
+          <p>and we are going to build a beautiful twinkling night sky with basic web technologies. So let's start!</p>
+        </aside>
+        <style>
+          .satellytes-background {
+            transform: translate(0, -45%);
+            padding: 20px 0;
+          }
+        </style>
+      </section>
+    </section>
+
+    <!-- Prepare -->
+    <section>
+      <section>
+        <h3>Journey to the stars</h3>
+        <p>4 chapters</p>
+        <ul style="list-style-type: none">
+          <li class="fragment">I) Anatomy of a Star</li>
+          <li class="fragment">II) Night Sky</li>
+          <li class="fragment">III) Shooting Stars</li>
+          <li class="fragment">IV) Constellations</li>
+          <!-- <li class="fragment">IV) Parallax Sky</li> -->
+        </ul>
+
+        <aside class="notes">
+          <p>Over the course of 4 chapters I will take you on a journey to the stars.</p>
+          <p>We will explore how a single star is working to create them easily.</p>
+          <p>After that we will assemble a full and crowded sky night</p>
+          <p>Shooting Stars can't miss in any night sky that's what we will look at in the third chapter</p>
+          <p>and the final chapter will show what constellations are and how we can build them</p>
+        </aside>
+      </section>
+
+      <section>
+        <div class="fact-summary">
+          <h2 class="fragment">✨FACT✨</h2>
+          <span class="fragment">🎭 Idea: *How to build it* </span><br>
+        </div>
+
+        <aside class="notes">
+          <p>During a chapter we will discover new science ✨FACTS✨ marked with these emoji stars</p>
+          <p>..followed by an idea how to creatively code it </p>
+        </aside>
+      </section>
+
+      <section>
+        <h2>Coding</h2>
+        <ul>
+          <li class="fragment" data-fragment-index="1">SVG Markup</li>
+          <li class="fragment" data-fragment-index="2">CSS Animations</li>
+          <li class="fragment" data-fragment-index="2">CSS Variables</li>
+          <li class="fragment" data-fragment-index="3">Vanilla Javascript</li>
+        </ul>
+        <aside class="notes">
+          <p>Speaking of Coding, you will see SVG Markup</p>
+          <p>together with CSS Animations & CSS Variables to create actual animations.</p>
+          <p>At some point we don't want to repeat ourselves. We will use plain Javascript to create many variations of
+            our SVG Code and to modify CSS Variables.
+          </p>
+        </aside>
+      </section>
+    </section>
+
+    <!-- Chapter 01 (Star) -->
+    <section>
+      <section
+        data-background-opacity="0.5"
+        data-background-image="static/images/chapter-01/anatomy-star.gif">
+        <span>Chapter 01 </span>
+        <h2>Anatomy of a star</h2>
+        <aside class="notes">
+          <p>Let's start with the first chapter.</p>
+          <p>We want to know how a star is working so we can build one ourselves.</p>
+        </aside>
+      </section>
+
+      <section>
+        <img data-src="static/images/chapter-01/orion-betelgeuse.jpg"/>
+        <aside class="notes">
+          <p>We want to observe a single star</p>
+          <p>I picked a little dot that we can see with our naked eye.</p>
+          <p>The star is called Betelgeuse and you can see it in the famous Orion constellation.</p>
+          <p>Betelgeuse is more than 600 light years away.</p>
+        </aside>
+      </section>
+
+      <section data-background-image="static/images/chapter-01/warp.gif">
+        <aside class="notes">
+          We would travel for 600 years with light speed — with my developer superpower I can fast forward to save us
+          some time 👊
+        </aside>
+      </section>
+
+      <section data-state="zoom-betelgeuse-trigger">
+        <img width="400" data-src="static/images/chapter-01/betelgeuse.jpg" class="zoom-betelgeuse">
+        <aside class="notes">
+          We arrived at Betelegeuse. Let's ask our first question.
+        </aside>
+      </section>
+
+      <section>
+        <h2>What is a star ?</h2>
+        <blockquote class="fragment">A bright ball of gas with a nuclear fusion producing a lot of heat.</blockquote>
+        <aside class="notes">
+          What is a star ?<br><br>
+          The scientific answer is "A bright ball of gas with a nuclear fusion producing a lot of heat."
+        </aside>
+      </section>
+
+      <section>
+        <img data-src="static/images/chapter-01/gravity-fusion.jpg"/>
+        <aside class="notes">
+          <p>if you cut open a star you can see it burning in the center.</p>
+          <p>Usually everything would fall apart because of the heat. </p>
+          <p>It's the gravity that keeps everyhting in balance and shapes the star as ball.</p>
+        </aside>
+      </section>
+
+      <!-- Fact -->
+      <section>
+        <div class="fact">
+          <span>First Star Fact!</span>
+          <h2 class="fragment">✨Hot Gas Ball✨</h2>
+          <span class="fragment">🎭 Idea: Create a SVG circle</span>
+        </div>
+
+        <aside class="notes">
+          <p>Did you notice?</p>
+          <p>We earned our first star fact "Hot Gas Ball".</p>
+          <p>The idea is to create a SVG circle that represents the gas ball.</p>
+        </aside>
+      </section>
+
+      <!-- Code: Star II -->
+      <section>
+        <p>How do we implement it?</p>
+        <pre class="fragment" data-src="examples2/star/star-01/snippet.svg"></pre>
+        <img class="fragment svg-image" width="100" src='examples2/star/star-01/file.svg'/>
+
+        <aside class="notes">
+          <p>
+            And how do we implement it?
+          </p>
+          <p>
+            We use a SVG circle. The circle is given a radius r and a color with the fill attribute.
+          </p>
+          <p>
+            Once created it will look like a star. Well, a very rough one and the color hotpink seems a little off
+          </p>
+          <p>This brings us directly to our next question.</p>
+        </aside>
+      </section>
+
+      <!-- Question -->
+      <section>
+        <h3>What's the color of a star ?</h3>
+        <aside class="notes">
+          What's the color of a star ?
+        </aside>
+      </section>
+
+      <section>
+        <div class="twocol">
+          <div>
+            <img height="300" data-src="static/images/chapter-01/sun-animation.gif"/>
+            <br>
+            <span>Sun 5500°C</span>
+          </div>
+
+          <div class="fragment">
+            <img height="300" data-src="static/images/chapter-01/betelgeuse.jpg"/>
+            <br>
+            <span>Betelgeuse 3200°C</span>
+          </div>
+        </div>
+        <span class="fragment" style="color: red; font-size: 50px;">Red = Hot ?</span>
+
+        <aside class="notes">
+          <p>
+            The sun has a surface temperatur of 5500 degree celsius.
+          </p>
+          <p>
+            Betelgeuse is much colder with a temperature of 3200 degree celsius. Both stars are still very hot and they
+            look reddish.
+          </p>
+          <p>
+            You could now think red means hot but it's quite the opposite.
+          </p>
+        </aside>
+      </section>
+
+      <section
+        data-background-image="static/images/chapter-01/eta-carinae.jpg">
+        <h1 class="fragment invert" data-fragment-index="2">30.000°C</h1>
+        <h2 class="fragment" data-fragment-index="1" style="color: black;">Eta Carinae</h2>
+
+        <aside class="notes">
+          <p>Look at this blue star.</p>
+          <p>It's called Eta Carinae</p>
+          <p>and it's surface temperatur is more than 30.000 degree celsius.</p>
+          <p>In reality the really, really hot stars are blue and not red.</p>
+        </aside>
+      </section>
+
+      <!-- Fact -->
+      <section>
+        <div class="fact">
+          <span>New Star Fact!</span>
+          <h3 class="fragment">✨Temperature is color✨</h3>
+          <span class="fragment">🎭Idea: Different fill colors</span>
+        </div>
+
+        <aside class="notes">
+          <p>We have a new star fact.</p>
+          <p>Temperature is color!</p>
+          <p>
+            The idea is to create some circles with different colors.
+          </p>
+        </aside>
+      </section>
+
+      <!-- Code: Star II -->
+      <section>
+        <pre data-src="examples2/star/star-02/snippet.svg"></pre>
+        <svg viewbox="-10 -10 80 20" width="600" preserveAspectRatio="xMidYMid meet">
+          <circle r="10" cx="0" fill="#B5CDFF"></circle>
+          <circle r="10" cx="30" fill="#FFE4CE"></circle>
+          <circle r="10" cx="60" fill="#FF6C00"></circle>
+        </svg>
+
+        <aside class="notes">
+          <p>We create threee circles each with a different color from hot to cold.</p>
+          <p>Not too bad but all circles have the same size. Let's continue to our next question.</p>
+        </aside>
+      </section>
+
+      <!-- Question -->
+      <section>
+        <h2>How large is a star ?</h2>
+        <aside class="notes">
+          How large is a star? We all know that the sun is large. It's 1 million kiolemeters in diameter
+          but now watch this comparison video.
+        </aside>
+      </section>
+
+      <section
+        data-background-size="contain"
+        data-background-video="static/videos/comparison.mp4">
+        <aside class="notes">
+          <p>Earth</p>
+          <p>Sun</p>
+          <p>Eta Carina</p>
+          <p>Betelgeuse</p>
+          <p>VY Canis Majoris</p>
+        </aside>
+      </section>
+
+      <section>
+        <img data-src="static/images/chapter-01/sun-canis-betel.jpg"/>
+        <aside class="notes">
+          VY (wiwai) Canis Majoris is one of the largest stars ever discovered in the universe
+          and look how small the sun is compared to it. This brings us to the next fact!
+        </aside>
+      </section>
+
+      <!-- Fact -->
+      <section>
+        <div class="fact">
+          <span>New Star Fact!</span>
+          <h3 class="fragment">✨Stars have different sizes✨</h3>
+          <span class="fragment">🎭 Idea: Circles with different radii</span>
+        </div>
+
+        <aside class="notes">
+          <p>"Stars have different sizes" is our newest fact.</p>
+          <p>Let's plug in some different radii and look at the result.</p>
+        </aside>
+      </section>
+
+      <!-- Code: Star III -->
+      <section>
+        <pre data-src="examples2/star/star-03/snippet.svg"></pre>
+
+        <svg viewbox="-480 -350 960 700" width="500" class="fragment">
+          <circle r="1000" cx="-1250" fill="#B5CDFF"></circle>
+          <circle r="200" cx="40" fill="#FFE4CE"></circle>
+          <circle r="20" cx="340" fill="#FF6C00"></circle>
+        </svg>
+
+        <aside class="notes">
+          <p>We see our known group of circles. Now with different radius values applied.</p>
+          <p>The result looks like this</p>
+          <p>That's okay, but we will never create a night sky if we have to create circles manually.</p>
+        </aside>
+      </section>
+
+      <section>
+        <pre
+          style="font-size: 18px;"
+          data-src="examples2/star/star-04/snippet.svg"></pre>
+        <pre
+          class="fragment"
+          data-fragment-index="0"
+          style="font-size: 18px;"
+          data-src="examples2/star/star-04/snippet-create-star1.js"></pre>
+        <pre
+          class="fragment"
+          data-fragment-index="1"
+          data-line-fragments='["3-5", "7,13","9-11"]'
+          style="font-size: 18px;"
+          data-src="examples2/star/star-04/snippet-create-star2.js"></pre>
+
+        <aside class="notes">
+          <p>We want to create this markup with Javascript — I also added a transform so we can change the
+            positions.</p>
+          <p>I want to use a function call `createStar` like this where I provide all values</p>
+          <p>And the function itself looks like this</p>
+          <p>
+            1. Custom createSVGElement function to shorten the native call with the namespace<br>
+            2. appendChild like in html<br>
+            3. Set properties.
+          </p>
+          <p>That's it</p>
+        </aside>
+      </section>
+
+      <!-- Code: Star IV -->
+      <section>
+        <pre data-src="examples2/star/star-05/snippet.js"></pre>
+
+        <iframe width="600" height="400" data-src="examples2/star/star-05/index.html"></iframe>
+
+        <aside class="notes">
+          <p>
+            With that function we can now create vast amounts of different stars
+          </p>
+
+          <p>We are ready to build our sky.</p>
+        </aside>
+      </section>
+
+      <section data-background-image="static/images/chapter-01/warp-speed-back.gif">
+        <h2>Back to earth</h2>
+        <aside class="notes">
+          But to observe our night sky, we need to travel back to the earth first.
+        </aside>
+      </section>
+    </section>
+
+    <!-- Chapter 02 (Night Sky) -->
+    <section>
+      <section data-background-image="static/images/chapter-02/night-sky.jpg">
+        <span>Chapter 02 </span>
+        <h1>Starry Night</h1>
+        <aside class="notes">
+          Arriving at the earth we can see the beautiful night sky and one question of a romantic stargazer is
+          inevitable.
+        </aside>
+      </section>
+
+      <section>
+        <h2>How many stars are in the universe?</h2>
+        <p class="fragment">More stars than the earth has sand grains!</p>
+        <p class="fragment">1,000,000,000,000,000,000,000,000 <br> (one quadrillion)</p>
+
+        <aside class="notes">
+          <p>How many stars are in the universe.</p>
+          <p>A romantic would say "more stars than the earth has sand grains.</p>
+          <p>A scientist would say one quadrillion.</p>
+          <p>But those numbers are not really helping. Maybe we should rephrase our question.</p>
+        </aside>
+      </section>
+
+      <section>
+        <h3>How many stars can we <strong style="text-decoration: underline">see</strong> in the night sky?</h3>
+        <h2 class="fragment" data-fragment-index="1">
+          9096 <span class="fragment" data-fragment-index="4">(4548)</span>
+        </h2>
+        <p class="fragment" data-fragment-index="2">in a pitch black night</p>
+        <p class="fragment" data-fragment-index="5">Worse with light pollution</p>
+
+        <aside class="notes">
+          <p>How many stars can we **see** in the night sky with our eyes.</p>
+          <p>The answer is exactly 9096 in a ptich black night.</p>
+          <p>Actually it's half of it as we are living on a globe.</p>
+          <p>And it gets so much worse with light pollution</p>
+        </aside>
+      </section>
+
+      <section
+        data-background-size="contain"
+        data-background-image="static/images/chapter-02/bortle-scale.jpg">
+        <aside class="notes">
+          <p>Look at that image. More and more stars disappear from right to left.
+            You can see how you location affects the total count of stars.</p>
+          <p>Standing at the city center here in Bucharest you won't be able to see more than 35 stars in the whole
+            night sky</p>
+          <p>Compare this with some dark spots in deep rural areas where you can see almost the maximum your eyes can
+            handle</p>
+
+          <!-- Numbers are the Bortle scale (https://en.wikipedia.org/wiki/Bortle_scale) -->
+        </aside>
+      </section>
+
+      <!-- Fact -->
+      <section>
+        <div class="fact">
+          <span>New Star Fact!</span>
+          <h2 class="fragment">✨Star Count✨</h2>
+          <span class="fragment">🎭Idea: Create a lot of stars.</span>
+        </div>
+
+        <aside class="notes">
+          <p>We got a new fact: Star Count</p>
+          <p>Let's create a lot of stars.</p>
+        </aside>
+      </section>
+
+      <!-- Code: Sky I -->
+      <section>
+        <pre><code class="language-js">createSky({count: 250});</code></pre>
+        <pre
+          class="fragment line-numbers"
+          data-src="examples2/sky/sky-01/snippet.js">
+          </pre>
+
+        <aside class="notes">
+          <p>We want to use a JavaScript function where we pass in the total count of stars.</p>
+          <p>
+            The function itself is a for loop which will create stars
+            with random color and position and a fixed size of 1</p>
+        </aside>
+      </section>
+
+      <section data-background-iframe="examples2/sky/sky-01/index.html">
+        <aside class="notes">
+          <p>The result looks like this</p>
+          <p>That was surprisingly quick with the power of JavaScript.</p>
+          <p>But it looks boring so let's try to add another effect.</p>
+        </aside>
+      </section>
+
+      <section
+        data-background-opacity="1"
+        data-background-image="static/images/chapter-02/twinkle-sky.gif">
+        <h1 class="fragment">Twinkling</h1>
+        <h2 class="fragment">Astronomical Scintillation</h2>
+
+        <aside class="notes">
+          <p>That subtle effect you can see here is called Twinkling</p>
+          <p>or as we are scientists today: Astronomical Scintillation</p>
+        </aside>
+      </section>
+
+      <section data-background-image="static/images/chapter-02/pool.gif">
+        <aside class="notes">
+          <p>The effect is caused by our atmosphere as there a differrent layers of air.</p>
+          <p>It's more or less the same effect we all know from a swimming pool
+            where we can see light effects on the ground.</p>
+        </aside>
+      </section>
+
+      <section>
+        <video width="600" data-autoplay loop>
+          <source data-src="static/videos/sirius-scintillation.mp4" type="video/mp4"/>
+        </video>
+        <aside class="notes">
+          <p>That's a star zoomed in. You can clearly see changes in brightness and position even color and shape.</p>
+          <p>That leads us to our newest fact.</p>
+        </aside>
+      </section>
+
+      <section>
+        <!-- Fact -->
+        <div class="fact">
+          <span>New Star Fact!</span>
+          <h2 class="fragment">✨Stars can twinkle✨</h2>
+          <p class="fragment">🎭 Idea: CSS animations for scale & opacity</p>
+          <aside class="notes">
+            <p>Stars can twinkle </p>
+            <p>and we are going to implement it with two CSS animations to change scale and opacity of our circles.</p>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Code: Twinkle II (Pulse) via MZBxNz -->
+      <section>
+          <pre
+            style="font-size: 18px"
+            data-src="/examples2-static/sky/sky-02/snippet.css"></pre>
+
+        <iframe
+          width="600"
+          height="250"
+          data-src="examples2/sky/sky-02/index.html">
+        </iframe>
+
+        <aside class="notes">
+          <p>The first CSS animation looks like this.</p>
+          <p>We use a keyframe animation and apply a rather random looking scaling to get this result</p>
+          <p>The rather rough animation is intended as we want to create the illusion of randomness
+            as you are suprised by the different changes.</p>
+          <p>The animation itself is running forever and it's alternating so we have a greater variation in the
+            animation cycle</p>
+        </aside>
+
+      </section>
+
+      <!-- Code: Twinkle III (Glow) via JwBVMK -->
+      <section>
+          <pre
+            style="font-size: 18px"
+            data-src="examples2-static/sky/sky-02/snippet-glow.css"></pre>
+
+        <iframe
+          width="600"
+          height="250"
+          data-src="examples2/sky/sky-02/glow.html">
+        </iframe>
+
+        <aside class="notes">
+          The next CSS animation is more simple. Our star should fade in and out
+          and we use again a keyframe animation to do so.
+        </aside>
+      </section>
+
+      <!-- Code: Twinkle IV (Pulse & Glow) via bOjJKm -->
+      <section>
+          <pre
+            style="font-size: 18px"
+            data-src="examples2-static/sky/sky-02/snippet-both.css"></pre>
+
+        <iframe
+          width="600"
+          height="250"
+          data-src="examples2/sky/sky-02/both.html">
+        </iframe>
+        <aside class="notes">
+          <p>When we combine both animations it will animate scale and fade in parallel</p>
+          <p>We use different timings for the animations to create a more natural animation.</p>
+        </aside>
+      </section>
+
+      <!-- Code: Twinkle V-I (Multiple) via gZjyQz -->
+      <section>
+        <pre data-src="examples2/sky/sky-03/snippet.svg"></pre>
+        <iframe
+          class="frxagment"
+          width="600"
+          height="250"
+          data-src="examples2/sky/sky-03/"></iframe>
+
+        <aside class="notes">
+          <p>Let's create three circles and apply our animation. </p>
+          <p>The result looks really artificial because everything is in sync</p>
+        </aside>
+      </section>
+
+      <!-- Code: Twinkle V-II (Multiple) via gZjyQz -->
+      <section>
+          <pre
+            data-line-fragments='["7","9-11"]'
+            data-src="examples2-static/sky/sky-03/snippet-delay.css"></pre>
+
+        <iframe
+          width="600"
+          height="250"
+          data-src="examples2/sky/sky-03/delay.html"></iframe>
+
+        <aside class="notes">
+          <p>You can clearly see how the result looks more natural when it's asynchronious</p>
+
+          <p>We use the power of CSS Variables to fill the CSS property <strong>animation-delay</strong>
+            so we can offset the animation. The default value is set to 0.
+          </p>
+          <p>We can apply different values to our individual stars through CSS!<br>
+            The applied <strong>animation offsets</strong> are negative otherwise the animation would wait in the
+            beginning</p>
+        </aside>
+      </section>
+
+      <!-- Code: Twinkle V (First Twinkle Sky) via wREvPg -->
+      <section>
+          <pre
+            data-line-fragments='["6","7,4"]'
+            data-line-fragments-mode='absolute'
+            style="font-size: 18px"
+            data-src="examples2/sky/sky-04/snippet.js"></pre>
+        <iframe
+          class="fragment"
+          data-fragment-index="10"
+          width="900"
+          height="300"
+          data-src="examples2/sky/sky-04/index.html?debug"></iframe>
+
+        <aside class="notes">
+          <p>We can know add the twinkling effect animation to all of our stars in the sky just by modifying the
+            createStar function we created earlier</p>
+          <p>First we add the CSS class <strong>`twinkle-little-star`</strong> to provide the animations</p>
+          <p>Next we assign a random and negative delay with our CSS Variables to offset the animations</p>
+          <p>The result looks already awesome. I kept the large circle here so you can see the effect in large and
+            small.
+          </p>
+        </aside>
+      </section>
+
+      <!-- (Large Preview) Code: Twinkle V (First Twinkle Sky) via roZNbo -->
+      <section data-background-iframe="examples2/sky/sky-04/">
+        <aside class="notes">
+          <p>Here another version with the sky only. That's pretty nice and we have come really far in a short time
+            already.</p>
+          <p>Let's jump to our thrid chapter.</p>
+        </aside>
+
+      </section>
+    </section>
+
+    <!-- Chapter 03 (Shooting Stars) -->
+    <section>
+      <section data-background-image="static/images/chapter-03/shooting-background.gif">
+        <span>Chapter 03 </span>
+        <h2>Shooting Stars</h2>
+        <aside class="notes">
+          <p>The twinklign sky we have just build is beautiful already
+            but it's missing some action.</p>
+
+          <p>That's why I want to see some shooting stars. Let's explore
+            what shooting stars are and then create some.</p>
+        </aside>
+      </section>
+
+      <section>
+        <h3>What are shooting stars?</h3>
+        <aside class="notes">
+          So, what are shooting stars ?
+        </aside>
+      </section>
+
+      <section
+        data-background-opacity="0.5"
+        data-background-image="static/images/chapter-03/pebbles.jpg">
+        <h2>pebble sized</h2>
+        <aside class="notes">
+          They are are pebble sized rocks...
+        </aside>
+      </section>
+
+      <section
+        data-background-image="static/images/chapter-03/horizon.jpg">
+        <aside class="notes">
+          that enter our atmosphere - the small blue line in this photo -
+        </aside>
+      </section>
+
+      <section>
+        <p>up to 260.000 km/h</p>
+        <p class="fragment">plus air friction = </p>
+        <img class="fragment" height="400" data-src="static/images/chapter-03/burning-bits.gif"/>
+        <aside class="notes">
+          <p>The rocks travel with a speed up to 260.000 km/h.</p>
+          <p>The speed in combination with the friction of our atmosphere</p>
+          <p>makes it burn and light up</p>
+          <p>We are lucky most of them are so small that they burn up entirely</p>
+        </aside>
+      </section>
+
+      <!-- Fact -->
+      <section>
+        <div class="fact">
+          <span>New Star Fact!</span>
+          <h3 class="fragment">✨Flying Burning Rock✨</h3>
+          <span class="fragment">🎭 Idea: Create a moving circle with fading</span>
+        </div>
+
+        <aside class="notes">
+          <p>We got a new fact! </p>
+          <p>Shooting Stars are "Flying Burning Rocks"</p>
+          <p>and the idea is to create a moving circle with fading.</p>
+        </aside>
+      </section>
+
+      <!-- Code: Shooting Fading -->
+      <section>
+        <pre style="font-size: 18px" data-src="examples2-static/shooting/shooting-01/snippet.svg"></pre>
+        <pre
+          data-line-fragments='["6-8"]'
+          data-line-fragments-mode='absolute'
+          data-fragment-index="1"
+          style="font-size: 18px" data-src="examples2-static/shooting/shooting-01/snippet.css"></pre>
+
+        <iframe
+          width="600"
+          height="200"
+          data-src="examples2/shooting/shooting-01/index.html"></iframe>
+
+        <aside class="notes">
+          <p>We use a circle again — but this time it stands for a piece of rock and not a star!</p>
+          <p>To simulate the burning we use <strong>opacity</strong>. We are not visible in the beginning, start burning
+            and disappear again.</p>
+          <p>The result looks good, now let's build some movement</p>
+        </aside>
+      </section>
+
+      <!-- Code: Shooting No Orbit -->
+      <section>
+        <img data-src="static/images/chapter-03/shooting-star-arc.gif">
+
+        <pre class="fragment prism-medium" data-src="examples2-static/shooting/shooting-02/snippet.css"></pre>
+
+        <aside class="notes">
+          <p>We want to move the circle in an arc</p>
+          <p>and we start by rotating it from 0 to 180 degree</p>
+          <p>But something is wrong with the result - you can't see it rotate.</p>
+        </aside>
+
+        <iframe
+          class="fragment"
+          width="600"
+          height="250"
+          data-src="examples2/shooting/shooting-02/"></iframe>
+      </section>
+
+      <!-- Code: Shooting No Orbit (debug) -->
+      <section data-background-iframe="examples2/shooting/shooting-02/index.html?debug">
+        <aside class="notes">
+          <p>If wee look at a larger version and attach some shape to the circle</p>
+          <p>we can see that it's rotating — but around itself only</p>
+          <p>We need to offset the center of the animation</p>
+        </aside>
+      </section>
+
+      <!-- Code: Orbit with rotation + translation -->
+      <section>
+        <pre data-src="examples2-static/shooting/shooting-03/snippet.css"></pre>
+        <div class="twocol">
+          <div style="height:400px; position: relative;">
+            <iframe
+              width="400"
+              height="400"
+              data-src="examples2/shooting/shooting-03/part1.html"></iframe>
+          </div>
+          <div style="height:400px; position: relative;">
+            <iframe
+              data-fragment-index="1"
+              class="fragment"
+              width="400"
+              height="400"
+              data-src="examples2/shooting/shooting-03/part2.html"></iframe>
+            <div
+              class="fragment"
+              data-fragment-index="1"
+              style="width:650px;position: absolute;bottom:0;left:-350px">
+                  <pre style="font-size: 14px">
+                    <code class="language-css">
+                      @keyframes shootingStarOrbit {
+                        0% { transform: translate(100px, 0) rotate(0); }
+                        100% { transform: translate(100px, 0) rotate(180deg); }
+                      }
+                    </code>
+                  </pre>
+            </div>
+          </div>
+        </div>
+
+        <aside class="notes">
+          <p>In addition to the rotation we also translate. We use this adjusted animation
+            and we can see the desired result.
+          </p>
+          <p>
+            The translation has the effect, that the circle is rotating around its
+            original position with the given radius of 100px.
+          </p>
+          <p>
+            Order matters, don't translate and then rotate otherwise you will shift the circle and it will rotate at
+            that new position around itself.
+          </p>
+        </aside>
+      </section>
+
+      <section>
+          <pre style="font-size: 14px">
+            <code class="language-css">
+              .shooting-star {
+                animation: shootingStarOrbit 2s linear infinite;
+              }
+              @keyframes shootingStarOrbit {
+                0% {
+                  transform: rotate(0) translate(100px, 0);
+                }
+                100% {
+                  transform: rotate(180deg) translate(100px, 0);
+                }
+              }
+            </code>
+          </pre>
+        <ul>
+          <li class="fragment">translate(100px, 0) ➡ radius</li>
+          <li class="fragment">rotate(0), rotate(180) ➡ start/end angle</li>
+          <li class="fragment">CSS Variables and keyframes are friends 👫</li>
+        </ul>
+
+        <aside class="notes">
+          <p>The animation is good but we want to use variations</p>
+          <p>We want to adjust translation of 100px which represents our radius</p>
+          <p>and also the different rotation values which are our start and end angles</p>
+          <p>Amazingly CSS Variables work in keyframe animations too!</p>
+        </aside>
+      </section>
+
+      <!-- Code: CSS Variables for Radius -->
+      <section>
+          <pre style="font-size: 14px">
+            <code class="language-css">
+              @keyframes shootingStarOrbit {
+                100% {
+                  transform:
+                    rotate(180deg)
+                    translate(var(--shooting-orbit-radius, 100px), 0);
+                }
+              }
+            </code>
+          </pre>
+        <pre style="font-size: 14px" class="fragment">
+            <code class="language-js">
+              // Provide values through JS
+              shootingStar.style.setProperty(
+                '--shooting-orbit-radius', value + 'px');
+            </code>
+          </pre>
+
+        <aside class="notes">
+          <p>
+            We use a CSS variable called shooting-orbit-radius with a default value of 100px;
+          </p>
+          <p>
+            With the power of JavaScript we can assign different values.
+          </p>
+          <p>
+            You can see it my example where I change it by 10px in each step.
+            The circle right to it is using the same animation but with the fallback value of 100px
+          </p>
+        </aside>
+
+        <iframe
+          class="fragment"
+          width="600"
+          height="300"
+          data-src="examples2/shooting/shooting-04/index.html"></iframe>
+      </section>
+
+      <!-- Code: CSS Variables for Angle plus: Start Angle -->
+      <section>
+          <pre style="font-size: 14px">
+            <code class="language-css">
+              @keyframes shootingStarOrbit {
+                0% { transform:
+                  rotate(var(--shooting-orbit-angle-start, 0deg)) /*translate..*/ }
+                100% { transform:
+                  rotate(var(--shooting-orbit-angle, 180deg)) /* translate.. */ }
+              }
+            </code>
+            <code class="language-js">
+              shootingStar.style
+                .setProperty('--shooting-orbit-angle-start', value + 'deg');
+              shootingStar.style
+                .setProperty('--shooting-orbit-angle', value + 'deg');
+            </code>
+          </pre>
+
+        <aside class="notes">
+          <p>We can do the same for the angle. </p>
+          <p>Here I prepared an example where the two angles are set to different values.
+            You can see how the start end the end angles are changing while we use the very same css animation.
+          </p>
+        </aside>
+
+        <iframe
+          class="fragment"
+          width="600"
+          height="300"
+          data-src="examples2/shooting/shooting-05/index.html"></iframe>
+      </section>
+
+      <!-- Part VI: createShootingStar via BvOJKw -->
+      <section>
+          <pre style="font-size: 18px;">
+            <code class="language-js">
+              createShootingStar({
+                x: 100, y: 100, radius: 100,
+                angleStart: -90, angle: -180
+              });
+            </code>
+          </pre>
+
+        <pre
+          class="fragment"
+          data-fragment-index="0"
+          data-line-fragments='["3-5,16", "7-14" ]'
+          style="font-size: 18px;"
+          data-src="examples2/shooting/shooting-06/snippet.js"></pre>
+
+        <aside class="notes">
+          <p>We have a shooting star where we can provide variations with CSS Variables. Let's build a function
+            `createShootingStar` so we can create them with few parameters
+          </p>
+          <p>The method itself</p>
+          <p>will build the SVG structure</p>
+          <p>and apply all CSS Variables and attributes</p>
+        </aside>
+      </section>
+
+      <section data-background-iframe="examples2/shooting/shooting-07/index.html?debug">
+          <pre style="position: fixed; bottom: 0; left:0; font-size: 18px;">
+            <code class="language-js">
+              createShootingStar({
+                x: 100, y: 100, radius: 100,
+                angleStart: -90, angle: -180
+              });
+            </code>
+          </pre>
+
+        <aside class="notes">
+          The result looks like this.
+        </aside>
+      </section>
+
+      <section data-background-iframe="examples2/shooting/shooting-07/index.html?debug">
+        <aside class="notes">
+          When we disable all the visual helpers the result already looks like a shooting star!
+        </aside>
+      </section>
+
+      <section>
+        <h3>How many shooting stars?</h3>
+        <p class="fragment">4-6 per hour</p>
+        <aside class="notes">
+          <p>There is one question missing yet.</p>
+          <p>How many shooting stars are actually happening in the sky?</p>
+          <p>During a usual night and outside of a city you can observe up to 6 shooting stars per hours</p>
+        </aside>
+      </section>
+
+      <section data-background-image="static/images/chapter-03/meteor-shower-tonight.jpg">
+        <h2>Meteor Shower</h2>
+        <p class="fragment">Up to 200 shooting stars per hour</p>
+        <aside class="notes">
+          <p>But during a meteor shower you can observe</p>
+          <p>up to 200 shooting stars per hour</p>
+        </aside>
+      </section>
+
+      <!-- Fact 07 -->
+      <section>
+        <span>New Star Fact!</span>
+        <h2 class="fragment">✨Meteor Shower✨</h2>
+        <p class="fragment">🎭Idea: Create multiple randomly shooting stars </p>
+        <aside class="notes">
+          <p>We gained a new star fact.</p>
+          <p>Meteor Shower</p>
+          <p>The idea is to create multiple random shooting stars</p>
+        </aside>
+      </section>
+
+      <!-- Code: Meteor Shower -->
+      <section>
+        <div class="twocol">
+          <div>
+            <pre style="font-size: 16px" data-src="examples2/shooting/shooting-08/snippet.js"></pre>
+          </div>
+          <div>
+            <iframe
+              class="fragment"
+              width="480"
+              height="480"
+              data-src="examples2/shooting/shooting-08/"></iframe>
+          </div>
+        </div>
+
+        <aside class="notes">
+          <p>We use our 'createShootingStar' method to create three different shooting stars</p>
+          <p>The result are multiple shooting stars</p>
+          <p>But they all start at the same time and shooting forever. We need to change this.</p>
+        </aside>
+      </section>
+
+      <!-- Code: Meteor Shower II -->
+      <section>
+        <div class="twocol">
+          <div>
+              <pre style="font-size: 12px"
+                   data-fragment-index="0"
+                   data-line-fragments-mode="absolute"
+                   data-line-fragments='["2-4"]'>
+                <code class="language-css">
+                  .shooting-star {
+                    visibility: hidden;
+                  }
+
+                </code>
+              </pre>
+
+            <pre style="font-size: 12px"
+                 data-fragment-index="1"
+                 data-line-fragments-mode="absolute"
+                 data-line-fragments='["2-4"]'>
+
+                <code class="language-css">
+                  .shooting-star.is-shooting {
+                    visibility: visible;
+                    animation: shootingStarOrbit ...
+                  }
+                </code>
+
+              </pre>
+
+            <pre style="font-size: 12px"
+                 data-fragment-index="2"
+                 data-line-fragments-mode="absolute"
+                 data-line-fragments='["1-3,6"]'>
+                <code class="language-js">
+                  setInterval(() => shootNext(), 4000);
+
+                  function shootNext() {
+                    const shootingStar = nextStar();
+                    shootingStar.classList.add('is-shooting');
+
+                    lastStar.classList.remove('is-shooting');
+                    lastStar = shootingStar;
+                  }
+                </code>
+              </pre>
+          </div>
+
+          <iframe
+            class="fragment"
+            width="480"
+            height="480"
+            data-src="examples2/shooting/shooting-09/index.html"></iframe>
+        </div>
+
+        <aside class="notes">
+          <p>So</p>
+          <p>We hide the shooting star in the beginning</p>
+          <p>and only show it and apply the animation when the class is-shooting is present</p>
+          <p>We use a shootNext function to randomly assign the css class is-shooting to a shootingn star</p>
+          <p>the result looks like this where each shooting star is randomly activated</p>
+        </aside>
+      </section>
+
+      <section data-background-image="static/images/chapter-03/homer-burn.gif">
+        <aside class="notes">
+          Let's try to combine our sky with the shooting stars.
+        </aside>
+      </section>
+
+      <!-- Code Preview Shooting Stars & Night Sky via EGdyVo-->
+      <!-- <section data-background-iframe="examples2/shooting/shooting-10/index.html?debug">
+
+        <aside class="notes">
+          <p>Oh, that looks not so good... maybe we should disable our helping visuals first.</p>
+        </aside>
+      </section> -->
+
+      <!-- Code Preview Shooting Stars & Night Sky via EGdyVo-->
+      <section
+        data-background-iframe="examples2/shooting/shooting-10/index.html">
+
+        <aside class="notes">
+          <P>There we go! This looks nice.</P>
+          <p>You can see our stars twinkle and the shooting stars appearing randomly.</p>
+        </aside>
+      </section>
+    </section>
+
+    <!-- Chapter 04 (Constellations) -->
+    <section>
+      <section
+        data-background-opacity="0.5"
+        data-background-image="static/images/constellations/opener.gif">
+        <span>Chapter 04 </span>
+        <h2>Constellations</h2>
+        <aside class="notes">
+          Our final chapter is about constellations and we start with a little bit of science.
+        </aside>
+      </section>
+
+      <section
+        data-background-size="contain"
+        data-background-image="static/images/constellations/pareidolia.jpg">
+        <aside class="notes">
+          <p>Here you can see a picture of random every day objects. </p>
+
+          <p>Although we all know that those pictures show no living things our brain still recognizes them as
+            characters and faces together with an emotion.</p>
+
+          <p>My favourite ist the grumpy broom and the happy brush family.</p>
+
+          <p>This behaviour of our brain has a specific name...</p>
+        </aside>
+      </section>
+
+      <section
+        data-background-opacity="0.5"
+        data-background-image="static/images/constellations/pareidolia.jpg">
+        <h1>Pareidolia</h1>
+        <span>
+            Human tendency to see patterns & faces in random data.
+          </span>
+        <aside class="notes">
+          It's called Pareidolia. It's the tendency to see patterns or faces in random data.
+        </aside>
+      </section>
+
+      <section
+        data-background-image="static/images/chapter-04/constellation-forming.gif">
+        <h2>Stars are random data</h2>
+        <aside class="notes">
+          And what are stars in the sky? They are random data so that our brain
+          tries very hard to find anythign meaningful in it!
+        </aside>
+      </section>
+
+      <section>
+        <img height="600" src="static/images/chapter-04/orion-hevelius-stars.png"/>
+        <aside class="notes">
+          Just look at this random star pattern. You can make some connections between the stars
+        </aside>
+      </section>
+
+      <section>
+        <img height="600" src="static/images/chapter-04/orion-hevelius-lines.png"/>
+        <aside class="notes">
+          which will create a line drawing that can be imagined as an image.
+        </aside>
+      </section>
+
+      <section>
+        <img height="600" src="static/images/chapter-04/orion.jpg"/>
+        <aside class="notes">
+          <p>
+            Centuries ago and thanks to pareidolia this patch of stars transformed into Orion, a famous hunter from the
+            greek mythology. To spot him look out for Orion's Belt - the three stars lined up at his hip.
+          </p>
+          <p>
+            Besides Orion there are two other must-known constellations in the sky you should know.
+          </p>
+        </aside>
+      </section>
+
+      <section>
+        <img height="600" src="static/images/chapter-04/ursa-major.jpg"/>
+        <aside class="notes">
+          <p>
+            That's Ursa Major which is latin and translates to big bear.
+          </p>
+          <p>
+            Many people will recognize the upper left part as the big dipper
+          </p>
+          <p>
+            Big dipper is not a constellation by itself — just a famous pattern inside Ursa Major which helps you to
+            spot it.
+          </p>
+        </aside>
+      </section>
+
+
+      <section>
+        <img height="600" src="static/images/chapter-04/hercules.jpg"/>
+        <aside class="notes">
+          <p>And here is Hercules, son of Zeus. A great hero in the Greek mythology.</p>
+          <p>
+            In the northern hemisphere you can spot him from spring to fall. Just look out for the square shape that
+            forms the torso of Hercules.
+          </p>
+        </aside>
+      </section>
+
+      <section data-background-image="static/images/chapter-04/celestrial-animation.gif">
+        <aside class="notes">
+          <p>There are many more things people see in the sky</p>
+          <p>Today there are exactly 88 official constellations in our night sky covering an imaginary sphere around the
+            earth.</p>
+        </aside>
+      </section>
+
+      <section>
+        <div class="fact">
+          <span>Star Fact!</span>
+          <h2 class="fragment">✨Imaginary Images✨</h2>
+          <span class="fragment">🎭 Idea: SVG circles connected with lines</span>
+        </div>
+        <aside class="notes">
+          <p>
+            Constellations are Imaginary Images is our next star fact!
+          </p>
+          <p>
+            And we will build them by connecting SVG circles with lines.
+          </p>
+        </aside>
+      </section>
+
+      <!-- building block -->
+      <section>
+        <h3>Our building block</h3>
+        <iframe
+          width="600" height="100"
+          data-src="examples2/constellations/constellation-02/index.html">
+        </iframe>
+
+        <pre
+          data-src="examples2-static/constellations/constellation-02/snippet.svg"></pre>
+
+        <aside class="notes">
+          <p>This will be our basic building block. Two dots and a line.</p>
+          <p>If we can create such an element we can create any outline.</p>
+          <p>To make our lives easier let's think about creating it with JavaScript.</p>
+        </aside>
+      </section>
+
+      <!-- createLine & createDots -->
+      <section>
+        <div class="twocol">
+          <div>
+            <iframe width="500" height="100" data-src="examples2/constellations/constellation-02a/index.html"></iframe>
+
+            <pre
+              style='font-size: 12px'
+              data-line-fragments='["6-7", "3-4"]'
+              data-line-fragments-mode='absolute'
+              data-src="examples2/constellations/constellation-02a/snippet.svg">
+              </pre>
+          </div>
+          <div>
+              <pre style='font-size: 14px' class="fragment" data-fragment-index="0">
+                <code class="language-js">
+                  const points = [ {x: 0, y: 0}, {x: 100, y: 0}];
+                </code>
+              </pre>
+
+            <pre style='font-size: 14px' class="fragment" data-fragment-index="1">
+                <code class="language-js">
+                  createDots(points);
+                </code>
+              </pre>
+
+            <pre style='font-size: 14px' class="fragment" data-fragment-index="2">
+                <code class="language-js">
+                  createLine(points);
+                </code>
+              </pre>
+
+            <pre
+              class="fragment"
+              data-fragment-index="2"
+              style='font-size: 14px'
+              data-line-fragments='["5-7"]'
+              data-line-fragments-mode='absolute'
+              data-src="examples2/constellations/constellation-02a/snippet-path.js"></pre>
+          </div>
+        </div>
+
+        <aside class="notes">
+          <p>First we need to collect our end points as a list of coordinates.</p>
+
+          <p>We can pass that list to a function createDots to create the white dots.</p>
+
+          <p>Next we call a function createLine where we build the path element.</p>
+
+          <p>We fill the required pathData with a custom function generateLinePath to build the magic string with M, L
+            and numbers</p>
+        </aside>
+      </section>
+
+      <!-- more complex line-->
+      <section>
+        <h3>Complex Lines</h3>
+        <iframe
+          data-virtual-iframe="[1,1,1,1]"
+          data-virtual-iframe-offset="0"
+          width="600" height="200" data-src="examples2/constellations/constellation-02c/index.html"></iframe>
+
+        <div class="twocol">
+            <pre
+              class="line-numbers"
+              style='font-size: 12px'
+              data-line-fragments-mode="absolute"
+              data-line-fragments-start="first"
+              data-line-fragments='["9", null, "10", null]'
+              data-fragment-index="0"
+              data-src="examples2/constellations/constellation-02c/snippet.js"></pre>
+
+          <pre
+            style='font-size: 12px'
+            data-line-fragments-mode="absolute"
+            data-line-fragments='["2", "5, 8-10"]'
+            data-fragment-index="2">
+                <code class="language-js">
+                    const lineHotpink = [0, 3, 1, 2];
+
+                    // returns [{x:0. y:0}, {x:0. y:50}, ...]
+                    const hotpinkPoints = indicesToPoints(lineHotpink, points);
+                    createLine(hotpinkPoints);
+
+                    function indicesToPoints(indices, sourceList) {
+                      return indices.map(index => sourceList[index]);
+                    }
+                </code>
+            </pre>
+        </div>
+
+        <aside class="notes">
+          <p>Let's try to build more complex shapes.
+            <br>We start with four points and create the four dots as usually
+          </p>
+          <p>
+            But how would we create this hotpink line?
+          </p>
+          <p>
+            We can't just pass all points to the createLine as this would connect all points.
+          </p>
+
+          <p>
+            Instead we define the line as a list of numbers referring to the
+            points we want to connect with.
+          </p>
+
+          <p>
+            A custom function indicesToPoints helps us to transform the numbers to points again.
+          </p>
+        </aside>
+      </section>
+
+
+      <!-- createConstellation orion examples  -->
+      <section>
+        <div class="twocol" style="grid-template-columns: 60% 40%;">
+          <div>
+              <pre
+                style='font-size: 12px'>
+                  <code class="language-js">
+                    const COORDINATES = [
+                      { x: 161, y: 352 },
+                      { x: 57, y: 365 },
+                      { x: 80, y: 273 },
+                      // ...
+                    ];
+
+                    const LINES = [
+                      [7, 6, 5, 4, 3, 2, 7],
+                      [5, 12],
+                      [12, 14, 13],
+                      [12, 15, 16, 17],
+                      // ...
+                    ]
+                  </code>
+                </pre>
+
+            <pre
+              style='font-size: 12px'>
+                  <code class="language-js">
+                    createConstellation(COORDINATES, LINES);
+                  </code>
+                </pre>
+
+            <pre
+              data-fragment-index="1"
+              data-line-fragments-mode="absolute"
+              data-line-fragments='["3-4"]'
+              style='font-size: 12px' class="fragment">
+                  <code class="language-js">
+                    function createConstellation(points, multipleIndicesList) {
+                      createDots(points);
+                      // createStars(points)
+
+                      multipleIndicesList.forEach(indices => {
+                        const linePoints = indicesToPoint(indices, points);
+                        createLine(linePoints);
+                      })
+                    }
+                  </code>
+                </pre>
+          </div>
+          <div>
+            <iframe
+              data-virtual-iframe="[0, 1]"
+              data-fragment-index="0"
+              width="100%"
+              height="400"
+              data-src="examples2/constellations/constellation-03/index.html">
+            </iframe>
+          </div>
+        </div>
+        <aside class="notes">
+          <p>
+            To create a constellation we want to call a function `createConstellation` and pass in
+            the star coordinates and a list of lines. It's then only a matter of the data we pass in to create our hero
+            Orion.
+          </p>
+          <p>
+            Inside the function we use createDots & createLine to build the constellation.
+          </p>
+          <p>
+            By switching the createDots function with our existing createStars function we can make the dots appear as
+            twinkling stars.
+          </p>
+        </aside>
+      </section>
+
+      <section data-background-iframe="examples2/constellations/constellation-half/index.html">
+        <aside class="notes">
+          <p>
+            When Orion is placed in the night sky it looks already very good
+          </p>
+          <p>
+            But something is missing.
+          </p>
+        </aside>
+      </section>
+
+      <section>
+        <div class="fact">
+          <span>Bonus Fact!</span>
+          <h3 class="fragment">✨Appearing Constellation✨</h3>
+          <span class="fragment">🎭 Idea: Animated SVG Paths</span>
+        </div>
+        <aside class="notes">
+          <p>
+            We have one bonus fact left.
+          </p>
+          <p>
+            Appearing Constellation
+          </p>
+          <p>
+            Constellations are hard to find and even harder to imagine — that's exactly what we want to do. They should
+            appear slowly in the night sky.
+          </p>
+
+          <p>
+            The idea is to create animated SVG paths so that the constellation can appear over time.
+          </p>
+
+        </aside>
+      </section>
+
+
+      <section>
+        <h2>Technique by Jake Archibald (2013)</h2><br>
+        <span class="fragment">Dash Array with an animated Dash Offset</span><br>
+
+        <aside class="notes">
+          <p>
+            We will use a technique pioneered by Jake Archibald in 2013.
+          </p>
+          <p>
+            It's a smart combination of dashes and dash offsets to create the illusion of a revealing path.
+          </p>
+        </aside>
+      </section>
+
+      <section>
+        <h3>Dash Array</h3>
+        <div class="twocol">
+          <iframe width="400" height="320"
+                  data-src="examples2/constellations/constellation-05-dashes/index.html"></iframe>
+          <div>
+              <pre
+                style='font-size: 16px'
+                data-src="examples2/constellations/constellation-05-dashes/snippet.svg"></pre>
+          </div>
+        </div>
+
+        <aside class="notes">
+          <p>First a quick summary what dashes and offsets do in a path</p>
+          <p>
+            Dashes are created through the `stroke-dasharray` property on a path.
+          </p>
+          <p>
+            The value means how long a single segment should be followed by a gap with the same size.
+          </p>
+        </aside>
+      </section>
+
+      <!-- <section>
+        <h3>Dash Offset</h3>
+        <div style="width:650px; margin: auto">
+          <pre
+            style='font-size: 16px'
+            data-src="examples2/constellations/constellation-05-dashes/snippet2.svg"></pre>
+        </div>
+        <iframe width="800" height="350" data-src="examples2/constellations/constellation-05-dashes/index2.html"></iframe>
+        <aside class="notes">
+          <p>The dash offset controls where the dashes should start on a line.</p>
+          <p>Imagine a line. Now extend it to infinity with a yellow window floating over it. The window has the same width as your original line.</p>
+          <p>When you apply an offset that window moves along the infinite line by that amount and whatever is inside is what is being drawn as your original line.
+          </p>
+        </aside>
+      </section> -->
+
+      <section>
+        <h3>Dash Offset</h3>
+
+
+        <div>
+
+          <pre
+            style='font-size: 16px'
+            data-src="examples2/constellations/constellation-05-dashes/snippet3.svg"></pre>
+        </div>
+
+        <iframe
+          data-virtual-iframe="[1,1,1]"
+          data-virtual-iframe-offset="0"
+          width="100%"
+          height="430"
+          data-src="examples2/constellations/constellation-04-dasharray/index.html"></iframe>
+
+        <aside class="notes">
+          <p>Here a little demo to visualize dash offset. You see the original line
+            and an imagined infinite line together with a yellow window floating over it.
+          </p>
+
+          <p>The offset is now changing. The window moves by the value of the offset.</p>
+          <p>You can see here what's inside that window only.</p>
+          <p>Ignore that the window is moving and only show the content — that's how the offset affects a line.</p>
+
+        </aside>
+      </section>
+
+      <section>
+        <h3>Jake Archibald Magic 🧙‍♂️</h3>
+        <iframe
+          data-virtual-iframe="[1,1]"
+          data-virtual-iframe-offset="0"
+          width="100%"
+          height="430"
+          data-src="examples2/constellations/constellation-04-dasharray/index-magic.html"></iframe>
+        <aside class="notes">
+          <p>
+            Here comes the Jake Archibald magic. Our offset is set to 100 which moves the window to the end of our
+            original line.
+          </p>
+          <p>
+            Now we set dasharray to the same value of 100. Each dash and gap will equal 100px so that the entire window
+            lays on the first gap.
+          </p>
+          <p>
+            When we start the animation the offsets goes from 100 to 0. The result is a revealing line.
+          </p>
+        </aside>
+      </section>
+
+      <section>
+        <h3>CSS Animate Path</h3>
+        <pre
+          data-line-fragments-mode="absolute"
+          data-line-fragments='["4", "8, 12", "16-19"]'
+          style='font-size: 14px'>
+          <code class="language-css">
+          @keyframes revealPathAnimation {
+            0%, 100% {
+              stroke-dasharray: var(--path-length);
+            }
+
+            0% {
+              stroke-dashoffset: var(--path-length);
+            }
+
+            100% {
+              stroke-dashoffset: 0;
+            }
+          }
+
+          .your-path {
+            --path-length: 100;
+            animation: revealPathAnimation 5s infinite backwards;
+          }
+
+          </code>
+
+
+          </pre>
+        <aside class="notes">
+          <p>You can create a CSS Animation with our findings to easily reveal any path.</p>
+          <p>We assign the length of our path to the dash-array</p>
+          <p>Start with an offset that matches the end of our line and animate it back to 0 which will reveal the
+            path</p>
+          <p>To use the CSS animation assign it to your path and provide its length.</p>
+        </aside>
+      </section>
+
+      <section>
+        <iframe
+          width="900"
+          height="300"
+          data-src="examples2/constellations/constellation-06/index.html">
+        </iframe>
+        <pre>
+            <code class="language-css">
+                .red-path {
+                  --path-length: 100;
+                  animation: revealPathAnimation 5s infinite backwards;
+                }
+            </code>
+          </pre>
+        <aside class="notes">
+          <p>The result looks like this.</p>
+        </aside>
+      </section>
+
+      <section>
+        <iframe
+          data-virtual-iframe="[1]"
+          data-virtual-iframe-offset="0"
+          width="900"
+          height="300"
+          data-src="examples2/constellations/constellation-07/index.html"></iframe>
+
+        <div class="twocolx">
+          <div>
+              <pre
+                style='font-size: 14px'>
+              <code class="language-css">
+                  .hotpink-path {
+  --path-length: 100;
+  animation: revealPathAnimation 5s infinite backwards;
+}
+                </code>
+              </pre>
+          </div>
+          <div
+            data-fragment-index="1"
+            class="fragment">
+              <pre
+                style='font-size: 14px'
+                data-line="6-7">
+                <code class="language-js">
+                  // set --path-length to 125px
+                  updatePathLength(document.querySelector('.hotpink-path'));
+
+                  function updatePathLength(path) {
+                    const length = path.getTotalLength();
+                    path.style.setProperty('--path-length', length)
+                  }
+                </code>
+              </pre>
+          </div>
+        </div>
+
+        <aside class="notes">
+          <p>
+            You are in trouble if you use a wrong path length like here. The hotpink path is longer than 100px.
+            Paths can have many shapes so it's not always easy to get the correct length.
+          </p>
+          <p>
+            With JavaScript you can use the method getTotalLength on your path to get the exact value
+            and assign it to your CSS Variable.
+          </p>
+        </aside>
+      </section>
+
+      <section>
+        <iframe
+          data-virtual-iframe="[1]"
+          data-virtual-iframe-offset="0"
+          width="400"
+          height="300"
+          data-src="examples2/constellations/constellation-08/"></iframe>
+        <div class="twocol-73">
+          <div>
+              <pre
+                style='font-size: 14px'
+                data-line-fragments-mode="absolute">
+                <code class="language-css">
+                  .red-path,
+                  .yellow-path,
+                  .hotpink-path {
+                    animation: revealPathAnimation linear 1s 1 backwards;
+                  }
+                </code>
+              </pre>
+            <pre
+              style='font-size: 14px'
+              data-src="examples2/constellations/constellation-08/snippet.js"></pre>
+          </div>
+
+          <div class="fragment" data-fragment-index="1">
+              <pre
+                data-line-fragments-mode="absolute"
+                style='font-size: 14px'>
+                <code class="language-css">
+                  .red-path { animation-delay: 1s; }
+                  .hotpink-path { animation-delay: 2s; }
+                  .yellow-path { animation-delay: 3s; }
+                </code>
+              </pre>
+          </div>
+        </div>
+        <aside class="notes">
+          <p>
+            Let's animate all the lines. This looks bad because they all start at the same time.
+            So let's assign delays like we did with the shooting stars.
+          </p>
+          <p>
+            This time we assign positiv delay values, as we really want them to wait.
+          </p>
+        </aside>
+      </section>
+
+      <section>
+        <div class="twocol">
+          <iframe
+            width="500"
+            height="500"
+            data-virtual-iframe="[0,0,1]"
+            data-src="examples2/constellations/constellation-09/index.html"></iframe>
+          <div>
+              <pre
+                data-line-fragments='["3-4", null]'
+                data-line-fragments-mode="absolute"
+                style='font-size: 14px'>
+
+                <code class="language-css">
+                  .animated-path {
+                    animation-delay: var(--path-delay, 0);
+                    animation: revealPathAnimation linear 0.5s 1 forwards;
+                  }
+                </code>
+              </pre>
+            <pre
+              data-line-fragments-mode="absolute"
+              data-line-fragments='[null, "4,6-9", null]'
+              style='font-size: 16px'
+              data-src="examples2/constellations/constellation-09/snippet.js"></pre>
+
+          </div>
+        </div>
+        <aside class="notes">
+          <p>
+            It's surprinsingly easy to apply our knowledge to the existing constellation.
+          </p>
+          <p>
+            Provide a CSS class to apply the CSS animation together with an delay.
+          </p>
+          <p>
+            Inside our existing "createLine" function we assign that CSS class and provide the path length and
+            a specific delay.
+          </p>
+          <p>
+            The result is a revealing constellation!
+          </p>
+        </aside>
+      </section>
+
+      <section data-background-iframe="examples2/constellations/constellation-complete/index.html"
+               id="constellationComplete">
+
+        <aside class="notes">
+          <p>
+            We can use our function to easily create multiple constellations in the sky
+          </p>
+          <p>
+            Here the top 3 constellations I told you about.
+          </p>
+        </aside>
+      </section>
+    </section>
+
+
+    <!-- Chapter Conclusion -->
+    <section>
+      <section>
+        <h1>Conclusion</h1>
+        <aside class="notes">
+          Let's wrap up what we have learned.
+        </aside>
+      </section>
+
+      <!-- Stars -->
+      <section>
+          <pre>
+            <code class="language-js">
+            createStar({size: 10, color: 'red', x: 0, y: 0});
+            </code>
+          </pre>
+
+        <iframe
+          width="900"
+          height="400"
+          data-src="examples2/star/star-colors/index.html"></iframe>
+
+        <aside class="notes">
+          We explored Betelgeuse a star far away to discover how stars can be build
+        </aside>
+      </section>
+
+      <!-- Night Sky -->
+      <section>
+          <pre style="font-size: 16px;">
+            <code class="language-css">
+              .twinkle-little-star {
+                animation:
+                  starPulse 5s infinite alternate,
+                  starGlowing 2s infinite alternate;
+
+                animation-delay: var(--animation-twinkle-delay, 0);
+              }
+            </code>
+          </pre>
+        <iframe
+          width="900"
+          height="400"
+          data-src="examples2/sky/sky-04/index.html?debug"></iframe>
+
+        <aside class="notes">
+          Back on earth we looked in the sky and learned how we can build a twinkling effect from two simple animations.
+        </aside>
+      </section>
+
+      <section>
+          <pre style="font-size: 16px;">
+            <code class="language-js">
+                createShootingStar({
+                  x: 100, y: 100, radius: 100,
+                  angleStart: -90, angle: -180
+                });
+            </code>
+          </pre>
+
+        <iframe
+          width="600"
+          height="600"
+          data-src="examples2/shooting/shooting-09/index.html"></iframe>
+
+        <aside class="notes">
+          and we discovered how variations of shooting stars can be created with the power of CSS Variables
+        </aside>
+      </section>
+
+      <section>
+        <div class="twocol">
+          <iframe
+            width="400"
+            height="200"
+            data-src="examples2/constellations/constellation-04-dasharray/index.html?full"></iframe>
+          <pre style="font-size: 16px;">
+              <code class="language-js">
+                createConstellation(points, linePoints);
+              </code>
+            </pre>
+        </div>
+
+        <iframe
+          width="600"
+          height="400"
+          data-src="examples2/constellations/constellation-09/index.html?full"></iframe>
+        <aside class="notes">
+          And in the last chapter we explored path animation techniques to create a revealing constellation.
+        </aside>
+      </section>
+
+      <section data-background-image="static/images/chapter-keynote/curious-cat.gif" data-background-size="contain"
+               data-background-opacity="0.5">
+        <h1>stay curious</h1>
+        <aside class="notes">
+          <p>I hope I was able to spark some ideas in your minds, to use our everyday technology for something
+            that is fun and interesting.</p>
+        </aside>
+      </section>
+
+      <section data-background-iframe="examples2/thank-you/index.html" id="thankYou">
+        <aside class="notes">
+          Thank you for listening and enjoy the day 🙏
+        </aside>
+      </section>
+    </section>
+  </div>
+</div>
+
+<footer class='slides-footer'>
+  Georgios Kaleadis - @deluxee (Twitter)
+</footer>
+
+<script type="module" src="src/main.ts"></script>
+</body>
+
+</html>

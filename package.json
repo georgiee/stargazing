@@ -1,30 +1,24 @@
 {
-  "name": "twinkle-stars-talk",
-  "version": "1.0.0",
-  "description": "",
+  "name": "stargazing",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "develop": "webpack-dev-server",
-    "build": "webpack",
-    "deploy": "gh-pages -d dist"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "copy-webpack-plugin": "^4.6.0",
-    "css-loader": "^2.1.0",
-    "file-loader": "^3.0.1",
-    "html-loader": "^0.5.5",
-    "html-webpack-plugin": "^3.2.0",
-    "style-loader": "^0.23.1",
-    "ts-loader": "^5.2.2",
-    "typescript": "^3.1.4",
-    "url-loader": "^1.1.2",
-    "webpack": "^4.23.1",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
-    "gh-pages": "^2.0.1"
+    "prettier": "^2.8.7",
+    "typescript": "^4.9.3",
+    "vite": "^4.2.0"
+  },
+  "dependencies": {
+    "@types/prismjs": "^1.26.0",
+    "@types/reveal.js": "^4.4.2",
+    "prismjs": "^1.29.0",
+    "reveal.js": "^4.4.0",
+    "sass": "^1.61.0",
+    "vite-plugin-static-copy": "^0.13.1"
   }
 }
