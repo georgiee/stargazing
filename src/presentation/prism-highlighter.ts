@@ -38,6 +38,7 @@ export class PrismLineHighlighter {
 
     // is a fragment index applied to the pre?
     const fragmentIndex = parseInt(this._prismElement.dataset.fragmentIndex) || 0;
+    console.log('fragmentIndex', fragmentIndex)
     // we need to let the virtual fragments appear after the block itself apperas
     const ownFragmentIndex = fragmentIndex + 1;
 
