@@ -1,0 +1,10 @@
+.twinkle-little-star {
+  animation:
+    starPulse 5s infinite alternate,
+    starGlowing 2s infinite alternate;
+
+  animation-delay: var(--animation-twinkle-delay, 0);
+}
+.star01 {--animation-twinkle-delay: -100ms;}
+.star02 {--animation-twinkle-delay: -550ms;}
+.star03 {--animation-twinkle-delay: -320ms;}

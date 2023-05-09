@@ -1,0 +1,132 @@
+body, html {
+  overflow: hidden;
+  margin: 0;
+}
+
+.shooting-star__shape {
+  visibility: hidden;
+}
+
+.shooting-star.is-shooting .shooting-star__shape {
+  visibility: visible;
+  animation:
+    shootingStarOrbit 2s linear infinite,
+    shootingStarBurn 2s linear infinite;
+}
+
+
+@keyframes shootingStarOrbit {
+  0% {
+    transform:
+        rotate(var(--shooting-orbit-angle-start, 0deg))
+        translate(var(--shooting-orbit-radius, 100px), 0);
+  }
+
+  100% {
+    transform:
+        rotate(var(--shooting-orbit-angle, 180deg))
+        translate(var(--shooting-orbit-radius, 100px), 0);
+  }
+}
+
+
+@keyframes shootingStarBurn {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.twinkle-little-star {
+  animation:
+    starPulse 5s infinite alternate,
+    starGlowing 2s infinite alternate;
+
+  animation-delay: var(--animation-twinkle-delay, 0);
+}
+
+@keyframes starPulse {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    transform: scale3d(1.2, 1.6, 1.2);
+  }
+
+  40% {
+    transform: scale3d(1.5, 1.2, 1.4);
+  }
+
+  70% {
+    transform: scale3d(0.6, 0.2, 0.1);
+  }
+
+  90% {
+    transform: scale3d(0.9, 0.5, 0.1);
+  }
+
+  100% {
+    transform: scale3d(1.2, 0.6, 1.3);
+  }
+}
+
+@keyframes starGlowing {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.5;
+  }
+}
+
+
+/* only for this pen */
+body {
+  background: black;
+  margin: 0;
+}
+
+svg {
+  max-height: 100vh;
+}
+
+.btn-debug {
+  position: fixed;
+  top: 0;
+  right: 10px;
+  transform: translate(-50%);
+  font-size: 3vw;
+}
+
+.debug-grid,
+.shooting-star__debug {
+  display: none;
+}
+
+
+.debug .shooting-star__debug {
+  display: block;
+}
+
+.debug .shooting-star__shape {
+  r: 10;
+}
+
+.debug .twinkle-little-star {
+  r: 10;
+}
+
+.debug .debug-grid {
+  display: block;
+}
+
+

@@ -67,13 +67,23 @@ export function createStar({size, color, x, y, delay = 0}) {
   return star;
 }
 
-export function getRandomCoordinate() {
+export function getRandomCoordinate(centered = true) {
+  if(centered) {
+    return getRandomPosition({
+      width: 960,
+      height: 700,
+      padding: 10,
+      offsetX: -480,
+      offsetY: -350
+    });
+  }
+
   return getRandomPosition({
     width: 960,
     height: 700,
     padding: 10,
-    offsetX: -480,
-    offsetY: -350
+    offsetX: 0,
+    offsetY: 0
   });
 }
 

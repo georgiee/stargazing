@@ -1,0 +1,5 @@
+<svg viewbox="-10 -10 100 20">
+  <circle r="10" cx="0"  fill="#B5CDFF"></circle>
+  <circle r="10" cx="30" fill="#FFE4CE"></circle>
+  <circle r="10" cx="60" fill="#FF6C00"></circle>
+</svg>

@@ -1,0 +1,7 @@
+<svg>
+  <path d="M 0 0 L 100 0" stroke="hotpink">
+  </path>
+
+  <circle cx="0" cy="0"></circle>
+  <circle cx="100" cy="0"></circle>
+</svg>

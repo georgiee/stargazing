@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Shooting Star (Part IV,  CSS Variables Radius)</title>
+
+<style>
+body, html {
+  overflow: hidden;
+  margin: 0;
+}
+
+svg {
+  --shooting-orbit-radius-unitless: 100;
+}
+
+.shooting-star {
+  --shooting-orbit-radius: calc(var(--shooting-orbit-radius-unitless) * 1px);
+}
+
+.shooting-star__shape {
+  animation:
+    shootingStarOrbit 2s linear infinite,
+    shootingStarBurn 2s linear infinite;
+}
+
+@keyframes shootingStarOrbit {
+  0% {
+    transform: rotate(0) translate(100px, 0);
+  }
+
+  100% {
+    transform: rotate(180deg) translate(100px, 0);
+  }
+}
+
+.debug {
+  transform: translate(100px, 100px) ;
+}
+
+.debug-panel__orbit-radius {
+  font-size: 45px;
+}
+
+.debug-panel {
+  font-size: 30px;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
+.debug__radius {
+  transform: scale(calc(var(--shooting-orbit-radius-unitless)));
+}
+
+.debug__offset {
+  cx: calc(var(--shooting-orbit-radius-unitless) * 1px);
+}
+
+.debug__arrow {
+  transform: scale(calc(var(--shooting-orbit-radius-unitless)/100));
+}
+
+@keyframes shootingStarOrbit {
+  0% {
+    transform: rotate(0) translate(var(--shooting-orbit-radius, 100px), 0);
+  }
+
+  100% {
+    transform: rotate(180deg) translate(var(--shooting-orbit-radius, 100px), 0);
+  }
+}
+
+/* Order matters as this is a matrix calculation internally, this won't work */
+@keyframes shootingStarOrbitBad {
+  0% {
+    transform: translate(100px, 0) rotate(0) ;
+  }
+
+  100% {
+    transform: translate(100px, 0) rotate(180deg);
+  }
+}
+
+@keyframes shootingStarBurn {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* only for this pen */
+body {
+  background: black;
+  margin: 0;
+}
+
+svg {
+  max-height: 100vh
+};
+
+</style>
+
+
+</head>
+
+<body>
+
+  <svg id='nightsky' viewbox="-20 -20 540 240" width ="100%"  preserveAspectRatio="xMidYMid meet">
+
+
+  <g transform="translate(-20, -20)">
+    <rect width="100%" height="100%" fill="url(#grid)" />
+  </g>
+
+  <g>
+    <g class="shooting-star" transform="translate(100 100)">
+      <circle class='shooting-star__shape' fill="white" r="10"></circle>
+    </g>
+
+    <g class="debug">
+      <circle class='debug__center' fill="red" r="5"></circle>
+      <circle class='debug__radius' fill="yellow" fill-opacity="0.2" r="1"></circle>
+      <circle class='debug__offset' fill="white" fill-opacity="0.5" cx="100" r="10"></circle>
+
+      <g class="debug__arrow" fill="yellow" fill-rule="nonzero">
+      <path d="M91.5,0.5 L0,0.5 L0,-0.5 L91.5,-0.5 L91.5,-4.5 L100.5,0 L91.5,4.5 L91.5,0.5 Z"></path>
+      </g>
+    </g>
+  </g>
+
+
+  <g transform="translate(250 0)">
+      <g class="shooting-star" transform="translate(100 100)">
+        <circle class='shooting-star__shape' fill="white" r="10"></circle>
+      </g>
+
+      <g class="debug">
+        <circle class='debug__center' fill="red" r="5"></circle>
+        <circle class='debug__radius' fill="yellow" fill-opacity="0.2" r="1"></circle>
+        <circle class='debug__offset' fill="white" fill-opacity="0.5" cx="100" r="10"></circle>
+
+        <g class="debug__arrow" fill="yellow" fill-rule="nonzero">
+        <path d="M91.5,0.5 L0,0.5 L0,-0.5 L91.5,-0.5 L91.5,-4.5 L100.5,0 L91.5,4.5 L91.5,0.5 Z"></path>
+        </g>
+      </g>
+    </g>
+
+  <defs>
+    <pattern id="debugCircle" width="10" height="10" patternUnits="userSpaceOnUse">
+      <path d="M 10 0 L 0 0 0 10" fill="red" stroke="green" stroke-width="0.5"/>
+    </pattern>
+
+    <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+      <path d="M 10 0 L 0 0 0 10" fill="none" stroke="gray" stroke-width="0.5"/>
+    </pattern>
+
+    <pattern  x="20" y="20" id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
+      <rect width="100" height="100" fill="url(#smallGrid)"/>
+      <path d="M 100 0 L 0 0 0 100" fill="none" stroke="gray" stroke-width="1"/>
+    </pattern>
+  </defs>
+</svg>
+
+
+<div class="debug-panel">
+  <input class="debug-panel__orbit-radius" type="number" min="20" step="10" max="100" value="100"/>
+</div>
+
+
+
+  <script>
+  var orbitRadiusChanger = document.querySelector('.debug-panel__orbit-radius');
+var shootingStar = document.querySelector('.shooting-star');
+var debug = document.querySelector('.debug');
+let radius = parseInt(orbitRadiusChanger.value, 10);
+
+let maxRadius = 100;
+let minRadius = 10;
+
+updateOrbitRadius(radius);
+
+function updateOrbitRadius(value) {
+    shootingStar.style.setProperty('--shooting-orbit-radius', value + 'px');
+    debug.style.setProperty('--shooting-orbit-radius-unitless', value);
+}
+
+
+let radiusDelta = 10;
+
+const intervalAutoChange = setInterval(() => {
+	if(radius + radiusDelta > maxRadius || radius + radiusDelta < minRadius ) {
+		radiusDelta *= -1;
+	}
+	radius += radiusDelta;
+
+    orbitRadiusChanger.value = radius;
+	updateOrbitRadius(radius);
+}, 250);
+
+
+orbitRadiusChanger.addEventListener('input', function (event) {
+    var value = parseInt(orbitRadiusChanger.value, 10);
+
+    updateOrbitRadius(value);
+    clearInterval(intervalAutoChange);
+});
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Shooting Star (Part V,  CSS Variables Orbit)</title>
+
+
+
+      <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+<body>
+
+  <svg id='nightsky' viewbox="-20 -20 140 140" width ="100%"  preserveAspectRatio="xMidYMid meet">
+
+  <g transform="translate(-20, -20)">
+    <rect width="100%" height="100%" fill="url(#grid)" />
+  </g>
+
+  <g class="debug" transform="translate(50, 50)">
+    <circle class='debug__center' fill="red" r="5"></circle>
+    <circle class='debug__radius' fill="yellow" fill-opacity="0.2" r="1"></circle>
+    <circle class='debug__offset' fill="white" fill-opacity="0.5" cx="100" r="10"></circle>
+    <path class='debug__arc' fill="none" stroke="yellow" stroke-width="2" />
+
+    <g class="debug__arrow" fill="yellow" fill-rule="nonzero">
+     <path d="M91.5,0.5 L0,0.5 L0,-0.5 L91.5,-0.5 L91.5,-4.5 L100.5,0 L91.5,4.5 L91.5,0.5 Z"></path>
+    </g>
+  </g>
+
+  <g class="shooting-star" transform="translate(50 50)">
+    <circle class='shooting-star__shape' fill="white" r="10"></circle>
+  </g>
+
+  <defs>
+    <pattern id="debugCircle" width="10" height="10" patternUnits="userSpaceOnUse">
+      <path d="M 10 0 L 0 0 0 10" fill="red" stroke="green" stroke-width="0.5"/>
+    </pattern>
+
+    <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+      <path d="M 10 0 L 0 0 0 10" fill="none" stroke="gray" stroke-width="0.5"/>
+    </pattern>
+
+    <pattern  x="20" y="20" id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
+      <rect width="100" height="100" fill="url(#smallGrid)"/>
+      <path d="M 100 0 L 0 0 0 100" fill="none" stroke="gray" stroke-width="1"/>
+    </pattern>
+  </defs>
+</svg>
+
+
+<div class="debug-panel">
+  <input class="debug-panel__orbit-angle-start" type="number" min="-3600" step="10" max="360" value="0"/>
+  <br>
+  <input class="debug-panel__orbit-angle" type="number" min="-360" step="10" max="360" value="180"/>
+</div>
+
+
+
+    <script  src="js/index.js"></script>
+
+
+
+
+</body>
+
+</html>

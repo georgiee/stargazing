@@ -4,7 +4,7 @@
   40% { transform: scale(1.5, 1.2); }
   70% { transform: scale(0.6, 0.2); }
   90% { transform: scale(0.9, 0.5); }
-  100% { ransform: scale(1.2, 0.6); }
+  100% { transform: scale(1.2, 0.6); }
 }
 
 .twinkle-little-star {

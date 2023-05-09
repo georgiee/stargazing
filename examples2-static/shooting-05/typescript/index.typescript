@@ -1,0 +1,83 @@
+let currentRadius, currentAngle;
+const orbitRadiusInput = document.querySelector('.debug-panel__orbit-radius');
+const orbitAngleInput = document.querySelector('.debug-panel__orbit-angle');
+const orbitAngleStartInput = document.querySelector('.debug-panel__orbit-angle-start');
+
+const shootingStar = document.querySelector('.shooting-star');
+const debug = document.querySelector('.debug');
+const debugArc = document.querySelector('.debug__arc');
+
+currentRadius = parseInt(orbitRadiusInput.value, 10)
+currentAngle = parseInt(orbitAngleInput.value, 10)
+currentAngleStart = parseInt(orbitAngleStartInput.value, 10)
+
+update();
+
+orbitRadiusInput.addEventListener('input', event => {
+  const value = parseInt(orbitRadiusInput.value, 10);
+  currentRadius = value;
+  update();
+});
+
+orbitAngleInput.addEventListener('input', event => {
+  const value = parseInt(orbitAngleInput.value, 10);
+  currentAngle = value;
+  update();
+});
+
+orbitAngleStartInput.addEventListener('input', event => {
+  const value = parseInt(orbitAngleStartInput.value, 10);
+  currentAngleStart = value;
+  update();
+});
+
+function update() {
+  updateShootingStar({
+    radius: currentRadius,
+    angle: currentAngle,
+    angleStart: currentAngleStart
+  });
+  
+  debugArc.setAttribute("d", describeArc(0, 0, currentRadius, currentAngleStart, currentAngle));
+}
+
+function updateShootingStar({angle, radius, angleStart}) {
+  shootingStar.style.setProperty('--shooting-orbit-radius', radius + 'px');
+  shootingStar.style.setProperty('--shooting-orbit-angle', angle + 'deg');    
+  shootingStar.style.setProperty('--shooting-orbit-angle-start', angleStart + 'deg');    
+  
+  debug.style.setProperty('--shooting-orbit-radius-unitless', radius);  
+}
+
+function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+  var angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
+
+  return {
+    x: centerX + (radius * Math.cos(angleInRadians)),
+    y: centerY + (radius * Math.sin(angleInRadians))
+  };
+}
+
+// Works for +360 and a total delta of -180
+// via https://stackoverflow.com/questions/52056486/draw-reversed-circle-arc-changes-circle-center-coordinates
+function describeArc(x, y, radius, startAngle, endAngle){
+    startAngle+=90;
+    endAngle+=90;
+  
+    var start = polarToCartesian(x, y, radius, endAngle );
+    var end = polarToCartesian(x, y, radius, startAngle);
+
+    var sweepFlag = endAngle > startAngle ? 0 : 1; 
+    var largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+  
+    if(endAngle - startAngle < -180) {
+      largeArcFlag = "1"
+    }
+  
+    var d = [
+        "M", start.x, start.y, 
+        "A", radius, radius, 0, largeArcFlag, sweepFlag, end.x, end.y
+    ].join(" ");
+
+    return d;       
+}

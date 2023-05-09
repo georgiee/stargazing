@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>01 - Stargazing — Star Colors</title>
+  <style>
+    .show-animation.animated-path {
+      stroke-dasharray: var(--path-length);
+      animation: dashAnimation 4s linear infinite backwards;
+    }
+
+    .debug .debug__longpath {
+      stroke-dasharray: var(--path-length);
+    }
+
+    .debug {
+      visibility: hidden;
+    }
+
+    .show-debug .debug {
+      visibility: visible
+    }
+
+    .show-animation .animated-offset {
+      animation: offsetDebug 4s linear infinite backwards;
+    }
+
+    .red-path-group {
+      --path-length: 100;
+    }
+
+    .hotpink-path-group {
+      --path-length: 100;
+    }
+
+    .show-animation .hotpink-path {
+      stroke-dasharray: var(--path-length);
+      animation: dashAnimation linear 4s infinite backwards;
+    }
+
+    path {
+      fill: transparent;
+    }
+
+    @keyframes offsetDebug {
+      0% {
+        transform: translate(calc(var(--path-length) * 1px));
+      }
+
+      100% {
+        transform: translate(0);
+      }
+    }
+
+    @keyframes dashAnimation {
+      0% {
+        stroke-dashoffset: var(--path-length);
+      }
+
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<svg viewBox="0 -10 120 120" preserveAspectRatio="xMidYMid meet" height="100%" width="100%">
+  <g transform="translate(0 0)">
+    <circle r="5" fill="white"></circle>
+  </g>
+  <g transform="translate(100 0)">
+    <circle r="5" fill="white"></circle>
+  </g>
+  <g transform="translate(100 75)">
+    <circle r="5" fill="white"></circle>
+  </g>
+
+  <path class="red-path" d="M 0 0 L 100 0" stroke="red" class="animated-path"></path>
+
+  <g class="hotpink-path-group">
+    <path d="M 100 75 L 0 0" stroke="hotpink" class="hotpink-path"></path>
+
+    <g transform="translate(-80, 85)" class="debug">
+      <path class="debug__longpath" stroke="hotpink" d="M 0 0 L 350 0"></path>
+
+      <g class="animated-offset">
+        <rect width="125" height="4" y="-2" opacity="0.3" fill="yellow"></rect>
+      </g>
+    </g>
+  </g>
+
+  <path d="M 100 0 L 100 75" stroke="yellow" class="yellow-path"></path>
+</svg>
+
+<script type="module">
+  import {VirtualIframeStack} from '/src/support/virtual-stack-control';
+
+  function clearLength() {
+    const path = document.querySelector('.hotpink-path');
+    const debugContainer = document.querySelector('.hotpink-path-group');
+
+    path.style.setProperty('--path-length', 100);
+    debugContainer.style.setProperty('--path-length', 100);
+  }
+
+  function updateLength() {
+    const path = document.querySelector('.hotpink-path');
+    updatePathLength(path);
+
+    const debugContainer = document.querySelector('.hotpink-path-group');
+    debugContainer.style.setProperty('--path-length', path.getTotalLength());
+  }
+
+  function updatePathLength(path) {
+    if (!path) {
+      return;
+    }
+    const pathLength = path.getTotalLength();
+    path.style.setProperty('--path-length', pathLength)
+  }
+
+
+  function applyAnimation() {
+    function start() {
+      document.body.classList.add('show-animation');
+    }
+
+    function stop() {
+      document.body.classList.remove('show-animation');
+    }
+
+    return {
+      start, stop
+    }
+  }
+
+  function showFix() {
+    function start() {
+      updateLength()
+    }
+
+    function stop() {
+      clearLength();
+    }
+
+    return {
+      start, stop
+    }
+  }
+
+
+  function showDebug() {
+    function start() {
+      document.body.classList.toggle('show-debug', true);
+    }
+
+    function stop() {
+      document.body.classList.toggle('show-debug', false);
+    }
+
+    return {start, stop}
+  }
+
+
+  const steps = [
+    applyAnimation(),
+    showDebug(),
+    showFix()
+  ];
+
+
+  const stack = new VirtualIframeStack(steps);
+  window.addEventListener('message', stack.handleMessage);
+  stack.goto(2);
+
+</script>
+<script type="module" src="/src/examples/runtime.ts"></script>
+</body>
+
+</html>

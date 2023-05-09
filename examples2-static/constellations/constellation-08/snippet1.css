@@ -1,0 +1,5 @@
+.red-path,
+.yellow-path,
+.hotpink-path {
+  animation: revealPathAnimation linear 1s 1 backwards;
+}

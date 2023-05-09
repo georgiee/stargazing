@@ -1,0 +1,1 @@
+createStar({size: 10, color: 'red', x: 0, y: 0});

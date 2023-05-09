@@ -1,8 +1,9 @@
-<!-- Multiple 100px lines -->
-<path></path>
+<svg>
+    <path d="M 0 0 L 100 0" stroke="hotpink" fill="none" />
 
-<path stroke-dasharray="1"></path>
+    <path stroke-dasharray="1"></path>
 
-<path stroke-dasharray="10"></path>
+    <path stroke-dasharray="10"></path>
 
-<path stroke-dasharray="30"></path>
+    <path stroke-dasharray="30"></path>
+</svg>

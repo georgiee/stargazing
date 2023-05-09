@@ -1,0 +1,7 @@
+.shooting-star {
+  animation: shootingStarOrbit 2s linear infinite;
+}
+@keyframes shootingStarOrbit {
+  0% { transform: rotate(0) translate(100px, 0);}
+  100% { transform: rotate(180deg) translate(100px, 0);}
+}

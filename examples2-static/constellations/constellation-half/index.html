@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>01 - Stargazing — Star Colors</title>
+
+  <link rel="stylesheet" href="/src/shooting/css/star.css">
+  <link rel="stylesheet" href="/src/shooting/css/shooting.css">
+  <link rel="stylesheet" href="/src/shooting/css/constellation.css">
+  <style>
+    body {
+      background-color: black;
+      color: #fff;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    .constellation-path {
+      stroke: #ffffffaa;
+    }
+
+  </style>
+</head>
+
+<body>
+<svg id='nightsky' viewbox="0 0 960 700" width="100%" preserveAspectRatio="xMidYMid slice">
+</svg>
+
+<script type="module">
+  import {
+    createSVGElement,
+    createLine,
+    createStar,
+    createSky,
+    getRandomColor,
+    createShootingStars,
+    createIframeRunner
+  } from '/src/shooting/shared';
+  import {orion} from '/src/shooting/data/orion.js';
+
+  const svg = document.querySelector('svg');
+
+  const sky = createSky({count: 350});
+
+  const shootingStars = createShootingStars();
+
+  const constellation = createConstellation(orion.coordinates, orion.lines);
+  constellation.setAttribute('transform', `translate(350, 150)`);
+
+  function createConstellation(points, lineIndices) {
+    const group = createSVGElement('g');
+
+    points.forEach(point => {
+      const dot = createStar({size: 2, ...point, color: getRandomColor()});
+      group.appendChild(dot);
+    });
+
+    lineIndices.forEach(indices => {
+      const linePoints = indices.map(index => points[index]);
+      const line = createLine(linePoints);
+
+      group.appendChild(line);
+    })
+
+    return group;
+  }
+
+  function startDemo() {
+    svg.appendChild(sky);
+    svg.appendChild(shootingStars);
+    svg.appendChild(constellation);
+  }
+
+  // startDemo()
+
+  function stopDemo() {
+    while (svg.firstChild) {
+      console.log('remove ', svg.firstChild);
+      svg.removeChild(svg.firstChild);
+    }
+  }
+
+  createIframeRunner({
+    play: startDemo,
+    stop: stopDemo,
+  })
+
+</script>
+
+<script type="module" src="/src/examples/runtime.ts"></script>
+</body>
+
+</html>

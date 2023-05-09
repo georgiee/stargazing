@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>01 - Stargazing — Star Colors</title>
+  <style>
+  body {
+    background-color: black;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+  }
+
+  .apply-offset {
+    stroke-dashoffset: var(--offset, 0);
+  }
+
+  .translate-with-offset {
+    transform: translate(calc(var(--offset, 0) * 1px), 0);
+  }
+
+  text {
+    fill: white;
+    font-size: 6px;
+  }
+
+  .path-with-dashes {
+    stroke-dasharray: var(--dasharray, 0);
+    stroke: hotpink;
+    stroke-width: 2;
+    fill: transparent;
+  }
+
+  svg {
+    display: block;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .visual-offset {
+    height: 2px;
+    transform: translate(0 -100%);
+    opacity: 0.6;
+    fill: white;
+  }
+
+  .pushlines {
+    opacity: 0.5;
+  }
+
+  .visualization__window {
+    --offsetPX: calc(var(--offset, 0) * 1px);
+    transform: translate(var(--offsetPX), 0);
+  }
+
+  .visualization__path {
+    stroke-dashoffset: var(--offset, 0);
+  }
+
+  #example-00 {
+    --offset: 0;
+  }
+  #example-10 {
+    --offset: 10;
+  }
+  #example-30 {
+    --offset: 30;
+  }
+  #example-50 {
+    --offset: 50;
+  }
+  #example-100 {
+    --offset: 100;
+  }
+
+  .text {
+    font-size: 10px;
+  }
+  </style>
+</head>
+
+<body>
+<svg id='demosvg' viewbox="-10 -20 320 100"
+preserveAspectRatio="xMidYMin meet">
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="2.5" refY="2" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L0,4 L3,2 z" fill="#fff" />
+  </marker>
+
+  <g id="xxo" class="visualization">
+    <g transform="translate(0 10)">
+      <path
+        stroke-dasharray="20"
+        stroke-dashoffset="0"
+        stroke="hotpink" stroke-width="2"
+        d="M 0 0 L 300 0" fill='transparent'>
+      </path>
+
+      <g class="visualization__window">
+        <rect width="100" height="6" y="-3" opacity="0.3" fill="yellow"></rect>
+      </g>
+    </g>
+
+    <g transform="translate(0 0)">
+      <circle cx="0" cy = "0" r="2" fill=white></circle>
+      <circle cx="100" cy = "0" r="2" fill=white></circle>
+      <path
+        class="visualization__path"
+        stroke-dasharray="20"
+        stroke-dashoffset="5"
+        stroke="hotpink" stroke-width="2"
+        d="M 0 0 L 100 0" fill='transparent'>
+      </path>
+    </g>
+  </g>
+</defs>
+
+<g>
+  <text class='text' y='-10'>offset 0</text>
+  <use x="0" y="0" xlink:href="#xxo" id="example-00" />
+</g>
+
+<g transform="translate(0 45)">
+  <use xlink:href="#xxo" id="example-30" />
+  <text class='text' y='-10'>offset 30</text>
+  <line x1="0" y1="7" x2="30" y2="7" stroke="#fff" stroke-width="1" opacity="0.75" marker-end="url(#arrow)" class="visualization__line" />
+  <line x1="0" y1="13" x2="30" y2="13" stroke="#fff" stroke-width="1" opacity="0.75" marker-end="url(#arrow)" class="visualization__line" />
+</g>
+
+<g transform="translate(0 90)">
+  <use xlink:href="#xxo" id="example-100" />
+  <text class='text' y='-10'>offset 100</text>
+  <line x1="0" y1="7" x2="100" y2="7" stroke="#fff" stroke-width="1" opacity="0.75" marker-end="url(#arrow)" class="visualization__line" />
+  <line x1="0" y1="13" x2="100" y2="13" stroke="#fff" stroke-width="1" opacity="0.75" marker-end="url(#arrow)" class="visualization__line" />
+</g>
+
+</svg>
+
+</body>
+
+</html>

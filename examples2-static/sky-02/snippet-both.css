@@ -1,0 +1,5 @@
+.twinkle-little-star {
+  animation:
+    starPulse 5s infinite alternate,
+    starGlowing 2s infinite alternate;
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>01 - Stargazing — Star Colors</title>
+  <style>
+    .animated-path {
+      stroke-dasharray: var(--path-length);
+    }
+
+    .animated-path.playing {
+      animation: dashAnimation linear 1s 1 backwards;
+    }
+
+    path {
+      fill: transparent;
+    }
+
+    @keyframes offsetDebug {
+      0% {
+        transform: translate(calc(var(--path-length) * 1px));
+      }
+
+      100% {
+        transform: translate(0);
+      }
+    }
+
+    @keyframes dashAnimation {
+      0% {
+        stroke-dashoffset: var(--path-length);
+      }
+
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .show-delays .red-path.playing {
+      animation-delay: 0s;
+    }
+
+    .show-delays .yellow-path.playing {
+      animation-delay: 1s;
+    }
+
+    .show-delays .hotpink-path.playing {
+      animation-delay: 2s;
+    }
+
+  </style>
+</head>
+
+<body>
+<svg viewBox="-20 -10 140 90" preserveAspectRatio="xMidYMid meet" height="100%" width="100%">
+  <g transform="translate(0 0)">
+    <circle r="5" fill="white"></circle>
+  </g>
+  <g transform="translate(100 0)">
+    <circle r="5" fill="white"></circle>
+  </g>
+  <g transform="translate(100 75)">
+    <circle r="5" fill="white"></circle>
+  </g>
+
+  <path d="M 0 0 L 100 0" stroke="red" class="red-path animated-path"></path>
+  <path d="M 100 75 L 0 0" stroke="hotpink" class="hotpink-path animated-path"></path>
+  <path d="M 100 0 L 100 75" stroke="yellow" class="yellow-path animated-path"></path>
+</svg>
+
+<script type="module">
+  import {VirtualIframeStack} from '/src/support/virtual-stack-control';
+
+  updatePathLength('.red-path');
+  updatePathLength('.hotpink-path');
+  updatePathLength('.yellow-path');
+
+  function resetAnimation(selector, delay) {
+    const element = document.querySelector(selector);
+    element.classList.remove('playing');
+    setTimeout(() => {
+      element.classList.add('playing');
+    }, delay)
+  }
+
+  function triggerPlay(delay = 0) {
+    resetAnimation('.red-path', delay);
+    resetAnimation('.hotpink-path', delay);
+    resetAnimation('.yellow-path', delay);
+  }
+
+  triggerPlay();
+
+  const lastPath = document.querySelector('.hotpink-path');
+  lastPath.addEventListener('animationend', () => triggerPlay(500));
+
+  function updatePathLength(selector) {
+    const path = document.querySelector(selector);
+
+    if (!path) {
+      return;
+    }
+
+    const pathLength = path.getTotalLength();
+    path.style.setProperty('--path-length', pathLength)
+  }
+
+  function showDelays() {
+    document.body.classList.add('show-delays');
+  }
+
+  function clearDelays() {
+    document.body.classList.remove('show-delays');
+  }
+
+  function play() {
+    function start() {
+      showDelays();
+    }
+
+    function stop() {
+      clearDelays();
+    }
+
+    return {start, stop}
+  }
+
+
+  const steps = [
+    play()
+  ];
+
+
+  const stack = new VirtualIframeStack(steps);
+  window.addEventListener('message', stack.handleMessage);
+</script>
+<script type="module" src="/src/examples/runtime.ts"></script>
+</body>
+
+</html>
