@@ -1590,22 +1590,6 @@
           </aside>
         </section>
 
-        <!-- <section>
-          <h3>Dash Offset</h3>
-          <div style="width:650px; margin: auto">
-            <pre
-              style='font-size: 16px'
-              data-src="examples/constellations/constellation-05-dashes/snippet2.svg"></pre>
-          </div>
-          <iframe width="800" height="350" data-src="examples/constellations/constellation-05-dashes/index2.html"></iframe>
-          <aside class="notes">
-            <p>The dash offset controls where the dashes should start on a line.</p>
-            <p>Imagine a line. Now extend it to infinity with a yellow window floating over it. The window has the same width as your original line.</p>
-            <p>When you apply an offset that window moves along the infinite line by that amount and whatever is inside is what is being drawn as your original line.
-            </p>
-          </aside>
-        </section> -->
-
         <section>
           <h3>Dash Offset</h3>
           <iframe
@@ -1616,13 +1600,13 @@
             data-src="examples/constellations/constellation-04-dasharray/index.html"></iframe>
 
           <aside class="notes">
-            <p>Here a little demo to visualize dash offset. You see the original line
+            <p>Next a little demo to visualize the dash offset property. You see the original line
               and an imagined infinite line together with a yellow window floating over it.
             </p>
 
-            <p>The offset is now changing. The window moves by the value of the offset.</p>
-            <p>You can see here what's inside that window only.</p>
-            <p>Ignore that the window is moving and only show the content — that's how the offset affects a line.</p>
+            <p>⏭The offset is now changing. The window moves by the value of the offset.</p>
+            <p>⏭You can see here what's inside that window only.</p>
+            <p>⏭Ignore that the window is moving and only show the content — that's how the offset affects a line.</p>
 
           </aside>
         </section>
@@ -1637,13 +1621,17 @@
             data-src="examples/constellations/constellation-04-dasharray/index-magic.html"></iframe>
           <aside class="notes">
             <p>
-              Here comes the Jake Archibald magic. Our offset is set to 100 which moves the window to the end of our original line.
+              Here comes the Jake Archibald magic.
             </p>
             <p>
-              Now we set dasharray to the same value of 100. Each dash and gap will equal 100px so that the entire window lays on the first gap.
+              We set the offset to the length of the line. It's 100, which moves the window right to the end of our original line.
             </p>
             <p>
-              When we start the animation the offsets goes from 100 to 0. The result is a revealing line.
+              ⏭ Now we set dasharray to the same value of 100. Each dash and gap will equal the length of the given line. Together with the offset the entire window lays on the first gap.
+              As a result we see emptyness.
+            </p>
+            <p>
+              ⏭ Let's start the animation and aninamte the offset from 100 back to 0. The result is a revealing line.
             </p>
           </aside>
         </section>
@@ -1657,10 +1645,10 @@
             data-src="examples/constellations/constellation-06/snippet.css">
           </pre>
           <aside class="notes">
-            <p>You can create a CSS Animation with our findings to easily reveal any path.</p>
-            <p>We assign the length of our path to the dash-array</p>
-            <p>Start with an offset that matches the end of our path and animate it back to 0 which will reveal the path</p>
-            <p>To use the CSS animation assign it to your path and provide its length.</p>
+            <p>In order to create the revealing animation we want to use CSS Animation</p>
+            <p>⏭We assign the length of our path to the dash-array</p>
+            <p>⏭Start with an offset that matches the end of our path and animate it back to 0 which will reveal the path</p>
+            <p>⏭To use the CSS animation assign it to your path with a css class name like `your-path` and provide a path length.</p>
           </aside>
         </section>
 
@@ -1713,7 +1701,7 @@
              Paths can have many shapes so it's not always easy to get the correct length.
            </p>
            <p>
-             With JavaScript you can use the method getTotalLength on your path to get the exact value
+             ⏭ With JavaScript you can use the method getTotalLength on your path to get the exact value
              and assign it to your CSS Variable.
            </p>
           </aside>
@@ -1747,10 +1735,11 @@
           <aside class="notes">
            <p>
              Let's animate all the lines. This looks bad because they all start at the same time.
-             So let's assign delays like we did with the shooting stars.
+
            </p>
            <p>
-             This time we assign positiv delay values, as we really want them to wait.
+             ⏭ So let's assign delays like we did with the shooting stars.
+             but this time we assign positive delay values, as we really want them to wait before they start.
            </p>
           </aside>
         </section>
@@ -1781,14 +1770,14 @@
               It's surprinsingly easy to apply our knowledge to the existing constellation.
             </p>
             <p>
-              Provide a CSS class to apply the CSS animation together with an delay.
+              ⏭Provide a CSS class to apply the CSS animation together with an delay.
             </p>
             <p>
-              Inside our existing "createLine" function we assign that CSS class and provide the path length and
+              ⏭Inside our existing "createLine" function we assign that CSS class and provide the path length and
               a specific delay.
             </p>
             <p>
-              The result is a revealing constellation!
+              ⏭The result is a revealing constellation!
             </p>
           </aside>
         </section>
@@ -1799,7 +1788,7 @@
               We can use our function to easily create multiple constellations in the sky
             </p>
             <p>
-              Here the top 3 constellations I told you about.
+              ⏭Here the top 3 constellations I told you about.
             </p>
           </aside>
         </section>
