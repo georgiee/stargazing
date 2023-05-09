@@ -115,7 +115,7 @@
             <li class="fragment">I love experimenting with technology</li>
           </ul>
           <aside class="notes">
-              <p>My name is Georgios Kaleadis</p>
+              <p>⏭My name is Georgios Kaleadis</p>
               <p>⏭I learned programming with Flash 4 in 1998</p>
               <p>⏭I'm a Frontend Developer using Angular in my daily job at Satellytes and React or Vue for my pet projects</p>
               <p>⏭In my spare time I taught coding to kids, but right now I have to wait until my kids get old enough for that.</p>
@@ -710,14 +710,14 @@
         <!-- Code: Twinkle V (First Twinkle Sky) via wREvPg -->
         <section>
           <pre
-            data-line-fragments='["6","7,4"]'
+            data-line-fragments='["6","7,4", ""]'
             data-line-fragments-mode='absolute'
             style="font-size: 18px"
             data-src="examples/sky/sky-04/snippet.js"></pre>
 
           <iframe
             class="fragment"
-            data-fragment-index="10"
+            data-fragment-index="3"
             width="900"
             height="300"
             data-src="examples/sky/sky-04/index.html?debug"></iframe>
@@ -726,7 +726,7 @@
               <p>We can know add the twinkling effect animation to all of our stars in the sky just by modifying the createStar function we created earlier</p>
               <p>⏭First we add the CSS class <strong>`twinkle-little-star`</strong> to provide the animations</p>
               <p>⏭Next we assign a random and negative delay with our CSS Variables to offset the animations</p>
-              <p>The result looks already awesome. I kept the large circle here so you can see the effect in large and small.
+              <p>⏭The result looks already awesome. I kept the large circle here so you can see the effect in large and small.
               </p>
           </aside>
         </section>
@@ -996,7 +996,7 @@
 
           <aside class="notes">
             <p>We can do the same for the angle. </p>
-            <p>Here I prepared an example where the two angles are set to different values.
+            <p>⏭Here I prepared an example where the two angles are set to different values.
               You can see how the start end the end angles are changing while we use the very same css animation.
             </p>
           </aside>
@@ -1022,16 +1022,18 @@
           <pre
             class="fragment"
             data-fragment-index="0"
-            data-line-fragments='["3-5,16", "7-14" ]'
+            data-line-fragments-mode="absolute"
+            data-line-fragments='["3-5,16", "8,13,14", "7,10-12" ]'
             style="font-size: 18px;"
             data-src="examples/shooting/shooting-06/snippet.js"></pre>
 
           <aside class="notes">
             <p>We have a shooting star where we can provide variations with CSS Variables. Let's build a function `createShootingStar` so we can create them with few parameters
             </p>
-            <p>⏭The method itself</p>
-            <p>⏭will build the SVG structure</p>
-            <p>⏭and apply all CSS Variables and attributes</p>
+            <p>⏭The method itself looks big but there are three distinct parts</p>
+            <p>⏭We build the SVG structure as before</p>
+            <p>⏭assign the appearance like radius, color and position</p>
+            <p>⏭and then apply the css animation with all required CSS Variables</p>
             <p>💤</p>
           </aside>
         </section>
@@ -1160,6 +1162,7 @@
             <p>⏭We use a shootNext function</p>
             <p>⏭to randomly assign the css class is-shooting to a shooting star every few seconds</p>
             <p>⏭the result looks like this where each shooting star is randomly activated</p>
+            <p>💤</p>
           </aside>
         </section>
 
@@ -1633,6 +1636,7 @@
             <p>
               ⏭ Let's start the animation and aninamte the offset from 100 back to 0. The result is a revealing line.
             </p>
+            <p>💤</p>
           </aside>
         </section>
 
@@ -1908,7 +1912,7 @@
         progress: false,
         controlsTutorial: false,
         controls: false,
-        showNotes: true,
+        showNotes: false,
         keyboard: {
           39: 'next',
           37: 'prev'
