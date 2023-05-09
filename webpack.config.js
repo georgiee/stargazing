@@ -7,13 +7,6 @@ const devPlugins = [
     chunks: ['presentation'],
     filename: 'index.html',
     template: 'src/presentation/index.html',
-  }),
-
-  new HTMLWebpackPlugin({
-    inject: true,
-    chunks: ['playground'],
-    filename: 'playground.html',
-    template: 'src/playground/index.html',
   })
 ]
 
@@ -25,8 +18,7 @@ const plugins = [
 
 module.exports = {
   entry: {
-    'presentation': './src/presentation/main.ts',
-    'playground': './src/playground/main.ts'
+    'presentation': './src/presentation/main.ts'
   },
   mode: 'development',
   optimization: {
