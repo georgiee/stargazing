@@ -823,9 +823,9 @@
             data-src="examples/shooting/shooting-01/"></iframe>
 
           <aside class="notes">
-            <p>We use a circle again — but this time it stands for a piece of rock and not a star!</p>
-            <p>⏭To simulate the burning we use <strong>opacity</strong>. ⏭We are not visible in the beginning, start burning and disappear again.</p>
-            <p>The result looks good, now let's build some movement</p>
+            <p>Wir verwenden schon wieder einen Kreis — dieses mal steht er aber für einen Stein und nicht für einen Stern</p>
+            <p>⏭Das Verbrennen simulieren wir über <strong>opacity</strong>. ⏭Am Anfang unsichtbar, zeigt sicher der brennende Stern, um dann in aller Ewigkeit zu verschwinden.</p>
+            <p>Das Ergebnis sieht gut aus. Jetzt wollen wir den Stein animieren.</p>
           </aside>
         </section>
 
@@ -836,9 +836,9 @@
           <pre class="fragment prism-medium" data-src="examples/shooting/shooting-02/snippet.css"></pre>
 
           <aside class="notes">
-            <p>We want to move the circle in an arc</p>
-            <p>⏭and we start by rotating it by 180 degree</p>
-            <p>⏭But something is wrong with the result - you can't see it rotate.</p>
+            <p>Der Kreis soll dazu im Bogen fliegen </p>
+            <p>⏭Also lasst uns das Ding um 180 Grad rotieren.</p>
+            <p>⏭Aber irgendwas ist faul - wir sehen keine Animation.</p>
           </aside>
 
           <iframe
@@ -851,9 +851,9 @@
         <!-- Code: Shooting No Orbit (debug) -->
         <section data-background-iframe="examples/shooting/shooting-02/index.html?debug">
           <aside class="notes">
-            <p>If we look at a larger version and attach some shape to the circle</p>
-            <p>we can see that it's rotating — but around itself only</p>
-            <p>We need to offset the center of the animation</p>
+            <p>Wenn wir genauer drauf schauen. Hier eine größere Version mit einem Marker am Rand des Kreises</p>
+            <p>dann sehen wir dass er tatsächlich rotiert, aber eben um sich selbst</p>
+            <p>Wir müssen irgendwie den Mittelpunkt der Rotation verschieben</p>
           </aside>
         </section>
 
@@ -893,15 +893,16 @@
           </div>
 
           <aside class="notes">
-            <p>In addition to the rotation we also have to translate. We use this adjusted animation
-              ⏭ and we can see the desired result.
+            <p>Zusätzlich zur Rotation verwenden wir nun ein "translate". Mit der angepassten Animation
+              ⏭ sehen wir nun endlich das gewünschte Resultat.
             </p>
             <p>
-              The transformation has the effect, that the circle is rotating around its
-              original position with the given radius of 100px.
+              Die Transformation hat den Effekt, dass der Kreis um seine ursprüngliche Position rotiert
+              mit einem Radius von genau 100px.
             </p>
             <p>
-              ⏭ Order matters, don't translate and then rotate otherwise you will shift the circle and it will rotate at that new position around itself.
+              ⏭ Die Reihenfolge zählt! Nicht translate und dann rotate.
+              Andernfalls bewegt man den Kreis an die neue Position wo der dann wieder munter um sich selbst dreht.
             </p>
           </aside>
         </section>
@@ -929,10 +930,10 @@
           </ul>
 
           <aside class="notes">
-            <p>The animation is good but we want to use variations</p>
-            <p> ⏭ We want to adjust translation of 100px which represents our radius</p>
-            <p> ⏭ and also the different rotation values which are our start and end angles</p>
-            <p> ⏭ Amazingly CSS Variables work in keyframe animations too!</p>
+            <p>Die Animation sieht gut aus. Wir wollen aber wieder Variationen der gleichen Animation definieren können.</p>
+            <p> ⏭ Wir wollen die "Translation" von 100px modifizieren. Das ist unser Radius.</p>
+            <p> ⏭ Zudem wollen wir die Parameter der Rotation beeinflussen, das sind unsere Start und End Rotationen </p>
+            <p> ⏭ CSS Variables funktionieren sogar in Keyframe Animationen, also lasst uns das versuchen.</p>
           </aside>
         </section>
 
@@ -959,14 +960,14 @@
 
           <aside class="notes">
             <p>
-              We use a CSS variable called shooting-orbit-radius with a default value of 100px;
+              Wir verwenden eine CSS Variable namens "shooting-orbit-radius" mit einem Standardwert von 100px;
             </p>
             <p>
-             ⏭ With the power of JavaScript we can assign different values.
+             ⏭ Mit Hilfe von JavaScript können wir einer spezifischen Sternschnuppe ihre eigenen Parameter geben.
             </p>
             <p>
-              ⏭You can see in my example where I change it by 10px in each step.
-              The circle right to it is using the same animation but with the fallback value of 100px
+              ⏭In meinem Beispiel sieht man wie sich der Radius in 10px Schritten ändert.
+              Der Kreis rechts verwendet die identische CSS Animation aber verwendet den Standardwert von 100px
             </p>
           </aside>
 
@@ -997,9 +998,12 @@
           </pre>
 
           <aside class="notes">
-            <p>We can do the same for the angle. </p>
-            <p>⏭Here I prepared an example where the two angles are set to different values.
-              You can see how the start end the end angles are changing while we use the very same css animation.
+            <p>Wir können das gleiche machen für die Rotationswerte </p>
+            <p>⏭In diesem Beispiel setze ich verschiedene Werte für die Start und End Werte der Rotation.
+            </p>
+            <p>
+              Ich habe diese Parametrisierung in diesen zwei Beispielen hervorgehoben,
+              Noch vor wenigen Jahren war das per CSS undenkbar. Erst 2017 mit CSS3 wurde dieses Feature langsam adaptiert.
             </p>
           </aside>
 
@@ -1030,12 +1034,13 @@
             data-src="examples/shooting/shooting-06/snippet.js"></pre>
 
           <aside class="notes">
-            <p>We have a shooting star where we can provide variations with CSS Variables. Let's build a function `createShootingStar` so we can create them with few parameters
+            <p>Wir haben eine Sternschnuppen Animation, die wir per CSS Variablen anpassen können.
+              Lasst uns jetzt eine Funktion `createShootingStar` umsetzen für ein wenig mehr Komfort
             </p>
-            <p>⏭The method itself looks big but there are three distinct parts</p>
-            <p>⏭We build the SVG structure as before</p>
-            <p>⏭assign the appearance like radius, color and position</p>
-            <p>⏭and then apply the css animation with all required CSS Variables</p>
+            <p>⏭Die Methode selbst sieht zwar groß aus aber man kann drei große Bereiche erkennen</p>
+            <p>⏭Wir bauen die SVG Struktur auf wie zuvor bei dem Stern</p>
+            <p>⏭Danach weisen wir die Werte wie Radius, Position oder Farbe</p>
+            <p>⏭Und abschließend befüllen wir die CSS Variablen für die Animation</p>
             <p>💤</p>
           </aside>
         </section>
@@ -1051,13 +1056,13 @@
           </pre>
 
           <aside class="notes">
-            The result looks like this.
+            Das Ergebnis sieht so aus.
           </aside>
         </section>
 
         <section data-background-iframe="examples/shooting/shooting-07/">
           <aside class="notes">
-            When we disable all the visual helpers the result already looks like a shooting star!
+            Wenn wir alle visuellen Helfer deaktivieren, dann sieht das durchaus wie eine kleine Sternschnuppe aus.
           </aside>
         </section>
 
@@ -1065,9 +1070,9 @@
           <h3>How many shooting stars?</h3>
           <p class="fragment">4-6 per hour</p>
           <aside class="notes">
-            <p>There is one question missing yet.</p>
-            <p>How many shooting stars are actually happening in the sky?</p>
-            <p>⏭During a usual night and outside of a city you can observe up to 6 shooting stars per hours</p>
+            <p>Eine Frage steht noch im Raum.</p>
+            <p>Wie viele Sternschnuppen sehen wir am Himmel?</p>
+            <p>⏭In einer normalen Nacht und außerhalb einer Stadt können wir bis zu 6 Sternschnuppen pro Stunde sehen.</p>
           </aside>
         </section>
 
@@ -1075,8 +1080,8 @@
           <h2>Meteor Shower</h2>
           <p class="fragment">Up to 200 shooting stars per hour</p>
           <aside class="notes">
-            <p>But during a meteor shower you can observe</p>
-            <p>⏭up to 200 shooting stars per hour</p>
+            <p>Aber während einem Meteoritenschauer, können wir</p>
+            <p>⏭bis zu 200 Sternschnuppen pro Stunde bestaunen.</p>
           </aside>
         </section>
 
@@ -1086,9 +1091,9 @@
           <h2 class="fragment">✨Meteor Shower✨</h2>
           <p class="fragment">🎭Idea: Create multiple randomly shooting stars </p>
           <aside class="notes">
-            <p>We gained a new star fact.</p>
-            <p>⏭Meteor Shower</p>
-            <p>⏭The idea is to create multiple random shooting stars</p>
+            <p>Wir haben einen neuen Sternenfakt.</p>
+            <p>⏭Meteoritenschauer</p>
+            <p>⏭Wir wollen mehrere zufällig erscheinende Sternschnuppen erstellen</p>
           </aside>
         </section>
 
@@ -1108,9 +1113,9 @@
           </div>
 
           <aside class="notes">
-            <p>We use our 'createShootingStar' method to create three different shooting stars</p>
-            <p>⏭The result are multiple shooting stars</p>
-            <p>But they all start at the same time and shooting forever. We need to change this.</p>
+            <p>Wir benutzen unsere Funktion 'createShootingStar' um drei Sternschnuppen zu erschaffen. </p>
+            <p>⏭Das Ergebnis sind eben diese Sternschnuppen</p>
+            <p>Aber alle Starten zur gleichen Zeiten und schießen permanent im Loop. Wir müssen hier was ändern.</p>
           </aside>
         </section>
 
@@ -1158,19 +1163,19 @@
           </div>
 
           <aside class="notes">
-            <p>So</p>
-            <p>⏭We hide the shooting star in the beginning</p>
-            <p>⏭and only show it and apply the animation when the class is-shooting is present</p>
-            <p>⏭We use a shootNext function</p>
-            <p>⏭to randomly assign the css class is-shooting to a shooting star every few seconds</p>
-            <p>⏭the result looks like this where each shooting star is randomly activated</p>
+            <p>Also</p>
+            <p>⏭Wir verstecken die Sternschnuppe zu Beginn</p>
+            <p>⏭und zeigen diese erst und starten die Animation wenn die CSS Klasse "is-shooting" vorhanden ist.</p>
+            <p>⏭Wir verwenden eine "shootNext" function</p>
+            <p>⏭um die CSS Klasse "is-shooting" alle paar Sekunden einer zufälligen Sternschnuppe zuzuweisen.</p>
+            <p>⏭Im Ergebnis erscheint nun jede Sternschnuppe zufällig</p>
             <p>💤</p>
           </aside>
         </section>
 
         <section data-background-image="static/images/chapter-03/homer-burn.gif">
           <aside class="notes">
-            Let's try to combine our sky with the shooting stars.
+            Jetzt wollen wir unseren Sternenhimmel und die Sternschnuppen zusammenbringen
           </aside>
         </section>
 
@@ -1187,8 +1192,8 @@
           data-background-iframe="examples/shooting/shooting-10/">
 
           <aside class="notes">
-            <P>There we go! This looks nice.</P>
-            <p>You can see our stars twinkle and the shooting stars appearing randomly.</p>
+            <P>Das sieht doch hervorragend aus.</P>
+            <p>Wir sehen unsere funkelnden Sterne und von Zeit zu Zeit unserer Sternschnuppen.</p>
           </aside>
         </section>
       </section>
