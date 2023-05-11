@@ -559,6 +559,7 @@
           <pre
             class="line-numbers fragment"
             data-fragment-index="1"
+            data-line-fragments-mode='absolute'
             data-line-fragments='["3","6", "4-5"]'
             data-src="examples/sky/sky-01/snippet.js">
           </pre>
@@ -576,7 +577,7 @@
         <section data-background-iframe="examples/sky/sky-01/">
           <aside class="notes">
             <p>Das Ergebnis kann sich sehen lassen</p>
-            <p>Das war überraschend schnell dank JavaScript.</p>
+            <p>Das ging überraschend schnell dank JavaScript.</p>
             <p>Allerdings sieht die ganze Sache noch etwas langweilig aus, deshalb wollen wir den Himmel noch etwas verfeinern. </p>
           </aside>
         </section>
@@ -588,7 +589,7 @@
           <h2 class="fragment">Astronomical Scintillation</h2>
 
           <aside class="notes">
-            <p>Dieser subtile Effekt nennt man ⏭Sternenfunkeln</p>
+            <p>Den subtilen Effekt hier nennt man ⏭Sternenfunkeln</p>
             <p>⏭ oder weil wir heute auch Wissenschaftler sind: Astronomische Szintillation</p>
           </aside>
         </section>
@@ -596,7 +597,7 @@
         <section data-background-image="static/images/chapter-02/pool.gif">
           <aside class="notes">
             <p>Der Effekt wird durch unterschiedliche Luftschichten in unserer Atmosphäre verursacht.</p>
-            <p>Die Reflektion am Boden im Schwimmbad bzw. Pool sind ein sehr ähnlicher Effekt.</p>
+            <p>Die Reflektionen am Boden im Schwimmbad bzw. Pool sind ein sehr ähnlicher Effekt.</p>
           </aside>
         </section>
 
@@ -637,9 +638,9 @@
 
           <aside class="notes">
             <p>Die erste CSS Animation sieht so aus.</p>
-            <p>Mit einer Keyframe Animation deformieren wir unsere Sterne, in einer fast zufällige aussehenden Art und Weise.</p>
+            <p>Mit einer Keyframe Animation deformieren wir unsere Sterne, in einer fast zufällig aussehenden Art und Weise.</p>
             <p>Die recht ruppige Animation ist gewollt und hilft den Effekt etwas natürlicher aussehen zu lassen</p>
-            <p>Die Animation selbst läuft endlos und wechselt von vorwärts zu rückwärts für eine etwas größere Variation im Zyklus</p>
+            <p>Die Animation selbst läuft endlos und alterniert zwischen vorwärts und rückwärts für eine etwas größere Variation im Zyklus</p>
           </aside>
         </section>
 
@@ -688,8 +689,8 @@
             data-src="examples/sky/sky-03/"></iframe>
 
           <aside class="notes">
-            <p>Lass uns drei Sterne erzeugen und per "twinkle-little-star" die Animation zuweisen. </p>
-            <p>⏭Das Ergebnis sieht ziemlich künstlich aus weil alles so synchron läuft.</p>
+            <p>Lasst uns drei Sterne erzeugen und per CSS Klasse "twinkle-little-star" die Animation zuweisen. </p>
+            <p>⏭Es funktioniert! Aber das Ergebnis sieht ziemlich künstlich aus weil alles so synchron läuft.</p>
           </aside>
         </section>
 
@@ -710,8 +711,8 @@
 
             <p>⏭Mit "animation-delay" können wir den Start einer CSS Animation verzögern. Und dank der Macht der CSS Variablen können wir den Wert konfigurierbar machen.
             </p>
-            <p>⏭Wir können nun verschiedene Verzögerungen pro Stern und nur per CSS setzen!<br>
-            Die verwendeten Werte hier sind negativ. Das ist ein Kniff damit die Animationen versetzt laufen aber niemals am Anfang einmal warten.</p>
+            <p>⏭Wir können nun per CSS verschiedene Verzögerungen pro Stern setzen<br>
+            Die verwendeten Werte hier sind negativ. Das ist ein Kniff damit die Animationen versetzt laufen aber niemals am Anfang warten.</p>
           </aside>
         </section>
 
@@ -743,8 +744,9 @@
         <!-- (Large Preview) Code: Twinkle V (First Twinkle Sky) via roZNbo -->
         <section data-background-iframe="examples/sky/sky-04/">
           <aside class="notes">
-            <p>Da kann man doch schon fast das Träumen anfangen. In relativer kurzer Zeit sind wir schon sehr weit gekommen.</p>
-            <p>Auf zum dritten Kapitel</p>
+            <p>Da kann man doch schon fast das Träumen anfangen. </p>
+            <p>💤</p>
+            <p>In relativer kurzer Zeit sind wir schon sehr weit gekommen. Auf zum dritten Kapitel</p>
           </aside>
 
         </section>
@@ -792,7 +794,7 @@
           <aside class="notes">
             <p>Die Steinchen reisen mit einer Geschwindigkeit von über 260.000 km/h.</p>
             <p>⏭Die Geschwindigkeit im Kombination mit der Reibung in unserer Atmosphäre</p>
-            <p>⏭lässt die Steichnen verbrenne und kurz aufleuchten</p>
+            <p>⏭lässt die Steichnen verbrennen und kurz aufleuchten</p>
             <p>Wir können uns glücklich schätzen dass die meisten so klein sind, dass sie komplett verbrennen</p>
           </aside>
         </section>
@@ -829,8 +831,8 @@
 
           <aside class="notes">
             <p>Wir verwenden schon wieder einen Kreis — dieses mal steht er aber für einen Stein und nicht für einen Stern</p>
-            <p>⏭Das Verbrennen simulieren wir über <strong>opacity</strong>. ⏭Am Anfang unsichtbar, zeigt sicher der brennende Stern, um dann in aller Ewigkeit zu verschwinden.</p>
-            <p>Das Ergebnis sieht gut aus. Jetzt wollen wir den Stein animieren.</p>
+            <p>⏭Das Verbrennen simulieren wir über <strong>opacity</strong>. ⏭Am Anfang unsichtbar, zeigt sich der brennende Stern, um dann in aller Ewigkeit zu verschwinden.</p>
+            <p>Das Ergebnis sieht gut aus. Jetzt wollen wir den Stein auch bewegen.</p>
           </aside>
         </section>
 
