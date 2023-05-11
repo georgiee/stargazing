@@ -840,7 +840,9 @@
         <section>
           <img data-src="static/images/chapter-03/shooting-star-arc.gif">
 
-          <pre class="fragment prism-medium" data-src="examples/shooting/shooting-02/snippet.css"></pre>
+          <pre class="fragment prism-medium"
+               data-line="6-7"
+               data-src="examples/shooting/shooting-02/snippet.css"></pre>
 
           <aside class="notes">
             <p>Der Kreis soll dazu im Bogen fliegen </p>
@@ -858,7 +860,7 @@
         <!-- Code: Shooting No Orbit (debug) -->
         <section data-background-iframe="examples/shooting/shooting-02/index.html?debug">
           <aside class="notes">
-            <p>Wenn wir genauer drauf schauen. Hier eine größere Version mit einem Marker am Rand des Kreises</p>
+            <p>Wenn wir genauer drauf schauen und einen roten Marker am Rand platzieren,</p>
             <p>dann sehen wir dass er tatsächlich rotiert, aber eben um sich selbst</p>
             <p>Wir müssen irgendwie den Mittelpunkt der Rotation verschieben</p>
           </aside>
@@ -866,7 +868,7 @@
 
         <!-- Code: Orbit with rotation + translation -->
         <section>
-          <pre data-src="examples/shooting/shooting-03/snippet.css"></pre>
+          <pre data-line="6-7" data-src="examples/shooting/shooting-03/snippet.css"></pre>
           <div class="twocol">
            <div style="height:400px; position: relative;">
             <iframe
@@ -937,10 +939,10 @@
           </ul>
 
           <aside class="notes">
-            <p>Die Animation sieht gut aus. Wir wollen aber wieder Variationen der gleichen Animation definieren können.</p>
+            <p>Die Animation sieht gut aus. Aber wir brauchen eine Möglichkeit Variationen ableiten zu können.</p>
             <p> ⏭ Wir wollen die "Translation" von 100px modifizieren. Das ist unser Radius.</p>
             <p> ⏭ Zudem wollen wir die Parameter der Rotation beeinflussen, das sind unsere Start und End Rotationen </p>
-            <p> ⏭ CSS Variables funktionieren sogar in Keyframe Animationen, also lasst uns das versuchen.</p>
+            <p> ⏭ CSS Variables funktionieren sogar in Keyframe Animationen, also lasst es uns damit versuchen.</p>
           </aside>
         </section>
 
@@ -974,7 +976,7 @@
             </p>
             <p>
               ⏭In meinem Beispiel sieht man wie sich der Radius in 10px Schritten ändert.
-              Der Kreis rechts verwendet die identische CSS Animation aber verwendet den Standardwert von 100px
+              Die Sternschnuppe rechts verwendet die identische CSS Animation aber verwendet den Standardwert von 100px
             </p>
           </aside>
 
@@ -1006,11 +1008,7 @@
 
           <aside class="notes">
             <p>Wir können das gleiche machen für die Rotationswerte </p>
-            <p>⏭In diesem Beispiel setze ich verschiedene Werte für die Start und End Werte der Rotation.
-            </p>
-            <p>
-              Ich habe diese Parametrisierung in diesen zwei Beispielen hervorgehoben,
-              Noch vor wenigen Jahren war das per CSS undenkbar. Erst 2017 mit CSS3 wurde dieses Feature langsam adaptiert.
+            <p>⏭In diesem Beispiel setze ich verschiedene Werte für die Start und End Parameter der Rotation.
             </p>
           </aside>
 
@@ -1046,8 +1044,8 @@
             </p>
             <p>⏭Die Methode selbst sieht zwar groß aus aber man kann drei große Bereiche erkennen</p>
             <p>⏭Wir bauen die SVG Struktur auf wie zuvor bei dem Stern</p>
-            <p>⏭Danach weisen wir die Werte wie Radius, Position oder Farbe</p>
-            <p>⏭Und abschließend befüllen wir die CSS Variablen für die Animation</p>
+            <p>⏭Danach weisen wir die Werte wie Radius, Position oder Farbe zu</p>
+            <p>⏭Und abschließend befüllen wir für die Animation die nötigen CSS Variablen</p>
             <p>💤</p>
           </aside>
         </section>
@@ -1122,7 +1120,7 @@
           <aside class="notes">
             <p>Wir benutzen unsere Funktion 'createShootingStar' um drei Sternschnuppen zu erschaffen. </p>
             <p>⏭Das Ergebnis sind eben diese Sternschnuppen</p>
-            <p>Aber alle Starten zur gleichen Zeiten und schießen permanent im Loop. Wir müssen hier was ändern.</p>
+            <p>Aber alle Starten zur gleichen Zeit und kennen kein Ende. Wir müssen hier was ändern.</p>
           </aside>
         </section>
 
@@ -1172,7 +1170,7 @@
           <aside class="notes">
             <p>Also</p>
             <p>⏭Wir verstecken die Sternschnuppe zu Beginn</p>
-            <p>⏭und zeigen diese erst und starten die Animation wenn die CSS Klasse "is-shooting" vorhanden ist.</p>
+            <p>⏭und zeigen diese inklusive der Animation erst wenn die CSS Klasse "is-shooting" vorhanden ist.</p>
             <p>⏭Wir verwenden eine "shootNext" function</p>
             <p>⏭um die CSS Klasse "is-shooting" alle paar Sekunden einer zufälligen Sternschnuppe zuzuweisen.</p>
             <p>⏭Im Ergebnis erscheint nun jede Sternschnuppe zufällig</p>
@@ -1200,7 +1198,7 @@
 
           <aside class="notes">
             <P>Das sieht doch hervorragend aus.</P>
-            <p>Wir sehen unsere funkelnden Sterne und von Zeit zu Zeit unserer Sternschnuppen.</p>
+            <p>Wir sehen unsere funkelnden Sterne und von Zeit zu Zeit unsere Sternschnuppen.</p>
           </aside>
         </section>
       </section>
@@ -1248,7 +1246,7 @@
           <h2>Stars are random data</h2>
           <aside class="notes">
             Und was sind Sterne am Himmel? Zufällige Daten und unser Gehirn versucht
-            zwangsläufig etwas darin zu sehen.
+            zwanghaft etwas darin zu erkennen.
           </aside>
         </section>
 
@@ -1270,7 +1268,7 @@
           <img height="600" src="static/images/chapter-04/orion.jpg"/>
           <aside class="notes">
             <p>
-              Vor Jahrunderten, und nur dank der Pareidolie, haben Menschen in diesem Sternenhaufen Orion gesehen,
+              Vor Jahrhunderten, und nur dank der Pareidolie, haben Menschen in diesem Sternenhaufen Orion gesehen,
               ein berühmter Jäger in der griechischen Mythologie. Um ihn zu finden, sucht man nach seinem Gürtel - die drei Sterne aufgereiht an seiner Hüfte.
             </p>
             <p>
@@ -1286,7 +1284,7 @@
               Das ist Ursa Major, und heißt aus dem Lateinischen übersetzt großer Bär.
             </p>
             <p>
-              Viele von euch erkennen bestimmt den oberen linken Bereich. Das ist der "Großer Wagen".
+              Viele von euch erkennen bestimmt den oberen linken Bereich. Das ist der "Große Wagen".
             </p>
             <p>
               Und damit habt ihr etwas um auf der nächsten Party anzugeben.
@@ -1302,7 +1300,7 @@
             <p>Hier ist Herkules, Sohn von Zeus. Ein weiterer großer Held in der griechischen Mythologie.</p>
             <p>
               In der nördlichen Hemisphäre kann man ihn von Frühjahr bis Herbst beobachten.
-              Ihr müsste dazu seinen Torso finden. Ein auffälliges Quadrat aus vier Sternen am Himmel.
+              Ihr müsst dazu seinen Torso finden. Ein auffälliges Quadrat aus vier Sternen am Himmel.
             </p>
           </aside>
         </section>
@@ -1326,7 +1324,7 @@
               Imaginäre Sternenbilder ist unser neuester Sternenfakt!
             </p>
             <p>
-              ⏭ Wir werden SVV Kreise mit Linien verbinden.
+              ⏭ Wir werden SVG Kreise mit Linien verbinden.
             </p>
           </aside>
         </section>
@@ -1343,7 +1341,7 @@
             data-src="examples/constellations/constellation-02/snippet.svg"></pre>
 
           <aside class="notes">
-            <p>Das wird unser Baustein sein. Zwei Kreise verbunden mit einer Linie.</p>
+            <p>Das ist unser Baustein. Zwei Kreise verbunden mit einer Linie.</p>
             <p>Wenn wir es schaffen so ein Element zu erstellen, dann können wir jede Outline zeichnen.</p>
             <p>Wir wollen es von Anfang an komfortabel haben und versuchen diesen Baustein per JavaScript zu erstellen.</p>
           </aside>
@@ -1357,7 +1355,7 @@
 
               <pre
                 style='font-size: 12px'
-                data-line-fragments='["6-7", "3-4"]'
+                data-line-fragments='["3-4", "5"]'
                 data-line-fragments-mode='absolute'
                 data-src="examples/constellations/constellation-02a/snippet.svg">
               </pre>
@@ -1500,9 +1498,9 @@
                 </pre>
 
                 <pre
-                  data-fragment-index="1"
+                  data-fragment-index="0"
                   data-line-fragments-mode="absolute"
-                  data-line-fragments='["3-4"]'
+                  data-line-fragments='["3,8","3-4"]'
                   style='font-size: 12px' class="fragment">
                   <code class="language-js">
                     function createConstellation(points, multipleIndicesList) {
@@ -1529,13 +1527,12 @@
           </div>
           <aside class="notes">
             <p>
-              Damit wir eine Konstellation erstellen
-              Wir wollen eine Konstellation über den Aufruf einer Funktion "createConstellation" erstellen können.
-              Dazu übergeben wir die Koordinaten und mehrere Gruppen von Indizes. Jede steht für eine Linie
-              Für Orion müssten wir dann nur noch die richtigen Daten finden.
+              Damit können wir endlich eine Konstellation erstellen.
+              Dazu erstellen wir eine Funktion "createConstellation" und übergeben die Koordinaten sowie mehrere Gruppen von Indizes.
+              Jede Gruppe steht für eine Linie im Sternbild. Für Orion müssten wir dann nur noch die richtigen Daten finden.
             </p>
             <p>
-              ⏭ In der Funktion nutzen wir wie gerade eben "createDots" & "createLine" um das Sternbild zu erstellen.
+              ⏭ In der Funktion selbst  ⏭ nutzen wir wie gerade eben "createDots" & "createLine" um das Sternbild zu erstellen.
             </p>
             <p>
               ⏭ Am Ende tauschen wir "createDots" mit unserer "createStars" Funktion, damit das Sternbild auch wirklich aus Sternen besteht.
@@ -1569,11 +1566,11 @@
               </p>
               <p>
                 Sternbilder sind schwer zu finden und noch schwerer vorzustellen —
-                das ist genau was wir machen wollen. Die Sternbilder sollen langsam am Nachthimmel erscheinen.
+                das ist genau was wir simulieren wollen. Die Sternbilder sollen langsam am Nachthimmel erscheinen.
               </p>
 
               <p>
-                ⏭ Wir wollen die SVG Pfade animieren, sodass die Sternbilder nach und nach erscheinen.
+                ⏭ Wir wollen die SVG Pfade animieren, sodass sich die Sternbilder nach und nach aufbauen.
               </p>
 
             </aside>
@@ -1629,8 +1626,8 @@
           <aside class="notes">
             <p>Als nächstes der Versatz, gesteuert über das Attribut "dash-offset". Diese Demo hilft das Thema anschaulich zu machen.
             </p>
-            <p>Ihr seht zwei Linien. Einmal die originale Linie. 100px breit und leicht gestrichelt.
-              Darunter eine imaginäre unendliche Linien zusammen mit einem gelben Fesnter darüber schwebend.</p>
+            <p>Ihr seht zwei Linien. Einmal die originale Linie. 100px lang und leicht gestrichelt.
+              Darunter eine imaginäre unendliche Linie zusammen mit einem gelben Fenster darüber schwebend.</p>
 
             <p>⏭Ich habe jetzt die Animation gestartet. Der Versatz wird nun immer größer. Das gelbe Fenster verschiebt sich mit dem Wert.</p>
             <p>⏭Hier seht ihr den Ausschnitt was sich innerhalb des gelben Fenster befindet</p>
@@ -1677,7 +1674,7 @@
           </pre>
           <aside class="notes">
             <p>Damit wir diesen Trick einfach nutzen können, packen wir alle Erkenntnisse in eine CSS Animation</p>
-            <p>⏭Wir weisen die Länge unseres Pfade dem Attribut "dash-array" zu.</p>
+            <p>⏭Wir weisen die Länge unseres Pfad dem Attribut "dash-array" zu.</p>
             <p>⏭Wir starten die Animation mit einem Versatz, der der Länge des Pfades entspricht und animieren den Versatz runter auf 0. Das enthüllt den Pfad.</p>
             <p>⏭Damit wir die CSS Animation nutzen können weisen wir sie einer CSS Klasse `your-path` zu und stellen die korrekte Länge des Pfades ein..</p>
           </aside>
@@ -1729,7 +1726,7 @@
           <aside class="notes">
            <p>
              Wir sind in Schwierigkeiten wenn wir eine falsche Pfadlänge angeben.
-             Der pinke Pfade ist länger als 100px.
+             Der pinke Pfad ist länger als 100px.
            </p>
             <p>
               In diesem Fall könnte uns Pythagoras helfen. Aber Pfade sind nicht immer gerade und kommen in vielen Variationen.
@@ -1768,8 +1765,7 @@
           </div>
           <aside class="notes">
            <p>
-             Jetzt wo wir alle Längen haben, wollen wir alle Linien animieren. Das sieht aber bescheiden aus,
-             weil alles gleichzeitig startet.
+             Jetzt wo wir alle Längen haben, wollen wir alle Linien animieren. Allerdings startet alles gleichzeitig anstatt nacheinander.
            </p>
            <p>
              ⏭ Wir wollen deshalb wie bei unseren Sternschnuppen Verzögerungen einführen.
@@ -1783,7 +1779,7 @@
             <iframe
               width="500"
               height="500"
-              data-virtual-iframe="[0,0,1]"
+              data-virtual-iframe="[0,0,0,1]"
               data-src="examples/constellations/constellation-09/"></iframe>
             <div>
               <pre
@@ -1793,7 +1789,7 @@
                 data-src="examples/constellations/constellation-09/snippet.css"></pre>
               <pre
                 data-line-fragments-mode="absolute"
-                data-line-fragments='[null, "4,6-9", null]'
+                data-line-fragments='[null, "4,6-7","8-9", null]'
                 style='font-size: 16px'
                 data-src="examples/constellations/constellation-09/snippet.js"></pre>
 
@@ -1807,11 +1803,11 @@
               ⏭Zuerst definieren wir eine CSS Klasse "animated-path". Darüber setzen wir die Animation und eine Verzögerung.
             </p>
             <p>
-              ⏭Innerhalb der existierenden "createLine" Funktion weisen wir unsere CSS Animation zu
-              lesen die Pfadlänge aus und stellen der Animation die gewählte Verzögerun und die Pfadlänge per CSS Variable zur Verfügung.
+              ⏭Innerhalb der existierenden "createLine" Funktion weisen wir unsere CSS Animation zu und lesen die Pfadlänge aus
             </p>
+            <p>⏭Der Animation stellen wir dann die gewählte Verzögerung und die Pfadlänge per CSS Variable zur Verfügung.</p>
             <p>
-              ⏭Das Ergebnis ist eine enthüllendes Sternbild!
+              ⏭Das Ergebnis ist ein enthüllendes Sternbild!
             </p>
           </aside>
         </section>
